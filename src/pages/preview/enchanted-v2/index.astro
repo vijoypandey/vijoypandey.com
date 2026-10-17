@@ -27,7 +27,7 @@ const home = `${base}/preview/enchanted-v2/`;
         <div class="hero-track">
           {openingSlides.map((slide, index) => (
             <article
-              class={`hero-slide ${index === 0 ? 'is-active' : ''}`}
+              class={`hero-slide opening ${index === 0 ? 'is-active' : ''}`}
               id={`slide-panel-${index + 1}`}
               role="tabpanel"
               aria-labelledby={`slide-tab-${index + 1}`}
@@ -35,7 +35,18 @@ const home = `${base}/preview/enchanted-v2/`;
               inert={index !== 0}
               data-slide
             >
-              <figure class="hero-figure">
+              <div class="opening-copy">
+                <p class="eyebrow">An illustrated inquiry <span>—</span> {slide.number}</p>
+                <div class="opening-title-wrap">
+                  <p class="pretitle">{index === 0 ? 'The next landscape of computing' : slide.label}</p>
+                  {index === 0 ? <h1>{slide.headline}</h1> : <h2>{slide.headline}</h2>}
+                  <p class="dropcap-copy">{slide.body}</p>
+                </div>
+                <a class="text-link hero-enter" href={slide.slug ? `${home}${slide.slug}/` : '#frontiers'}>
+                  {slide.slug ? 'Enter this frontier' : 'Enter the four frontiers'} <span aria-hidden="true">→</span>
+                </a>
+              </div>
+              <figure class="opening-art">
                 {slide.slug ? (
                   <a href={`${home}${slide.slug}/`} aria-label={`Enter ${slide.label}`}>
                     <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" fetchpriority={index === 0 ? 'high' : 'low'} />
@@ -43,15 +54,8 @@ const home = `${base}/preview/enchanted-v2/`;
                 ) : (
                   <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" fetchpriority="high" />
                 )}
+                <figcaption><span>Plate {['I', 'II', 'III', 'IV', 'V'][index]}</span><span>{slide.note}</span></figcaption>
               </figure>
-              <div class="hero-caption">
-                <div class="hero-caption-main">
-                  <p class="eyebrow">{slide.number} <span>—</span> {slide.label}</p>
-                  {index === 0 ? <h1>{slide.headline}</h1> : <h2>{slide.headline}</h2>}
-                  <p class="dropcap-copy">{slide.body}</p>
-                </div>
-                {slide.slug && <a class="text-link hero-enter" href={`${home}${slide.slug}/`}>Enter this frontier <span aria-hidden="true">→</span></a>}
-              </div>
             </article>
           ))}
         </div>
@@ -85,22 +89,25 @@ const home = `${base}/preview/enchanted-v2/`;
       </section>
 
       <section class="worlds" id="frontiers" aria-labelledby="worlds-title">
+        <div class="worlds-rule"><span>Four frontiers</span><span>01—04</span></div>
         <div class="worlds-intro">
-          <p class="eyebrow">An illustrated map <span>—</span> 02</p>
-          <h2 id="worlds-title">Four worlds.<br /><em>One inquiry.</em></h2>
-          <p>Computing beyond the individual node opens onto four connected frontiers. Choose a world to enter.</p>
+          <h2 id="worlds-title">Four ways into<br /><em>the unknown.</em></h2>
+          <p>Different worlds, one question: how does computing scale when the meaningful unit is no longer a single node?</p>
         </div>
         <div class="world-map">
           {frontierWorlds.map((world, index) => (
             <article class={`world world--${index + 1}`}>
               <a class="world-link" href={`${home}${world.slug}/`}>
-                <figure class="world-figure"><img src={artwork(world.image)} alt={world.imageAlt} loading="lazy" decoding="async" /></figure>
-                <div class="world-copy">
-                  <span class="world-number">{world.index} / 04</span>
+                <div class="world-heading">
+                  <span class="world-number">Frontier {world.index} / 04</span>
                   <h3>{world.name}</h3>
                   <p>{world.subtitle}</p>
-                  <span class="world-enter" aria-hidden="true">→</span>
                 </div>
+                <figure class="world-figure">
+                  <img src={artwork(world.image)} alt={world.imageAlt} loading="eager" decoding="async" />
+                  <figcaption><span>Plate {['II', 'III', 'IV', 'V'][index]}</span><span>{world.note}</span></figcaption>
+                </figure>
+                <span class="world-enter">Enter this frontier <span aria-hidden="true">→</span></span>
               </a>
             </article>
           ))}
@@ -115,7 +122,7 @@ const home = `${base}/preview/enchanted-v2/`;
         </div>
         <div class="exploring-layout">
           <figure class="exploring-art">
-            <img src={artwork(images.forestBlue)} alt="Separate figures and blue lights between dark forest trunks" loading="lazy" decoding="async" />
+            <img src={artwork(images.forestBlue)} alt="Blue-lit niches scattered through a dark forest" loading="eager" decoding="async" />
             <figcaption><span>Plate VI</span><span>Separate lights in a connected wood</span></figcaption>
           </figure>
           <div class="exploring-notes">
@@ -140,7 +147,7 @@ const home = `${base}/preview/enchanted-v2/`;
           <p class="revisiting-detail">{revisiting.detail}</p>
         </div>
         <figure class="revisiting-art">
-          <img src={artwork(images.forestWarm)} alt="Warm lights and tiny figures across many levels of a forest" loading="lazy" decoding="async" />
+          <img src={artwork(images.forestWarm)} alt="Warm amber lanterns across multiple levels of a forest" loading="eager" decoding="async" />
           <figcaption><span>Plate VII</span><span>Lights to return to</span></figcaption>
         </figure>
       </section>

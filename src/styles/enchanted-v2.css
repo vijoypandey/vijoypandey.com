@@ -8,7 +8,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 h1, .enchanted-v2 h2, .enchanted-v2 h3, .enchanted-v2 p, .enchanted-v2 figure { margin: 0; }
 .enchanted-v2 h1, .enchanted-v2 h2, .enchanted-v2 h3, .enchanted-v2 .wordmark, .enchanted-v2 .footer-brand { font-family: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif; font-weight: 400; }
 .enchanted-v2 em { font-weight: 400; }
-.enchanted-v2 .eyebrow, .enchanted-v2 figcaption, .enchanted-v2 .note-line, .enchanted-v2 .revisiting-type, .enchanted-v2 .activity-type, .enchanted-v2 .activity-row time, .enchanted-v2 .footer-bottom, .enchanted-v2 .world-number { font-size: .68rem; letter-spacing: .13em; text-transform: uppercase; }
+.enchanted-v2 .eyebrow, .enchanted-v2 .pretitle, .enchanted-v2 figcaption, .enchanted-v2 .note-line, .enchanted-v2 .revisiting-type, .enchanted-v2 .activity-type, .enchanted-v2 .activity-row time, .enchanted-v2 .footer-bottom, .enchanted-v2 .world-number, .enchanted-v2 .worlds-rule { font-size: .68rem; letter-spacing: .13em; text-transform: uppercase; }
 .enchanted-v2 .eyebrow span { padding: 0 .45em; color: #947966; }
 .enchanted-v2 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .enchanted-v2 .text-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 2.5rem; width: fit-content; border-bottom: 1px solid currentColor; padding: .2rem 0 .65rem; text-decoration: none; font-size: .78rem; letter-spacing: .04em; }
@@ -31,24 +31,27 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .nav-menu a { display: block; padding: .72rem 1rem; text-decoration: none; white-space: nowrap; }
 .enchanted-v2 .nav-menu a:hover, .enchanted-v2 .nav-menu a:focus-visible { background: #e7dfd2; }
 
-/* The panoramic opening holds complete compositions inside a book-like aperture. */
-.enchanted-v2 .hero-slider { background: #eee9de; }
+/* Keep v1's split illustrated spread while changing both sides together. */
+.enchanted-v2 .hero-slider { position: relative; background: #eee9de; }
 .enchanted-v2 .hero-track { display: grid; }
-.enchanted-v2 .hero-slide { grid-area: 1 / 1; min-width: 0; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .55s ease, visibility .55s ease; }
+.enchanted-v2 .hero-slide { grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 58%); min-height: min(850px, calc(100svh - 5.3rem)); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .55s ease, visibility .55s ease; }
 .enchanted-v2 .hero-slide.is-active { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
-.enchanted-v2 .hero-figure { width: 100%; aspect-ratio: 1.85 / 1; background: #252925; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-.enchanted-v2 .hero-figure > img, .enchanted-v2 .hero-figure > a { width: 100%; height: 100%; }
-.enchanted-v2 .hero-figure > a { display: block; }
-.enchanted-v2 .hero-figure img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
-.enchanted-v2 .hero-caption { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem 5rem; align-items: end; min-height: 20rem; padding: clamp(2rem, 4vw, 4.7rem) clamp(1.2rem, 8vw, 9rem) clamp(2.4rem, 4vw, 4.7rem); }
-.enchanted-v2 .hero-caption .eyebrow { color: #826b58; margin-bottom: 1.2rem; }
-.enchanted-v2 .hero-caption h1, .enchanted-v2 .hero-caption h2 { max-width: 20ch; font-size: clamp(2.6rem, 4.5vw, 5.4rem); line-height: 1.04; letter-spacing: -.05em; }
-.enchanted-v2 .hero-caption .dropcap-copy { max-width: 43rem; min-height: 3.7rem; margin-top: 1.6rem; font-size: clamp(.98rem, 1.1vw, 1.12rem); line-height: 1.64; color: #4e4a43; }
+.enchanted-v2 .opening-copy { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; padding: clamp(2rem, 4.3vw, 5rem); padding-bottom: 9rem; background: #eee9de; }
+.enchanted-v2 .opening-copy .eyebrow { color: #795d48; }
+.enchanted-v2 .opening-title-wrap { padding: 4rem 0; }
+.enchanted-v2 .pretitle { margin-bottom: 1.8rem; color: #7d756b; }
+.enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(3.3rem, 5.15vw, 6.8rem); line-height: .98; letter-spacing: -.055em; }
+.enchanted-v2 .dropcap-copy { max-width: 26.5rem; margin-top: 2.5rem; font-size: clamp(1rem, 1.18vw, 1.14rem); line-height: 1.72; color: #4e4a43; }
 .enchanted-v2 .dropcap-copy::first-letter { float: left; margin: .03em .11em -.12em 0; font-family: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif; font-size: 2.5em; line-height: .9; color: inherit; }
 .enchanted-v2 [data-initial='a2'] .dropcap-copy::first-letter { color: #987057; }
-.enchanted-v2 .hero-enter { margin-bottom: .3rem; white-space: nowrap; }
-.enchanted-v2 .hero-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 1.1rem clamp(1.2rem, 8vw, 9rem) 1.3rem; border-top: 1px solid #c8beb0; border-bottom: 1px solid #c8beb0; }
-.enchanted-v2 .slider-navigation { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.5rem); }
+.enchanted-v2 .hero-enter { white-space: nowrap; }
+.enchanted-v2 .opening-art { display: flex; flex-direction: column; justify-content: center; min-width: 0; background: #252724; }
+.enchanted-v2 .opening-art > a { display: block; }
+.enchanted-v2 .opening-art img { display: block; width: 100%; max-height: min(760px, calc(100svh - 8rem)); object-fit: contain; }
+.enchanted-v2 .opening-art figcaption { color: #c1b9ab; }
+.enchanted-v2 figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem clamp(1.2rem, 2vw, 2rem); line-height: 1.5; }
+.enchanted-v2 .hero-toolbar { position: absolute; z-index: 2; left: clamp(2rem, 4.3vw, 5rem); bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: .45rem; }
+.enchanted-v2 .slider-navigation { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2rem); }
 .enchanted-v2 .slider-arrow, .enchanted-v2 .slider-tab, .enchanted-v2 .initial-switch button { appearance: none; border: 0; background: none; color: inherit; cursor: pointer; font: inherit; }
 .enchanted-v2 .slider-arrow { width: 2.5rem; height: 2.5rem; padding: 0; font-family: Georgia, serif; font-size: 1.5rem; }
 .enchanted-v2 .slider-arrow:hover { color: #9b5d3b; }
@@ -62,26 +65,30 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .initial-switch button[aria-pressed='true'] { border-color: #292824; color: #292824; }
 .enchanted-v2 .initial-switch button:hover { color: #9b5d3b; }
 
-/* The four worlds form an uneven atlas spread, with no card chrome. */
-.enchanted-v2 .worlds { padding: clamp(6rem, 10vw, 12rem) clamp(1.2rem, 8vw, 9rem) clamp(7rem, 12vw, 13rem); background: #e7e0d3; }
-.enchanted-v2 .worlds-intro { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: end; gap: 2rem 5rem; margin-bottom: clamp(4rem, 7vw, 8rem); }
-.enchanted-v2 .worlds-intro .eyebrow { grid-column: 1 / -1; color: #806e5d; }
-.enchanted-v2 .worlds-intro h2 { font-size: clamp(3.4rem, 6.2vw, 7.5rem); line-height: 1.02; letter-spacing: -.055em; }
+/* Compact two-column edition of v1's atmospheric frontier chapters. */
+.enchanted-v2 .worlds { padding-top: clamp(5rem, 10vw, 11rem); background: #e7e0d3; }
+.enchanted-v2 .worlds-rule { display: flex; justify-content: space-between; margin: 0 clamp(1.2rem, 8vw, 9rem); border-top: 1px solid #a9a092; padding-top: 1rem; color: #6d675f; }
+.enchanted-v2 .worlds-intro { display: grid; grid-template-columns: 1.25fr .75fr; align-items: end; gap: 5rem; padding: clamp(5rem, 9vw, 10rem) clamp(1.2rem, 8vw, 9rem) clamp(5rem, 9vw, 10rem); }
+.enchanted-v2 .worlds-intro h2 { font-size: clamp(3.5rem, 6.8vw, 8rem); line-height: 1.04; letter-spacing: -.055em; }
 .enchanted-v2 .worlds-intro h2 em { color: #82735e; }
-.enchanted-v2 .worlds-intro > p:last-child { max-width: 24rem; margin-bottom: .35rem; color: #555149; font-size: 1.06rem; line-height: 1.68; }
-.enchanted-v2 .world-map { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(4rem, 7vw, 8rem) clamp(2rem, 5.2vw, 6rem); align-items: start; }
-.enchanted-v2 .world--2 { margin-top: 5rem; }
-.enchanted-v2 .world--4 { margin-top: 3rem; }
-.enchanted-v2 .world-link { display: block; text-decoration: none; }
-.enchanted-v2 .world-figure { aspect-ratio: 3 / 2; background: #2a2d29; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-.enchanted-v2 .world-figure img { width: 100%; height: 100%; object-fit: contain; }
-.enchanted-v2 .world-copy { display: grid; grid-template-columns: 4.5rem 1fr auto; gap: .45rem 1rem; align-items: baseline; padding-top: 1.4rem; }
-.enchanted-v2 .world-number { grid-row: span 2; color: #8b725e; white-space: nowrap; }
-.enchanted-v2 .world-copy h3 { font-size: clamp(1.8rem, 2.7vw, 3.2rem); line-height: 1.08; letter-spacing: -.035em; }
-.enchanted-v2 .world-copy p { grid-column: 2; color: #625c53; font-size: .87rem; line-height: 1.55; }
-.enchanted-v2 .world-enter { grid-column: 3; grid-row: 1 / 3; font-family: Georgia, serif; font-size: 1.4rem; transition: transform .2s ease; }
-.enchanted-v2 .world-link:hover .world-enter { transform: translateX(.25rem); }
-.enchanted-v2 .world-link:hover h3 { color: #8d624a; }
+.enchanted-v2 .worlds-intro p { max-width: 24rem; margin-bottom: .5rem; font-size: 1.07rem; line-height: 1.68; color: #555149; }
+.enchanted-v2 .world-map { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.enchanted-v2 .world--1 { background: #292b27; color: #eae3d4; }
+.enchanted-v2 .world--2 { background: #e4dac9; }
+.enchanted-v2 .world--3 { background: #d4d0c5; }
+.enchanted-v2 .world--4 { background: #c8c0b2; }
+.enchanted-v2 .world-link { display: flex; flex-direction: column; height: 100%; padding: clamp(2.5rem, 4vw, 5rem); text-decoration: none; }
+.enchanted-v2 .world-number { display: block; border-top: 1px solid currentColor; padding-top: 1rem; margin-bottom: 1.7rem; color: #777066; }
+.enchanted-v2 .world--1 .world-number, .enchanted-v2 .world--1 .world-heading p, .enchanted-v2 .world--1 figcaption { color: #bdb5a7; }
+.enchanted-v2 .world-heading h3 { font-size: clamp(2.7rem, 4.4vw, 5.5rem); line-height: 1; letter-spacing: -.052em; }
+.enchanted-v2 .world-heading p { max-width: 34rem; margin-top: .9rem; font-size: clamp(1rem, 1.2vw, 1.18rem); line-height: 1.5; color: #57534b; }
+.enchanted-v2 .world-figure { display: flex; flex-direction: column; justify-content: center; flex-grow: 1; min-width: 0; margin-top: clamp(2rem, 4vw, 4.5rem); }
+.enchanted-v2 .world-figure img { display: block; width: 100%; height: auto; max-height: 520px; object-fit: contain; }
+.enchanted-v2 .world-figure figcaption { padding-left: 0; padding-right: 0; color: #777066; }
+.enchanted-v2 .world-enter { display: flex; justify-content: space-between; gap: 2rem; align-self: flex-start; min-width: 11rem; border-bottom: 1px solid currentColor; padding: .2rem 0 .65rem; margin-top: 1.5rem; font-size: .78rem; letter-spacing: .04em; }
+.enchanted-v2 .world-enter span { font-size: 1.15rem; line-height: .7; }
+.enchanted-v2 .world-link:hover h3 { color: #9b5d3b; }
+.enchanted-v2 .world--1 .world-link:hover h3 { color: #c5a68c; }
 
 /* The three editorial sections retain the first prototype's quieter rhythm. */
 .enchanted-v2 .exploring { padding: clamp(5rem, 9vw, 10rem) clamp(1.2rem, 8vw, 9rem); background: #efece4; }
@@ -157,9 +164,11 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .folio-next a { font-family: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif; font-size: clamp(1.2rem, 2vw, 2rem); text-decoration: none; }
 .enchanted-v2 .folio-next a:hover { color: #c0a58c; }
 
-@media (max-width: 920px) {
-  .enchanted-v2 .hero-caption { grid-template-columns: 1fr; }
-  .enchanted-v2 .hero-enter { margin-top: 1rem; }
+@media (max-width: 1080px) {
+  .enchanted-v2 .hero-slide { grid-template-columns: 1fr; }
+  .enchanted-v2 .opening-copy { min-height: 43rem; }
+  .enchanted-v2 .opening-art img { max-height: none; }
+  .enchanted-v2 .hero-toolbar { position: static; padding: 1rem clamp(1.2rem, 4.3vw, 5rem) 1.5rem; }
   .enchanted-v2 .worlds-intro { gap: 2rem; }
   .enchanted-v2 .activity { grid-template-columns: 1fr; }
 }
@@ -169,21 +178,19 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
   .enchanted-v2 .site-nav { gap: 1.1rem; font-size: .7rem; }
   .enchanted-v2 .nav-menu { left: auto; right: -4.1rem; max-width: calc(100vw - 2rem); min-width: 13.5rem; }
   .enchanted-v2 .nav-menu--right { right: 0; min-width: 9rem; }
-  .enchanted-v2 .hero-figure { aspect-ratio: 4 / 3; }
-  .enchanted-v2 .hero-caption { min-height: 25rem; padding: 2.7rem 1.2rem; }
-  .enchanted-v2 .hero-caption h1, .enchanted-v2 .hero-caption h2 { font-size: clamp(2.35rem, 10vw, 3.7rem); }
-  .enchanted-v2 .hero-caption .dropcap-copy { margin-top: 1.3rem; }
-  .enchanted-v2 .hero-toolbar { align-items: flex-start; flex-direction: column; gap: .7rem; padding: 1rem 1.2rem; }
+  .enchanted-v2 .opening-copy { min-height: 38rem; padding: 2rem 1.2rem 2.6rem; }
+  .enchanted-v2 .opening-title-wrap { padding: 4rem 0 3rem; }
+  .enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(3rem, 12vw, 5.5rem); }
+  .enchanted-v2 .dropcap-copy { margin-top: 2rem; }
+  .enchanted-v2 .hero-toolbar { gap: .7rem; padding: 1rem 1.2rem 1.5rem; }
   .enchanted-v2 .slider-navigation { width: 100%; justify-content: space-between; }
   .enchanted-v2 .slider-tabs { gap: .8rem; }
-  .enchanted-v2 .initial-switch { margin-left: auto; }
   .enchanted-v2 .worlds-intro, .enchanted-v2 .world-map, .enchanted-v2 .section-heading, .enchanted-v2 .exploring-layout, .enchanted-v2 .revisiting, .enchanted-v2 .folio-title, .enchanted-v2 .folio-inquiry, .enchanted-v2 .folio-evidence { grid-template-columns: 1fr; }
-  .enchanted-v2 .worlds-intro .eyebrow, .enchanted-v2 .section-heading .eyebrow { grid-column: auto; }
-  .enchanted-v2 .worlds-intro h2 { font-size: clamp(3.2rem, 12vw, 5.5rem); }
-  .enchanted-v2 .world-map { gap: 4.5rem; }
-  .enchanted-v2 .world--2, .enchanted-v2 .world--4 { margin-top: 0; }
-  .enchanted-v2 .world-copy { grid-template-columns: 3.9rem 1fr auto; }
-  .enchanted-v2 .world-copy h3 { font-size: 2rem; }
+  .enchanted-v2 .worlds-intro { padding-top: 5rem; }
+  .enchanted-v2 .worlds-intro h2 { font-size: clamp(3.3rem, 12vw, 5.3rem); }
+  .enchanted-v2 .world-link { padding: 5rem 1.2rem; }
+  .enchanted-v2 .world-heading h3 { font-size: clamp(3rem, 11vw, 5.2rem); }
+  .enchanted-v2 .section-heading .eyebrow { grid-column: auto; }
   .enchanted-v2 .section-heading h2, .enchanted-v2 .revisiting h2, .enchanted-v2 .activity h2 { font-size: clamp(3.2rem, 12vw, 5.5rem); }
   .enchanted-v2 .exploring-notes { margin-top: 1rem; }
   .enchanted-v2 .revisiting-copy { padding: 5rem 1.2rem; }
