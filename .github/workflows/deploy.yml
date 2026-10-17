@@ -61,7 +61,14 @@ jobs:
           from urllib.request import urlopen
 
           root = os.environ['PAGES_URL'].rstrip('/') + '/'
-          page_url = urljoin(root, 'preview/enchanted/')
+          pages = {
+              'preview/enchanted/': 7,
+              'preview/enchanted-v2/': 11,
+              'preview/enchanted-v2/collective-intelligence/': 2,
+              'preview/enchanted-v2/boltzmann-computing/': 2,
+              'preview/enchanted-v2/quantum-computing/': 2,
+              'preview/enchanted-v2/physical-ai/': 2,
+          }
 
           class Assets(HTMLParser):
               def __init__(self):
@@ -85,19 +92,27 @@ jobs:
 
           for attempt in range(24):
               try:
-                  html, content_type = fetch(page_url)
-                  assert content_type == 'text/html'
-                  assets = Assets()
-                  assets.feed(html.decode('utf-8'))
-                  assert len(assets.css) >= 1, 'Missing stylesheet'
-                  assert len(assets.images) == 7, f'Expected seven images, found {len(assets.images)}'
-                  for path in assets.css:
+                  stylesheets = set()
+                  images = set()
+                  for path, expected_images in pages.items():
+                      page_url = urljoin(root, path)
+                      html, content_type = fetch(page_url)
+                      assert content_type == 'text/html', page_url
+                      assets = Assets()
+                      assets.feed(html.decode('utf-8'))
+                      assert assets.css, f'Missing stylesheet: {page_url}'
+                      assert len(assets.images) == expected_images, (
+                          f'{page_url}: expected {expected_images} images, found {len(assets.images)}'
+                      )
+                      stylesheets.update(assets.css)
+                      images.update(assets.images)
+                  for path in stylesheets:
                       content, content_type = fetch(urljoin(root, path))
                       assert content_type == 'text/css' and len(content) > 1000, path
-                  for path in assets.images:
+                  for path in images:
                       content, content_type = fetch(urljoin(root, path))
                       assert content_type == 'image/png' and len(content) > 100000, path
-                  print(f'Verified {page_url}: {len(assets.css)} CSS file(s), seven original PNGs')
+                  print(f'Verified {len(pages)} Pages URLs, {len(stylesheets)} CSS file(s), and {len(images)} original PNGs')
                   break
               except Exception as error:
                   if attempt == 23:

@@ -1,0 +1,17 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = `${base}/preview/enchanted-v2/`;
+---
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <a class="footer-brand" href={home}>Vijoy Pandey<span>.</span></a>
+    <p>Computing beyond the individual node.</p>
+  </div>
+  <div class="footer-links">
+    <a href={`${base}/#about`}>Personal <small>Curiosity beyond the work</small></a>
+    <a href={`${base}/#work`}>Work <small>Ideas made tangible</small></a>
+    <a href="mailto:hello@vijoypandey.com">Contact <small>Start a conversation</small></a>
+  </div>
+  <div class="footer-bottom"><span>Scientific Enchantment v2A · Design prototype</span><span>Illustrative editorial entries for design review</span><a href={home}>Back to the beginning ↑</a></div>
+</footer>

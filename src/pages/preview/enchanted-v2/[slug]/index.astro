@@ -1,0 +1,69 @@
+---
+import EnchantedV2Header from '../../../../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../../../../components/EnchantedV2Footer.astro';
+import { frontierWorlds } from '../../../../data/enchantedV2';
+import '../../../../styles/enchanted-v2.css';
+
+type World = (typeof frontierWorlds)[number];
+
+export function getStaticPaths() {
+  return frontierWorlds.map((world, index) => ({
+    params: { slug: world.slug },
+    props: { world, index },
+  }));
+}
+
+const { world, index } = Astro.props as { world: World; index: number };
+const nextWorld = frontierWorlds[(index + 1) % frontierWorlds.length];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = `${base}/preview/enchanted-v2/`;
+const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={`${world.name}: ${world.subtitle}. A Scientific Enchantment design folio.`} />
+    <meta name="theme-color" content="#eee9de" />
+    <title>{world.name} — Scientific Enchantment v2A</title>
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+  </head>
+  <body class="enchanted-v2">
+    <EnchantedV2Header />
+    <main id="main">
+      <article class="folio">
+        <div class="folio-top">
+          <a class="folio-back" href={`${home}#frontiers`}>← Return to the four worlds</a>
+          <div class="folio-title">
+            <span class="folio-number">Frontier {world.index} / 04</span>
+            <h1>{world.name}</h1>
+            <p>{world.subtitle}</p>
+          </div>
+        </div>
+        <figure class="folio-main-art">
+          <img src={artwork(world.image)} alt={world.imageAlt} fetchpriority="high" />
+          <figcaption><span>Scientific Enchantment · Frontier {world.index}</span><span>A visual metaphor, not a scientific diagram</span></figcaption>
+        </figure>
+        <section class="folio-inquiry" aria-labelledby="inquiry-title">
+          <h2 id="inquiry-title">{world.question}</h2>
+          <div class="folio-inquiry-copy"><p>{world.body}</p><p>{world.inquiry}</p></div>
+        </section>
+        <figure class="folio-secondary-art">
+          <img src={artwork(world.folioImage)} alt={world.folioAlt} loading="lazy" decoding="async" />
+          <figcaption><span>A second view of the world</span><span>Artwork evokes possibility</span></figcaption>
+        </figure>
+        <section class="folio-evidence" aria-labelledby="evidence-title">
+          <div><p class="eyebrow">The research record</p><h2 id="evidence-title">Evidence &amp; media.</h2></div>
+          <p>This design folio reserves a separate place for verified papers, writing, talks, and demonstrations. Those records will be curated from the site's content library; the illustrations above are metaphors for the inquiry.</p>
+        </section>
+        <nav class="folio-next" aria-label="Explore further">
+          <a href={`${home}#frontiers`}>← All four worlds</a>
+          <a href={`${home}${nextWorld.slug}/`}>Next: {nextWorld.name} →</a>
+        </nav>
+      </article>
+    </main>
+    <EnchantedV2Footer />
+  </body>
+</html>

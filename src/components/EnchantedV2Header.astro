@@ -1,0 +1,28 @@
+---
+import { frontierWorlds } from '../data/enchantedV2';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = `${base}/preview/enchanted-v2/`;
+---
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="wordmark" href={home} aria-label="Vijoy Pandey — Scientific Enchantment home">Vijoy Pandey<span class="wordmark-dot">.</span></a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <details>
+      <summary>Thesis <span aria-hidden="true">⌄</span></summary>
+      <div class="nav-menu">
+        <a href={home}>Overview</a>
+        {frontierWorlds.map((world) => <a href={`${home}${world.slug}/`}>{world.name}</a>)}
+      </div>
+    </details>
+    <details>
+      <summary>About <span aria-hidden="true">⌄</span></summary>
+      <div class="nav-menu nav-menu--right">
+        <a href={`${base}/#about`}>Personal</a>
+        <a href={`${base}/#work`}>Work</a>
+        <a href={`${base}/#contact`}>Contact</a>
+      </div>
+    </details>
+  </nav>
+</header>

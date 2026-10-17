@@ -1,0 +1,207 @@
+---
+import EnchantedV2Header from '../../../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
+import { activity, exploring, revisiting } from '../../../data/site';
+import { frontierWorlds, images, openingSlides } from '../../../data/enchantedV2';
+import '../../../styles/enchanted-v2.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
+const home = `${base}/preview/enchanted-v2/`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Scientific Enchantment v2A: an illustrated inquiry into computing beyond the individual node." />
+    <meta name="theme-color" content="#eee9de" />
+    <title>Scientific Enchantment v2A — Vijoy Pandey</title>
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+  </head>
+  <body class="enchanted-v2">
+    <EnchantedV2Header />
+    <main id="main">
+      <section class="hero-slider" id="thesis" aria-label="An illustrated introduction" data-hero-slider data-initial="a1">
+        <div class="hero-track">
+          {openingSlides.map((slide, index) => (
+            <article
+              class={`hero-slide ${index === 0 ? 'is-active' : ''}`}
+              id={`slide-panel-${index + 1}`}
+              role="tabpanel"
+              aria-labelledby={`slide-tab-${index + 1}`}
+              aria-hidden={index !== 0}
+              inert={index !== 0}
+              data-slide
+            >
+              <figure class="hero-figure">
+                {slide.slug ? (
+                  <a href={`${home}${slide.slug}/`} aria-label={`Enter ${slide.label}`}>
+                    <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" fetchpriority={index === 0 ? 'high' : 'low'} />
+                  </a>
+                ) : (
+                  <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" fetchpriority="high" />
+                )}
+              </figure>
+              <div class="hero-caption">
+                <div class="hero-caption-main">
+                  <p class="eyebrow">{slide.number} <span>—</span> {slide.label}</p>
+                  {index === 0 ? <h1>{slide.headline}</h1> : <h2>{slide.headline}</h2>}
+                  <p class="dropcap-copy">{slide.body}</p>
+                </div>
+                {slide.slug && <a class="text-link hero-enter" href={`${home}${slide.slug}/`}>Enter this frontier <span aria-hidden="true">→</span></a>}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="hero-toolbar">
+          <div class="slider-navigation" aria-label="Slider controls">
+            <button class="slider-arrow" type="button" data-previous aria-label="Previous slide"><span aria-hidden="true">←</span></button>
+            <div class="slider-tabs" role="tablist" aria-label="Choose an illustrated slide">
+              {openingSlides.map((slide, index) => (
+                <button
+                  class="slider-tab"
+                  type="button"
+                  role="tab"
+                  id={`slide-tab-${index + 1}`}
+                  aria-controls={`slide-panel-${index + 1}`}
+                  aria-selected={index === 0}
+                  aria-label={`Slide ${slide.number}: ${slide.label}`}
+                  tabindex={index === 0 ? 0 : -1}
+                  data-slide-tab
+                >{slide.number}</button>
+              ))}
+            </div>
+            <button class="slider-arrow" type="button" data-next aria-label="Next slide"><span aria-hidden="true">→</span></button>
+          </div>
+          <div class="initial-switch" role="group" aria-label="Compare opening initial styles">
+            <span>Opening initial</span>
+            <button type="button" aria-pressed="true" data-initial-choice="a1" title="A1: same text color">A1</button>
+            <button type="button" aria-pressed="false" data-initial-choice="a2" title="A2: muted accent color">A2</button>
+          </div>
+        </div>
+        <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-slide-status>Slide 1 of 5: The central thesis</p>
+      </section>
+
+      <section class="worlds" id="frontiers" aria-labelledby="worlds-title">
+        <div class="worlds-intro">
+          <p class="eyebrow">An illustrated map <span>—</span> 02</p>
+          <h2 id="worlds-title">Four worlds.<br /><em>One inquiry.</em></h2>
+          <p>Computing beyond the individual node opens onto four connected frontiers. Choose a world to enter.</p>
+        </div>
+        <div class="world-map">
+          {frontierWorlds.map((world, index) => (
+            <article class={`world world--${index + 1}`}>
+              <a class="world-link" href={`${home}${world.slug}/`}>
+                <figure class="world-figure"><img src={artwork(world.image)} alt={world.imageAlt} loading="lazy" decoding="async" /></figure>
+                <div class="world-copy">
+                  <span class="world-number">{world.index} / 04</span>
+                  <h3>{world.name}</h3>
+                  <p>{world.subtitle}</p>
+                  <span class="world-enter" aria-hidden="true">→</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="exploring" id="exploring" aria-labelledby="exploring-title">
+        <div class="section-heading">
+          <p class="eyebrow">The living inquiry <span>—</span> 03</p>
+          <h2 id="exploring-title">Currently <em>exploring.</em></h2>
+          <p>Ideas and conversations still taking shape.</p>
+        </div>
+        <div class="exploring-layout">
+          <figure class="exploring-art">
+            <img src={artwork(images.forestBlue)} alt="Separate figures and blue lights between dark forest trunks" loading="lazy" decoding="async" />
+            <figcaption><span>Plate VI</span><span>Separate lights in a connected wood</span></figcaption>
+          </figure>
+          <div class="exploring-notes">
+            {exploring.map((item, index) => (
+              <article class="exploring-note">
+                <div class="note-line"><span>{String(index + 1).padStart(2, '0')}</span><span>{item.type}</span></div>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="revisiting" id="revisiting" aria-labelledby="revisiting-title">
+        <div class="revisiting-copy">
+          <p class="eyebrow">From the reading room <span>—</span> 04</p>
+          <h2 id="revisiting-title">Worth<br /><em>revisiting.</em></h2>
+          <span class="small-rule" aria-hidden="true"></span>
+          <p class="revisiting-type">{revisiting.type}</p>
+          <h3>{revisiting.title}</h3>
+          <p class="revisiting-detail">{revisiting.detail}</p>
+        </div>
+        <figure class="revisiting-art">
+          <img src={artwork(images.forestWarm)} alt="Warm lights and tiny figures across many levels of a forest" loading="lazy" decoding="async" />
+          <figcaption><span>Plate VII</span><span>Lights to return to</span></figcaption>
+        </figure>
+      </section>
+
+      <section class="activity" id="activity" aria-labelledby="activity-title">
+        <div class="activity-intro">
+          <p class="eyebrow">A continuing record <span>—</span> 05</p>
+          <h2 id="activity-title">Recent <em>activity.</em></h2>
+          <p>Writing, conversations, and research as they appear.</p>
+        </div>
+        <div class="activity-list">
+          {activity.map((item) => (
+            <article class="activity-row">
+              <time>{item.date}</time>
+              <span class="activity-type">{item.type}</span>
+              <h3>{item.title}</h3>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+    <EnchantedV2Footer />
+    <script>
+      const slider = document.querySelector<HTMLElement>('[data-hero-slider]');
+      if (slider) {
+        const panels = Array.from(slider.querySelectorAll<HTMLElement>('[data-slide]'));
+        const tabs = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-slide-tab]'));
+        const choices = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-initial-choice]'));
+        const status = slider.querySelector<HTMLElement>('[data-slide-status]');
+        let active = 0;
+
+        function showSlide(index: number, focusTab = false) {
+          active = (index + panels.length) % panels.length;
+          panels.forEach((panel, position) => {
+            const selected = position === active;
+            panel.classList.toggle('is-active', selected);
+            panel.inert = !selected;
+            panel.setAttribute('aria-hidden', String(!selected));
+            tabs[position].setAttribute('aria-selected', String(selected));
+            tabs[position].tabIndex = selected ? 0 : -1;
+          });
+          if (status) status.textContent = `Slide ${active + 1} of ${panels.length}: ${tabs[active].getAttribute('aria-label')?.split(': ')[1]}`;
+          if (focusTab) tabs[active].focus();
+        }
+
+        slider.querySelector<HTMLButtonElement>('[data-previous]')?.addEventListener('click', () => showSlide(active - 1));
+        slider.querySelector<HTMLButtonElement>('[data-next]')?.addEventListener('click', () => showSlide(active + 1));
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => showSlide(index));
+          tab.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') { event.preventDefault(); showSlide(index + 1, true); }
+            if (event.key === 'ArrowLeft') { event.preventDefault(); showSlide(index - 1, true); }
+            if (event.key === 'Home') { event.preventDefault(); showSlide(0, true); }
+            if (event.key === 'End') { event.preventDefault(); showSlide(tabs.length - 1, true); }
+          });
+        });
+        choices.forEach((choice) => choice.addEventListener('click', () => {
+          slider.dataset.initial = choice.dataset.initialChoice;
+          choices.forEach((button) => button.setAttribute('aria-pressed', String(button === choice)));
+        }));
+      }
+    </script>
+  </body>
+</html>
