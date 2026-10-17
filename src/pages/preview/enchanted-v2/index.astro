@@ -79,7 +79,10 @@ const home = `${base}/preview/enchanted-v2/`;
             </div>
             <button class="slider-arrow" type="button" data-next aria-label="Next slide"><span aria-hidden="true">→</span></button>
           </div>
-          <span class="slider-counter" data-slide-counter aria-live="polite">01 / 05</span>
+          <div class="slider-tools">
+            <button class="slider-play" type="button" data-toggle-play aria-pressed="false" aria-label="Pause slideshow"><span data-play-label>Pause</span></button>
+            <span class="slider-counter" data-slide-counter aria-live="polite">01 / 05</span>
+          </div>
         </div>
         <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-slide-status>Slide 1 of 5: The central thesis</p>
       </section>
@@ -172,10 +175,30 @@ const home = `${base}/preview/enchanted-v2/`;
         const panels = Array.from(slider.querySelectorAll<HTMLElement>('[data-slide]'));
         const tabs = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-slide-tab]'));
         const counter = slider.querySelector<HTMLElement>('[data-slide-counter]');
+        const playButton = slider.querySelector<HTMLButtonElement>('[data-toggle-play]');
+        const playLabel = slider.querySelector<HTMLElement>('[data-play-label]');
         const status = slider.querySelector<HTMLElement>('[data-slide-status]');
         let active = 0;
+        let autoplayTimer: number | undefined;
+        let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        function showSlide(index: number, focusTab = false) {
+        function stopAutoplay() {
+          if (autoplayTimer !== undefined) window.clearInterval(autoplayTimer);
+          autoplayTimer = undefined;
+        }
+
+        function updatePlayButton() {
+          playButton?.setAttribute('aria-pressed', String(!paused));
+          playButton?.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+          if (playLabel) playLabel.textContent = paused ? 'Play' : 'Pause';
+        }
+
+        function startAutoplay() {
+          stopAutoplay();
+          if (!paused) autoplayTimer = window.setInterval(() => showSlide(active + 1, false, false), 8000);
+        }
+
+        function showSlide(index: number, focusTab = false, restartAutoplay = true) {
           active = (index + panels.length) % panels.length;
           panels.forEach((panel, position) => {
             const selected = position === active;
@@ -188,10 +211,23 @@ const home = `${base}/preview/enchanted-v2/`;
           if (counter) counter.textContent = `${String(active + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`;
           if (status) status.textContent = `Slide ${active + 1} of ${panels.length}: ${tabs[active].getAttribute('aria-label')?.split(': ')[1]}`;
           if (focusTab) tabs[active].focus();
+          if (restartAutoplay) startAutoplay();
         }
 
         slider.querySelector<HTMLButtonElement>('[data-previous]')?.addEventListener('click', () => showSlide(active - 1));
         slider.querySelector<HTMLButtonElement>('[data-next]')?.addEventListener('click', () => showSlide(active + 1));
+        playButton?.addEventListener('click', () => {
+          paused = !paused;
+          updatePlayButton();
+          if (paused) stopAutoplay();
+          else startAutoplay();
+        });
+        window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (event) => {
+          paused = event.matches;
+          updatePlayButton();
+          if (paused) stopAutoplay();
+          else startAutoplay();
+        });
         tabs.forEach((tab, index) => {
           tab.addEventListener('click', () => showSlide(index));
           tab.addEventListener('keydown', (event) => {
@@ -207,6 +243,8 @@ const home = `${base}/preview/enchanted-v2/`;
           const delta = (event.changedTouches[0]?.clientX ?? 0) - touchStartX;
           if (Math.abs(delta) > 45) showSlide(active + (delta < 0 ? 1 : -1));
         }, { passive: true });
+        updatePlayButton();
+        startAutoplay();
       }
     </script>
   </body>

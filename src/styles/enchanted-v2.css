@@ -34,9 +34,9 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 /* Scientific Enchantment v3: a full-width illustrated-book page. */
 .enchanted-v2 .hero-slider { width: 100%; background: #eee9de; overflow: hidden; }
 .enchanted-v2 .hero-track { display: grid; }
-.enchanted-v2 .hero-slide { grid-area: 1 / 1; display: flex; flex-direction: column; visibility: hidden; opacity: 0; pointer-events: none; transform: translateX(.8rem); transition: opacity .42s ease, transform .42s ease, visibility .42s ease; }
+.enchanted-v2 .hero-slide { grid-area: 1 / 1; position: relative; display: block; visibility: hidden; opacity: 0; pointer-events: none; transform: translateX(.8rem); transition: opacity .42s ease, transform .42s ease, visibility .42s ease; }
 .enchanted-v2 .hero-slide.is-active { visibility: visible; opacity: 1; pointer-events: auto; transform: translateX(0); z-index: 1; }
-.enchanted-v2 .opening-art { order: 1; position: relative; width: 100%; aspect-ratio: 3 / 1; max-height: 35vh; overflow: hidden; background: #252724; }
+.enchanted-v2 .opening-art { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #252724; }
 .enchanted-v2 .opening-art > a { display: block; width: 100%; height: 100%; }
 .enchanted-v2 .opening-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .enchanted-v2 .hero-slide:nth-child(1) .opening-art img { object-position: 50% 42%; }
@@ -44,14 +44,14 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .hero-slide:nth-child(3) .opening-art img { object-position: 50% 52%; }
 .enchanted-v2 .hero-slide:nth-child(4) .opening-art img { object-position: 50% 52%; }
 .enchanted-v2 .hero-slide:nth-child(5) .opening-art img { object-position: 50% 42%; }
-.enchanted-v2 .opening-art figcaption { position: absolute; right: 0; bottom: 0; left: 0; color: #d7cfc0; background: linear-gradient(transparent, #1e211dcc); }
-.enchanted-v2 .opening-copy { order: 2; display: grid; grid-template-columns: minmax(12rem, .34fr) minmax(0, 1.4fr) auto; align-items: end; gap: clamp(1.5rem, 4vw, 5rem); padding: clamp(1.4rem, 2.5vw, 2.6rem) clamp(1.2rem, 8vw, 9rem) clamp(2rem, 3.2vw, 3.5rem); background: #eee9de; }
-.enchanted-v2 .opening-copy .eyebrow { align-self: start; padding-top: .35rem; color: #795d48; }
+.enchanted-v2 .opening-art figcaption { position: absolute; right: 0; top: 0; left: 0; color: #d7cfc0; background: linear-gradient(#1e211d99, transparent); }
+.enchanted-v2 .opening-copy { position: absolute; z-index: 2; inset: 0; display: grid; grid-template-columns: minmax(12rem, .34fr) minmax(0, 1.4fr) auto; align-items: end; gap: clamp(1.5rem, 4vw, 5rem); padding: clamp(2rem, 4vw, 5rem) clamp(1.2rem, 8vw, 9rem) clamp(2.4rem, 4.5vw, 5rem); color: #f8f1e5; background: linear-gradient(180deg, transparent 30%, #1e211d12 46%, #1e211dcc 100%); }
+.enchanted-v2 .opening-copy .eyebrow { align-self: end; padding-top: .35rem; color: #e2d6c5; }
 .enchanted-v2 .opening-title-wrap { padding: 0; }
-.enchanted-v2 .pretitle { margin-bottom: .9rem; color: #7d756b; }
+.enchanted-v2 .pretitle { margin-bottom: .9rem; color: #e2d6c5; }
 .enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(2.5rem, 4.3vw, 5.4rem); line-height: .97; letter-spacing: -.055em; }
-.enchanted-v2 .dropcap-copy { max-width: 36rem; margin-top: 1.1rem; font-size: clamp(.95rem, 1.12vw, 1.1rem); line-height: 1.55; color: #4e4a43; }
-.enchanted-v2 .hero-enter { align-self: end; white-space: nowrap; margin-bottom: .1rem; }
+.enchanted-v2 .dropcap-copy { max-width: 36rem; margin-top: 1.1rem; font-size: clamp(.95rem, 1.12vw, 1.1rem); line-height: 1.55; color: #f0e7d8; }
+.enchanted-v2 .hero-enter { align-self: end; white-space: nowrap; margin-bottom: .1rem; color: #f8f1e5; border-color: #f8f1e5; }
 .enchanted-v2 .hero-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: .8rem clamp(1.2rem, 8vw, 9rem) 1.2rem; background: #eee9de; border-top: 1px solid #d2c9b8; }
 .enchanted-v2 .slider-navigation { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.8rem); }
 .enchanted-v2 .slider-arrow, .enchanted-v2 .slider-tab { appearance: none; border: 0; background: none; color: inherit; cursor: pointer; font: inherit; }
@@ -61,6 +61,9 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .slider-tab { padding: .45rem .15rem .35rem; border-bottom: 1px solid transparent; font-size: .7rem; letter-spacing: .11em; color: #81786d; }
 .enchanted-v2 .slider-tab[aria-selected='true'] { border-color: #2d2a25; color: #2d2a25; }
 .enchanted-v2 .slider-tab:hover { color: #9b5d3b; }
+.enchanted-v2 .slider-tools { display: flex; align-items: center; gap: 1.5rem; }
+.enchanted-v2 .slider-play { appearance: none; border: 0; border-bottom: 1px solid #9c8e7d; background: none; color: #766c60; cursor: pointer; font: inherit; padding: .45rem 0 .35rem; font-size: .68rem; letter-spacing: .11em; text-transform: uppercase; }
+.enchanted-v2 .slider-play:hover { color: #9b5d3b; border-color: currentColor; }
 .enchanted-v2 .slider-counter { color: #766c60; font-size: .68rem; letter-spacing: .12em; }
 
 /* Compact two-column edition of v1's atmospheric frontier chapters. */
@@ -163,7 +166,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .folio-next a:hover { color: #c0a58c; }
 
 @media (max-width: 1080px) {
-  .enchanted-v2 .opening-copy { grid-template-columns: minmax(9rem, .3fr) minmax(0, 1fr); }
+  .enchanted-v2 .opening-copy { grid-template-columns: minmax(7rem, .3fr) minmax(0, 1fr) auto; }
   .enchanted-v2 .worlds-intro { gap: 2rem; }
   .enchanted-v2 .activity { grid-template-columns: 1fr; }
 }
@@ -173,16 +176,17 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
   .enchanted-v2 .site-nav { gap: 1.1rem; font-size: .7rem; }
   .enchanted-v2 .nav-menu { left: auto; right: -4.1rem; max-width: calc(100vw - 2rem); min-width: 13.5rem; }
   .enchanted-v2 .nav-menu--right { right: 0; min-width: 9rem; }
-  .enchanted-v2 .opening-art { aspect-ratio: 3 / 2; max-height: none; }
-  .enchanted-v2 .opening-copy { display: block; padding: 1.7rem 1.2rem 2.2rem; }
-  .enchanted-v2 .opening-copy .eyebrow { margin-bottom: 2.2rem; }
+  .enchanted-v2 .opening-art { aspect-ratio: 4 / 3; }
+  .enchanted-v2 .opening-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: .9rem 1.2rem 1.2rem; }
+  .enchanted-v2 .opening-copy .eyebrow { margin-bottom: .65rem; }
   .enchanted-v2 .opening-title-wrap { padding: 0; }
-  .enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(3rem, 12vw, 5.5rem); }
-  .enchanted-v2 .dropcap-copy { margin-top: 2rem; }
-  .enchanted-v2 .hero-enter { margin-top: 1.8rem; }
+  .enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(2.15rem, 9vw, 3.4rem); }
+  .enchanted-v2 .dropcap-copy { margin-top: .65rem; font-size: .88rem; line-height: 1.35; }
+  .enchanted-v2 .hero-enter { margin-top: .8rem; }
   .enchanted-v2 .hero-toolbar { flex-wrap: wrap; gap: .7rem; padding: 1rem 1.2rem 1.5rem; }
   .enchanted-v2 .slider-navigation { width: 100%; justify-content: space-between; }
   .enchanted-v2 .slider-tabs { gap: .8rem; }
+  .enchanted-v2 .slider-tools { width: 100%; justify-content: space-between; }
   .enchanted-v2 .worlds-intro, .enchanted-v2 .world-map, .enchanted-v2 .section-heading, .enchanted-v2 .exploring-layout, .enchanted-v2 .revisiting, .enchanted-v2 .folio-title, .enchanted-v2 .folio-inquiry, .enchanted-v2 .folio-evidence { grid-template-columns: 1fr; }
   .enchanted-v2 .worlds-intro { padding-top: 5rem; }
   .enchanted-v2 .worlds-intro h2 { font-size: clamp(3.3rem, 12vw, 5.3rem); }
