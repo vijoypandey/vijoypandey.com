@@ -34,10 +34,10 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 /* Scientific Enchantment v3: a full-width illustrated-book page. */
 .enchanted-v2 .hero-slider { width: 100%; background: #eee9de; overflow: hidden; }
 .enchanted-v2 .hero-track { display: grid; }
-.enchanted-v2 .hero-slide { grid-area: 1 / 1; position: relative; display: block; visibility: hidden; opacity: 0; pointer-events: none; z-index: 0; transition: opacity 2.5s ease-in-out, visibility 0s linear 1.2s; }
+.enchanted-v2 .hero-slide { grid-area: 1 / 1; position: relative; display: block; visibility: hidden; opacity: 0; pointer-events: none; z-index: 0; transition: opacity 2.5s ease, visibility 0s linear 1.2s; }
 .enchanted-v2 .hero-slide.is-active, .enchanted-v2 .hero-slide.is-leaving { visibility: visible; }
-.enchanted-v2 .hero-slide.is-active { opacity: 1; pointer-events: auto; z-index: 2; transition: opacity 2.5s ease-in-out;, visibility 0s; }
-.enchanted-v2 .hero-slide.is-leaving { opacity: 0; z-index: 1; transition: opacity 2.5s ease-in-out, visibility 0s; }
+.enchanted-v2 .hero-slide.is-active { opacity: 1; pointer-events: auto; z-index: 2; transition: opacity 2.5s ease, visibility 0s; }
+.enchanted-v2 .hero-slide.is-leaving { opacity: 0; z-index: 1; transition: opacity 2.5s ease, visibility 0s; }
 .enchanted-v2 .opening-art { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #252724; }
 .enchanted-v2 .opening-art > a { display: block; width: 100%; height: 100%; }
 .enchanted-v2 .opening-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
