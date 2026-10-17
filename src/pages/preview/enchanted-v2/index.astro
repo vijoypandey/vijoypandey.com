@@ -23,7 +23,7 @@ const home = `${base}/preview/enchanted-v2/`;
   <body class="enchanted-v2">
     <EnchantedV2Header />
     <main id="main">
-      <section class="hero-slider" id="thesis" aria-label="An illustrated introduction" data-hero-slider data-initial="a1">
+      <section class="hero-slider" id="thesis" aria-label="An illustrated introduction" data-hero-slider>
         <div class="hero-track">
           {openingSlides.map((slide, index) => (
             <article
@@ -79,11 +79,7 @@ const home = `${base}/preview/enchanted-v2/`;
             </div>
             <button class="slider-arrow" type="button" data-next aria-label="Next slide"><span aria-hidden="true">→</span></button>
           </div>
-          <div class="initial-switch" role="group" aria-label="Compare opening initial styles">
-            <span>Opening initial</span>
-            <button type="button" aria-pressed="true" data-initial-choice="a1" title="A1: same text color">A1</button>
-            <button type="button" aria-pressed="false" data-initial-choice="a2" title="A2: muted accent color">A2</button>
-          </div>
+          <span class="slider-counter" data-slide-counter aria-live="polite">01 / 05</span>
         </div>
         <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-slide-status>Slide 1 of 5: The central thesis</p>
       </section>
@@ -175,7 +171,7 @@ const home = `${base}/preview/enchanted-v2/`;
       if (slider) {
         const panels = Array.from(slider.querySelectorAll<HTMLElement>('[data-slide]'));
         const tabs = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-slide-tab]'));
-        const choices = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-initial-choice]'));
+        const counter = slider.querySelector<HTMLElement>('[data-slide-counter]');
         const status = slider.querySelector<HTMLElement>('[data-slide-status]');
         let active = 0;
 
@@ -189,6 +185,7 @@ const home = `${base}/preview/enchanted-v2/`;
             tabs[position].setAttribute('aria-selected', String(selected));
             tabs[position].tabIndex = selected ? 0 : -1;
           });
+          if (counter) counter.textContent = `${String(active + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`;
           if (status) status.textContent = `Slide ${active + 1} of ${panels.length}: ${tabs[active].getAttribute('aria-label')?.split(': ')[1]}`;
           if (focusTab) tabs[active].focus();
         }
@@ -204,10 +201,12 @@ const home = `${base}/preview/enchanted-v2/`;
             if (event.key === 'End') { event.preventDefault(); showSlide(tabs.length - 1, true); }
           });
         });
-        choices.forEach((choice) => choice.addEventListener('click', () => {
-          slider.dataset.initial = choice.dataset.initialChoice;
-          choices.forEach((button) => button.setAttribute('aria-pressed', String(button === choice)));
-        }));
+        let touchStartX = 0;
+        slider.addEventListener('touchstart', (event) => { touchStartX = event.changedTouches[0]?.clientX ?? 0; }, { passive: true });
+        slider.addEventListener('touchend', (event) => {
+          const delta = (event.changedTouches[0]?.clientX ?? 0) - touchStartX;
+          if (Math.abs(delta) > 45) showSlide(active + (delta < 0 ? 1 : -1));
+        }, { passive: true });
       }
     </script>
   </body>

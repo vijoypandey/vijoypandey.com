@@ -31,39 +31,37 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .nav-menu a { display: block; padding: .72rem 1rem; text-decoration: none; white-space: nowrap; }
 .enchanted-v2 .nav-menu a:hover, .enchanted-v2 .nav-menu a:focus-visible { background: #e7dfd2; }
 
-/* Keep v1's split illustrated spread while changing both sides together. */
-.enchanted-v2 .hero-slider { position: relative; background: #eee9de; }
+/* Scientific Enchantment v3: a full-width illustrated-book page. */
+.enchanted-v2 .hero-slider { width: 100%; background: #eee9de; overflow: hidden; }
 .enchanted-v2 .hero-track { display: grid; }
-.enchanted-v2 .hero-slide { grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 58%); min-height: min(850px, calc(100svh - 5.3rem)); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .55s ease, visibility .55s ease; }
-.enchanted-v2 .hero-slide.is-active { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
-.enchanted-v2 .opening-copy { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; padding: clamp(2rem, 4.3vw, 5rem); padding-bottom: 9rem; background: #eee9de; }
-.enchanted-v2 .opening-copy .eyebrow { color: #795d48; }
-.enchanted-v2 .opening-title-wrap { padding: 4rem 0; }
-.enchanted-v2 .pretitle { margin-bottom: 1.8rem; color: #7d756b; }
-.enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(3.3rem, 5.15vw, 6.8rem); line-height: .98; letter-spacing: -.055em; }
-.enchanted-v2 .dropcap-copy { max-width: 26.5rem; margin-top: 2.5rem; font-size: clamp(1rem, 1.18vw, 1.14rem); line-height: 1.72; color: #4e4a43; }
-.enchanted-v2 .dropcap-copy::first-letter { float: left; margin: .03em .11em -.12em 0; font-family: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif; font-size: 2.5em; line-height: .9; color: inherit; }
-.enchanted-v2 [data-initial='a2'] .dropcap-copy::first-letter { color: #987057; }
-.enchanted-v2 .hero-enter { white-space: nowrap; }
-.enchanted-v2 .opening-art { display: flex; flex-direction: column; justify-content: center; min-width: 0; background: #252724; }
-.enchanted-v2 .opening-art > a { display: block; }
-.enchanted-v2 .opening-art img { display: block; width: 100%; max-height: min(760px, calc(100svh - 8rem)); object-fit: contain; }
-.enchanted-v2 .opening-art figcaption { color: #c1b9ab; }
-.enchanted-v2 figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem clamp(1.2rem, 2vw, 2rem); line-height: 1.5; }
-.enchanted-v2 .hero-toolbar { position: absolute; z-index: 2; left: clamp(2rem, 4.3vw, 5rem); bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: .45rem; }
-.enchanted-v2 .slider-navigation { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2rem); }
-.enchanted-v2 .slider-arrow, .enchanted-v2 .slider-tab, .enchanted-v2 .initial-switch button { appearance: none; border: 0; background: none; color: inherit; cursor: pointer; font: inherit; }
-.enchanted-v2 .slider-arrow { width: 2.5rem; height: 2.5rem; padding: 0; font-family: Georgia, serif; font-size: 1.5rem; }
+.enchanted-v2 .hero-slide { grid-area: 1 / 1; display: flex; flex-direction: column; visibility: hidden; opacity: 0; pointer-events: none; transform: translateX(.8rem); transition: opacity .42s ease, transform .42s ease, visibility .42s ease; }
+.enchanted-v2 .hero-slide.is-active { visibility: visible; opacity: 1; pointer-events: auto; transform: translateX(0); z-index: 1; }
+.enchanted-v2 .opening-art { order: 1; position: relative; width: 100%; aspect-ratio: 3 / 1; max-height: 35vh; overflow: hidden; background: #252724; }
+.enchanted-v2 .opening-art > a { display: block; width: 100%; height: 100%; }
+.enchanted-v2 .opening-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.enchanted-v2 .hero-slide:nth-child(1) .opening-art img { object-position: 50% 42%; }
+.enchanted-v2 .hero-slide:nth-child(2) .opening-art img { object-position: 50% 38%; }
+.enchanted-v2 .hero-slide:nth-child(3) .opening-art img { object-position: 50% 52%; }
+.enchanted-v2 .hero-slide:nth-child(4) .opening-art img { object-position: 50% 52%; }
+.enchanted-v2 .hero-slide:nth-child(5) .opening-art img { object-position: 50% 42%; }
+.enchanted-v2 .opening-art figcaption { position: absolute; right: 0; bottom: 0; left: 0; color: #d7cfc0; background: linear-gradient(transparent, #1e211dcc); }
+.enchanted-v2 .opening-copy { order: 2; display: grid; grid-template-columns: minmax(12rem, .34fr) minmax(0, 1.4fr) auto; align-items: end; gap: clamp(1.5rem, 4vw, 5rem); padding: clamp(1.4rem, 2.5vw, 2.6rem) clamp(1.2rem, 8vw, 9rem) clamp(2rem, 3.2vw, 3.5rem); background: #eee9de; }
+.enchanted-v2 .opening-copy .eyebrow { align-self: start; padding-top: .35rem; color: #795d48; }
+.enchanted-v2 .opening-title-wrap { padding: 0; }
+.enchanted-v2 .pretitle { margin-bottom: .9rem; color: #7d756b; }
+.enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(2.5rem, 4.3vw, 5.4rem); line-height: .97; letter-spacing: -.055em; }
+.enchanted-v2 .dropcap-copy { max-width: 36rem; margin-top: 1.1rem; font-size: clamp(.95rem, 1.12vw, 1.1rem); line-height: 1.55; color: #4e4a43; }
+.enchanted-v2 .hero-enter { align-self: end; white-space: nowrap; margin-bottom: .1rem; }
+.enchanted-v2 .hero-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: .8rem clamp(1.2rem, 8vw, 9rem) 1.2rem; background: #eee9de; border-top: 1px solid #d2c9b8; }
+.enchanted-v2 .slider-navigation { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.8rem); }
+.enchanted-v2 .slider-arrow, .enchanted-v2 .slider-tab { appearance: none; border: 0; background: none; color: inherit; cursor: pointer; font: inherit; }
+.enchanted-v2 .slider-arrow { width: 2.3rem; height: 2.3rem; padding: 0; font-family: Georgia, serif; font-size: 1.5rem; }
 .enchanted-v2 .slider-arrow:hover { color: #9b5d3b; }
 .enchanted-v2 .slider-tabs { display: flex; gap: clamp(.8rem, 1.5vw, 1.5rem); align-items: center; }
-.enchanted-v2 .slider-tab { padding: .55rem .15rem .45rem; border-bottom: 1px solid transparent; font-size: .7rem; letter-spacing: .11em; color: #81786d; }
+.enchanted-v2 .slider-tab { padding: .45rem .15rem .35rem; border-bottom: 1px solid transparent; font-size: .7rem; letter-spacing: .11em; color: #81786d; }
 .enchanted-v2 .slider-tab[aria-selected='true'] { border-color: #2d2a25; color: #2d2a25; }
 .enchanted-v2 .slider-tab:hover { color: #9b5d3b; }
-.enchanted-v2 .initial-switch { display: flex; align-items: center; gap: .8rem; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: #766c60; }
-.enchanted-v2 .initial-switch span { margin-right: .2rem; }
-.enchanted-v2 .initial-switch button { padding: .4rem .3rem; border-bottom: 1px solid transparent; font-size: .7rem; letter-spacing: .08em; }
-.enchanted-v2 .initial-switch button[aria-pressed='true'] { border-color: #292824; color: #292824; }
-.enchanted-v2 .initial-switch button:hover { color: #9b5d3b; }
+.enchanted-v2 .slider-counter { color: #766c60; font-size: .68rem; letter-spacing: .12em; }
 
 /* Compact two-column edition of v1's atmospheric frontier chapters. */
 .enchanted-v2 .worlds { padding-top: clamp(5rem, 10vw, 11rem); background: #e7e0d3; }
@@ -165,10 +163,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .folio-next a:hover { color: #c0a58c; }
 
 @media (max-width: 1080px) {
-  .enchanted-v2 .hero-slide { grid-template-columns: 1fr; }
-  .enchanted-v2 .opening-copy { min-height: 43rem; }
-  .enchanted-v2 .opening-art img { max-height: none; }
-  .enchanted-v2 .hero-toolbar { position: static; padding: 1rem clamp(1.2rem, 4.3vw, 5rem) 1.5rem; }
+  .enchanted-v2 .opening-copy { grid-template-columns: minmax(9rem, .3fr) minmax(0, 1fr); }
   .enchanted-v2 .worlds-intro { gap: 2rem; }
   .enchanted-v2 .activity { grid-template-columns: 1fr; }
 }
@@ -178,11 +173,14 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
   .enchanted-v2 .site-nav { gap: 1.1rem; font-size: .7rem; }
   .enchanted-v2 .nav-menu { left: auto; right: -4.1rem; max-width: calc(100vw - 2rem); min-width: 13.5rem; }
   .enchanted-v2 .nav-menu--right { right: 0; min-width: 9rem; }
-  .enchanted-v2 .opening-copy { min-height: 38rem; padding: 2rem 1.2rem 2.6rem; }
-  .enchanted-v2 .opening-title-wrap { padding: 4rem 0 3rem; }
+  .enchanted-v2 .opening-art { aspect-ratio: 3 / 2; max-height: none; }
+  .enchanted-v2 .opening-copy { display: block; padding: 1.7rem 1.2rem 2.2rem; }
+  .enchanted-v2 .opening-copy .eyebrow { margin-bottom: 2.2rem; }
+  .enchanted-v2 .opening-title-wrap { padding: 0; }
   .enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(3rem, 12vw, 5.5rem); }
   .enchanted-v2 .dropcap-copy { margin-top: 2rem; }
-  .enchanted-v2 .hero-toolbar { gap: .7rem; padding: 1rem 1.2rem 1.5rem; }
+  .enchanted-v2 .hero-enter { margin-top: 1.8rem; }
+  .enchanted-v2 .hero-toolbar { flex-wrap: wrap; gap: .7rem; padding: 1rem 1.2rem 1.5rem; }
   .enchanted-v2 .slider-navigation { width: 100%; justify-content: space-between; }
   .enchanted-v2 .slider-tabs { gap: .8rem; }
   .enchanted-v2 .worlds-intro, .enchanted-v2 .world-map, .enchanted-v2 .section-heading, .enchanted-v2 .exploring-layout, .enchanted-v2 .revisiting, .enchanted-v2 .folio-title, .enchanted-v2 .folio-inquiry, .enchanted-v2 .folio-evidence { grid-template-columns: 1fr; }
