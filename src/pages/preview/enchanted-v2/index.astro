@@ -199,10 +199,12 @@ const home = `${base}/preview/enchanted-v2/`;
         }
 
         function showSlide(index: number, focusTab = false, restartAutoplay = true) {
+          const previous = active;
           active = (index + panels.length) % panels.length;
           panels.forEach((panel, position) => {
             const selected = position === active;
             panel.classList.toggle('is-active', selected);
+            panel.classList.toggle('is-leaving', position === previous && position !== active);
             panel.inert = !selected;
             panel.setAttribute('aria-hidden', String(!selected));
             tabs[position].setAttribute('aria-selected', String(selected));

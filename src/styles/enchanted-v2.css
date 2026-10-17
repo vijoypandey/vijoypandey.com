@@ -34,8 +34,10 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 /* Scientific Enchantment v3: a full-width illustrated-book page. */
 .enchanted-v2 .hero-slider { width: 100%; background: #eee9de; overflow: hidden; }
 .enchanted-v2 .hero-track { display: grid; }
-.enchanted-v2 .hero-slide { grid-area: 1 / 1; position: relative; display: block; visibility: hidden; opacity: 0; pointer-events: none; transform: translateX(.8rem); transition: opacity .42s ease, transform .42s ease, visibility .42s ease; }
-.enchanted-v2 .hero-slide.is-active { visibility: visible; opacity: 1; pointer-events: auto; transform: translateX(0); z-index: 1; }
+.enchanted-v2 .hero-slide { grid-area: 1 / 1; position: relative; display: block; visibility: hidden; opacity: 0; pointer-events: none; z-index: 0; transition: opacity 1.2s ease, visibility 0s linear 1.2s; }
+.enchanted-v2 .hero-slide.is-active, .enchanted-v2 .hero-slide.is-leaving { visibility: visible; }
+.enchanted-v2 .hero-slide.is-active { opacity: 1; pointer-events: auto; z-index: 2; transition: opacity 1.2s ease, visibility 0s; }
+.enchanted-v2 .hero-slide.is-leaving { opacity: 0; z-index: 1; transition: opacity 1.2s ease, visibility 0s; }
 .enchanted-v2 .opening-art { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #252724; }
 .enchanted-v2 .opening-art > a { display: block; width: 100%; height: 100%; }
 .enchanted-v2 .opening-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -178,15 +180,18 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
   .enchanted-v2 .nav-menu--right { right: 0; min-width: 9rem; }
   .enchanted-v2 .opening-art { aspect-ratio: 4 / 3; }
   .enchanted-v2 .opening-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: .9rem 1.2rem 1.2rem; }
-  .enchanted-v2 .opening-copy .eyebrow { margin-bottom: .65rem; }
+  .enchanted-v2 .opening-copy .eyebrow, .enchanted-v2 .dropcap-copy, .enchanted-v2 .opening-art figcaption { display: none; }
   .enchanted-v2 .opening-title-wrap { padding: 0; }
   .enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(2.15rem, 9vw, 3.4rem); }
-  .enchanted-v2 .dropcap-copy { margin-top: .65rem; font-size: .88rem; line-height: 1.35; }
-  .enchanted-v2 .hero-enter { margin-top: .8rem; }
-  .enchanted-v2 .hero-toolbar { flex-wrap: wrap; gap: .7rem; padding: 1rem 1.2rem 1.5rem; }
-  .enchanted-v2 .slider-navigation { width: 100%; justify-content: space-between; }
-  .enchanted-v2 .slider-tabs { gap: .8rem; }
-  .enchanted-v2 .slider-tools { width: 100%; justify-content: space-between; }
+  .enchanted-v2 .hero-enter { align-self: flex-start; margin-top: .85rem; padding-bottom: .35rem; font-size: .65rem; }
+  .enchanted-v2 .hero-toolbar { flex-wrap: nowrap; gap: .5rem; padding: .65rem .9rem .8rem; }
+  .enchanted-v2 .slider-navigation { min-width: 0; gap: .35rem; }
+  .enchanted-v2 .slider-arrow { width: 1.85rem; height: 2rem; font-size: 1.25rem; }
+  .enchanted-v2 .slider-tabs { gap: .35rem; }
+  .enchanted-v2 .slider-tab { padding-left: .1rem; padding-right: .1rem; font-size: .62rem; }
+  .enchanted-v2 .slider-tools { flex: 0 0 auto; width: auto; gap: .55rem; }
+  .enchanted-v2 .slider-play { font-size: .59rem; letter-spacing: .08em; }
+  .enchanted-v2 .slider-counter { font-size: .59rem; letter-spacing: .08em; }
   .enchanted-v2 .worlds-intro, .enchanted-v2 .world-map, .enchanted-v2 .section-heading, .enchanted-v2 .exploring-layout, .enchanted-v2 .revisiting, .enchanted-v2 .folio-title, .enchanted-v2 .folio-inquiry, .enchanted-v2 .folio-evidence { grid-template-columns: 1fr; }
   .enchanted-v2 .worlds-intro { padding-top: 5rem; }
   .enchanted-v2 .worlds-intro h2 { font-size: clamp(3.3rem, 12vw, 5.3rem); }
@@ -210,5 +215,5 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .enchanted-v2 .hero-slide, .enchanted-v2 .world-enter { transition: none; }
+  .enchanted-v2 .hero-slide, .enchanted-v2 .hero-slide.is-active, .enchanted-v2 .hero-slide.is-leaving, .enchanted-v2 .world-enter { transition: none; }
 }
