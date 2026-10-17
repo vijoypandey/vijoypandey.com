@@ -1,7 +1,7 @@
 export const thesis = {
   kicker: 'The thesis',
   title: 'Beyond the Bit: What Should the Network Carry Next?',
-  body: 'We invented the bit. We learned to distribute bits. We are now computing with richer forms of state. The network must evolve.',
+  body: 'Many of our hardest problems require searching enormous spaces of possibilities. We invented the bit, learned to distribute it, and now our endpoints are beginning to think, entangle, fluctuate and move.',
 };
 
 export const frontiers = [
@@ -22,7 +22,7 @@ export const exploring = [
 export const revisiting = {
   type: 'Worth revisiting · Foundational question',
   title: 'What must survive the boundary?',
-  detail: 'Four computing frontiers, each with a different kind of shared state.',
+  detail: 'Networks learned to carry data. Their next challenge is to preserve meaning, entanglement, correlations, and alignment across machines.',
 };
 
 export const activity = [
