@@ -1,0 +1,366 @@
+---
+import { activity, exploring, frontiers, revisiting, thesis } from '../../../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
+const images = {
+  forestGatherings: 'Vijoy_A_group_of_small_figures_scattered_across_a_dark_forest_a8dd8c89-2421-49cf-966f-dd694cee1c15_2.png',
+  forestBlue: 'Vijoy_A_group_of_small_figures_scattered_across_a_dark_forest_a8dd8c89-2421-49cf-966f-dd694cee1c15_1.png',
+  forestWarm: 'Vijoy_A_group_of_small_figures_scattered_across_a_dark_forest_a67ee0a5-9c9e-47fb-951d-6226bc39d39e_2.png',
+  settlement: 'Vijoy_A_small_distinctive_research_settlement_being_absorbed__3cd50f91-22d2-4493-a0bc-c2a3b6d954cf_0.png',
+  field: 'Vijoy_imagine_a_vast_field_undulating_in_shallow_ups_and_down_726460bd-0c31-40ba-8edb-b20372d64316_3.png',
+  circus: 'Vijoy_an_old_fairy_tale_like_circus_environment_with_a_juggle_73c79214-bdcb-4919-a608-849e83856c5e_1.png',
+  presence: 'Vijoy_A_single_sharply_defined_silhouette_stands_at_the_cente_c7a750b2-3902-4a78-9376-ca8ec0b1fa52_3.png',
+};
+
+const chapters = [
+  {
+    ...frontiers[0],
+    id: 'collective-intelligence',
+    image: images.forestGatherings,
+    alt: 'An immense forest with small gathering places lit among the trees',
+    note: 'Many presences, one unfolding question.',
+    body: 'What changes when thinking entities share context and coordinate action? The path from isolated agents to connected systems is an inquiry into what intelligence can become together.',
+  },
+  {
+    ...frontiers[1],
+    id: 'boltzmann-computing',
+    image: images.circus,
+    alt: 'A tightrope performer and suspended weights in an unusual circus of balance',
+    note: 'A world held in motion.',
+    body: 'Thermodynamics and oscillator dynamics invite a different question: what kinds of computation can arise from the behavior of physical systems themselves?',
+  },
+  {
+    ...frontiers[2],
+    id: 'quantum-computing',
+    image: images.field,
+    alt: 'Small observers before a vast undulating field and distant horizon',
+    note: 'Connections across an unfamiliar landscape.',
+    body: 'The challenge extends beyond any one quantum processor. How might coherence and entanglement be preserved and distributed as quantum systems grow into networks?',
+  },
+  {
+    ...frontiers[3],
+    id: 'physical-ai',
+    image: images.presence,
+    alt: 'A solitary figure facing translucent forms and delicate connecting threads',
+    note: 'Intelligence enters the world.',
+    body: 'Embodied intelligence encounters space, time, and other actors. This frontier explores how individual machines might become coordinated physical systems.',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="An illustrated exploration of computing beyond the individual node, across four research frontiers." />
+    <meta name="theme-color" content="#eee9de" />
+    <title>Scientific Enchantment — Vijoy Pandey</title>
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href={`${base}/`} aria-label="Vijoy Pandey home">Vijoy Pandey<span class="wordmark-dot">.</span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <details>
+          <summary>Thesis <span aria-hidden="true">⌄</span></summary>
+          <div class="nav-menu">
+            <a href="#thesis">Overview</a>
+            {chapters.map((chapter) => <a href={`#${chapter.id}`}>{chapter.name}</a>)}
+          </div>
+        </details>
+        <details>
+          <summary>About <span aria-hidden="true">⌄</span></summary>
+          <div class="nav-menu nav-menu--right">
+            <a href={`${base}/#about`}>Personal</a>
+            <a href={`${base}/#work`}>Work</a>
+            <a href={`${base}/#contact`}>Contact</a>
+          </div>
+        </details>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="opening" id="thesis" aria-labelledby="opening-title">
+        <div class="opening-copy">
+          <p class="eyebrow">An illustrated inquiry <span>—</span> 001</p>
+          <div class="opening-title-wrap">
+            <p class="pretitle">The next landscape of computing</p>
+            <h1 id="opening-title">Beyond the<br /><em>individual node.</em></h1>
+            <p class="opening-thesis">{thesis.body}</p>
+          </div>
+          <a class="text-link" href="#frontiers">Enter the four frontiers <span aria-hidden="true">→</span></a>
+        </div>
+        <figure class="opening-art">
+          <img src={artwork(images.settlement)} alt="A small settlement set within immense, shadowed architecture" fetchpriority="high" />
+          <figcaption><span>Plate I</span><span>A world larger than its inhabitants</span></figcaption>
+        </figure>
+      </section>
+
+      <section class="threshold" id="frontiers" aria-labelledby="frontiers-title">
+        <div class="threshold-rule"><span>Four frontiers</span><span>01—04</span></div>
+        <div class="threshold-content">
+          <h2 id="frontiers-title">Four ways into<br /><em>the unknown.</em></h2>
+          <p>Different worlds, one question: how does computing scale when the meaningful unit is no longer a single node?</p>
+        </div>
+      </section>
+
+      <div class="chapters">
+        {chapters.map((chapter, index) => (
+          <section class={`chapter chapter--${index + 1}`} id={chapter.id} aria-labelledby={`${chapter.id}-title`}>
+            <div class="chapter-heading">
+              <p class="chapter-index">Frontier <span>{chapter.index} / 04</span></p>
+              <h2 id={`${chapter.id}-title`}>{chapter.name}</h2>
+              <p class="chapter-subtitle">{chapter.subtitle}</p>
+            </div>
+            <figure class="chapter-figure">
+              <img src={artwork(chapter.image)} alt={chapter.alt} loading="lazy" decoding="async" />
+              <figcaption><span>Plate {['II', 'III', 'IV', 'V'][index]}</span><span>{chapter.note}</span></figcaption>
+            </figure>
+            <div class="chapter-afterword">
+              <span class="chapter-ornament" aria-hidden="true">{['I', 'II', 'III', 'IV'][index]}</span>
+              <p>{chapter.body}</p>
+              <a href="#exploring" class="text-link">Continue the inquiry <span aria-hidden="true">→</span></a>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <section class="exploring" id="exploring" aria-labelledby="exploring-title">
+        <div class="section-heading">
+          <p class="eyebrow">The living inquiry <span>—</span> 005</p>
+          <h2 id="exploring-title">Currently <em>exploring.</em></h2>
+          <p>Ideas and conversations still taking shape.</p>
+        </div>
+        <div class="exploring-layout">
+          <figure class="exploring-art">
+            <img src={artwork(images.forestBlue)} alt="Blue-lit niches scattered through a dark forest" loading="lazy" decoding="async" />
+            <figcaption><span>Plate VI</span><span>Separate lights in a connected wood</span></figcaption>
+          </figure>
+          <div class="exploring-notes">
+            {exploring.map((item, index) => (
+              <article class="exploring-note">
+                <div class="note-line"><span>{String(index + 1).padStart(2, '0')}</span><span>{item.type}</span></div>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="revisiting" id="revisiting" aria-labelledby="revisiting-title">
+        <div class="revisiting-copy">
+          <p class="eyebrow">From the reading room <span>—</span> 006</p>
+          <h2 id="revisiting-title">Worth<br /><em>revisiting.</em></h2>
+          <span class="small-rule" aria-hidden="true"></span>
+          <p class="revisiting-type">{revisiting.type}</p>
+          <h3>{revisiting.title}</h3>
+          <p class="revisiting-detail">{revisiting.detail}</p>
+        </div>
+        <figure class="revisiting-art">
+          <img src={artwork(images.forestWarm)} alt="Warm amber lanterns across multiple levels of a forest" loading="lazy" decoding="async" />
+          <figcaption><span>Plate VII</span><span>Lights to return to</span></figcaption>
+        </figure>
+      </section>
+
+      <section class="activity" id="activity" aria-labelledby="activity-title">
+        <div class="activity-intro">
+          <p class="eyebrow">A continuing record <span>—</span> 007</p>
+          <h2 id="activity-title">Recent <em>activity.</em></h2>
+          <p>Writing, conversations, and research as they appear.</p>
+        </div>
+        <div class="activity-list">
+          {activity.map((item) => (
+            <article class="activity-row">
+              <time>{item.date}</time>
+              <span class="activity-type">{item.type}</span>
+              <h3>{item.title}</h3>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="footer-brand" href={`${base}/`}>Vijoy Pandey<span>.</span></a>
+        <p>Computing beyond the individual node.</p>
+      </div>
+      <div class="footer-links">
+        <a href={`${base}/#about`}>Personal <small>Curiosity beyond the work</small></a>
+        <a href={`${base}/#work`}>Work <small>Ideas made tangible</small></a>
+        <a href="mailto:hello@vijoypandey.com">Contact <small>Start a conversation</small></a>
+      </div>
+      <div class="footer-bottom"><span>Scientific Enchantment · Design prototype</span><span>Illustrative editorial entries for design review</span><a href="#thesis">Back to the beginning ↑</a></div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) { margin: 0; background: #eee9de; color: #292824; font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+  :global(img) { display: block; max-width: 100%; }
+  :global(a) { color: inherit; }
+  :global(:focus-visible) { outline: 2px solid #8b6047; outline-offset: 4px; }
+  :global(section[id]) { scroll-margin-top: 5rem; }
+  .skip-link { position: absolute; top: -5rem; left: 1rem; z-index: 20; background: #fff; padding: .8rem 1rem; }
+  .skip-link:focus { top: 1rem; }
+  h1, h2, h3, p, figure { margin: 0; }
+  h1, h2, h3, .wordmark, .footer-brand { font-family: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif; font-weight: 400; }
+  em { font-weight: 400; }
+  .eyebrow, .pretitle, .chapter-index, figcaption, .note-line, .revisiting-type, .activity-type, .activity-row time, .footer-bottom, .threshold-rule { font-size: .68rem; letter-spacing: .13em; text-transform: uppercase; }
+  .eyebrow span { padding: 0 .45em; color: #947966; }
+  .text-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 2.5rem; width: fit-content; border-bottom: 1px solid currentColor; padding: .2rem 0 .65rem; text-decoration: none; font-size: .78rem; letter-spacing: .04em; }
+  .text-link span { font-size: 1.15rem; line-height: .7; }
+  .text-link:hover { color: #9b5d3b; }
+
+  .site-header { height: 5.3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 0 clamp(1.2rem, 4vw, 5rem); background: #eee9de; border-bottom: 1px solid #d2c9b8; position: relative; z-index: 10; }
+  .wordmark { font-size: 1.33rem; letter-spacing: -.035em; text-decoration: none; white-space: nowrap; }
+  .wordmark-dot, .footer-brand span { color: #9e6749; }
+  .site-nav { display: flex; gap: clamp(1.7rem, 3vw, 3.5rem); align-items: center; font-size: .75rem; letter-spacing: .08em; }
+  .site-nav details { position: relative; }
+  .site-nav summary { list-style: none; cursor: pointer; padding: .7rem 0; }
+  .site-nav summary::-webkit-details-marker { display: none; }
+  .site-nav summary span { color: #98745b; margin-left: .25rem; }
+  .nav-menu { position: absolute; top: 100%; left: -.9rem; min-width: 15rem; display: grid; gap: 0; padding: .5rem 0; background: #f7f3eb; border: 1px solid #cfc4b3; box-shadow: 0 12px 24px #26231d20; }
+  .nav-menu--right { left: auto; right: -.9rem; min-width: 10rem; }
+  .nav-menu a { display: block; padding: .72rem 1rem; text-decoration: none; white-space: nowrap; }
+  .nav-menu a:hover, .nav-menu a:focus-visible { background: #e7dfd2; }
+
+  .opening { display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 58%); min-height: min(850px, calc(100svh - 5.3rem)); }
+  .opening-copy { background: #eee9de; padding: clamp(2rem, 4.3vw, 5rem); display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
+  .opening-copy .eyebrow { color: #795d48; }
+  .opening-title-wrap { padding: 4rem 0; }
+  .pretitle { color: #7d756b; margin-bottom: 1.8rem; }
+  .opening h1 { font-size: clamp(3.45rem, 5.15vw, 6.8rem); line-height: .98; letter-spacing: -.055em; }
+  .opening h1 em { color: #665f52; }
+  .opening-thesis { max-width: 26.5rem; margin-top: 2.5rem; font-size: clamp(1rem, 1.18vw, 1.14rem); line-height: 1.72; color: #4e4a43; }
+  .opening-art { display: flex; flex-direction: column; justify-content: center; min-width: 0; background: #252724; }
+  .opening-art img { width: 100%; max-height: min(760px, calc(100svh - 8rem)); object-fit: contain; }
+  figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem clamp(1.2rem, 2vw, 2rem); line-height: 1.5; }
+  .opening-art figcaption { color: #c1b9ab; }
+
+  .threshold { padding: clamp(5rem, 10vw, 11rem) clamp(1.2rem, 8vw, 9rem) clamp(5rem, 9vw, 10rem); background: #e7e0d3; }
+  .threshold-rule { display: flex; justify-content: space-between; border-top: 1px solid #a9a092; padding-top: 1rem; color: #6d675f; }
+  .threshold-content { display: grid; grid-template-columns: 1.25fr .75fr; align-items: end; gap: 5rem; padding-top: clamp(5rem, 9vw, 10rem); }
+  .threshold h2 { font-size: clamp(3.5rem, 6.8vw, 8rem); line-height: 1.04; letter-spacing: -.055em; }
+  .threshold h2 em { color: #82735e; }
+  .threshold-content p { max-width: 24rem; margin-bottom: .5rem; font-size: 1.07rem; line-height: 1.68; color: #555149; }
+
+  .chapter { padding: clamp(5rem, 8vw, 9rem) clamp(1.2rem, 8vw, 9rem); overflow: hidden; }
+  .chapter-heading { display: grid; grid-template-columns: minmax(8rem, .23fr) minmax(0, 1fr); gap: 1rem 3rem; align-items: start; }
+  .chapter-index { grid-row: span 2; border-top: 1px solid currentColor; padding-top: 1rem; white-space: nowrap; color: #777066; }
+  .chapter-index span { margin-left: .5rem; }
+  .chapter h2 { font-size: clamp(3.4rem, 6.7vw, 7.6rem); line-height: 1; letter-spacing: -.052em; }
+  .chapter-subtitle { font-size: clamp(1rem, 1.35vw, 1.26rem); line-height: 1.5; color: #57534b; }
+  .chapter-figure { min-width: 0; margin: clamp(3.5rem, 6vw, 7rem) 0 0; }
+  .chapter-figure img { width: 100%; height: auto; max-height: 900px; object-fit: contain; object-position: center; }
+  .chapter-figure figcaption { padding-left: 0; padding-right: 0; color: #777066; }
+  .chapter-afterword { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem 4rem; align-items: end; margin: clamp(2rem, 5vw, 5rem) 0 0 auto; max-width: 58rem; }
+  .chapter-ornament { grid-row: span 2; align-self: start; color: #9d7057; font-size: clamp(4rem, 8vw, 9rem); line-height: .8; font-family: Georgia, serif; font-weight: 400; }
+  .chapter-afterword p { font-size: clamp(1.13rem, 1.5vw, 1.5rem); line-height: 1.6; font-family: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif; }
+  .chapter--1 { background: #292b27; color: #eae3d4; }
+  .chapter--1 .chapter-index, .chapter--1 .chapter-subtitle, .chapter--1 figcaption { color: #bdb5a7; }
+  .chapter--1 .chapter-figure { margin-left: -3vw; margin-right: -3vw; }
+  .chapter--1 .chapter-ornament { color: #ae8362; }
+  .chapter--2 { background: #e4dac9; }
+  .chapter--2 .chapter-figure { margin-left: 9vw; }
+  .chapter--3 { background: #d4d0c5; }
+  .chapter--3 .chapter-figure { margin-right: 9vw; }
+  .chapter--3 .chapter-ornament { color: #7e786a; }
+  .chapter--4 { background: #c8c0b2; }
+  .chapter--4 .chapter-figure { width: 78%; margin-left: auto; }
+  .chapter--4 .chapter-ornament { color: #5f685d; }
+
+  .exploring { padding: clamp(5rem, 9vw, 10rem) clamp(1.2rem, 8vw, 9rem); background: #efece4; }
+  .section-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 4rem; align-items: end; margin-bottom: clamp(3.5rem, 6vw, 7rem); }
+  .section-heading .eyebrow { grid-column: 1 / -1; color: #7d6b5a; }
+  .section-heading h2, .revisiting h2, .activity h2 { font-size: clamp(3.7rem, 6.5vw, 7.6rem); line-height: 1; letter-spacing: -.055em; }
+  .section-heading h2 em, .revisiting h2 em, .activity h2 em { color: #807361; }
+  .section-heading > p:last-child { max-width: 19rem; font-size: 1.02rem; line-height: 1.65; color: #686057; }
+  .exploring-layout { display: grid; grid-template-columns: minmax(0, 1.22fr) minmax(0, .78fr); gap: clamp(2rem, 6vw, 7rem); align-items: start; }
+  .exploring-art { min-width: 0; background: #222624; }
+  .exploring-art img { width: 100%; height: auto; max-height: 800px; object-fit: contain; }
+  .exploring-art figcaption { color: #d1c9b9; }
+  .exploring-notes { border-top: 1px solid #bcb3a7; }
+  .exploring-note { padding: 1.3rem 0 2.1rem; border-bottom: 1px solid #bcb3a7; }
+  .note-line { display: flex; justify-content: space-between; color: #8b705b; }
+  .exploring-note h3 { margin: 2.1rem 0 .55rem; font-size: clamp(2rem, 2.9vw, 3.4rem); line-height: 1.08; letter-spacing: -.04em; }
+  .exploring-note p { color: #6b665d; font-size: .83rem; line-height: 1.5; }
+
+  .revisiting { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); background: #dcd3c3; }
+  .revisiting-copy { padding: clamp(5rem, 8vw, 9rem) clamp(1.2rem, 6vw, 7rem) clamp(5rem, 7vw, 8rem) clamp(1.2rem, 8vw, 9rem); }
+  .revisiting h2 { margin: clamp(4rem, 7vw, 8rem) 0 3rem; }
+  .small-rule { display: block; height: 1px; width: 4.5rem; background: #7b7367; margin-bottom: 3rem; }
+  .revisiting-type { color: #846f5c; margin-bottom: 1.2rem; }
+  .revisiting h3 { max-width: 12ch; font-size: clamp(2rem, 3vw, 3.5rem); line-height: 1.1; letter-spacing: -.035em; }
+  .revisiting-detail { max-width: 23rem; margin-top: 1.5rem; color: #615b52; line-height: 1.65; }
+  .revisiting-art { min-width: 0; background: #2b302b; display: flex; flex-direction: column; justify-content: center; }
+  .revisiting-art img { width: 100%; max-height: 850px; object-fit: contain; }
+  .revisiting-art figcaption { color: #d0c7b9; }
+
+  .activity { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(3rem, 8vw, 9rem); background: #eee9de; padding: clamp(6rem, 10vw, 12rem) clamp(1.2rem, 8vw, 9rem); }
+  .activity h2 { margin: 3.5rem 0 1.5rem; }
+  .activity-intro > p:last-child { max-width: 17rem; line-height: 1.65; color: #69635b; }
+  .activity-list { border-top: 1px solid #b9b0a2; align-self: center; }
+  .activity-row { display: grid; grid-template-columns: 5.8rem 6.7rem 1fr; gap: 1.25rem; align-items: baseline; padding: 1.65rem 0; border-bottom: 1px solid #b9b0a2; }
+  .activity-row time, .activity-type { color: #746d63; }
+  .activity-row h3 { font-size: clamp(1.35rem, 1.8vw, 1.95rem); line-height: 1.24; letter-spacing: -.025em; }
+
+  .site-footer { padding: 4rem clamp(1.2rem, 8vw, 9rem) 2rem; background: #292b27; color: #e7dfd0; }
+  .footer-top { display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; padding-bottom: 3.5rem; border-bottom: 1px solid #716f65; }
+  .footer-brand { font-size: clamp(2.2rem, 4vw, 4rem); text-decoration: none; }
+  .footer-top p { max-width: 16rem; line-height: 1.5; color: #b4afa4; }
+  .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 3rem 0 5rem; }
+  .footer-links a { font-family: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif; font-size: 1.7rem; text-decoration: none; }
+  .footer-links a:hover { color: #c0a58c; }
+  .footer-links small { display: block; margin-top: .6rem; color: #ada99f; font-family: Arial, Helvetica, sans-serif; font-size: .8rem; }
+  .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; padding-top: 1.25rem; border-top: 1px solid #716f65; color: #aaa69d; }
+  .footer-bottom a { text-decoration: none; }
+  .footer-bottom a:hover { color: #e7dfd0; }
+
+  @media (max-width: 900px) {
+    .opening { grid-template-columns: 1fr; }
+    .opening-copy { min-height: 43rem; }
+    .opening-art img { max-height: none; }
+    .threshold-content { gap: 2rem; }
+    .chapter--4 .chapter-figure { width: 100%; }
+    .activity { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .site-header { height: 4.5rem; padding: 0 1.2rem; }
+    .wordmark { font-size: 1.18rem; }
+    .site-nav { gap: 1.1rem; font-size: .7rem; }
+    .nav-menu { left: auto; right: -4.1rem; max-width: calc(100vw - 2rem); min-width: 13.5rem; }
+    .nav-menu--right { right: 0; min-width: 9rem; }
+    .opening-copy { min-height: 38rem; padding: 2rem 1.2rem 2.6rem; }
+    .opening-title-wrap { padding: 4rem 0 3rem; }
+    .opening h1 { font-size: clamp(3.2rem, 13vw, 5.5rem); }
+    .opening-thesis { margin-top: 2rem; }
+    .threshold-content, .chapter-heading, .section-heading, .exploring-layout, .revisiting { grid-template-columns: 1fr; }
+    .threshold-content { padding-top: 5rem; }
+    .threshold h2 { font-size: clamp(3.3rem, 12vw, 5.3rem); }
+    .chapter { padding-top: 5rem; padding-bottom: 5rem; }
+    .chapter-index { grid-row: auto; margin-bottom: 1.5rem; }
+    .chapter h2 { font-size: clamp(3rem, 11vw, 5.2rem); }
+    .chapter-figure, .chapter--1 .chapter-figure, .chapter--2 .chapter-figure, .chapter--3 .chapter-figure { margin: 3rem 0 0; }
+    .chapter-afterword { grid-template-columns: 1fr; gap: 1.5rem; }
+    .chapter-ornament { grid-row: auto; font-size: 4.5rem; }
+    .section-heading .eyebrow { grid-column: auto; }
+    .section-heading h2, .revisiting h2, .activity h2 { font-size: clamp(3.2rem, 12vw, 5.5rem); }
+    .exploring-notes { margin-top: 1rem; }
+    .revisiting-copy { padding: 5rem 1.2rem; }
+    .revisiting h2 { margin-top: 5rem; }
+    .activity-row { grid-template-columns: 5rem 1fr; gap: .7rem 1rem; }
+    .activity-row h3 { grid-column: 1 / -1; }
+    .footer-top { display: block; }
+    .footer-top p { margin-top: 1rem; }
+    .footer-links { grid-template-columns: 1fr; gap: 2rem; padding-bottom: 4rem; }
+    figcaption { font-size: .58rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { :global(html) { scroll-behavior: auto; } }
+</style>
