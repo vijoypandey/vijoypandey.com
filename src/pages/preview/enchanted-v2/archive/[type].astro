@@ -1,0 +1,31 @@
+---
+import EnchantedV2Header from '../../../../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../../../../components/EnchantedV2Footer.astro';
+import '../../../../styles/enchanted-v2.css';
+
+const types = [
+ {slug:'articles',title:'Articles',description:'Essays and arguments, new and old, from the continuing inquiry.'},
+ {slug:'podcasts',title:'Podcasts',description:'Conversations with researchers, builders, and people changing how we think about computing.'},
+ {slug:'research',title:'Research',description:'Papers and technical work—mine and others’—that inform the frontiers.'},
+ {slug:'talks',title:'Talks',description:'Keynotes and conversations about what computing may become.'},
+ {slug:'mentions',title:'Mentions',description:'Interviews, external coverage and conversations elsewhere.'},
+ {slug:'projects',title:'Projects',description:'Systems, experiments and prototypes that make the questions concrete.'},
+];
+export function getStaticPaths() {return types.map(type=>({params:{type:type.slug},props:{archive:type}}));}
+const {archive} = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/,'');
+---
+<!doctype html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#eee9de"/><title>{archive.title} — Vijoy Pandey</title>
+<meta name="description" content={archive.description}/>
+</head><body class="enchanted-v2">
+<EnchantedV2Header/>
+<main id="main">
+<section class="worlds">
+<div class="worlds-rule"><span>The reading room</span><span>Archive</span></div>
+<div class="worlds-intro"><h1>{archive.title}</h1><p>{archive.description}</p></div>
+</section>
+<section class="activity"><div class="activity-intro"><p class="eyebrow">An evolving collection</p><h2>Further <em>exploration.</em></h2><p>Canonical artifacts will appear here as their source links and metadata are verified. An artifact can belong to more than one frontier without being duplicated.</p></div></section>
+</main><EnchantedV2Footer/>
+</body></html>
