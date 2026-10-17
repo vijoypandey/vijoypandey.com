@@ -1,5 +1,7 @@
 ---
 import { activity, exploring, frontiers, revisiting, thesis } from '../../../data/site';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
@@ -10,7 +12,7 @@ import { activity, exploring, frontiers, revisiting, thesis } from '../../../dat
     <title>Vijoy Pandey — Minimal prototype</title>
   </head>
   <body>
-    <header><a class="logo" href="/preview/minimal/">vijoy<span>:</span></a><nav aria-label="Main navigation"><a href="#thesis">Thesis</a><a href="#about">About</a></nav><span class="menu-dot">●</span></header>
+    <header><a class="logo" href={`${base}/preview/minimal/`}>vijoy<span>:</span></a><nav aria-label="Main navigation"><a href="#thesis">Thesis</a><a href="#about">About</a></nav><span class="menu-dot">●</span></header>
     <main>
       <section class="hero" id="thesis"><div class="hero-top"><span>Index / 00</span><span>Independent research</span></div><div class="hero-content"><p class="hello">Hi, I’m Vijoy.</p><h1>We need<br /><span>better</span><br />networks.</h1><p class="hero-body">{thesis.body}</p><a class="jump" href="#frontiers"><span>See what I’m exploring</span><b>↘</b></a></div><div class="side-note">The network historically scaled data.<br />Endpoints now think, fluctuate,<br />entangle, and move.</div></section>
       <section class="frontiers" id="frontiers"><div class="intro-line"><span>01 / The thesis in four parts</span><span>Drag your attention ↓</span></div><h2>Four ways to<br /><i>leave the node.</i></h2><div class="frontier-grid">{frontiers.map((frontier, index) => <a href="#exploring" class={`frontier f-${index + 1}`}><span class="number">{frontier.index}</span><div class="frontier-symbol">{frontier.mark}</div><h3>{frontier.name}</h3><p>{frontier.subtitle}</p><span class="plus">+</span></a>)}</div></section>
