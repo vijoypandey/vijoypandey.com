@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import EnchantedV2Header from '../../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../../components/EnchantedV2Footer.astro';
+import { images } from '../../data/enchantedV2';
+import '../../styles/enchanted-v2.css';
+import '../../styles/frontier-essay.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const artwork = `${base}/images/design-exploration/${images.field}`;
+const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('entangle')))
+  .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
+const stages = [
+  { name: 'Compute', text: 'Local processors manipulate fragile quantum state through gates and measurements.' },
+  { name: 'Entangle', text: 'A quantum link establishes useful correlations between remote nodes.' },
+  { name: 'Preserve', text: 'Fidelity, memory lifetime, loss and timing determine whether the state remains useful.' },
+  { name: 'Coordinate', text: 'Network control, compilation and resource allocation make distributed operations possible.' },
+  { name: 'Scale', text: 'Interoperable networks could connect processors, sensors and other quantum endpoints.' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eee9de" />
+    <meta name="description" content="How do we scale quantum computing beyond individual processors? An inquiry into distributed entanglement, transduction, fidelity and real-world quantum networks." />
+    <link rel="canonical" href={new URL(`${base}/quantum-computing/`, Astro.site).href} />
+    <title>Quantum Computing — Vijoy Pandey</title>
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+  </head>
+  <body class="enchanted-v2 frontier-essay">
+    <EnchantedV2Header />
+    <main id="main">
+      <header class="frontier-opening">
+        <p class="frontier-kicker">Frontier 02 <span>—</span> Entangle</p>
+        <p class="frontier-overline">Beyond the individual quantum processor</p>
+        <h1>Quantum<br /><em>Computing.</em></h1>
+        <p class="frontier-question">What happens when entanglement spans distance?</p>
+        <p class="frontier-lede">Making a single quantum computer more capable is only one dimension of scale. Another is to connect quantum systems—and preserve what makes their states quantum across the boundaries between them.</p>
+      </header>
+      <figure class="frontier-plate">
+        <img src={artwork} alt="Tiny observers stand before an immense undulating landscape beneath a distant horizon" />
+        <figcaption><span>Plate II / Quantum Computing</span><span>Distance changes the question</span></figcaption>
+      </figure>
+      <div class="frontier-prose">
+        <p class="frontier-chapter">I. A different kind of state</p>
+        <h2>The quantum state cannot simply be copied and forwarded.</h2>
+        <p>Classical networks became powerful in part because bits can be copied, buffered, regenerated and routed. Quantum information changes those assumptions. Unknown quantum states cannot be perfectly cloned. Measurement can irreversibly change the state being measured. Interactions with the environment erode the coherence on which quantum operations depend.</p>
+        <p>Entanglement offers a different resource: correlations between systems that cannot be represented as independent classical states. It does not allow faster-than-light messaging. But when combined with classical communication and suitable operations, shared entanglement enables protocols such as teleportation of quantum states and distributed quantum operations.</p>
+        <p>The question is no longer only how many qubits fit on one chip. It is also which quantum resources can be created, preserved and used between machines.</p>
+        <p class="frontier-chapter">II. Why a network?</p>
+        <h2>Horizontal scale is not just more quantum processors.</h2>
+        <p>Large, fault-tolerant quantum computers remain an extraordinarily difficult engineering challenge. Even if individual processors improve rapidly, physical constraints on qubit control, connectivity, packaging and error correction may motivate modular systems. Quantum networks offer a possible way to link such modules without pretending that remote qubits behave exactly like local ones.</p>
+        <p>A useful network must do more than announce that two devices are connected. It must make entanglement available with enough fidelity, rate and predictability for a workload. Distributed algorithms and compilers must account for communication costs, probabilistic link success and the timing of operations. The benefit is workload-dependent, not automatic.</p>
+      </div>
+      <section class="frontier-map" aria-labelledby="progression-title">
+        <div class="frontier-map-heading">
+          <p class="frontier-chapter">A possible progression</p>
+          <h2 id="progression-title">From a processor <em>to a quantum network.</em></h2>
+          <p>These are engineering requirements, not a guaranteed sequence of milestones. A quantum network must make shared state useful, not merely possible.</p>
+        </div>
+        <ol class="stage-list">
+          {stages.map((stage, index) => (
+            <li><span class="stage-number">{String(index + 1).padStart(2,'0')}</span><h3>{stage.name}</h3><p>{stage.text}</p></li>
+          ))}
+        </ol>
+      </section>
+      <div class="frontier-prose">
+        <p class="frontier-chapter">III. The interfaces are physical</p>
+        <h2>Entanglement has to survive the journey.</h2>
+        <p>Quantum processors do not all speak the same physical language. Many promising qubit platforms operate at frequencies or wavelengths poorly suited to long-distance transmission. Photons are natural carriers through optical fiber, but linking them to stationary qubits may require efficient quantum transduction. Every conversion introduces its own losses, noise and engineering compromises.</p>
+        <p>Moving quantum information over real infrastructure compounds the problem: fiber loss, synchronization, limited quantum memories, imperfect sources and detectors, and the need for entanglement swapping or other repeater techniques. These challenges are measurable. Laboratory and deployed-fiber demonstrations are meaningful steps, but they should not be confused with a general-purpose fault-tolerant quantum internet.</p>
+        <p class="frontier-chapter">IV. More than computers</p>
+        <h2>What does a quantum network connect?</h2>
+        <p>Processors are one answer. Quantum sensors and clocks are another. Networked devices may enable distributed sensing and precision measurements in regimes where carefully managed quantum correlations provide an advantage. Different applications will demand different distances, error budgets, memories and forms of coordination.</p>
+        <p>This expands the systems question. How should quantum and classical control planes work together? How do independently developed devices interoperate? How can the network expose useful capabilities to applications without hiding the very constraints that determine performance? Security matters too, but quantum networking and post-quantum cryptography solve different problems and should not be conflated.</p>
+        <p class="frontier-chapter">V. The unfinished architecture</p>
+        <h2>The network must preserve more than a message.</h2>
+        <p>Useful distributed quantum computing will require progress at several layers at once: hardware that can establish entanglement, protocols that can verify and manage it, software that can schedule and compile around real link behavior, and applications that justify the overhead. There is significant progress in the components and experiments, alongside open questions about advantage, standardization and practical scaling.</p>
+        <p>A network of quantum devices is not automatically one quantum computer. The frontier lies in learning when—and how—it can become a system with capabilities unavailable to its individual nodes.</p>
+        <p class="frontier-closing">Bits travel easily. <em>Quantum states demand a different kind of network.</em></p>
+      </div>
+      <section class="frontier-reading" id="reading" aria-labelledby="reading-title">
+        <div class="frontier-reading-head">
+          <p class="frontier-chapter">The reading room</p>
+          <h2 id="reading-title">Further <em>explorations.</em></h2>
+          <p>Research, writing, conversations and work related to this frontier. The collection will grow as new material is added.</p>
+        </div>
+        <div class="artifact-grid" id="frontier-artifacts">
+          {works.map((entry,index)=> (
+            <article class:list={['artifact-entry', { 'is-collapsed': index >= 6 }]} data-artifact>
+              <a href={`${base}/artifacts/${entry.id}/`}>
+                <div class="artifact-meta"><span>{entry.data.type}</span>{entry.data.date && <time datetime={entry.data.date.toISOString().slice(0,10)}>{entry.data.date.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric',timeZone:'UTC'})}</time>}</div>
+                <h3>{entry.data.title}</h3>
+                <p>{entry.data.description}</p>
+                <span class="artifact-continue">Explore this work <span aria-hidden="true">→</span></span>
+              </a>
+            </article>
+          ))}
+        </div>
+        {works.length > 6 && <button type="button" class="artifact-more" data-show-more aria-controls="frontier-artifacts">Show more <span aria-hidden="true">↓</span></button>}
+        {works.length === 0 && <p>Related work will appear here as it is added to the collection.</p>}
+      </section>
+
+      <nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/physical-ai/`}>Physical AI <span aria-hidden="true">↗</span></a></nav>
+    </main>
+    <EnchantedV2Footer />
+    <script>
+      document.documentElement.classList.add('js-enhanced');
+      const entries = [...document.querySelectorAll<HTMLElement>('[data-artifact]')];
+      const more = document.querySelector<HTMLButtonElement>('[data-show-more]');
+      let visible = 6;
+      more?.addEventListener('click', () => {
+        visible += 6;
+        entries.forEach((entry,index)=>entry.classList.toggle('is-collapsed',index >= visible));
+        if (visible >= entries.length) more.remove();
+      });
+    </script>
+
+  </body>
+</html>
