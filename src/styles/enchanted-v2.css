@@ -26,7 +26,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .site-nav summary { list-style: none; cursor: pointer; padding: .7rem 0; }
 .enchanted-v2 .site-nav summary::-webkit-details-marker { display: none; }
 .enchanted-v2 .site-nav summary span { color: #98745b; margin-left: .25rem; }
-.enchanted-v2 .nav-menu { position: absolute; top: 100%; left: -.9rem; min-width: 15rem; display: grid; padding: .5rem 0; background: #f7f3eb; border: 1px solid #cfc4b3; box-shadow: 0 12px 24px #26231d20; }
+.enchanted-v2 .nav-menu { position: absolute; top: 100%; left: -.9rem; min-width: 15rem; display: grid; padding: .5rem 0; background: #f7f3eb; border: 1px solid #cfc4b3; color: #292824; box-shadow: 0 12px 24px #26231d20; }
 .enchanted-v2 .nav-menu--right { left: auto; right: -.9rem; min-width: 10rem; }
 .enchanted-v2 .nav-menu a { display: block; padding: .72rem 1rem; text-decoration: none; white-space: nowrap; }
 .enchanted-v2 .nav-menu a:hover, .enchanted-v2 .nav-menu a:focus-visible { background: #e7dfd2; }
