@@ -1,5 +1,278 @@
 ---
-import EnchantedV2Page from './preview/enchanted-v2/index.astro';
+import EnchantedV2Header from '../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../components/EnchantedV2Footer.astro';
+import { activity, exploring, revisiting } from '../data/site';
+import { frontierPath, frontierWorlds, images, openingSlides } from '../data/enchantedV2';
+import '../styles/enchanted-v2.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
 ---
 
-<EnchantedV2Page />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Exploring civilization-scale computing: how collective intelligence, quantum systems, physics-native computing, and embodied intelligence can scale beyond the individual node."/>    <meta name="theme-color" content="#eee9de" />
+    <title>Vijoy. — Civilization-Scale Computing</title>
+    <link rel="canonical" href={new URL(`${base}/`, Astro.site).href} />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+  </head>
+  <body class="enchanted-v2">
+    <EnchantedV2Header />
+    <main id="main">
+      <section class="hero-slider" id="thesis" aria-label="An illustrated introduction" data-hero-slider>
+        <div class="hero-track">
+          {openingSlides.map((slide, index) => (
+            <article
+              class={`hero-slide opening ${index === 0 ? 'is-active' : ''}`}
+              id={`slide-panel-${index + 1}`}
+              role="tabpanel"
+              aria-labelledby={`slide-tab-${index + 1}`}
+              aria-hidden={index !== 0}
+              inert={index !== 0}
+              data-slide
+            >
+              <div class="opening-copy">
+                <p class="eyebrow">An illustrated inquiry <span>—</span> {slide.number}</p>
+                <div class="opening-title-wrap">
+                  <p class="pretitle">{index === 0 ? 'The next landscape of computing' : slide.label}</p>
+                  {index === 0 ? <h1>{slide.headline}</h1> : <h2>{slide.headline}</h2>}
+                  <p class="dropcap-copy">{slide.body}</p>
+                </div>
+                <a class="text-link hero-enter" href={slide.slug ? `${base}${frontierPath(slide.slug)}` : '#frontiers'}>
+                  {slide.slug ? 'Enter this frontier' : 'Enter the four frontiers'} <span aria-hidden="true">→</span>
+                </a>
+              </div>
+              <figure class="opening-art">
+                {slide.slug ? (
+                  <a href={`${base}${frontierPath(slide.slug)}`} aria-label={`Enter ${slide.label}`}>
+                    <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" fetchpriority={index === 0 ? 'high' : 'low'} />
+                  </a>
+                ) : (
+                  <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" fetchpriority="high" />
+                )}
+                <figcaption><span>Plate {['I', 'II', 'III', 'IV', 'V'][index]}</span><span>{slide.note}</span></figcaption>
+              </figure>
+            </article>
+          ))}
+        </div>
+        <div class="hero-toolbar">
+          <div class="slider-navigation" aria-label="Slider controls">
+            <button class="slider-arrow" type="button" data-previous aria-label="Previous slide"><span aria-hidden="true">←</span></button>
+            <div class="slider-tabs" role="tablist" aria-label="Choose an illustrated slide">
+              {openingSlides.map((slide, index) => (
+                <button
+                  class="slider-tab"
+                  type="button"
+                  role="tab"
+                  id={`slide-tab-${index + 1}`}
+                  aria-controls={`slide-panel-${index + 1}`}
+                  aria-selected={index === 0}
+                  aria-label={`Slide ${slide.number}: ${slide.label}`}
+                  tabindex={index === 0 ? 0 : -1}
+                  data-slide-tab
+                >{slide.number}</button>
+              ))}
+            </div>
+            <button class="slider-arrow" type="button" data-next aria-label="Next slide"><span aria-hidden="true">→</span></button>
+          </div>
+          <div class="slider-tools">
+            <button class="slider-play" type="button" data-toggle-play aria-pressed="false" aria-label="Pause slideshow"><span data-play-label>Pause</span></button>
+            <span class="slider-counter" data-slide-counter aria-live="polite">01 / 05</span>
+          </div>
+        </div>
+        <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-slide-status>Slide 1 of 5: The central thesis</p>
+      </section>
+
+      <section class="worlds" aria-labelledby="why-now-title">
+        <div class="worlds-rule"><span>The larger question</span><span>Why?</span></div>
+        <div class="worlds-intro">
+          <h2 id="why-now-title">Toward <em>Civilization-Scale Computing.</em></h2>
+          <p>Civilization's greatest achievements have never been the work of a single mind or machine. They emerge from our ability to combine intelligence, accumulate knowledge, coordinate action, and build upon what came before.
+What happens when computation begins to operate at that scale—not merely through larger machines, but through interconnected intelligences, new physical substrates, and systems that can sense and act in the world?
+That is the larger possibility I'm exploring. Beyond the Bit is one way into that question.</p>
+        </div>
+      </section>
+
+      <section class="worlds" id="frontiers" aria-labelledby="worlds-title">
+        <div class="worlds-rule"><span>Four frontiers</span><span>01—04</span></div>
+        <div class="worlds-intro">
+          <h2 id="worlds-title">Four frontiers.<br /><em>One theory of scale.</em></h2>
+          <p>Computing scales through better algorithms, bigger machines, and connected machines. Networks made that third axis possible. Now the endpoints themselves are changing—and so is the state they must share.</p>
+        </div>
+        <div class="world-map">
+          {frontierWorlds.map((world, index) => (
+            <article class={`world world--${index + 1}`}>
+              <a class="world-link" href={`${base}${frontierPath(world.slug)}`}>
+                <div class="world-heading">
+                  <span class="world-number">Frontier {world.index} / 04</span>
+                  <h3>{world.name}</h3>
+                  <p>{world.subtitle}</p>
+                </div>
+                <figure class="world-figure">
+                  <img src={artwork(world.image)} alt={world.imageAlt} loading="eager" decoding="async" />
+                  <figcaption><span>Plate {['II', 'III', 'IV', 'V'][index]}</span><span>{world.note}</span></figcaption>
+                </figure>
+                <span class="world-enter">Enter this frontier <span aria-hidden="true">→</span></span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="worlds" aria-labelledby="scaling-title">
+        <div class="worlds-rule"><span>The architecture of scale</span><span>Three axes</span></div>
+        <div class="worlds-intro">
+          <h2 id="scaling-title">Three ways to <em>scale computing.</em></h2>
+          <p>We scale algorithmically, by finding better methods. Vertically, by building more capable machines. And horizontally, by making multiple machines work as one system. Networks made that last axis possible for digital computing. The next question is what horizontal scale requires when the endpoints themselves think, entangle, move, and fluctuate.</p>
+        </div>
+      </section>
+
+      <section class="exploring" id="exploring" aria-labelledby="exploring-title">
+        <div class="section-heading">
+          <p class="eyebrow">The living inquiry <span>—</span> 03</p>
+          <h2 id="exploring-title">Currently <em>exploring.</em></h2>
+          <p>As computing moves beyond individual nodes, the questions become less about connection alone—and more about coordination.</p>
+        </div>
+        <div class="exploring-layout">
+          <figure class="exploring-art">
+            <img src={artwork(images.forestBlue)} alt="Blue-lit niches scattered through a dark forest" loading="eager" decoding="async" />
+            <figcaption><span>Plate VI</span><span>Separate lights in a connected wood</span></figcaption>
+          </figure>
+          <div class="exploring-notes">
+            {exploring.map((item, index) => (
+              <article class="exploring-note">
+                <div class="note-line"><span>{String(index + 1).padStart(2, '0')}</span><span>{item.type}</span></div>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="worlds" aria-labelledby="network-role-title">
+        <div class="worlds-rule"><span>The deeper question</span><span>Beyond transport</span></div>
+        <div class="worlds-intro">
+          <h2 id="network-role-title">The network's role <em>is changing.</em></h2>
+          <p>For decades, the network moved information that could be copied, stored, and forwarded. Now distributed systems may depend on shared meaning, entanglement, physical correlations, or action aligned in space and time. Carrying messages is not necessarily enough. What must the network preserve—or help establish—so those systems can operate coherently?</p>
+        </div>
+      </section>
+
+      <section class="revisiting" id="revisiting" aria-labelledby="revisiting-title">
+        <div class="revisiting-copy">
+          <p class="eyebrow">From the reading room <span>—</span> 04</p>
+          <h2 id="revisiting-title">Worth<br /><em>revisiting.</em></h2>
+          <span class="small-rule" aria-hidden="true"></span>
+          <p class="revisiting-type">{revisiting.type}</p>
+          <h3>{revisiting.title}</h3>
+          <p class="revisiting-detail">{revisiting.detail}</p>
+        </div>
+        <figure class="revisiting-art">
+          <img src={artwork(images.forestWarm)} alt="Warm amber lanterns across multiple levels of a forest" loading="eager" decoding="async" />
+          <figcaption><span>Plate VII</span><span>Lights to return to</span></figcaption>
+        </figure>
+      </section>
+
+      <section class="activity" id="activity" aria-labelledby="activity-title">
+        <div class="activity-intro">
+          <p class="eyebrow">A continuing record <span>—</span> 05</p>
+          <h2 id="activity-title">Recent <em>activity.</em></h2>
+          <p>Following the science, the experiments, and the conversations that may change how we compute together.</p>
+        </div>
+        <div class="activity-list">
+          {activity.map((item) => (
+            <article class="activity-row">
+              <time>{item.date}</time>
+              <span class="activity-type">{item.type}</span>
+              <h3>{item.title}</h3>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+    <EnchantedV2Footer />
+    <script>
+      const slider = document.querySelector<HTMLElement>('[data-hero-slider]');
+      if (slider) {
+        const panels = Array.from(slider.querySelectorAll<HTMLElement>('[data-slide]'));
+        const tabs = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-slide-tab]'));
+        const counter = slider.querySelector<HTMLElement>('[data-slide-counter]');
+        const playButton = slider.querySelector<HTMLButtonElement>('[data-toggle-play]');
+        const playLabel = slider.querySelector<HTMLElement>('[data-play-label]');
+        const status = slider.querySelector<HTMLElement>('[data-slide-status]');
+        let active = 0;
+        let autoplayTimer: number | undefined;
+        let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function stopAutoplay() {
+          if (autoplayTimer !== undefined) window.clearInterval(autoplayTimer);
+          autoplayTimer = undefined;
+        }
+
+        function updatePlayButton() {
+          playButton?.setAttribute('aria-pressed', String(!paused));
+          playButton?.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+          if (playLabel) playLabel.textContent = paused ? 'Play' : 'Pause';
+        }
+
+        function startAutoplay() {
+          stopAutoplay();
+          if (!paused) autoplayTimer = window.setInterval(() => showSlide(active + 1, false, false), 8000);
+        }
+
+        function showSlide(index: number, focusTab = false, restartAutoplay = true) {
+          const previous = active;
+          active = (index + panels.length) % panels.length;
+          panels.forEach((panel, position) => {
+            const selected = position === active;
+            panel.classList.toggle('is-active', selected);
+            panel.classList.toggle('is-leaving', position === previous && position !== active);
+            panel.inert = !selected;
+            panel.setAttribute('aria-hidden', String(!selected));
+            tabs[position].setAttribute('aria-selected', String(selected));
+            tabs[position].tabIndex = selected ? 0 : -1;
+          });
+          if (counter) counter.textContent = `${String(active + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`;
+          if (status) status.textContent = `Slide ${active + 1} of ${panels.length}: ${tabs[active].getAttribute('aria-label')?.split(': ')[1]}`;
+          if (focusTab) tabs[active].focus();
+          if (restartAutoplay) startAutoplay();
+        }
+
+        slider.querySelector<HTMLButtonElement>('[data-previous]')?.addEventListener('click', () => showSlide(active - 1));
+        slider.querySelector<HTMLButtonElement>('[data-next]')?.addEventListener('click', () => showSlide(active + 1));
+        playButton?.addEventListener('click', () => {
+          paused = !paused;
+          updatePlayButton();
+          if (paused) stopAutoplay();
+          else startAutoplay();
+        });
+        window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (event) => {
+          paused = event.matches;
+          updatePlayButton();
+          if (paused) stopAutoplay();
+          else startAutoplay();
+        });
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => showSlide(index));
+          tab.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') { event.preventDefault(); showSlide(index + 1, true); }
+            if (event.key === 'ArrowLeft') { event.preventDefault(); showSlide(index - 1, true); }
+            if (event.key === 'Home') { event.preventDefault(); showSlide(0, true); }
+            if (event.key === 'End') { event.preventDefault(); showSlide(tabs.length - 1, true); }
+          });
+        });
+        let touchStartX = 0;
+        slider.addEventListener('touchstart', (event) => { touchStartX = event.changedTouches[0]?.clientX ?? 0; }, { passive: true });
+        slider.addEventListener('touchend', (event) => {
+          const delta = (event.changedTouches[0]?.clientX ?? 0) - touchStartX;
+          if (Math.abs(delta) > 45) showSlide(active + (delta < 0 ? 1 : -1));
+        }, { passive: true });
+        updatePlayButton();
+        startAutoplay();
+      }
+    </script>
+  </body>
+</html>
