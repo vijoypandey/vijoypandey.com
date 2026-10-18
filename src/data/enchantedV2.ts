@@ -12,7 +12,7 @@ export const images = {
 
 export const frontierWorlds = [
   {
-    ...frontiers[0], slug: 'collective-intelligence', question: 'What happens when intelligence becomes collective?',
+    ...frontiers[0], slug: 'emergent-superintelligence', question: 'What happens when intelligence becomes collective?',
     image: images.forestGatherings, imageAlt: 'Tiny figures gather on lit platforms among immense dark trees',
     note: 'Many presences, one unfolding question.', folioImage: images.forestBlue,
     folioAlt: 'Separate figures and small blue lights appear between forest trunks',
