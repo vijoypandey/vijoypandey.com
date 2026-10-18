@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const artifacts = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/artifacts', ignore: ['README.md'] }),
+  loader: glob({ pattern: ['**/*.md', '!README.md'], base: './src/content/artifacts' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date().optional(),
