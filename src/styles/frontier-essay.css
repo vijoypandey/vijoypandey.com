@@ -1,0 +1,42 @@
+/* The frontier extends the approved homepage's editorial typography and palette. */
+.frontier-essay .frontier-opening {padding:clamp(5rem,9vw,10rem) clamp(1.2rem,10vw,11rem) clamp(4rem,8vw,8rem);background:#eee9de;}
+.frontier-essay .frontier-kicker,.frontier-essay .frontier-overline,.frontier-essay .frontier-chapter,.frontier-essay .stage-number,.frontier-essay .artifact-meta,.frontier-essay .frontier-end>span {text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:#876e59;}
+.frontier-essay .frontier-kicker span{margin:0 .4rem;}
+.frontier-essay .frontier-overline{margin-top:clamp(3rem,7vw,7rem);margin-bottom:1.3rem;}
+.frontier-essay .frontier-opening h1 {font-size:clamp(3.9rem,9vw,10rem);line-height:.98;letter-spacing:-.058em;max-width:12ch;}
+.frontier-essay .frontier-opening h1 em,.frontier-essay h2 em{color:#807361;}
+.frontier-essay .frontier-question{font-family:'Iowan Old Style','Baskerville',Georgia,serif;font-size:clamp(1.5rem,2.5vw,2.5rem);line-height:1.24;max-width:31ch;margin-top:clamp(2rem,4vw,4rem);}
+.frontier-essay .frontier-lede{font-size:clamp(1rem,1.3vw,1.2rem);line-height:1.72;max-width:45rem;color:#5c554c;margin-top:1.7rem;}
+.frontier-essay .frontier-plate{margin:0;background:#262a26;color:#e5dbcb;}
+.frontier-essay .frontier-plate img{width:100%;max-height:660px;object-fit:contain;}
+.frontier-essay .frontier-plate figcaption{padding:1rem clamp(1.2rem,10vw,11rem);color:#d4c9b9;}
+.frontier-essay .frontier-prose{max-width:800px;padding:clamp(5rem,8vw,8rem) 1.5rem;margin:auto;}
+.frontier-essay .frontier-prose h2{font-size:clamp(2.4rem,4.3vw,4.6rem);line-height:1.11;letter-spacing:-.04em;margin:1.3rem 0 2.5rem;}
+.frontier-essay .frontier-prose p:not(.frontier-chapter):not(.frontier-closing){font-size:1.1rem;line-height:1.83;margin:1.3rem 0;color:#4c4841;}
+.frontier-essay .frontier-prose a{ text-underline-offset:4px;text-decoration-color:#a38c79;}
+.frontier-essay .frontier-prose .frontier-chapter:not(:first-child){margin-top:6rem;}
+.frontier-essay .frontier-closing{font-family:'Iowan Old Style',Georgia,serif;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.25;margin-top:4rem;border-top:1px solid #cbbfaf;padding-top:2rem;}
+.frontier-essay .frontier-map{background:#ded6c8;padding:clamp(4rem,7vw,8rem) clamp(1.2rem,8vw,9rem);}
+.frontier-essay .frontier-map-heading{max-width:55rem;}
+.frontier-essay .frontier-map h2,.frontier-essay .frontier-reading h2{font-size:clamp(3rem,6.5vw,7rem);line-height:1.03;letter-spacing:-.05em;margin:1.5rem 0;}
+.frontier-essay .frontier-map-heading>p:last-child,.frontier-essay .frontier-reading-head>p:last-child{line-height:1.7;color:#5d554c;max-width:35rem;font-size:1.05rem;}
+.frontier-essay .stage-list{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.4rem;margin:4rem 0 0;padding:0;}
+.frontier-essay .stage-list li{border-top:1px solid #a99e8e;padding-top:1rem;}
+.frontier-essay .stage-list h3{font-size:clamp(1.45rem,2vw,2.3rem);letter-spacing:-.03em;margin:1.5rem 0 .8rem;}
+.frontier-essay .stage-list p{font-size:.91rem;line-height:1.6;color:#575149;}
+.frontier-essay .frontier-reading{background:#e7e0d3;padding:clamp(5rem,8vw,9rem) clamp(1.2rem,8vw,9rem);}
+.frontier-essay .artifact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(2rem,6vw,8rem);margin-top:4rem;}
+.frontier-essay .artifact-entry{border-top:1px solid #b7ab9a;}
+.frontier-essay .artifact-entry a{display:flex;flex-direction:column;gap:1.1rem;padding:1.6rem 0 2.4rem;height:100%;text-decoration:none;}
+.frontier-essay .artifact-entry a:hover h3{color:#95633f;}
+.frontier-essay .artifact-meta{display:flex;justify-content:space-between;gap:1rem;}
+.frontier-essay .artifact-entry h3{font-size:clamp(1.45rem,2vw,2.15rem);line-height:1.15;}
+.frontier-essay .artifact-entry p{font-size:.91rem;line-height:1.6;color:#5c564d;}
+.frontier-essay .artifact-continue{margin-top:auto;font-size:.76rem;border-bottom:1px solid currentColor;align-self:flex-start;padding-bottom:.5rem;}
+.frontier-essay .js-enhanced .is-collapsed{display:none;}
+.frontier-essay .artifact-more{background:none;color:inherit;border:0;border-bottom:1px solid currentColor;font:inherit;font-size:.85rem;cursor:pointer;padding:1rem 0;}
+.frontier-essay .frontier-end{padding:4rem clamp(1.2rem,8vw,9rem);display:flex;justify-content:space-between;gap:2rem;align-items:center;}
+.frontier-essay .frontier-end a{font-family:'Iowan Old Style',Georgia,serif;font-size:clamp(1.5rem,3vw,2.8rem);text-decoration:none;}
+@media(max-width:800px){.frontier-essay .stage-list{grid-template-columns:1fr 1fr;}.frontier-essay .artifact-grid{grid-template-columns:1fr;}.frontier-essay .frontier-opening h1{overflow-wrap:anywhere;}}
+@media(max-width:520px){.frontier-essay .stage-list{grid-template-columns:1fr;}.frontier-essay .frontier-opening{padding-top:4rem;}.frontier-essay .frontier-opening h1{font-size:clamp(3rem,12vw,4.5rem);}.frontier-essay .frontier-end{align-items:flex-start;flex-direction:column;}}
+@media(prefers-reduced-motion:reduce){.frontier-essay *{scroll-behavior:auto;}}
