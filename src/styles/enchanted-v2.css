@@ -150,7 +150,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .folio-title h1 { font-size: clamp(3.4rem, 7vw, 8rem); line-height: 1; letter-spacing: -.055em; }
 .enchanted-v2 .folio-title p { grid-column: 2; font-size: clamp(1.05rem, 1.4vw, 1.35rem); line-height: 1.55; color: #60584e; }
 .enchanted-v2 .folio-main-art { background: #292c29; }
-.enchanted-v2 .folio-main-art img { width: 100%; max-height: 1000px; object-fit: contain; }
+.enchanted-v2 .folio-main-art img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center;}
 .enchanted-v2 .folio-main-art figcaption { color: #d0c7b9; }
 .enchanted-v2 .folio-inquiry { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 4rem; padding: clamp(6rem, 10vw, 11rem) clamp(1.2rem, 8vw, 9rem); background: #eee9de; }
 .enchanted-v2 .folio-inquiry h2, .enchanted-v2 .folio-evidence h2 { font-size: clamp(2.8rem, 5vw, 5.6rem); line-height: 1.06; letter-spacing: -.045em; }
