@@ -1,6 +1,5 @@
 ---
 title: "Cisco unveils Quantum chip, to open quantum lab"
-date: 2025-05-01
 type: mention
 provenance: appearance
 frontiers: [entangle]
