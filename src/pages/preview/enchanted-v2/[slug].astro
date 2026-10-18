@@ -18,7 +18,14 @@ const documents: Record<string,string> = {
   'how-i-work': '# How I Work' + (about.split('# How I Work')[1] || ''),
 };
 export function getStaticPaths() {
-  return Object.keys(documents).map(slug => ({params: {slug}}));
+  return [
+    'collective-intelligence',
+    'quantum-computing',
+    'physical-ai',
+    'boltzmann-computing',
+    'about-me',
+    'how-i-work',
+  ].map(slug => ({ params: { slug } }));
 }
 const { slug } = Astro.params;
 const raw = documents[slug || ''] || '';
