@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+import EnchantedV2Header from '../../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../../components/EnchantedV2Footer.astro';
+import { images } from '../../data/enchantedV2';
+import '../../styles/enchanted-v2.css';
+import '../../styles/frontier-essay.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const artwork = `${base}/images/design-exploration/${images.circus}`;
+const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('fluctuate')))
+  .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
+const stages = [
+  { name: "Encode", text: "Map a problem into energies, couplings or oscillatory parameters." },
+  { name: "Explore", text: "Allow controlled fluctuations or dynamics to traverse states." },
+  { name: "Correlate", text: "Use statistical dependencies or phase relationships to represent solutions." },
+  { name: "Read out", text: "Measure results without ignoring error, noise or cost." },
+  { name: "Scale", text: "Preserve useful correlations when machines are coupled across boundaries." },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#eee9de"/><meta name="description" content="Computing through thermodynamics and coupled oscillators, and the challenge of scaling distributions, energy landscapes and physical correlations beyond one device."/>
+<link rel="canonical" href={new URL(`${base}/boltzmann-computing/`,Astro.site).href}/>
+<title>Boltzmann Computing — Vijoy Pandey</title>
+<link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml"/>
+</head>
+<body class="enchanted-v2 frontier-essay">
+<EnchantedV2Header/>
+<main id="main">
+<header class="frontier-opening">
+<p class="frontier-kicker">Frontier 04 <span>—</span> Fluctuate</p>
+<p class="frontier-overline">Beyond deterministic digital machinery</p>
+<h1>Boltzmann<br/><em>Computing.</em></h1>
+<p class="frontier-question">What if the physics of a system helps perform the computation?</p>
+<p class="frontier-lede">Not every computation has to advance through a sequence of precisely controlled logical steps. Some physical systems explore possibilities through fluctuations, relax toward low-energy configurations, or settle into stable phase relationships. The frontier is whether these dynamics can be made useful—and scaled.</p>
+</header>
+<figure class="frontier-plate"><img src={artwork} alt="A fantastical circus performer balances beneath suspended weights and delicate connections"/><figcaption><span>Plate 04 / Boltzmann Computing</span><span>Fluctuation, coupling and balance</span></figcaption></figure>
+<div class="frontier-prose">
+        <p class="frontier-chapter">I. Computation as physical evolution</p>
+        <h2>Let a system search through its own dynamics.</h2>
+        <p>Many difficult problems involve vast spaces of possible configurations. Conventional algorithms remain essential, but energy-based and stochastic approaches ask a different question: can we engineer a physical system whose natural evolution preferentially explores useful possibilities?</p>
+        <p>In a thermodynamic computing system, fluctuations and energy differences may bias the exploration of states. For optimization, one can design an energy landscape so that lower-energy configurations correspond to desirable answers. A real device still needs initialization, control, measurement and interpretation; it is not a magical shortcut around computational complexity.</p>
+        <p class="frontier-chapter">II. Two physical languages</p>
+        <h2>Energy wells and phase alignment are related ideas, not identical machines.</h2>
+        <p>Thermodynamic systems can be understood intuitively through the image of a ball moving across a changing landscape of valleys: useful states correspond to favorable regions, while fluctuations allow exploration rather than a fixed descent. Depending on the implementation, the goal may be sampling from a probability distribution rather than finding one minimum.</p>
+        <p>Oscillator networks compute through the collective dynamics of coupled oscillators. Their frequencies and phases interact, sometimes converging toward patterns encoding candidate solutions. Phase alignment is a useful intuition, but many oscillator machines solve problems through richer phase relationships, not simply every oscillator becoming synchronized.</p>
+        <p>Both approaches exploit physical dynamics. Neither should be presented as equivalent to quantum computing, and neither should be assumed to provide an advantage for arbitrary workloads.</p>
+        <p class="frontier-chapter">III. Scaling changes the machine</p>
+        <h2>The answer can live in correlations between components.</h2>
+        <p>A single chip may exploit relationships among fluctuations, energies or oscillator phases. Partition the problem across two physical systems and the boundary becomes part of the computation. Passing sampled values between devices is not necessarily equivalent to preserving the joint distribution or the real-time coupling that produced them.</p>
+        <p>For coupled oscillators, propagation delay can shift phase relationships and alter the dynamics; for stochastic or energy-based systems, latency, noise and coupling strength can reshape correlations and sampling behavior. Whether the result is acceptable depends on the algorithm, implementation and error budget.</p>
+        <p class="frontier-chapter">IV. The design space is still open</p>
+        <h2>What would practical advantage actually mean?</h2>
+        <p>A useful comparison has to include solution quality, time to answer, energy consumed, scaling behavior, programmability and readout costs. A compelling physical effect on a laboratory device is not yet proof of application-level benefit.</p>
+        <p>Researchers are exploring thermodynamic samplers, probabilistic circuits, oscillator-based optimization and hybrid digital–physical architectures. The systems challenge is to make these machines reproducible, calibratable, interoperable and useful beyond carefully chosen demonstrations.</p>
+        <p class="frontier-chapter">V. Beyond the device</p>
+        <h2>Can physical correlations themselves become a network resource?</h2>
+        <p>Digital networking helped scale computation because the state it transported could generally be copied and reconstructed. Physics-native systems may depend on a state described by probability distributions, energy relationships or timing-sensitive correlations.</p>
+        <p>Perhaps future systems will coordinate ensembles of such machines through calibrated coupling and suitable feedback. That prospect is speculative, and it will demand evidence that distributed physical dynamics outperform well-engineered local or digital alternatives. But it asks precisely the broader question of this site: what must survive the boundary when the computational state is richer than a bit?</p>
+<p class="frontier-closing">The answer may not reside in a single value. <em>It may reside in how the system fluctuates together.</em></p>
+</div>
+<section class="frontier-map" aria-labelledby="progression-title">
+<div class="frontier-map-heading"><p class="frontier-chapter">The systems question</p>
+<h2 id="progression-title">From dynamics <em>to useful computation.</em></h2><p>Thermodynamic and oscillator approaches have different mechanisms. The shared systems question is how to preserve computation-bearing relationships.</p></div>
+<ol class="stage-list">
+{stages.map((stage,index)=><li><span class="stage-number">{String(index+1).padStart(2,'0')}</span><h3>{stage.name}</h3><p>{stage.text}</p></li>)}
+</ol></section>
+      <section class="frontier-reading" id="reading" aria-labelledby="reading-title">
+        <div class="frontier-reading-head">
+          <p class="frontier-chapter">The reading room</p>
+          <h2 id="reading-title">Further <em>explorations.</em></h2>
+          <p>Research, writing, conversations and work related to this frontier. The collection will grow as new material is added.</p>
+        </div>
+        <div class="artifact-grid" id="frontier-artifacts">
+          {works.map((entry,index)=> (
+            <article class:list={['artifact-entry', { 'is-collapsed': index >= 6 }]} data-artifact>
+              <a href={`${base}/artifacts/${entry.id}/`}>
+                <div class="artifact-meta"><span>{entry.data.type}</span>{entry.data.date && <time datetime={entry.data.date.toISOString().slice(0,10)}>{entry.data.date.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric',timeZone:'UTC'})}</time>}</div>
+                <h3>{entry.data.title}</h3>
+                <p>{entry.data.description}</p>
+                <span class="artifact-continue">Explore this work <span aria-hidden="true">→</span></span>
+              </a>
+            </article>
+          ))}
+        </div>
+        {works.length > 6 && <button type="button" class="artifact-more" data-show-more aria-controls="frontier-artifacts">Show more <span aria-hidden="true">↓</span></button>}
+        {works.length === 0 && <p>Related work will appear here as it is added to the collection.</p>}
+      </section>
+
+
+<nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/emergent-superintelligence/`}>Emergent Superintelligence <span aria-hidden="true">↗</span></a></nav>
+</main><EnchantedV2Footer/>
+    <script>
+      document.documentElement.classList.add('js-enhanced');
+      const entries = [...document.querySelectorAll<HTMLElement>('[data-artifact]')];
+      const more = document.querySelector<HTMLButtonElement>('[data-show-more]');
+      let visible = 6;
+      more?.addEventListener('click', () => {
+        visible += 6;
+        entries.forEach((entry,index)=>entry.classList.toggle('is-collapsed',index >= visible));
+        if (visible >= entries.length) more.remove();
+      });
+    </script>
+
+
+</body></html>
