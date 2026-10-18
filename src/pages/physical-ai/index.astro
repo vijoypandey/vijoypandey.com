@@ -1,0 +1,107 @@
+---
+import { getCollection } from 'astro:content';
+import EnchantedV2Header from '../../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../../components/EnchantedV2Footer.astro';
+import { images } from '../../data/enchantedV2';
+import '../../styles/enchanted-v2.css';
+import '../../styles/frontier-essay.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const artwork = `${base}/images/design-exploration/${images.presence}`;
+const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('move')))
+  .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
+const stages = [
+  { name: "Sense", text: "Observe a changing environment with imperfect sensors." },
+  { name: "Locate", text: "Agree on reference frames, time and uncertainty." },
+  { name: "Intend", text: "Communicate predicted actions and constraints." },
+  { name: "Coordinate", text: "Resolve interactions among machines and people." },
+  { name: "Act safely", text: "Preserve local control and recover from stale or conflicting state." },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#eee9de"/><meta name="description" content="How can embodied intelligence scale beyond individual machines? An inquiry into shared world state, timing, uncertainty and coordinated action."/>
+<link rel="canonical" href={new URL(`${base}/physical-ai/`,Astro.site).href}/>
+<title>Physical AI — Vijoy Pandey</title>
+<link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml"/>
+</head>
+<body class="enchanted-v2 frontier-essay">
+<EnchantedV2Header/>
+<main id="main">
+<header class="frontier-opening">
+<p class="frontier-kicker">Frontier 03 <span>—</span> Move</p>
+<p class="frontier-overline">Beyond the individual moving machine</p>
+<h1>Physical<br/><em>AI.</em></h1>
+<p class="frontier-question">What happens when intelligence moves—and must act together?</p>
+<p class="frontier-lede">A machine that acts in the world cannot wait for the world to stand still. When intelligent machines coordinate, what must survive the boundary is not merely a message, but a sufficiently current, shared understanding of space, time, intent and risk.</p>
+</header>
+<figure class="frontier-plate"><img src={artwork} alt="A lone figure stands among translucent presences and delicate connections"/><figcaption><span>Plate 03 / Physical AI</span><span>Intelligence enters a world in motion</span></figcaption></figure>
+<div class="frontier-prose">
+        <p class="frontier-chapter">I. Intelligence acquires consequences</p>
+        <h2>To act is to change the problem.</h2>
+        <p>An agent answering a question can often retry. A robot moving through a crowded room changes the world while it reasons about it. Its sensors are incomplete, objects move, and its actions have consequences that cannot always be undone.</p>
+        <p>Embodied systems combine estimation, planning and control under tight time constraints. The most interesting scaling question is not how to give one robot more intelligence, but what becomes possible when many embodied systems—and people—must share a physical world.</p>
+        <p class="frontier-chapter">II. The boundary is not a packet</p>
+        <h2>Delay changes correctness, not just performance.</h2>
+        <p>Consider two robots handing a part from one to another. If one acts on an outdated estimate of the other's pose or motion, an otherwise correct plan may fail. The safe timing budget depends on the speed, geometry, uncertainty and control design; there is no universal millisecond threshold.</p>
+        <p>A distributed physical system needs more than transport: a useful account of position and orientation, consistent reference frames, synchronized clocks, uncertainty estimates, action intent and the ability to detect when shared state is no longer trustworthy. Local autonomy remains crucial, especially when links are slow or unavailable.</p>
+        <p class="frontier-chapter">III. From fleets to collectives</p>
+        <h2>Many robots are not automatically one system.</h2>
+        <p>A fleet manager can dispatch machines without enabling them to jointly perceive, negotiate or adjust motion. More demanding settings—industrial handoffs, shared workspaces, logistics facilities or disaster response—require participants to coordinate dynamically with other machines and humans.</p>
+        <p>The hard problems occur at the seams: which participant has the right of way, how intent is communicated, who may override a maneuver, and how the group reacts when observations disagree. Interoperability and common representations help, but coordination also depends on protocols for trust, safety and accountability.</p>
+        <p class="frontier-chapter">IV. An unfinished world model</p>
+        <h2>What must everyone know—and when?</h2>
+        <p>Perfectly shared, perfectly current world state is unattainable. Sensors disagree, communication delays vary, and a centralized model may become stale before an action completes. A practical system must decide what to share, at what precision, with which guarantees, and when to fall back to independent safe behavior.</p>
+        <p>Work on multi-robot localization, distributed mapping, formation control and shared autonomy provides pieces of the puzzle. Real deployments remain constrained by robustness, heterogeneous hardware and safety assurance. The frontier is the architecture that can compose these pieces across organizations and environments.</p>
+        <p class="frontier-chapter">V. Toward physical societies</p>
+        <h2>Can intelligent motion become a collective capability?</h2>
+        <p>As machines move among people, coordination becomes social as well as spatial. They must interpret human intent without assuming it is always explicit, respect norms and constraints, and remain accountable to human authorities.</p>
+        <p>The possibility is larger than coordinated automation: populations of people and embodied agents that learn how to work and move together. That is a research direction, not a demonstrated general capability. Its promise must be judged by safer, more reliable collective outcomes—not the number of connected robots.</p>
+<p class="frontier-closing">A moving system cannot afford to share only yesterday's truth. <em>Intelligence must stay aligned in space and time.</em></p>
+</div>
+<section class="frontier-map" aria-labelledby="progression-title">
+<div class="frontier-map-heading"><p class="frontier-chapter">The systems question</p>
+<h2 id="progression-title">From sensing <em>to shared action.</em></h2><p>These are interacting requirements, not an inevitable development ladder.</p></div>
+<ol class="stage-list">
+{stages.map((stage,index)=><li><span class="stage-number">{String(index+1).padStart(2,'0')}</span><h3>{stage.name}</h3><p>{stage.text}</p></li>)}
+</ol></section>
+      <section class="frontier-reading" id="reading" aria-labelledby="reading-title">
+        <div class="frontier-reading-head">
+          <p class="frontier-chapter">The reading room</p>
+          <h2 id="reading-title">Further <em>explorations.</em></h2>
+          <p>Research, writing, conversations and work related to this frontier. The collection will grow as new material is added.</p>
+        </div>
+        <div class="artifact-grid" id="frontier-artifacts">
+          {works.map((entry,index)=> (
+            <article class:list={['artifact-entry', { 'is-collapsed': index >= 6 }]} data-artifact>
+              <a href={`${base}/artifacts/${entry.id}/`}>
+                <div class="artifact-meta"><span>{entry.data.type}</span>{entry.data.date && <time datetime={entry.data.date.toISOString().slice(0,10)}>{entry.data.date.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric',timeZone:'UTC'})}</time>}</div>
+                <h3>{entry.data.title}</h3>
+                <p>{entry.data.description}</p>
+                <span class="artifact-continue">Explore this work <span aria-hidden="true">→</span></span>
+              </a>
+            </article>
+          ))}
+        </div>
+        {works.length > 6 && <button type="button" class="artifact-more" data-show-more aria-controls="frontier-artifacts">Show more <span aria-hidden="true">↓</span></button>}
+        {works.length === 0 && <p>Related work will appear here as it is added to the collection.</p>}
+      </section>
+
+
+<nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/boltzmann-computing/`}>Boltzmann Computing <span aria-hidden="true">↗</span></a></nav>
+</main><EnchantedV2Footer/>
+    <script>
+      document.documentElement.classList.add('js-enhanced');
+      const entries = [...document.querySelectorAll<HTMLElement>('[data-artifact]')];
+      const more = document.querySelector<HTMLButtonElement>('[data-show-more]');
+      let visible = 6;
+      more?.addEventListener('click', () => {
+        visible += 6;
+        entries.forEach((entry,index)=>entry.classList.toggle('is-collapsed',index >= visible));
+        if (visible >= entries.length) more.remove();
+      });
+    </script>
+
+
+</body></html>
