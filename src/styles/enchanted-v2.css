@@ -83,6 +83,10 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .world-link { display: flex; flex-direction: column; height: 100%; padding: clamp(2.5rem, 4vw, 5rem); text-decoration: none; }
 .enchanted-v2 .world-number { display: block; border-top: 1px solid currentColor; padding-top: 1rem; margin-bottom: 1.7rem; color: #777066; }
 .enchanted-v2 .world--1 .world-number, .enchanted-v2 .world--1 .world-heading p, .enchanted-v2 .world--1 figcaption { color: #bdb5a7; }
+/* Align frontier imagery across each row */
+@media (min-width: 641px) {
+  .enchanted-v2 .world-heading {min-height: 15rem;}
+}
 .enchanted-v2 .world-heading h3 { font-size: clamp(2.7rem, 4.4vw, 5.5rem); line-height: 1; letter-spacing: -.052em; }
 .enchanted-v2 .world-heading p { max-width: 34rem; margin-top: .9rem; font-size: clamp(1rem, 1.2vw, 1.18rem); line-height: 1.5; color: #57534b; }
 .enchanted-v2 .world-figure { display: flex; flex-direction: column; justify-content: center; flex-grow: 1; min-width: 0; margin-top: clamp(2rem, 4vw, 4.5rem); }
