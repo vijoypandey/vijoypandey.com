@@ -62,14 +62,14 @@ jobs:
           import os
           import time
           from html.parser import HTMLParser
-          from urllib.parse import urljoin
+          from urllib.parse import urljoin, urlparse
           from urllib.request import urlopen
 
           root = os.environ['PAGES_URL'].rstrip('/') + '/'
           pages = {
               'preview/enchanted/': 7,
               'preview/enchanted-v2/': 11,
-              'preview/enchanted-v2/collective-intelligence/': 2,
+              'emergent-superintelligence/': 1,
               'preview/enchanted-v2/boltzmann-computing/': 2,
               'preview/enchanted-v2/quantum-computing/': 2,
               'preview/enchanted-v2/physical-ai/': 2,
@@ -80,6 +80,7 @@ jobs:
                   super().__init__()
                   self.css = []
                   self.images = []
+                  self.redirects = []
 
               def handle_starttag(self, tag, attrs):
                   values = dict(attrs)
@@ -87,6 +88,8 @@ jobs:
                       self.css.append(values['href'])
                   if tag == 'img':
                       self.images.append(values['src'])
+                  if tag == 'meta' and values.get('http-equiv', '').lower() == 'refresh':
+                      self.redirects.append(values.get('content'))
 
           def fetch(url):
               with urlopen(url, timeout=15) as response:
@@ -111,13 +114,20 @@ jobs:
                       )
                       stylesheets.update(assets.css)
                       images.update(assets.images)
+                  redirect_url = urljoin(root, 'preview/enchanted-v2/collective-intelligence/')
+                  redirect_html, content_type = fetch(redirect_url)
+                  assert content_type == 'text/html', redirect_url
+                  redirect = Assets()
+                  redirect.feed(redirect_html.decode('utf-8'))
+                  target_path = urlparse(root).path.rstrip('/') + '/emergent-superintelligence/'
+                  assert redirect.redirects == [f'0;url={target_path}'], redirect_url
                   for path in stylesheets:
                       content, content_type = fetch(urljoin(root, path))
                       assert content_type == 'text/css' and len(content) > 1000, path
                   for path in images:
                       content, content_type = fetch(urljoin(root, path))
                       assert content_type == 'image/png' and len(content) > 100000, path
-                  print(f'Verified {len(pages)} Pages URLs, {len(stylesheets)} CSS file(s), and {len(images)} original PNGs')
+                  print(f'Verified {len(pages)} Pages URLs, one redirect, {len(stylesheets)} CSS file(s), and {len(images)} original PNGs')
                   break
               except Exception as error:
                   if attempt == 23:
