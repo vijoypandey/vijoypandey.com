@@ -1,6 +1,5 @@
 ---
 title: "Quantum Security and Networking are Emerging as Lifelines in Our Quantum-powered Future"
-date: 2024-04-08
 type: article
 provenance: organizational
 frontiers: [entangle]
