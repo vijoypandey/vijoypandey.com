@@ -45,7 +45,7 @@ export const frontierWorlds = [
   },
 ] as const;
 
-export const frontierPath = (slug: string) => slug === 'emergent-superintelligence'
+export const frontierPath = (slug: string) => (slug === 'emergent-superintelligence' || slug === 'quantum-computing')
   ? '/emergent-superintelligence/'
   : `/preview/enchanted-v2/${slug}/`;
 
