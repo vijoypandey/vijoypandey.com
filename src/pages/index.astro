@@ -1,7 +1,7 @@
 ---
 import EnchantedV2Header from '../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../components/EnchantedV2Footer.astro';
-import { activity, exploring, revisiting } from '../data/site';
+import { activity } from '../data/site';
 import { frontierPath, frontierWorlds, images, openingSlides } from '../data/enchantedV2';
 import '../styles/enchanted-v2.css';
 
@@ -130,50 +130,12 @@ That is the larger possibility I'm exploring. Beyond the Bit is one way into tha
         </div>
       </section>
 
-      <section class="exploring" id="exploring" aria-labelledby="exploring-title">
-        <div class="section-heading">
-          <p class="eyebrow">The living inquiry <span>—</span> 03</p>
-          <h2 id="exploring-title">Currently <em>exploring.</em></h2>
-          <p>As computing moves beyond individual nodes, the questions become less about connection alone—and more about coordination.</p>
-        </div>
-        <div class="exploring-layout">
-          <figure class="exploring-art">
-            <img src={artwork(images.forestBlue)} alt="Blue-lit niches scattered through a dark forest" loading="eager" decoding="async" />
-            <figcaption><span>Plate VI</span><span>Separate lights in a connected wood</span></figcaption>
-          </figure>
-          <div class="exploring-notes">
-            {exploring.map((item, index) => (
-              <article class="exploring-note">
-                <div class="note-line"><span>{String(index + 1).padStart(2, '0')}</span><span>{item.type}</span></div>
-                <h3>{item.title}</h3>
-                <p>{item.detail}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section class="worlds" aria-labelledby="network-role-title">
         <div class="worlds-rule"><span>The deeper question</span><span>Beyond transport</span></div>
         <div class="worlds-intro">
           <h2 id="network-role-title">The network's role <em>is changing.</em></h2>
           <p>For decades, the network moved information that could be copied, stored, and forwarded. Now distributed systems may depend on shared meaning, entanglement, physical correlations, or action aligned in space and time. Carrying messages is not necessarily enough. What must the network preserve—or help establish—so those systems can operate coherently?</p>
         </div>
-      </section>
-
-      <section class="revisiting" id="revisiting" aria-labelledby="revisiting-title">
-        <div class="revisiting-copy">
-          <p class="eyebrow">From the reading room <span>—</span> 04</p>
-          <h2 id="revisiting-title">Worth<br /><em>revisiting.</em></h2>
-          <span class="small-rule" aria-hidden="true"></span>
-          <p class="revisiting-type">{revisiting.type}</p>
-          <h3>{revisiting.title}</h3>
-          <p class="revisiting-detail">{revisiting.detail}</p>
-        </div>
-        <figure class="revisiting-art">
-          <img src={artwork(images.forestWarm)} alt="Warm amber lanterns across multiple levels of a forest" loading="eager" decoding="async" />
-          <figcaption><span>Plate VII</span><span>Lights to return to</span></figcaption>
-        </figure>
       </section>
 
       <section class="activity" id="activity" aria-labelledby="activity-title">
