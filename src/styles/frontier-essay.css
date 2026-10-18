@@ -1,8 +1,8 @@
 /* The frontier extends the approved homepage's editorial typography and palette. */
-.frontier-essay .frontier-opening {padding:clamp(5rem,9vw,10rem) clamp(1.2rem,10vw,11rem) clamp(4rem,8vw,8rem);background:#eee9de;}
+.frontier-essay .frontier-opening {padding: clamp(5rem,9vw,10rem) clamp(1.2rem,10vw,11rem) clamp(4rem,8vw,8rem);background:#eee9de;}
 .frontier-essay .frontier-kicker,.frontier-essay .frontier-overline,.frontier-essay .frontier-chapter,.frontier-essay .stage-number,.frontier-essay .artifact-meta,.frontier-essay .frontier-end>span {text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:#876e59;}
 .frontier-essay .frontier-kicker span{margin:0 .4rem;}
-.frontier-essay .frontier-overline{margin-top:clamp(3rem,7vw,7rem);margin-bottom:1.3rem;}
+.frontier-essay .frontier-overline{margin-top: clamp(1.5rem,3vw,3rem);margin-bottom:1.3rem;}
 .frontier-essay .frontier-opening h1 {font-size:clamp(3.9rem,9vw,10rem);line-height:.98;letter-spacing:-.058em;max-width:12ch;}
 .frontier-essay .frontier-opening h1 em,.frontier-essay h2 em{color:#807361;}
 .frontier-essay .frontier-question{font-family:'Iowan Old Style','Baskerville',Georgia,serif;font-size:clamp(1.5rem,2.5vw,2.5rem);line-height:1.24;max-width:31ch;margin-top:clamp(2rem,4vw,4rem);}
