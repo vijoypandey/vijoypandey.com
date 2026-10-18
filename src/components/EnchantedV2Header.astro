@@ -1,5 +1,5 @@
 ---
-import { frontierWorlds } from '../data/enchantedV2';
+import { frontierPath, frontierWorlds } from '../data/enchantedV2';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const home = `${base}/preview/enchanted-v2/`;
@@ -13,7 +13,7 @@ const home = `${base}/preview/enchanted-v2/`;
       <summary>Thesis <span aria-hidden="true">⌄</span></summary>
       <div class="nav-menu">
         <a href={home}>Overview</a>
-        {frontierWorlds.map((world) => <a href={`${home}${world.slug}/`}>{world.name}</a>)}
+        {frontierWorlds.map((world) => <a href={`${base}${frontierPath(world.slug)}`}>{world.name}</a>)}
       </div>
     </details>
     <details>

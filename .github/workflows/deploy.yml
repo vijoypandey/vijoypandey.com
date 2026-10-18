@@ -69,7 +69,7 @@ jobs:
           pages = {
               'preview/enchanted/': 7,
               'preview/enchanted-v2/': 11,
-              'preview/enchanted-v2/collective-intelligence/': 2,
+              'emergent-superintelligence/': 1,
               'preview/enchanted-v2/boltzmann-computing/': 2,
               'preview/enchanted-v2/quantum-computing/': 2,
               'preview/enchanted-v2/physical-ai/': 2,

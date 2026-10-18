@@ -2,7 +2,7 @@
 import EnchantedV2Header from '../../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
 import { activity, exploring, revisiting } from '../../../data/site';
-import { frontierWorlds, images, openingSlides } from '../../../data/enchantedV2';
+import { frontierPath, frontierWorlds, images, openingSlides } from '../../../data/enchantedV2';
 import '../../../styles/enchanted-v2.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -42,13 +42,13 @@ const home = `${base}/preview/enchanted-v2/`;
                   {index === 0 ? <h1>{slide.headline}</h1> : <h2>{slide.headline}</h2>}
                   <p class="dropcap-copy">{slide.body}</p>
                 </div>
-                <a class="text-link hero-enter" href={slide.slug ? `${home}${slide.slug}/` : '#frontiers'}>
+                <a class="text-link hero-enter" href={slide.slug ? `${base}${frontierPath(slide.slug)}` : '#frontiers'}>
                   {slide.slug ? 'Enter this frontier' : 'Enter the four frontiers'} <span aria-hidden="true">→</span>
                 </a>
               </div>
               <figure class="opening-art">
                 {slide.slug ? (
-                  <a href={`${home}${slide.slug}/`} aria-label={`Enter ${slide.label}`}>
+                  <a href={`${base}${frontierPath(slide.slug)}`} aria-label={`Enter ${slide.label}`}>
                     <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" fetchpriority={index === 0 ? 'high' : 'low'} />
                   </a>
                 ) : (
@@ -104,7 +104,7 @@ const home = `${base}/preview/enchanted-v2/`;
         <div class="world-map">
           {frontierWorlds.map((world, index) => (
             <article class={`world world--${index + 1}`}>
-              <a class="world-link" href={`${home}${world.slug}/`}>
+              <a class="world-link" href={`${base}${frontierPath(world.slug)}`}>
                 <div class="world-heading">
                   <span class="world-number">Frontier {world.index} / 04</span>
                   <h3>{world.name}</h3>

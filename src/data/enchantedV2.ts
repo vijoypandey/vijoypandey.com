@@ -45,6 +45,10 @@ export const frontierWorlds = [
   },
 ] as const;
 
+export const frontierPath = (slug: string) => slug === 'emergent-superintelligence'
+  ? '/emergent-superintelligence/'
+  : `/preview/enchanted-v2/${slug}/`;
+
 export const openingSlides = [
   {
     number: '01',

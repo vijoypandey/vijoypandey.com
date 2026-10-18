@@ -1,15 +1,16 @@
 ---
 import EnchantedV2Header from '../../../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../../../components/EnchantedV2Footer.astro';
-import { frontierWorlds } from '../../../../data/enchantedV2';
+import { frontierPath, frontierWorlds } from '../../../../data/enchantedV2';
 import '../../../../styles/enchanted-v2.css';
 
 type World = (typeof frontierWorlds)[number];
 
 export function getStaticPaths() {
-  return frontierWorlds.map((world, index) => ({
+  return frontierWorlds.slice(1).map((world, position) => ({
+    // The first frontier has its own full page at /emergent-superintelligence/.
     params: { slug: world.slug },
-    props: { world, index },
+    props: { world, index: position + 1 },
   }));
 }
 
@@ -60,7 +61,7 @@ const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
         </section>
         <nav class="folio-next" aria-label="Explore further">
           <a href={`${home}#frontiers`}>← All four worlds</a>
-          <a href={`${home}${nextWorld.slug}/`}>Next: {nextWorld.name} →</a>
+          <a href={`${base}${frontierPath(nextWorld.slug)}`}>Next: {nextWorld.name} →</a>
         </nav>
       </article>
     </main>
