@@ -1,6 +1,5 @@
 ---
 title: "A future quantum internet might form, explained through IBM and Cisco work"
-date: 2025-11-01
 type: mention
 provenance: appearance
 frontiers: [entangle]
