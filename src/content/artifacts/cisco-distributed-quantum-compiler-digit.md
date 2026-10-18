@@ -1,6 +1,5 @@
 ---
 title: "Cisco claims breakthrough in distributed quantum computing"
-date: 2026-02-01
 type: mention
 provenance: appearance
 frontiers: [entangle]
