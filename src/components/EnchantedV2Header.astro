@@ -2,7 +2,8 @@
 import { frontierPath, frontierWorlds } from '../data/enchantedV2';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const home = `${base}/preview/enchanted-v2/`;
+const home = `${base}/`;
+const preview = `${base}/preview/enchanted-v2/`;
 ---
 
 <a class="skip-link" href="#main">Skip to content</a>
@@ -19,8 +20,8 @@ const home = `${base}/preview/enchanted-v2/`;
     <details>
       <summary>About <span aria-hidden="true">⌄</span></summary>
       <div class="nav-menu nav-menu--right">
-        <a href={`${home}about-me/`}>Personal</a>
-        <a href={`${home}how-i-work/`}>Work</a>
+        <a href={`${preview}about-me/`}>Personal</a>
+        <a href={`${preview}how-i-work/`}>Work</a>
         <a href={`${base}/#contact`}>Contact</a>
       </div>
     </details>
