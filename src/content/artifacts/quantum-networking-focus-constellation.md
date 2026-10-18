@@ -1,6 +1,5 @@
 ---
 title: "Quantum Networking Coming into Focus"
-date: 2025-09-01
 type: mention
 provenance: appearance
 frontiers: [entangle]
