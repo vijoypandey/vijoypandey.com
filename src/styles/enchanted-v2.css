@@ -212,6 +212,22 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
   .enchanted-v2 .footer-top p { margin-top: 1rem; }
   .enchanted-v2 .footer-links { grid-template-columns: 1fr; gap: 2rem; padding-bottom: 4rem; }
   .enchanted-v2 figcaption { font-size: .58rem; }
+
+  /* Standard 16:9 treatment for primary website imagery */
+  .enchanted-v2 .opening-art img,
+  .enchanted-v2 .frontier-plate img,
+  .enchanted-v2 .folio-main-art img,
+  .enchanted-v2 .world-figure img,
+  .enchanted-v2 .exploring-art img,
+  .enchanted-v2 .revisiting-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
