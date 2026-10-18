@@ -1,16 +1,14 @@
 ---
 import EnchantedV2Header from '../../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
-import { frontierWorlds, images } from '../../../data/enchantedV2';
+import { frontierPath, frontierWorlds, images } from '../../../data/enchantedV2';
 import '../../../styles/enchanted-v2.css';
-import collective from '../../../../editorial/draft-1/collective-intelligence.md?raw';
 import quantum from '../../../../editorial/draft-1/quantum-computing.md?raw';
 import physical from '../../../../editorial/draft-1/physical-ai.md?raw';
 import boltzmann from '../../../../editorial/draft-1/boltzmann-computing.md?raw';
 import about from '../../../../editorial/draft-1/about.md?raw';
 
 const documents: Record<string,string> = {
-  'collective-intelligence': collective,
   'quantum-computing': quantum,
   'physical-ai': physical,
   'boltzmann-computing': boltzmann,
@@ -19,7 +17,6 @@ const documents: Record<string,string> = {
 };
 export function getStaticPaths() {
   return [
-    'collective-intelligence',
     'quantum-computing',
     'physical-ai',
     'boltzmann-computing',
@@ -83,7 +80,7 @@ const title = blocks.find(x=>x.tag==='h1')?.text || 'Vijoy Pandey';
   {frontier && <section class="worlds" aria-label="Other frontiers">
     <div class="worlds-rule"><span>Keep exploring</span><span>01—04</span></div>
     <div class="worlds-intro">
-      {frontierWorlds.filter(w=>w.slug!==slug).map(world=><p><a class="text-link" href={`${home}${world.slug}/`}>{world.name} →</a></p>)}
+      {frontierWorlds.filter(w=>w.slug!==slug).map(world=><p><a class="text-link" href={`${base}${frontierPath(world.slug)}`}>{world.name} →</a></p>)}
     </div>
   </section>}
  </main>
