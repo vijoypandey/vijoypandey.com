@@ -66,15 +66,18 @@
   color: #9b5d3b;
 }
 .enchanted-v2.personal-essay .personal-plate {
-  display: flex;
-  justify-content: center;
-  padding: clamp(1.5rem, 3vw, 3rem) clamp(1.2rem, 8vw, 9rem);
+  margin: 0;
+  padding: 0;
+  width: 100%;
   background: #292b27;
 }
 .enchanted-v2.personal-essay .personal-plate img {
-  width: min(100%, 48rem);
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 }
 .enchanted-v2.personal-essay .personal-coda {
   margin-top: clamp(4rem, 7vw, 7rem);
@@ -102,8 +105,5 @@
   }
   .enchanted-v2.personal-essay .personal-opening-story {
     max-width: 65ch;
-  }
-  .enchanted-v2.personal-essay .personal-plate {
-    padding: 1rem 0;
   }
 }
