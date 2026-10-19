@@ -1,0 +1,65 @@
+---
+import EnchantedV2Header from '../../../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
+import '../../../styles/enchanted-v2.css';
+import about from '../../../../editorial/draft-1/about.md?raw';
+
+export function getStaticPaths() {
+  return ['personal', 'work'].map(section => ({ params: { section } }));
+}
+
+const section = Astro.params.section as 'personal' | 'work';
+const raw = section === 'personal'
+  ? about.split('# How I Work')[0]
+  : '# How I Work' + (about.split('# How I Work')[1] || '');
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lines = raw.split(/\r?\n/);
+const blocks: {tag:string; text:string}[] = [];
+let paragraph: string[] = [];
+function flush() { if (paragraph.length) {blocks.push({tag:'p',text:paragraph.join(' ')});paragraph=[];} }
+for (const line of lines) {
+ const trimmed = line.trim();
+ if (!trimmed) {flush();continue;}
+ if (trimmed.startsWith('### ')) {flush();blocks.push({tag:'h3',text:trimmed.slice(4)});}
+ else if (trimmed.startsWith('## ')) {flush();blocks.push({tag:'h2',text:trimmed.slice(3)});}
+ else if (trimmed.startsWith('# ')) {flush();blocks.push({tag:'h1',text:trimmed.slice(2)});}
+ else if (trimmed.startsWith('- ')) {flush();blocks.push({tag:'li',text:trimmed.slice(2)});}
+ else paragraph.push(trimmed);
+}
+flush();
+const title = blocks.find(x=>x.tag==='h1')?.text || 'Vijoy Pandey';
+---
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <meta name="theme-color" content="#eee9de"/>
+ <meta name="description" content={`An evolving exploration by Vijoy Pandey: ${title}.`}/>
+ <title>{title} — Vijoy Pandey</title>
+ <link rel="canonical" href={new URL(`${base}/about/${section}/`, Astro.site).href}/>
+ <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`}/>
+</head>
+<body class="enchanted-v2">
+ <EnchantedV2Header/>
+ <main id="main">
+  <section class="worlds" aria-labelledby="page-title">
+   <div class="worlds-rule"><span>About</span><span>—</span></div>
+   <div class="worlds-intro">
+     <h1 id="page-title">{title}</h1>
+     <p>{section === 'personal' ? 'An engineer, a set of questions, and a lifetime of learning.' : 'How ideas become working systems and better teams.'}</p>
+   </div>
+  </section>
+  <section class="activity" aria-label="Editorial exploration">
+    <div class="activity-intro"><p class="eyebrow">An evolving inquiry</p><h2>Ideas and <em>questions.</em></h2></div>
+    <div class="activity-list">
+     {blocks.filter((block,index) => !(index===0 && block.tag==='h1')).map(block => (
+       <article class="activity-row">
+       {block.tag==='h2' ? <h2>{block.text}</h2> : block.tag==='h3' ? <h3>{block.text}</h3> : block.tag==='li' ? <p>— {block.text}</p> : block.tag==='h1' ? <h2>{block.text}</h2> : <p>{block.text}</p>}
+       </article>
+     ))}
+    </div>
+  </section>
+ </main>
+ <EnchantedV2Footer/>
+</body>
+</html>
