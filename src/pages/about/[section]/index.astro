@@ -4,6 +4,7 @@ import EnchantedV2Header from '../../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
 import '../../../styles/enchanted-v2.css';
 import '../../../styles/personal-essay.css';
+import '../../../styles/work-essay.css';
 export function getStaticPaths() { return [{params:{section:'work'}}]; }
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const works = (await getCollection('artifacts', ({data}) => data.frontiers.includes('build')))
@@ -19,7 +20,7 @@ const works = (await getCollection('artifacts', ({data}) => data.frontiers.inclu
 <link rel="canonical" href={new URL(base+'/about/work/',Astro.site).href}/>
 <link rel="icon" type="image/svg+xml" href={base+'/favicon.svg'}/>
 </head>
-<body class="enchanted-v2 personal-essay">
+<body class="enchanted-v2 personal-essay work-essay">
 <EnchantedV2Header/>
 <main id="main">
 <article>
@@ -42,6 +43,9 @@ const works = (await getCollection('artifacts', ({data}) => data.frontiers.inclu
 <p>And market making cannot become an excuse to disregard the present. A great future that requires customers to abandon everything they know in one leap is often a future they cannot reach.</p>
 </section>
 </div>
+<figure class="personal-plate">
+<img src={base+'/images/about/work-market-making.png'} alt="Travelers on a ridge overlooking a luminous city beneath a vast circular structure" width="1456" height="816" loading="lazy" decoding="async"/>
+</figure>
 <div class="personal-prose">
 <section class="personal-chapter" aria-labelledby="momentum">
 <p class="eyebrow">02 — The journey</p>
@@ -66,6 +70,9 @@ const works = (await getCollection('artifacts', ({data}) => data.frontiers.inclu
 <p>I've explored different parts of this in <a href="https://vijoypandey.substack.com/p/your-teams-are-shrinking-the-coordination">Your Teams Are Shrinking. The Coordination Surface Is Exploding</a> and <a href="https://vijoypandey.substack.com/p/your-collaboration-stack-is-not-your">Your Collaboration Stack Is Not Your Organizational Knowledge</a>.</p>
 </section>
 </div>
+<figure class="personal-plate">
+<img src={base+'/images/about/work-shared-journey.png'} alt="Travelers crossing a dark ridge above a distant city, beneath a large moon and planet" width="1456" height="816" loading="lazy" decoding="async"/>
+</figure>
 <div class="personal-prose">
 <section class="personal-chapter" aria-labelledby="leadership">
 <p class="eyebrow">04 — The responsibility</p>
