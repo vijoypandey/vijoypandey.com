@@ -16,20 +16,22 @@ title: "A verified artifact title"
 date: 2026-10-01 # optional; only when known and verified
 type: article # article | podcast | research | talk | mention | project
 provenance: curated # personal | organizational | appearance | curated
-frontiers: [think, move] # zero or more; multiple allowed
+frontiers: [think, build] # one or more; multiple allowed
 url: "https://example.org/original" # original source link, if available
 description: "A concise, human-written description of why this matters."
-# theme: building # optional, independent of computing frontier tags
 ---
 ```
 
 The values in this example are **illustrative**, not a real publication record. Do not invent dates, URLs, attribution, or claims.
 
-**Frontier mapping, in site order:**
+**Tag mapping:**
 - `think` → Collective Intelligence
 - `entangle` → Quantum Computing
 - `move` → Physical AI
 - `fluctuate` → Boltzmann Computing (including appropriately distinguished thermodynamic and oscillator work)
+- `build` → Building & Operating (incubation, organizational design, execution velocity, leadership philosophy, and ways of working)
+
+Every artifact has at least one `frontiers` tag and may have several, such as `[think, build]`, when both are substantively relevant. `build` is an editorial category for Work / How I Work; it is **not** a fifth homepage frontier. The homepage continues to present the four computing frontiers.
 
 **Provenance** describes the artifact's relationship to Vijoy, not necessarily its byline:
 - `personal`: independent writing, Coherent Cognition, personal social posts.
@@ -37,7 +39,7 @@ The values in this example are **illustrative**, not a real publication record. 
 - `appearance`: third-party earned/paid media, interviews, or material featuring or attributing Vijoy.
 - `curated`: someone else's work that Vijoy found worth sharing.
 
-**Cross-cutting editorial theme:** `theme: building` is used for **Building & Operating**—incubation, organizational design, execution velocity, leadership philosophy, and new ways of working. It is not a fifth computing frontier and does not imply `think`. For theme-only work use `frontiers: []`; records can also have computing frontier tags when genuinely relevant. The Design & UX workstream must explicitly support an empty frontier array and this optional theme in the Astro content schema, and decide how to surface the Building & Operating material (e.g., Work / How I Work), without altering the four-frontier navigation.\n\nNo granular topic taxonomy and no separate author/contributor database. Source attribution belongs in the description, content, and original link where useful. Provenance is not a visible sorting hierarchy.
+No granular topic taxonomy and no separate author/contributor database. Source attribution belongs in the description, content, and original link where useful. Provenance is not a visible sorting hierarchy.
 
 ## Body and source handling
 
@@ -49,7 +51,7 @@ An existing index/collection page (e.g. `/distributed-superintelligence/`) is **
 
 - Each Markdown artifact generates **one dedicated, indexable HTML page** with title, date if known, type, description, body/commentary and link to original source where applicable.
 - Each frontier page leads with its intellectual narrative, then shows **all matching artifacts**, initially ~6–8, with progressive **Show More**. No separate frontier-artifact list page. All artifact links must be present in static HTML for crawlers.
-- The same artifact may appear on multiple frontiers by its tags without copying the entry.
+- The same artifact may appear in multiple relevant collections by its tags without copying the entry.
 - Generate type archives (`/articles/`, `/podcasts/`, `/research/`, `/talks/`, `/mentions/`, `/projects/`). They are absent from primary navigation but reachable via relevant links, search and sitemap.
 - Site-wide search covers titles, descriptions, and Markdown body content; the Design chat handles its UI.
 - Homepage modules draw from this same collection: curated **Currently Exploring**, **Worth Revisiting**, and verified chronological **Recent Activity**. No invented sample publications.
@@ -57,7 +59,7 @@ An existing index/collection page (e.g. `/distributed-superintelligence/`) is **
 
 ## Division of work
 
-**Content & Editorial:** inventory original HTML/content and media; convert one artifact at a time; verify source metadata, preserve legacy paths; assign `type`, `provenance`, and relevant frontier tags and/or `theme: building`; add commentary only where meaningful.
+**Content & Editorial:** inventory original HTML/content and media; convert one artifact at a time; verify source metadata, preserve legacy paths; assign `type`, `provenance`, and relevant `frontiers` tags; add commentary only where meaningful.
 
 **Design & UX:** own `src/content.config.ts` (or the correct Astro collection registration), artifact/frontier/archive templates, progressive disclosure, search, responsive layout, accessibility, URL resolution and sitemap. Coordinate concurrent GitHub changes; preserve the approved design. A committed Markdown record does not automatically mean the content is published—verify build and deployment separately.
 
