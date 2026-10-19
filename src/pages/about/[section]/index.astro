@@ -4,6 +4,7 @@ import EnchantedV2Header from '../../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
 import '../../../styles/enchanted-v2.css';
 import '../../../styles/personal-essay.css';
+import '../../../styles/work-essay.css';
 export function getStaticPaths() { return [{params:{section:'work'}}]; }
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const works = (await getCollection('artifacts', ({data}) => data.frontiers.includes('build')))
@@ -19,7 +20,7 @@ const works = (await getCollection('artifacts', ({data}) => data.frontiers.inclu
 <link rel="canonical" href={new URL(base+'/about/work/',Astro.site).href}/>
 <link rel="icon" type="image/svg+xml" href={base+'/favicon.svg'}/>
 </head>
-<body class="enchanted-v2 personal-essay">
+<body class="enchanted-v2 personal-essay work-essay">
 <EnchantedV2Header/>
 <main id="main">
 <article>
