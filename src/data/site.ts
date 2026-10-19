@@ -1,7 +1,7 @@
 export const thesis = {
   kicker: 'The thesis',
-  title: 'Beyond the Bit: What Should the Network Carry Next?',
-  body: 'Many of our hardest problems require searching enormous spaces of possibilities. We invented the bit, learned to distribute it, and now our endpoints are beginning to think, entangle, fluctuate and move.',
+  title: 'Beyond the Bit: What Comes After the Individual Node?',
+  body: 'The bit remains computing’s most successful abstraction. But the systems we build around it are changing. They think, entangle, fluctuate, and move. What becomes possible when we learn to coordinate these richer forms of state and behavior beyond the individual node?',
 };
 
 export const frontiers = [
