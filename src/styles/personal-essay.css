@@ -72,9 +72,8 @@
   background: #292b27;
 }
 .enchanted-v2.personal-essay .personal-plate img {
-  width: auto;
-  max-width: 100%;
-  max-height: 36rem;
+  width: min(100%, 48rem);
+  height: auto;
   object-fit: contain;
 }
 .enchanted-v2.personal-essay .personal-coda {
