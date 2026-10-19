@@ -4,7 +4,7 @@ This directory is the **single source for artifact content** on vijoypandey.com.
 
 ## Intellectual direction
 
-**Beyond the Bit: What Should the Network Carry Next?** The site investigates computing beyond the individual node across four frontiers. It is a personal intellectual home—**learning, questioning, and sharing before self-promotion**—not an Outshift/Cisco marketing site. Original essays, Coherent Cognition podcast conversations, Cisco/Outshift research, third-party interviews, and compelling outside research belong in the same conversation, selected by relevance to an idea rather than by who made them.
+**Civilization-Scale Computing** is the higher-order ambition; **Beyond the Bit** is the technical inquiry into computing beyond the individual node across four frontiers. It is a personal intellectual home—**learning, questioning, and sharing before self-promotion**—not an Outshift/Cisco marketing site. Original essays, Coherent Cognition podcast conversations, Cisco/Outshift research, third-party interviews, and compelling outside research belong in the same conversation, selected by relevance to an idea rather than by who made them.
 
 The homepage architecture remains **Thesis → Four Frontiers → Currently Exploring → Worth Revisiting → Recent Activity**. The approved **Scientific Enchantment** design is frozen. Keep the prose scientifically careful without rigidly labeling every observation as knowledge, belief, or speculation.
 
@@ -18,7 +18,8 @@ type: article # article | podcast | research | talk | mention | project
 provenance: curated # personal | organizational | appearance | curated
 frontiers: [think, move] # zero or more; multiple allowed
 url: "https://example.org/original" # original source link, if available
-description: "A concise, human-written description of why this matters."\n# theme: building # optional, independent of computing frontier tags
+description: "A concise, human-written description of why this matters."
+# theme: building # optional, independent of computing frontier tags
 ---
 ```
 
