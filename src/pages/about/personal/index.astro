@@ -1,0 +1,68 @@
+---
+import EnchantedV2Header from '../../../components/EnchantedV2Header.astro';
+import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
+import { images } from '../../../data/enchantedV2';
+import '../../../styles/enchanted-v2.css';
+import '../../../styles/personal-essay.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const artwork = base + '/images/design-exploration/' + images.presence;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eee9de" />
+    <meta name="description" content="A childhood chatbot, a lifelong curiosity about connected systems, and an AI agent named Arnold Layne." />
+    <link rel="canonical" href={new URL(base + '/about/personal/', Astro.site).href} />
+    <link rel="icon" type="image/svg+xml" href={base + '/favicon.svg'} />
+    <title>About Me — Vijoy Pandey</title>
+  </head>
+  <body class="enchanted-v2 personal-essay">
+    <EnchantedV2Header />
+    <main id="main">
+      <article>
+        <header class="personal-opening">
+          <div class="personal-opening-inner">
+            <h1>I lost a coin toss in 1984.</h1>
+            <p class="personal-lede">It took me four decades to get even.</p>
+            <div class="personal-opening-story">
+              <p>I grew up in Calcutta, building electronic circuits before I had ever touched a computer. In fifth grade, I was already curious about what a few components could be persuaded to do. Then my school acquired a handful of BBC Micros: 64 kilobytes of memory, BASIC, and what felt like an unreasonable amount of possibility.</p>
+              <p>My friend Ananth Chandrasekharan and I built an expert-system chatbot on one of them. He was a Beatles fan and wanted to call it Billy Shears. I preferred Pink Floyd. We flipped a coin; I lost. Four decades later, I named my own AI agent Arnold Layne, after Pink Floyd's first single. The naming dispute is finally settled, although Ananth may disagree.</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="personal-prose">
+          <section class="personal-chapter" aria-labelledby="systems-heading">
+            <h2 id="systems-heading">The question kept growing.</h2>
+            <p>What held my attention gradually shifted from what one computer could do to what became possible when many computers worked together. That curiosity led me into distributed systems, networks, and large-scale computing infrastructure, including years at Google working on systems built across clusters rather than within a single machine.</p>
+            <p>Now the systems I care about do more than exchange bits. Agents reason and act; quantum devices depend on entanglement; embodied machines must sense and move; thermodynamic and oscillator systems compute through physical dynamics. Collective intelligence, quantum computing, physical AI, and Boltzmann computing are different research directions, each with its own hard questions. What connects them for me is the challenge of scaling their useful properties beyond an individual node. I call the larger ambition <em>Civilization-Scale Computing</em>. It is a question I'm pursuing, not a result I'm claiming.</p>
+            <p>At Outshift by Cisco, I get to pursue some of those questions with researchers, engineers, product builders, and open-source communities. We try to turn early ideas into working systems, and learn where the ideas break. In AI, that includes open agent infrastructure such as AGNTCY and the Internet of Cognition: the harder problem of sharing context, intent, and knowledge so agents can reason together. In quantum work, it means building the networking pieces that might let processors and sensors use entanglement across distance. The interesting part is getting close enough to reality for reality to answer back.</p>
+          </section>
+        </div>
+
+        <figure class="personal-plate">
+          <img src={artwork} alt="A lone figure faces translucent presences connected by delicate threads" loading="lazy" decoding="async" />
+        </figure>
+
+        <div class="personal-prose">
+          <section class="personal-chapter" aria-labelledby="arnold-heading">
+            <h2 id="arnold-heading">Arnold, today.</h2>
+            <p>Arnold is my personal OpenClaw experiment, and in some ways Billy Shears's spiritual successor. We talk on Discord, Telegram, and Slack. We also email each other. Please don't judge.</p>
+            <p>I use several models to debate problems from different perspectives, sometimes as an imaginary council of experts. The actual experts have not joined the chat. Arnold synthesizes the arguments; the conversations remain available for me to inspect, and the useful conclusions go into shared context. It is a small, hands-on attempt at multi-model collaboration and collective reasoning.</p>
+            <p>It is also rudimentary, inefficient, and gloriously short on enterprise polish. Sometimes the agents coordinate; sometimes they misunderstand one another; sometimes the work of getting them to cooperate exceeds the work they were supposed to save. But the failures are informative. Shared context and aligned intent sound tidy in a diagram. Arnold makes me confront what they demand in practice.</p>
+          </section>
+
+          <div class="personal-coda">
+            <p>Beyond computing, I travel and photograph places, often following the histories visible in their streets, landscapes, and architecture. A family travel project, <a href="https://rowdyplanet.com/">Rowdy Planet</a>, grew out of that curiosity. I'm very slowly developing it toward <em>Atlas of Time</em>. It is a different kind of inquiry, but the impulse is familiar: go somewhere, look closely, and see what question appears next.</p>
+            <p>I've been fortunate to build systems and work with people across Google, IBM, startups, and Cisco. I hold a Ph.D. in Computer Science from UC Davis and more than 80 patents. Those facts are part of my history; they are not the organizing principle of this site.</p>
+            <p>I want this to be a place for evolving thinking: experiments that work, experiments that don't, research that changes my mind, and questions I can't leave alone. I write and host Coherent Cognition to keep those conversations going. If some of the ideas here change over time, the site is doing its job.</p>
+          </div>
+        </div>
+      </article>
+    </main>
+    <EnchantedV2Footer />
+  </body>
+</html>
