@@ -1,65 +1,97 @@
 ---
+import { getCollection } from 'astro:content';
 import EnchantedV2Header from '../../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
 import '../../../styles/enchanted-v2.css';
-import about from '../../../../editorial/draft-1/about.md?raw';
-
-export function getStaticPaths() {
-  return ['work'].map(section => ({ params: { section } }));
-}
-
-const section = Astro.params.section as 'personal' | 'work';
-const raw = section === 'personal'
-  ? about.split('# How I Work')[0]
-  : '# How I Work' + (about.split('# How I Work')[1] || '');
+import '../../../styles/personal-essay.css';
+export function getStaticPaths() { return [{params:{section:'work'}}]; }
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const lines = raw.split(/\r?\n/);
-const blocks: {tag:string; text:string}[] = [];
-let paragraph: string[] = [];
-function flush() { if (paragraph.length) {blocks.push({tag:'p',text:paragraph.join(' ')});paragraph=[];} }
-for (const line of lines) {
- const trimmed = line.trim();
- if (!trimmed) {flush();continue;}
- if (trimmed.startsWith('### ')) {flush();blocks.push({tag:'h3',text:trimmed.slice(4)});}
- else if (trimmed.startsWith('## ')) {flush();blocks.push({tag:'h2',text:trimmed.slice(3)});}
- else if (trimmed.startsWith('# ')) {flush();blocks.push({tag:'h1',text:trimmed.slice(2)});}
- else if (trimmed.startsWith('- ')) {flush();blocks.push({tag:'li',text:trimmed.slice(2)});}
- else paragraph.push(trimmed);
-}
-flush();
-const title = blocks.find(x=>x.tag==='h1')?.text || 'Vijoy Pandey';
+const works = (await getCollection('artifacts', ({data}) => data.frontiers.includes('build')))
+ .sort((a,b)=>(b.data.date?.getTime()??0)-(a.data.date?.getTime()??0)||a.data.title.localeCompare(b.data.title));
 ---
 <!doctype html>
 <html lang="en">
 <head>
- <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
- <meta name="theme-color" content="#eee9de"/>
- <meta name="description" content={`An evolving exploration by Vijoy Pandey: ${title}.`}/>
- <title>{title} — Vijoy Pandey</title>
- <link rel="canonical" href={new URL(`${base}/about/${section}/`, Astro.site).href}/>
- <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`}/>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#eee9de"/>
+<meta name="description" content="How I build: market making, momentum, AI-native organizations, leadership and outcome velocity."/>
+<title>How I Build — Vijoy Pandey</title>
+<link rel="canonical" href={new URL(base+'/about/work/',Astro.site).href}/>
+<link rel="icon" type="image/svg+xml" href={base+'/favicon.svg'}/>
 </head>
-<body class="enchanted-v2">
- <EnchantedV2Header/>
- <main id="main">
-  <section class="worlds" aria-labelledby="page-title">
-   <div class="worlds-rule"><span>About</span><span>—</span></div>
-   <div class="worlds-intro">
-     <h1 id="page-title">{title}</h1>
-     <p>{section === 'personal' ? 'An engineer, a set of questions, and a lifetime of learning.' : 'How ideas become working systems and better teams.'}</p>
-   </div>
-  </section>
-  <section class="activity" aria-label="Editorial exploration">
-    <div class="activity-intro"><p class="eyebrow">An evolving inquiry</p><h2>Ideas and <em>questions.</em></h2></div>
-    <div class="activity-list">
-     {blocks.filter((block,index) => !(index===0 && block.tag==='h1')).map(block => (
-       <article class="activity-row">
-       {block.tag==='h2' ? <h2>{block.text}</h2> : block.tag==='h3' ? <h3>{block.text}</h3> : block.tag==='li' ? <p>— {block.text}</p> : block.tag==='h1' ? <h2>{block.text}</h2> : <p>{block.text}</p>}
-       </article>
-     ))}
-    </div>
-  </section>
- </main>
- <EnchantedV2Footer/>
-</body>
-</html>
+<body class="enchanted-v2 personal-essay">
+<EnchantedV2Header/>
+<main id="main">
+<article>
+<header class="personal-opening"><div class="personal-opening-inner">
+<h1>How I Build.</h1>
+<p class="personal-lede">Innovation doesn't end when something is built.</p>
+<div class="personal-opening-story">
+<p>I've spent much of my career pursuing technologies before their markets fully existed. The hard part isn't just imagining the future, or building something impressive. It's making that future possible for others.</p>
+<p>A technology can work brilliantly and still ask too much of the people meant to use it. Customers, developers, and downstream teams live in today's world—with its constraints, investments, habits, and incentives. We have to bring them toward tomorrow with the same passion and conviction that made us invent it.</p>
+<p>I increasingly think about this as <em>outcome velocity</em>: how quickly an idea becomes something that meaningfully changes what another person or organization can accomplish.</p>
+</div></div></header>
+<div class="personal-prose">
+<section class="personal-chapter" aria-labelledby="markets">
+<p class="eyebrow">01 — The ambition</p>
+<h2 id="markets">Build a market, not just a product.</h2>
+<p><strong>Market Serving</strong> means creating better ways to meet needs customers already recognize. The market exists; its expectations and alternatives are reasonably clear. You can learn from customers, improve the experience, and compete on value delivered.</p>
+<p><strong>Market Making</strong> means helping create a market that doesn't yet fully exist. The technology, category, ecosystem, customer expectations, and even the language for the problem may still be forming. You're not merely competing for demand. You're helping establish what people should want to do next.</p>
+<p>Both are necessary. But they demand different evidence, investment horizons, and measures of progress. You cannot evaluate a nascent category as if it were a mature product line.</p>
+<p>At Outshift by Cisco, we've experimented with an incubation model that distinguishes market making from market scaling: early work creates technical and external validation; later work earns repeatable adoption. The point is not to shelter an idea indefinitely. It is to make something that can thrive outside incubation.</p>
+<p>And market making cannot become an excuse to disregard the present. A great future that requires customers to abandon everything they know in one leap is often a future they cannot reach.</p>
+</section>
+</div>
+<div class="personal-prose">
+<section class="personal-chapter" aria-labelledby="momentum">
+<p class="eyebrow">02 — The journey</p>
+<h2 id="momentum">Momentum is everything.</h2>
+<p>Market-making visions can be discontinuous. Their adoption paths usually can't be. The task is to create a sequence of <em>impactful incremental steps</em> that bring people from the market they know toward the market we're creating.</p>
+<p>Each step has to matter in its own right. It should deliver value now, remove friction or uncertainty from the next step, and strengthen the ecosystem that makes the destination possible. This isn't incrementalism as a substitute for ambition. It's how ambitious change becomes adoptable.</p>
+<p>A developer trying a new interface, a customer integrating the first capability, or an ecosystem partner extending a platform is not the last mile of our work. They are where the next phase begins. We should care about their experience with the same intensity that we care about the elegance of our architecture.</p>
+<p>AI is rapidly compressing the time and marginal cost of generating many artifacts—code, prototypes, designs, documents. It isn't eliminating the hard work of making dependable systems or creating value. As production accelerates, more time and attention must move toward understanding, integration, adoption, and actual outcomes.</p>
+<p><strong>Output velocity</strong> measures how fast we produce. <strong>Outcome velocity</strong> asks how quickly others benefit. Momentum is the compounding effect of meaningful steps in the right direction. Movement without adoption is activity, not momentum.</p>
+</section>
+</div>
+<div class="personal-prose">
+<section class="personal-chapter" aria-labelledby="ainative">
+<p class="eyebrow">03 — The organization</p>
+<h2 id="ainative">Small teams. Shared memory. Coherent outcomes.</h2>
+<p>AI is changing the productive unit of an organization. A handful of people supported by agents can attempt work that used to require much larger teams. But ten highly productive teams do not automatically add up to one productive organization. The seams multiply: duplicated decisions, competing architectures, dependencies, and divergent interpretations of the same goal.</p>
+<p>That's the premise behind the <strong>AI-Native Operating Model</strong> we've been developing. Three systems have to evolve together:</p>
+<p><strong>T3s — Tiny Teams with Tokens.</strong> Small human teams with AI agents as productive collaborators, accountable for meaningful outcomes rather than activity or token counts.</p>
+<p><strong>TOME — The Organizational Memory Engine.</strong> Shared context that preserves not just information but decisions, evidence, intent, and authority. A proposal isn't a decision. An oft-repeated claim isn't necessarily true. More recent isn't the same as more true.</p>
+<p><strong>Coordination Leaders.</strong> People responsible for coherence across independent teams, at the level of shared <em>Objectives</em> and <em>Areas</em>. Their job isn't to recreate layers of task management. It's to resolve trade-offs, preserve architectural and strategic alignment, and help local productivity become organizational progress.</p>
+<p>Productivity without context creates divergence. Context without decision rights becomes an archive. Coordination without empowered teams becomes bureaucracy. The three only work as a system.</p>
+<p>I've explored different parts of this in <a href="https://vijoypandey.substack.com/p/your-teams-are-shrinking-the-coordination">Your Teams Are Shrinking. The Coordination Surface Is Exploding</a> and <a href="https://vijoypandey.substack.com/p/your-collaboration-stack-is-not-your">Your Collaboration Stack Is Not Your Organizational Knowledge</a>.</p>
+</section>
+</div>
+<div class="personal-prose">
+<section class="personal-chapter" aria-labelledby="leadership">
+<p class="eyebrow">04 — The responsibility</p>
+<h2 id="leadership">From managing execution to managing outcomes.</h2>
+<p>When execution is scarce, leadership often centers on organizing and supervising it. As execution becomes more accessible, the harder choices move upstream and downstream: what is worth doing, how independent work fits together, and whether anyone actually benefits.</p>
+<p>I increasingly value three qualities in leaders. <strong>Judgment</strong> to choose under uncertainty. <strong>Influence</strong> to create alignment across boundaries that a reporting line cannot solve. And <strong>accountability</strong> for the result, even when work is delegated to teams or machines.</p>
+<p>Autonomy is not the absence of coordination. It depends on clear intent, boundaries, authority, and trust. The goal is not simply more autonomous teams, but <em>coherent autonomy</em>.</p>
+</section>
+</div>
+<div class="personal-prose">
+<section class="personal-chapter" aria-labelledby="real">
+<p class="eyebrow">05 — The practice</p>
+<h2 id="real">Make it real. Then make it matter.</h2>
+<p>I return to four principles: <strong>feed your curiosity, act with urgency, embrace challenges, and make it real.</strong> Curiosity opens possibilities. Urgency shortens learning loops. Hard problems expose the limits of familiar methods. Reality tells us which assumptions survive.</p>
+<p>But a prototype isn't an outcome, and a product launch isn't the finish line. The journey continues through everyone who has to understand, adopt, integrate, extend, and rely on what we build.</p>
+<p>I'm drawn to the distance between an improbable idea and a changed reality. The best work closes that distance for others—not just for the people who had the original idea.</p>
+<div class="personal-coda"><p>Imagine the future. Build toward it. Bring others with you.</p><p><em>Make it matter.</em></p></div>
+</section></div>
+</article>
+<section class="activity" aria-labelledby="selected-work">
+<div class="activity-intro"><p class="eyebrow">The reading room</p><h2 id="selected-work">Writing &amp; <em>conversations.</em></h2><p>Selected work on incubation, operating models and the changing practice of building. The collection grows with the artifacts.</p></div>
+<div class="activity-list">
+{works.map(entry=><article class="activity-row"><a href={base+'/artifacts/'+entry.id+'/'}><span class="eyebrow">{entry.data.type}{entry.data.date ? ' · '+entry.data.date.toLocaleDateString('en-US',{year:'numeric',month:'short',timeZone:'UTC'}):''}</span><h3>{entry.data.title}</h3><p>{entry.data.description}</p><span>Read more →</span></a></article>)}
+{works.length===0 && <p>Further writing and conversations will appear here as they are added.</p>}
+</div>
+</section>
+</main>
+<EnchantedV2Footer/>
+</body></html>
