@@ -135,7 +135,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .site-footer { padding: 4rem clamp(1.2rem, 8vw, 9rem) 2rem; background: #292b27; color: #e7dfd0; }
 .enchanted-v2 .footer-top { display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; padding-bottom: 3.5rem; border-bottom: 1px solid #716f65; }
 .enchanted-v2 .footer-brand { font-size: clamp(2.2rem, 4vw, 4rem); text-decoration: none; }
-.enchanted-v2 .footer-top p { max-width: 16rem; line-height: 1.5; color: #b4afa4; }
+.enchanted-v2 .footer-top p { max-width: 28rem; line-height: 1.5; color: #b4afa4; }
 .enchanted-v2 .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 3rem 0 5rem; }
 .enchanted-v2 .footer-links a { font-family: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', Georgia, serif; font-size: 1.7rem; text-decoration: none; }
 .enchanted-v2 .footer-links a:hover { color: #c0a58c; }
