@@ -6,22 +6,17 @@ import '../../../styles/enchanted-v2.css';
 import quantum from '../../../../editorial/draft-1/quantum-computing.md?raw';
 import physical from '../../../../editorial/draft-1/physical-ai.md?raw';
 import boltzmann from '../../../../editorial/draft-1/boltzmann-computing.md?raw';
-import about from '../../../../editorial/draft-1/about.md?raw';
 
 const documents: Record<string,string> = {
   'quantum-computing': quantum,
   'physical-ai': physical,
   'boltzmann-computing': boltzmann,
-  'about-me': about.split('# How I Work')[0],
-  'how-i-work': '# How I Work' + (about.split('# How I Work')[1] || ''),
 };
 export function getStaticPaths() {
   return [
     'quantum-computing',
     'physical-ai',
     'boltzmann-computing',
-    'about-me',
-    'how-i-work',
   ].map(slug => ({ params: { slug } }));
 }
 const { slug } = Astro.params;
@@ -30,7 +25,6 @@ const frontier = frontierWorlds.find(world => world.slug === slug);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const home = `${base}/preview/enchanted-v2/`;
 const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
-const escapeHTML = (value: string) => value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const lines = raw.split(/\r?\n/);
 const blocks: {tag:string; text:string}[] = [];
 let paragraph: string[] = [];
