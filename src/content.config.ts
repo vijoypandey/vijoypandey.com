@@ -8,9 +8,9 @@ const artifacts = defineCollection({
     date: z.coerce.date().optional(),
     type: z.enum(['article', 'podcast', 'research', 'talk', 'mention', 'project']),
     provenance: z.enum(['personal', 'organizational', 'appearance', 'curated']),
-    frontiers: z.array(z.enum(['think', 'entangle', 'move', 'fluctuate'])).min(1),
+    frontiers: z.array(z.enum(['think', 'entangle', 'move', 'fluctuate', 'build'])).min(1),
     url: z.string().url().optional(),
     description: z.string(),
-  }),
+  }).strict(),
 });
 export const collections = { artifacts };

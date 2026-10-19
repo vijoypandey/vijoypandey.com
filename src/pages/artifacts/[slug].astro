@@ -11,7 +11,13 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const frontierLinks = { think: 'emergent-superintelligence', entangle: 'quantum-computing', move: 'physical-ai', fluctuate: 'boltzmann-computing' };
+const tagDestinations = {
+  think: { path: 'emergent-superintelligence', label: 'Collective Intelligence' },
+  entangle: { path: 'quantum-computing', label: 'Quantum Computing' },
+  move: { path: 'physical-ai', label: 'Physical AI' },
+  fluctuate: { path: 'boltzmann-computing', label: 'Boltzmann Computing' },
+  build: { path: 'about/work', label: 'Building & Operating' },
+} as const;
 ---
 <!doctype html>
 <html lang="en">
@@ -30,9 +36,9 @@ const frontierLinks = { think: 'emergent-superintelligence', entangle: 'quantum-
         {entry.data.url && <p class="artifact-source"><a class="text-link" href={entry.data.url} rel="noopener noreferrer" target="_blank">Read or listen at the original source <span aria-hidden="true">↗</span></a></p>}
       </header>
       <article class="frontier-prose artifact-body"><Content /></article>
-      <nav class="frontier-end" aria-label="Related frontier">
-        <span>Related inquiry</span>
-        {entry.data.frontiers.map((tag) => <a href={`${base}/${frontierLinks[tag]}/`}>{tag === 'think' ? 'Emergent Superintelligence' : tag === 'entangle' ? 'Quantum Computing' : tag === 'move' ? 'Physical AI' : 'Boltzmann Computing'} ↗</a>)}
+      <nav class="frontier-end" aria-label="Related areas">
+        <span>Related areas</span>
+        {entry.data.frontiers.map((tag) => <a href={`${base}/${tagDestinations[tag].path}/`}>{tagDestinations[tag].label} ↗</a>)}
       </nav>
     </main>
     <EnchantedV2Footer />
