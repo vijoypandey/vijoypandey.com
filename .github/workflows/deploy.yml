@@ -68,7 +68,7 @@ jobs:
           root = os.environ['PAGES_URL'].rstrip('/') + '/'
           pages = {
               '': 9,
-              'about/personal/': 0,
+              'about/personal/': 1,
               'about/work/': 0,
               'preview/enchanted/': 7,
               'preview/enchanted-v2/': 9,
