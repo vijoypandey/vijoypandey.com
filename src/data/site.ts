@@ -26,8 +26,8 @@ export const revisiting = {
 };
 
 export const activity = [
-  { date: 'Inquiry', type: 'Collective', title: 'From connectivity to cognition' },
-  { date: 'Inquiry', type: 'Quantum', title: 'Building beyond the individual processor' },
-  { date: 'Inquiry', type: 'Physical AI', title: 'Alignment in space and time' },
-  { date: 'Inquiry', type: 'Boltzmann', title: 'Computing with fluctuations and correlations' },
+  { date: 'Exploring', type: 'Collective', title: 'From connectivity to cognition' },
+  { date: 'Exploring', type: 'Quantum', title: 'Building beyond the individual processor' },
+  { date: 'Exploring', type: 'Physical AI', title: 'Alignment in space and time' },
+  { date: 'Exploring', type: 'Boltzmann', title: 'Computing with fluctuations and correlations' },
 ];
