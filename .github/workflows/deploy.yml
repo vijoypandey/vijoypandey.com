@@ -69,7 +69,7 @@ jobs:
           pages = {
               '': 9,
               'about/personal/': 1,
-              'about/work/': 0,
+              'about/work/': 2,
               'preview/enchanted/': 7,
               'preview/enchanted-v2/': 9,
               'emergent-superintelligence/': 1,
