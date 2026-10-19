@@ -272,3 +272,49 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .footer-links small {
   display: none;
 }
+
+/* Floating back-to-top control */
+.enchanted-v2 .back-to-top {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #292b27;
+  color: #eee9de;
+  border: 1px solid #716f65;
+  text-decoration: none;
+  font-size: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s;
+}
+
+.enchanted-v2 .back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.enchanted-v2 .back-to-top:hover {
+  background: #423d35;
+}
+
+@media (max-width: 640px) {
+  .enchanted-v2 .back-to-top {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enchanted-v2 .back-to-top {
+    transition: none;
+  }
+}
