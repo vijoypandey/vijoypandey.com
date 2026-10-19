@@ -22,7 +22,7 @@ const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
   <body class="enchanted-v2">
     <EnchantedV2Header />
     <main id="main">
-      <section class="hero-slider" id="thesis" aria-label="An illustrated introduction" data-hero-slider>
+      <section class="hero-slider" id="thesis" aria-label="Beyond the Bit and the four frontiers" data-hero-slider>
         <div class="hero-track">
           {openingSlides.map((slide, index) => (
             <article
@@ -42,7 +42,7 @@ const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
                   <p class="dropcap-copy">{slide.body}</p>
                 </div>
                 <a class="text-link hero-enter" href={slide.slug ? `${base}${frontierPath(slide.slug)}` : '#frontiers'}>
-                  {slide.slug ? 'Enter this frontier' : 'Enter the four frontiers'} <span aria-hidden="true">→</span>
+                  {slide.slug ? 'Enter this frontier' : 'Explore the four frontiers'} <span aria-hidden="true">→</span>
                 </a>
               </div>
               <figure class="opening-art">
@@ -61,7 +61,7 @@ const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
         <div class="hero-toolbar">
           <div class="slider-navigation" aria-label="Slider controls">
             <button class="slider-arrow" type="button" data-previous aria-label="Previous slide"><span aria-hidden="true">←</span></button>
-            <div class="slider-tabs" role="tablist" aria-label="Choose an illustrated slide">
+            <div class="slider-tabs" role="tablist" aria-label="Explore the five perspectives on computing">
               {openingSlides.map((slide, index) => (
                 <button
                   class="slider-tab"
