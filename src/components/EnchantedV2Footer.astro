@@ -21,5 +21,22 @@ const home = `${base}/`;
     <a href="https://www.twitter.com/vijoy">Twitter / X ↗</a>
     <!-- Add verified X, Outshift, and podcast URLs here -->
   </nav>
-  <div class="footer-bottom"><span>Vijoy Pandey · An evolving thesis</span><span>Ideas, writing and research</span><a href={home}>Back to the beginning ↑</a></div>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} Vijoy Pandey</span><a href={home}>Back to the beginning ↑</a></div>
 </footer>
+
+<a class="back-to-top" href="#" aria-label="Back to top">
+  ↑
+</a>
+
+<script>
+  const backToTop = document.querySelector<HTMLElement>('.back-to-top');
+
+  if (backToTop) {
+    const updateVisibility = () => {
+      backToTop.classList.toggle('is-visible', window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    updateVisibility();
+  }
+</script>
