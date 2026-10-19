@@ -237,3 +237,38 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
   object-fit: cover;
   object-position: center;
 }
+
+.enchanted-v2 .footer-links,
+.enchanted-v2 .footer-elsewhere {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid #716f65;
+}
+
+.enchanted-v2 .footer-row-label {
+  flex: 0 0 7rem;
+  color: #ada99f;
+  font-size: .68rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.enchanted-v2 .footer-links a,
+.enchanted-v2 .footer-elsewhere a {
+  color: #e7dfd0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .8rem;
+  text-decoration: none;
+}
+
+.enchanted-v2 .footer-links a:hover,
+.enchanted-v2 .footer-elsewhere a:hover {
+  color: #c0a58c;
+}
+
+.enchanted-v2 .footer-links small {
+  display: none;
+}
