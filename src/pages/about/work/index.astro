@@ -5,7 +5,6 @@ import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
 import '../../../styles/enchanted-v2.css';
 import '../../../styles/personal-essay.css';
 import '../../../styles/work-essay.css';
-export function getStaticPaths() { return [{params:{section:'work'}}]; }
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const works = (await getCollection('artifacts', ({data}) => data.frontiers.includes('build')))
  .sort((a,b)=>(b.data.date?.getTime()??0)-(a.data.date?.getTime()??0)||a.data.title.localeCompare(b.data.title));
@@ -29,7 +28,7 @@ const works = (await getCollection('artifacts', ({data}) => data.frontiers.inclu
 <p class="personal-lede">Inventing the future is hard. Getting people from where they are today to that future takes just as much imagination and conviction.</p>
 <div class="personal-opening-story">
 <p>I have spent much of my career building technologies before there was an established market for them. That means working on the technology while figuring out who might use it, what problems it could solve, and what needs to change before it becomes practical. Sometimes the technology is the easier part.</p>
-<p>The people who eventually adopt what we build have existing systems, investments, and ways of working. They cannot simply jump to the future we have imagined. We need to create a path that delivers value at every step, with the same imagination and conviction that went into the original idea. I think of this as outcome velocity - how quickly the people using our work can realize its value.</p>
+<p>The people who eventually adopt what we build have existing systems, investments, and ways of working. They cannot simply jump to the future we have imagined. We need to create a path that delivers value at every step, with the same imagination and conviction that went into the original idea. I think of this as <em>outcome velocity</em> - how quickly the people using our work can realize its value.</p>
 </div></div></header>
 <div class="personal-prose">
 <section class="personal-chapter" aria-labelledby="markets">
