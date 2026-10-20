@@ -6,7 +6,7 @@ import { images } from '../../data/enchantedV2';
 import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const artwork = `${base}/images/design-exploration/${images.circus}`;
+const artwork = `${base}/images/design-exploration/${images.wheels}`;
 const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('fluctuate')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
@@ -36,7 +36,7 @@ const stages = [
 <p class="frontier-question">What if the physics of a system helps perform the computation?</p>
 <p class="frontier-lede">Not every computation has to advance through a sequence of precisely controlled logical steps. Some physical systems explore possibilities through fluctuations, relax toward low-energy configurations, or settle into stable phase relationships. The frontier is whether these dynamics can be made useful—and scaled.</p>
 </header>
-<figure class="frontier-plate"><img src={artwork} alt="A fantastical circus performer balances beneath suspended weights and delicate connections"/><figcaption><span>Plate 04 / Boltzmann Computing</span><span>Fluctuation, coupling and balance</span></figcaption></figure>
+<figure class="frontier-plate"><img src={artwork} alt="Giant waterwheels turn beside a river beneath a pale moon and a small observer"/><figcaption><span>Plate 04 / Boltzmann Computing</span><span>Fluctuation, coupling and flow</span></figcaption></figure>
 <div class="frontier-prose">
         <p class="frontier-chapter">I. Computation as physical evolution</p>
         <h2>Let a system search through its own dynamics.</h2>
