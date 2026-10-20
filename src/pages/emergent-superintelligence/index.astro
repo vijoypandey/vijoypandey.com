@@ -7,7 +7,7 @@ import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const artwork = `${base}/images/design-exploration/${images.forestGatherings}`;
+const artwork = `${base}/images/design-exploration/${images.collectiveForest}`;
 const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('think')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
@@ -40,7 +40,7 @@ const stages = [
         <p class="frontier-lede">The next dimension of intelligence may be interaction: populations of humans and artificial agents reasoning, learning, and discovering together. Whether that can yield genuinely new—and ultimately superintelligent—capabilities remains an open question.</p>
       </header>
       <figure class="frontier-plate">
-        <img src={artwork} alt="Many small figures gather on separate illuminated platforms beneath immense forest trees" />
+        <img src={artwork} alt="Small figures stand around separate pools of light beneath immense forest trees" />
         <figcaption><span>Plate I / Emergent Superintelligence</span><span>Many minds, an unfinished world</span></figcaption>
       </figure>
 
