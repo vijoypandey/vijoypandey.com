@@ -1,7 +1,7 @@
 export const thesis = {
   kicker: 'The thesis',
   title: 'Beyond the Bit: What Comes After the Individual?',
-  body: 'The bit remains computing’s most successful abstraction. But the systems we build around it are changing. They think, entangle, fluctuate, and move. What becomes possible when we learn to coordinate these richer forms of state and behavior beyond the individual node?',
+  body: 'For eighty years, the bit has helped us compute, connect, and scale. Now we are exploring systems that think, entangle, move, and fluctuate. What might become possible when these richer forms of computation work together—and what new problems could we solve?',
 };
 
 export const frontiers = [
