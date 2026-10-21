@@ -49,7 +49,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .opening-art figcaption { position: absolute; right: 0; top: 0; left: 0; color: #d7cfc0; background: linear-gradient(#1e211d99, transparent); }
 .enchanted-v2 .opening-copy { position: absolute; z-index: 2; inset: 0; display: grid; grid-template-columns: minmax(12rem, .34fr) minmax(0, 1.4fr) auto; align-items: end; gap: clamp(1.5rem, 4vw, 5rem); padding: clamp(2rem, 4vw, 5rem) clamp(1.2rem, 8vw, 9rem) clamp(2.4rem, 4.5vw, 5rem); color: #f8f1e5; background: linear-gradient(180deg, transparent 30%, #1e211d12 46%, #1e211dcc 100%); }
 .enchanted-v2 .opening-copy .eyebrow { align-self: end; padding-top: .35rem; color: #e2d6c5; }
-.enchanted-v2 .hero-slide:nth-child(1) .opening-copy {background: linear-gradient(180deg, transparent 25%, #1e211d40 50%, #1e211dd9 100%);}
+.enchanted-v2 .hero-slide:nth-child(1) .opening-copy {background: linear-gradient(180deg, transparent 15%, #1e211d70 45%, #1e211df2 100%);}
 .enchanted-v2 .opening-title-wrap { padding: 0; }
 .enchanted-v2 .pretitle { margin-bottom: .9rem; color: #e2d6c5; }
 .enchanted-v2 .opening h1, .enchanted-v2 .opening h2 { font-size: clamp(2.5rem, 4.3vw, 5.4rem); line-height: .97; letter-spacing: -.055em; }
