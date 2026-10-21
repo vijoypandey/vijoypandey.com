@@ -90,11 +90,13 @@ const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
         <div class="worlds-rule"><span>The larger question</span><span>Why?</span></div>
         <div class="worlds-intro">
           <h2 id="why-now-title">Toward <em>Civilization-Scale Computing.</em></h2>
-           <p>For eighty years, we've made extraordinary progress by computing with bits. We've made machines faster, connected them, and learned to scale computation across the planet. 
-           <br>Yet some of the problems that matter most to humanity—discovering new drugs and materials, predicting weather, understanding biological systems—still challenge the limits of what we can compute.
-           <br>Civilization-Scale Computing is an ambition to change that.
-           <br>It means extending computation beyond individual machines, eventually across planetary and perhaps interplanetary scales. But scale alone isn't the point.
-           <br>The goal is to expand what humanity can understand and solve, and to ensure those capabilities benefit the civilizations that create them.</p>
+          <div class="worlds-intro-copy">
+           <p>For eighty years, we've made extraordinary progress by computing with bits. We've made machines faster, connected them, and learned to scale computation across the planet.</p> 
+           <p>Yet some of the problems that matter most to humanity—discovering new drugs and materials, predicting weather, understanding biological systems—still challenge the limits of what we can compute.</p>
+           <p>Civilization-Scale Computing is an ambition to change that.</p>
+           <p>It means extending computation beyond individual machines, eventually across planetary and perhaps interplanetary scales. But scale alone isn't the point.</p>
+           <p>The goal is to expand what humanity can understand and solve, and to ensure those capabilities benefit the civilizations that create them.</p>
+          </div>
         </div>
       </section>
 
@@ -102,10 +104,12 @@ const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
         <div class="worlds-rule"><span>Four frontiers</span><span>01—04</span></div>
         <div class="worlds-intro">
           <h2 id="worlds-title">Four frontiers.<br /><em>One theory of scale.</em></h2>
+          <div class="worlds-intro-copy">
             <p>Computing has scaled in three ways: algorithmically, through better methods; vertically, through more powerful machines; and horizontally, by connecting machines into larger systems.</p>
             <p>Networks made that third dimension possible for classical computing. But the endpoints are changing. They think, entangle, move, and fluctuate.</p>
             <p>Each frontier explores a different form of computation. Each raises the same larger question: what does it take to scale beyond the individual node?</p>
             <p>Computing has scaled algorithmically through better methods, vertically through more capable machines, and horizontally through networks that make multiple machines work as one. That third axis now grows more demanding: the endpoints can think, entangle, move, and fluctuate. These four frontiers ask what it takes to coordinate richer forms of computation beyond one node.</p>
+          </div>
         </div>
         <div class="world-map">
           {frontierWorlds.map((world, index) => (
@@ -131,11 +135,13 @@ const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
         <div class="worlds-rule"><span>The deeper question</span><span>Beyond transport</span></div>
         <div class="worlds-intro">
           <h2 id="network-role-title">Beyind the <em>individual node.</em></h2>
+          <div class="worlds-intro-copy">
           <p>Connecting machines was one of computing's great breakthroughs. It let us distribute information, coordinate work, and build systems far more capable than any individual computer.</p>
           <p>But connecting the next generation of computing systems presents different challenges.</p>
           <p>Intelligent agents must share meaning and intent. Quantum systems must establish entanglement across distance. Physical computing systems must preserve useful dynamics when coupled. Embodied intelligence must coordinate perception and action in a changing world.</p>
           <p>These are not simply problems of moving information. They require new approaches to distributed systems—across networking, protocols, state, synchronization, and coordination.</p>
           <p>Every distributed system must answer a fundamental question: <em>what state must survive the boundary?</em></p>
+          </div>
         </div>
       </section>
 
