@@ -43,8 +43,8 @@ export const frontierWorlds = [
     image: images.wheels, imageAlt: 'Giant waterwheels turn beside a river beneath a pale moon and a small observer',
     note: 'A world held in motion.', folioImage: images.field,
     folioAlt: 'Small observers stand across a vast field of changing light',
-    body: 'Thermodynamic fluctuations and coupled oscillators invite us to compute with physical dynamics. What would scaling these systems actually mean?',
-    inquiry: 'Physical stochastic dynamics and oscillator phase relationships offer distinct routes to computation, with important open questions about practical advantage and scale.',
+    body: 'Thermodynamic samplers and coupled oscillators exploit different physical dynamics to compute. How could useful distributions, correlations, and phase relationships survive scaling?',
+    inquiry: 'This frontier focuses on thermodynamic and oscillator computing, distinct classical physics-based approaches. Quantum computing is also physics-based, but is explored separately here.',
   },
 ] as const;
 
