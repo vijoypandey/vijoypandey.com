@@ -4,7 +4,7 @@ This directory is the **single source for artifact content** on vijoypandey.com.
 
 ## Intellectual direction
 
-**Civilization-Scale Computing** is the higher-order ambition; **Beyond the Bit** is the technical inquiry into computing beyond the individual node across four frontiers. It is a personal intellectual home—**learning, questioning, and sharing before self-promotion**—not an Outshift/Cisco marketing site. Original essays, Coherent Cognition podcast conversations, Cisco/Outshift research, third-party interviews, and compelling outside research belong in the same conversation, selected by relevance to an idea rather than by who made them.
+**Civilization-Scale Computing** is the higher-order ambition; **Beyond the Bit** is the technical inquiry into computing beyond the individual node across four frontiers. Physics-Based Computing is the label for the fourth editorial frontier, explicitly scoped to classical thermodynamic and oscillator approaches; it does not imply quantum computing is not physics-based. It is a personal intellectual home—**learning, questioning, and sharing before self-promotion**—not an Outshift/Cisco marketing site. Original essays, Coherent Cognition podcast conversations, Cisco/Outshift research, third-party interviews, and compelling outside research belong in the same conversation, selected by relevance to an idea rather than by who made them.
 
 The homepage architecture remains **Thesis → Four Frontiers → Currently Exploring → Worth Revisiting → Recent Activity**. The approved **Scientific Enchantment** design is frozen. Keep the prose scientifically careful without rigidly labeling every observation as knowledge, belief, or speculation.
 
@@ -28,7 +28,7 @@ The values in this example are **illustrative**, not a real publication record. 
 - `think` → Collective Intelligence
 - `entangle` → Quantum Computing
 - `move` → Physical AI
-- `fluctuate` → Boltzmann Computing (including appropriately distinguished thermodynamic and oscillator work)
+- `fluctuate` → Physics-Based Computing (here: thermodynamic and oscillator computing; quantum is physics-based too but is explored separately)
 - `build` → Building & Operating (incubation, organizational design, execution velocity, leadership philosophy, and ways of working)
 
 Every artifact has at least one `frontiers` tag and may have several, such as `[think, build]`, when both are substantively relevant. `build` is an editorial category for Work / How I Work; it is **not** a fifth homepage frontier. The homepage continues to present the four computing frontiers.
