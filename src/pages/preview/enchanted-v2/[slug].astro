@@ -10,13 +10,13 @@ import boltzmann from '../../../../editorial/draft-1/boltzmann-computing.md?raw'
 const documents: Record<string,string> = {
   'quantum-computing': quantum,
   'physical-ai': physical,
-  'boltzmann-computing': boltzmann,
+  'physics-based-computing': boltzmann,
 };
 export function getStaticPaths() {
   return [
     'quantum-computing',
     'physical-ai',
-    'boltzmann-computing',
+    'physics-based-computing',
   ].map(slug => ({ params: { slug } }));
 }
 const { slug } = Astro.params;
