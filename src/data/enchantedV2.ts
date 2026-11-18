@@ -39,7 +39,7 @@ export const frontierWorlds = [
     inquiry: 'Shared world state, uncertainty, local autonomy, and safe coordinated action define an emerging systems frontier.',
   },
   {
-    ...frontiers[3], slug: 'boltzmann-computing', question: 'What happens when matter itself computes?',
+    ...frontiers[3], slug: 'physics-based-computing', question: 'What happens when matter itself computes?',
     image: images.wheels, imageAlt: 'Giant waterwheels turn beside a river beneath a pale moon and a small observer',
     note: 'A world held in motion.', folioImage: images.field,
     folioAlt: 'Small observers stand across a vast field of changing light',
