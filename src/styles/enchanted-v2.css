@@ -79,13 +79,13 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .worlds-intro h2 em { color: #82735e; }
 .enchanted-v2 .worlds-intro p { max-width: 36rem; margin-bottom: .5rem; font-size: 1.07rem; line-height: 1.68; color: #555149; }
 .enchanted-v2 .world-map { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.enchanted-v2 .world--1 { background: #292b27; color: #eae3d4; }
+.enchanted-v2 .world--1 { background: #e9e1d4; color: #292824; }
 .enchanted-v2 .world--2 { background: #e4dac9; }
 .enchanted-v2 .world--3 { background: #d4d0c5; }
 .enchanted-v2 .world--4 { background: #c8c0b2; }
 .enchanted-v2 .world-link { display: flex; flex-direction: column; height: 100%; padding: clamp(2.5rem, 4vw, 5rem); text-decoration: none; }
 .enchanted-v2 .world-number { display: block; border-top: 1px solid currentColor; padding-top: 1rem; margin-bottom: 1.7rem; color: #777066; }
-.enchanted-v2 .world--1 .world-number, .enchanted-v2 .world--1 .world-heading p, .enchanted-v2 .world--1 figcaption { color: #bdb5a7; }
+.enchanted-v2 .world--1 .world-number, .enchanted-v2 .world--1 .world-heading p, .enchanted-v2 .world--1 figcaption { color: #777066; }
 /* Align frontier imagery across each row */
 @media (min-width: 641px) {
   .enchanted-v2 .world-heading {min-height: 15rem;}
@@ -99,7 +99,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .world-enter { display: flex; justify-content: space-between; gap: 2rem; align-self: flex-start; min-width: 11rem; border-bottom: 1px solid currentColor; padding: .2rem 0 .65rem; margin-top: 1.5rem; font-size: .78rem; letter-spacing: .04em; }
 .enchanted-v2 .world-enter span { font-size: 1.15rem; line-height: .7; }
 .enchanted-v2 .world-link:hover h3 { color: #9b5d3b; }
-.enchanted-v2 .world--1 .world-link:hover h3 { color: #c5a68c; }
+.enchanted-v2 .world--1 .world-link:hover h3 { color: #9b5d3b; }
 
 /* The three editorial sections retain the first prototype's quieter rhythm. */
 .enchanted-v2 .exploring { padding: clamp(5rem, 9vw, 10rem) clamp(1.2rem, 8vw, 9rem); background: #efece4; }
