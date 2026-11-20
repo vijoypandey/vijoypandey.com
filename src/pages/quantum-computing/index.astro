@@ -8,7 +8,7 @@ import '../../styles/frontier-essay.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = `${base}/images/design-exploration/${images.field}`;
-const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('entangle')))
+const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('entangle')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: 'Compute', text: 'Local processors manipulate fragile quantum state through gates and measurements.' },
