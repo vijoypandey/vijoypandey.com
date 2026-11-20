@@ -9,5 +9,3 @@ description: "Classical packet networking assumes information can be copied and 
 ---
 
 The essay explains why quantum teleportation, entanglement management, error correction, and network-aware compilation demand a different network architecture.
-
-[Read the complete essay on Coherent Cognition](https://vijoypandey.substack.com/p/why-cant-quantum-networks-use-tcpip).
