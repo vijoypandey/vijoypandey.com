@@ -13,7 +13,7 @@
 .enchanted-v2.personal-essay .personal-opening h1 {
   grid-row: 1 / 3;
   max-width: 11ch;
-  font-size: clamp(3rem, 5.4vw, 6rem);
+  font-size: clamp(2.6rem, 4.65vw, 5.2rem);
   line-height: .98;
   letter-spacing: -.055em;
 }
@@ -47,7 +47,7 @@
 .enchanted-v2.personal-essay .personal-chapter h2 {
   max-width: 16ch;
   margin-bottom: clamp(2rem, 4vw, 3.5rem);
-  font-size: clamp(2.4rem, 3.8vw, 4.2rem);
+  font-size: clamp(2.1rem, 3.3vw, 3.65rem);
   line-height: 1.06;
   letter-spacing: -.045em;
 }
@@ -98,7 +98,7 @@
   .enchanted-v2.personal-essay .personal-opening h1 {
     grid-row: auto;
     max-width: 12ch;
-    font-size: clamp(2.65rem, 9vw, 4.4rem);
+    font-size: clamp(2.3rem, 7.8vw, 3.85rem);
   }
   .enchanted-v2.personal-essay .personal-lede {
     margin-top: 2.5rem;
