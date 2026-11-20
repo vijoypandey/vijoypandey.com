@@ -3,9 +3,5 @@ title: "Cisco unveils Quantum chip, to open quantum lab"
 type: mention
 provenance: appearance
 frontiers: [entangle]
-description: "Seeking Alpha coverage of Cisco's prototype entanglement chip and quantum laboratory. The original destination could not be verified."
+description: "Seeking Alpha coverage of Cisco's prototype entanglement chip and quantum laboratory. "
 ---
-
-Listed in the [original Quantum Computing collection](https://vijoypandey.com/quantum-computing/).
-
-A direct source URL still needs verification.
