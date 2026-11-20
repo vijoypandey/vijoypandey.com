@@ -1,12 +1,15 @@
 ---
 import EnchantedV2Header from '../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../components/EnchantedV2Footer.astro';
-import { activity } from '../data/site';
+import { getCollection } from 'astro:content';
 import { frontierPath, frontierWorlds, images, openingSlides } from '../data/enchantedV2';
 import '../styles/enchanted-v2.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
+const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(data.date && data.url)))
+  .sort((a, b) => (b.data.date!.getTime() - a.data.date!.getTime()) || a.data.title.localeCompare(b.data.title))
+  .slice(0, 6);
 ---
 
 <!doctype html>
@@ -152,12 +155,12 @@ const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
           <p>Following the science, the experiments, and the conversations that may change how we compute together.</p>
         </div>
         <div class="activity-list">
-          {activity.map((item) => (
-            <article class="activity-row">
-              <time>{item.date}</time>
-              <span class="activity-type">{item.type}</span>
-              <h3>{item.title}</h3>
-            </article>
+          {recentArtifacts.map((entry) => (
+            <a class="activity-row" href={`${base}/artifacts/${entry.id}/`} aria-label={`Read ${entry.data.title}`}>
+              <time datetime={entry.data.date!.toISOString().slice(0, 10)}>{entry.data.date!.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>
+              <span class="activity-type">{entry.data.type}</span>
+              <h3>{entry.data.title}</h3>
+            </a>
           ))}
         </div>
       </section>
