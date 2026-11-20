@@ -8,7 +8,7 @@ import '../../styles/frontier-essay.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = `${base}/images/design-exploration/${images.collectiveForest}`;
-const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('think')))
+const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('think')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: 'Isolated', text: 'Intelligence is contained in individual systems.' },
