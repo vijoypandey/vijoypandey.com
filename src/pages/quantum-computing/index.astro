@@ -8,6 +8,7 @@ import '../../styles/frontier-essay.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = `${base}/images/design-exploration/${images.field}`;
+const artworkWebp = artwork.replace(/\.png$/, '.webp');
 const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('entangle')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
@@ -40,7 +41,7 @@ const stages = [
         <p class="frontier-lede">Making a single quantum computer more capable is only one dimension of scale. Another is to connect quantum systems—and preserve what makes their states quantum across the boundaries between them.</p>
       </header>
       <figure class="frontier-plate">
-        <img src={artwork} alt="Tiny observers stand before an immense undulating landscape beneath a distant horizon" />
+        <picture>{import.meta.env.PROD && <source srcset={artworkWebp} type="image/webp" />}<img src={artwork} alt="Tiny observers stand before an immense undulating landscape beneath a distant horizon" loading="lazy" decoding="async" /></picture>
         <figcaption><span>Plate II / Quantum Computing</span><span>Distance changes the question</span></figcaption>
       </figure>
       <div class="frontier-prose">
