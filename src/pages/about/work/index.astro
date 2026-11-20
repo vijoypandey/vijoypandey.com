@@ -6,7 +6,7 @@ import '../../../styles/enchanted-v2.css';
 import '../../../styles/personal-essay.css';
 import '../../../styles/work-essay.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const works = (await getCollection('artifacts', ({data}) => data.frontiers.includes('build')))
+const works = (await getCollection('artifacts', ({data}) => data.draft !== true && data.frontiers.includes('build')))
  .sort((a,b)=>(b.data.date?.getTime()??0)-(a.data.date?.getTime()??0)||a.data.title.localeCompare(b.data.title));
 ---
 <!doctype html>
