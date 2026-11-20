@@ -11,6 +11,7 @@ const artifacts = defineCollection({
     frontiers: z.array(z.enum(['think', 'entangle', 'move', 'fluctuate', 'build'])).min(1),
     url: z.string().url().optional(),
     description: z.string(),
+    draft: z.boolean().optional(),
   }).strict(),
 });
 export const collections = { artifacts };
