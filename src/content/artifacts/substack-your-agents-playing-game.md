@@ -9,5 +9,3 @@ description: "Large multi-agent systems behave more like economies than determin
 ---
 
 The essay develops incentive and coordination failure modes in autonomous agent societies.
-
-[Read the complete essay on Coherent Cognition](https://vijoypandey.substack.com/p/a-society-not-a-system).
