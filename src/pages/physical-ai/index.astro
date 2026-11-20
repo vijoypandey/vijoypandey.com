@@ -7,7 +7,7 @@ import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = `${base}/images/design-exploration/${images.presence}`;
-const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('move')))
+const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('move')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: "Sense", text: "Observe a changing environment with imperfect sensors." },
