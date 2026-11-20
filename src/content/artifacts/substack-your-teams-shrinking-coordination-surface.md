@@ -9,5 +9,3 @@ description: "AI-enabled Tiny Teams with Tokens reduce the unit of productivity 
 ---
 
 The first part of an operating-model series explaining why shrinking teams does not automatically produce higher organizational productivity.
-
-[Read the complete essay on Coherent Cognition](https://vijoypandey.substack.com/p/your-teams-are-shrinking-the-coordination).
