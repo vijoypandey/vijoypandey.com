@@ -9,5 +9,3 @@ description: "Connecting agents to collaboration tools is not the same as giving
 ---
 
 The essay argues that retrieval across collaboration systems can reproduce organizational chatter without establishing what the organization has decided, authorized, or understands.
-
-[Read the complete essay on Coherent Cognition](https://vijoypandey.substack.com/p/your-collaboration-stack-is-not-your).
