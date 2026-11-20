@@ -7,6 +7,7 @@ import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = `${base}/images/design-exploration/${images.wheels}`;
+const artworkWebp = artwork.replace(/\.png$/, '.webp');
 const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('fluctuate')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
@@ -36,7 +37,7 @@ const stages = [
 <p class="frontier-question">What if the physics of a system helps perform the computation?</p>
 <p class="frontier-lede">This frontier investigates two classical physics-based approaches: thermodynamic systems that harness stochastic fluctuations and oscillator systems that compute through coupled dynamics. Quantum computing also exploits physics, but has its own frontier here because its states, mechanisms, and scaling constraints are fundamentally different. The challenge is to make these physical dynamics useful—and to scale them.</p>
 </header>
-<figure class="frontier-plate"><img src={artwork} alt="Giant waterwheels turn beside a river beneath a pale moon and a small observer"/><figcaption><span>Plate 04 / Physics-Based Computing</span><span>Fluctuation, coupling and flow</span></figcaption></figure>
+<figure class="frontier-plate"><picture>{import.meta.env.PROD && <source srcset={artworkWebp} type="image/webp" />}<img src={artwork} alt="Giant waterwheels turn beside a river beneath a pale moon and a small observer" loading="lazy" decoding="async" /></picture><figcaption><span>Plate 04 / Physics-Based Computing</span><span>Fluctuation, coupling and flow</span></figcaption></figure>
 <div class="frontier-prose">
         <p class="frontier-chapter">I. Computation as physical evolution</p>
         <h2>Let a system search through its own dynamics.</h2>
