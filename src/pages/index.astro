@@ -92,13 +92,13 @@ const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(
                 {slide.slug ? (
                   <a href={`${base}${frontierPath(slide.slug)}`} aria-label={`Enter ${slide.label}`}>
                     <picture>
-                      <source srcset={artworkWebp(slide.image)} type="image/webp" />
+                      {import.meta.env.PROD && <source srcset={artworkWebp(slide.image)} type="image/webp" />}
                       <img src={artwork(slide.image)} alt={slide.imageAlt} loading="lazy" decoding="async" fetchpriority="low" />
                     </picture>
                   </a>
                 ) : (
                   <picture>
-                    <source srcset={artworkWebp(slide.image)} type="image/webp" />
+                    {import.meta.env.PROD && <source srcset={artworkWebp(slide.image)} type="image/webp" />}
                     <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" decoding="async" fetchpriority="high" />
                   </picture>
                 )}
@@ -171,7 +171,7 @@ const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(
                 </div>
                 <figure class="world-figure">
                   <picture>
-                    <source srcset={artworkWebp(world.image)} type="image/webp" />
+                    {import.meta.env.PROD && <source srcset={artworkWebp(world.image)} type="image/webp" />}
                     <img src={artwork(world.image)} alt={world.imageAlt} loading="lazy" decoding="async" fetchpriority="low" />
                   </picture>
                   <figcaption><span>Plate {['II', 'III', 'IV', 'V'][index]}</span><span>{world.note}</span></figcaption>
