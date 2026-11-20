@@ -7,6 +7,7 @@ import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = `${base}/images/design-exploration/${images.presence}`;
+const artworkWebp = artwork.replace(/\.png$/, '.webp');
 const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('move')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
@@ -36,7 +37,7 @@ const stages = [
 <p class="frontier-question">What happens when intelligence moves—and must act together?</p>
 <p class="frontier-lede">A machine that acts in the world cannot wait for the world to stand still. When intelligent machines coordinate, what must survive the boundary is not merely a message, but a sufficiently current, shared understanding of space, time, intent and risk.</p>
 </header>
-<figure class="frontier-plate"><img src={artwork} alt="A lone figure stands among translucent presences and delicate connections"/><figcaption><span>Plate 03 / Physical AI</span><span>Intelligence enters a world in motion</span></figcaption></figure>
+<figure class="frontier-plate"><picture>{import.meta.env.PROD && <source srcset={artworkWebp} type="image/webp" />}<img src={artwork} alt="A lone figure stands among translucent presences and delicate connections" loading="lazy" decoding="async" /></picture><figcaption><span>Plate 03 / Physical AI</span><span>Intelligence enters a world in motion</span></figcaption></figure>
 <div class="frontier-prose">
         <p class="frontier-chapter">I. Intelligence acquires consequences</p>
         <h2>To act is to change the problem.</h2>
