@@ -7,7 +7,3 @@ frontiers: [entangle]
 url: "https://blogs.cisco.com/news/quantum-networking-how-cisco-is-accelerating-practical-quantum-computing"
 description: "Cisco introduction to a quantum network entanglement chip and the physical challenges of connecting quantum processors."
 ---
-
-Listed in the [original Quantum Computing collection](https://vijoypandey.com/quantum-computing/).
-
-[Visit the original source](https://blogs.cisco.com/news/quantum-networking-how-cisco-is-accelerating-practical-quantum-computing).
