@@ -7,7 +7,7 @@ import '../styles/enchanted-v2.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
-const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(data.date && data.url)))
+const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(data.draft !== true && data.date && data.url)))
   .sort((a, b) => (b.data.date!.getTime() - a.data.date!.getTime()) || a.data.title.localeCompare(b.data.title))
   .slice(0, 6);
 ---
