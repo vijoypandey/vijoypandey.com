@@ -131,6 +131,9 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .activity-list { border-top: 1px solid #b9b0a2; align-self: center; }
 .enchanted-v2 .activity-row { display: grid; grid-template-columns: 5.8rem 6.7rem 1fr; gap: 1.25rem; align-items: baseline; padding: 1.65rem 0; border-bottom: 1px solid #b9b0a2; }
 .enchanted-v2 .activity-row time, .enchanted-v2 .activity-type { color: #746d63; }
+.enchanted-v2 a.activity-row { color: inherit; text-decoration: none; transition: background-color .15s ease; }
+.enchanted-v2 a.activity-row:hover h3, .enchanted-v2 a.activity-row:focus-visible h3 { text-decoration: underline; text-underline-offset: .17em; }
+.enchanted-v2 a.activity-row:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .enchanted-v2 .activity-row h3 { font-size: clamp(1.35rem, 1.8vw, 1.95rem); line-height: 1.24; letter-spacing: -.025em; }
 
 .enchanted-v2 .site-footer { padding: 4rem clamp(1.2rem, 8vw, 9rem) 2rem; background: #292b27; color: #e7dfd0; }
