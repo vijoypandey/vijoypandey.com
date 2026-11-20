@@ -4,5 +4,5 @@ type: podcast
 provenance: appearance
 frontiers: [entangle]
 url: "https://podcasts.apple.com/ro/podcast/the-superposition-guys-podcast/id1644728013"
-description: "Superposition Guy's Podcast conversation on quantum networking hardware/software and scaling a quantum internet. The linked page is a podcast feed; specific episode URL and date remain unverified."
+description: "Superposition Guy's Podcast conversation on quantum networking hardware/software and scaling a quantum internet."
 ---
