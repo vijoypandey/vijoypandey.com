@@ -7,7 +7,3 @@ frontiers: [think]
 url: "https://outshift.cisco.com/blog/internet-of-agents"
 description: "Outshift on open agent discovery, identity and interoperability."
 ---
-
-Listed in the [original Distributed Superintelligence collection](https://vijoypandey.com/distributed-superintelligence/).
-
-[Read the source](https://outshift.cisco.com/blog/internet-of-agents).
