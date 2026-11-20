@@ -5,5 +5,5 @@ type: article
 provenance: appearance
 frontiers: [think]
 url: "https://www.axios.com/sponsored/why-ais-next-big-leap-is-collective-intelligence"
-description: "An Axios sponsored feature arguing for horizontal scaling of intelligence through coordination. The original collection links this URL twice under different headings."
+description: "An Axios sponsored feature arguing for horizontal scaling of intelligence through coordination."
 ---
