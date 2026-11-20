@@ -76,7 +76,7 @@ body.enchanted-v2 { margin: 0; background: #eee9de; color: #292824; font-family:
 .enchanted-v2 .worlds-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 5rem; padding: clamp(5rem, 9vw, 10rem) clamp(1.2rem, 8vw, 9rem) clamp(5rem, 9vw, 10rem); }
 .enchanted-v2 .worlds-intro h2 { font-size: clamp(2.5rem, 4.65vw, 5.4rem); line-height: 1.08; letter-spacing: -.055em; }
 .enchanted-v2 .worlds-intro h2 em { color: #82735e; }
-.enchanted-v2 .worlds-intro p { max-width: 24rem; margin-bottom: .5rem; font-size: 1.07rem; line-height: 1.68; color: #555149; }
+.enchanted-v2 .worlds-intro p { max-width: 36rem; margin-bottom: .5rem; font-size: 1.07rem; line-height: 1.68; color: #555149; }
 .enchanted-v2 .world-map { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .enchanted-v2 .world--1 { background: #292b27; color: #eae3d4; }
 .enchanted-v2 .world--2 { background: #e4dac9; }
