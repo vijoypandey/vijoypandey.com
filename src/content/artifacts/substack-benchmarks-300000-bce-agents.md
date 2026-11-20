@@ -9,5 +9,3 @@ description: "ARC-AGI-3 highlights weaknesses in agents learning to act in unfam
 ---
 
 The essay connects action efficiency and exploratory learning to the argument for scaling intelligence both vertically and horizontally, with humans participating in collective systems.
-
-[Read the complete essay on Coherent Cognition](https://vijoypandey.substack.com/p/benchmarks-for-the-300000-bce-agents).
