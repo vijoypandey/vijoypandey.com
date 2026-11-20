@@ -5,7 +5,7 @@ import EnchantedV2Footer from '../../components/EnchantedV2Footer.astro';
 import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 export async function getStaticPaths() {
-  const entries = await getCollection('artifacts');
+  const entries = await getCollection('artifacts', ({ data }) => data.draft !== true);
   return entries.map(entry => ({ params: { slug: entry.id }, props: { entry } }));
 }
 const { entry } = Astro.props;
