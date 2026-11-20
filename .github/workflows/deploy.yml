@@ -30,6 +30,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate WebP artwork for faster image delivery
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq webp
+          find public/images/design-exploration -type f -name '*.png' -print0 |
+            while IFS= read -r -d '' file; do
+              cwebp -quiet -q 82 -m 6 "$file" -o "${file%.png}.webp"
+            done
+
       - name: Build Astro site
         run: npm run build
 
