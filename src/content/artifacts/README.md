@@ -19,6 +19,7 @@ provenance: curated # personal | organizational | appearance | curated
 frontiers: [think, build] # one or more; multiple allowed
 url: "https://example.org/original" # original source link, if available
 description: "A concise, human-written description of why this matters."
+# draft: true # optional: hold source-unverified records out of public pages
 ---
 ```
 
@@ -39,7 +40,7 @@ Every artifact has at least one `frontiers` tag and may have several, such as `[
 - `appearance`: third-party earned/paid media, interviews, or material featuring or attributing Vijoy.
 - `curated`: someone else's work that Vijoy found worth sharing.
 
-No granular topic taxonomy and no separate author/contributor database. Source attribution belongs in the description, content, and original link where useful. Provenance is not a visible sorting hierarchy.
+Set `draft: true` only for records that should remain in GitHub but must not be rendered or listed publicly (for example, when a direct source has not been established). Restore publication by removing the flag once checked. Migration/verification notes belong in repository history or an internal tracker, never in public artifact descriptions or Markdown bodies.\n\nNo granular topic taxonomy and no separate author/contributor database. Source attribution belongs in the description, content, and original link where useful. Provenance is not a visible sorting hierarchy.
 
 ## Body and source handling
 
