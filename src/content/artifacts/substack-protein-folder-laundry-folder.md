@@ -9,5 +9,3 @@ description: "A response to research on specialized superhuman intelligence: spe
 ---
 
 The essay examines the gap between exceptional specialist models and the infrastructure required for shared intent, context, and collective reasoning.
-
-[Read the complete essay on Coherent Cognition](https://vijoypandey.substack.com/p/the-protein-folder-shouldnt-be-the).
