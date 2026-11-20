@@ -3,5 +3,5 @@ title: "Is Cisco’s Quantum Networking Push With Atom Computing Reshaping Its A
 type: mention
 provenance: appearance
 frontiers: [entangle]
-description: "Yahoo Finance coverage of Cisco and Atom Computing; the original destination was inaccessible and needs verification."
+description: "Yahoo Finance coverage of Cisco and Atom Computing."
 ---
