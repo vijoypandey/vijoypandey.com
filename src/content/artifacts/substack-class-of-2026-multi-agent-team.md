@@ -9,5 +9,3 @@ description: "New graduates are entering workplaces shaped by multi-agent-human 
 ---
 
 The essay distinguishes expanding the scope of a person's work from merely accelerating existing tasks.
-
-[Read the complete essay on Coherent Cognition](https://vijoypandey.substack.com/p/the-class-of-2026-is-walking-into).
