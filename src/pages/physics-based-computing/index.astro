@@ -7,7 +7,7 @@ import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = `${base}/images/design-exploration/${images.wheels}`;
-const works = (await getCollection('artifacts', ({ data }) => data.frontiers.includes('fluctuate')))
+const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('fluctuate')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: "Encode", text: "Map a problem into energies, couplings or oscillatory parameters." },
