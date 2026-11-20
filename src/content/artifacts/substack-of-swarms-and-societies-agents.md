@@ -9,5 +9,3 @@ description: "A discussion of swarm intelligence versus societies of specialized
 ---
 
 This essay examines whether the organization of AI agents resembles swarms or societies, and what that distinction means for collective intelligence.
-
-[Read the essay on Coherent Cognition](https://vijoypandey.substack.com/p/of-swarms-and-societies-are-your).
