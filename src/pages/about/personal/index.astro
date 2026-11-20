@@ -6,6 +6,27 @@ import '../../../styles/personal-essay.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = base + '/images/about/arnold-council.png';
+const profileUrl = new URL(base + '/about/personal/', Astro.site).href;
+const homeUrl = new URL(base + '/', Astro.site).href;
+const profileData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': `${profileUrl}#profile`,
+  url: profileUrl,
+  name: 'About Vijoy Pandey',
+  mainEntity: {
+    '@type': 'Person',
+    '@id': `${homeUrl}#person`,
+    name: 'Vijoy Pandey',
+    url: homeUrl,
+    sameAs: [
+      'https://www.linkedin.com/in/vijoy',
+      'https://vijoypandey.substack.com/',
+      'https://www.twitter.com/vijoy',
+    ],
+    worksFor: { '@type': 'Organization', name: 'Outshift by Cisco', url: 'https://outshift.cisco.com/' },
+  },
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -14,7 +35,8 @@ const artwork = base + '/images/about/arnold-council.png';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#eee9de" />
     <meta name="description" content="A childhood chatbot, a lifelong curiosity about connected systems, and an AI agent named Arnold Layne." />
-    <link rel="canonical" href={new URL(base + '/about/personal/', Astro.site).href} />
+    <link rel="canonical" href={profileUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(profileData)} />
     <link rel="icon" type="image/svg+xml" href={base + '/favicon.svg'} />
     <title>About Me  -  Vijoy Pandey</title>
   </head>
