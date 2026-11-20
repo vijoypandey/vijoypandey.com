@@ -7,6 +7,40 @@ import '../styles/enchanted-v2.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
+const pageUrl = new URL(`${base}/`, Astro.site).href;
+const personId = `${pageUrl}#person`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: 'Vijoy Pandey',
+      url: pageUrl,
+      description: 'Engineer exploring civilization-scale computing, collective intelligence, quantum computing, physical AI, and physics-based computing.',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Outshift by Cisco',
+        url: 'https://outshift.cisco.com/',
+      },
+      sameAs: [
+        'https://www.linkedin.com/in/vijoy',
+        'https://vijoypandey.substack.com/',
+        'https://www.twitter.com/vijoy',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${pageUrl}#website`,
+      name: 'Vijoy Pandey',
+      alternateName: 'Vijoy',
+      url: pageUrl,
+      description: 'An evolving exploration of civilization-scale computing and the architectures that enable scale beyond individual systems.',
+      publisher: { '@id': personId },
+      inLanguage: 'en',
+    },
+  ],
+};
 const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(data.draft !== true && data.date && data.url)))
   .sort((a, b) => (b.data.date!.getTime() - a.data.date!.getTime()) || a.data.title.localeCompare(b.data.title))
   .slice(0, 6);
@@ -18,8 +52,13 @@ const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Exploring civilization-scale computing: how collective intelligence, quantum systems, physics-native computing, and embodied intelligence can scale beyond the individual node."/>    <meta name="theme-color" content="#eee9de" />
-    <title>Vijoy. — Civilization-Scale Computing</title>
-    <link rel="canonical" href={new URL(`${base}/`, Astro.site).href} />
+    <title>Vijoy Pandey | Civilization-Scale Computing</title>
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vijoy Pandey | Civilization-Scale Computing" />
+    <meta property="og:description" content="Beyond the Bit: exploring how richer forms of computing can scale beyond individual systems to address problems that matter to humanity." />
+    <meta property="og:url" content={pageUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
   </head>
   <body class="enchanted-v2">
