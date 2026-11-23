@@ -17,8 +17,8 @@ main{position:relative;z-index:2}.scene{position:relative;min-height:106svh;padd
 
 /* A pinned image theatre: four editorial reveals, one continuous scroll space. */
 .problems{min-height:420svh;padding:0;display:block;color:#25292b;isolation:isolate}
-.gallery-pin{height:100svh;position:sticky;top:0;overflow:hidden;display:grid;align-items:center;padding:90px 7vw 74px;z-index:2}
-.gallery-wash{position:absolute;inset:0;background:#b9bcbd;opacity:var(--gallery-light,0);pointer-events:none;z-index:0}
+.gallery-pin{height:100svh;position:sticky;top:0;overflow:hidden;display:grid;align-items:center;padding:90px 7vw 74px;z-index:4}
+.gallery-wash{position:absolute;inset:0;background:#b9bcbd;opacity:calc(var(--gallery-light,0) * .96);pointer-events:none;z-index:0}
 .gallery-layout{position:relative;z-index:4;display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:clamp(26px,6vw,110px);align-items:center;width:100%;max-width:1450px;margin:auto}
 .gallery-copy{max-width:510px;opacity:var(--gallery-light,0);transform:translateY(calc((1 - var(--gallery-light,0))*18px));will-change:opacity,transform}
 .gallery-copy h2{font-size:clamp(40px,5vw,78px);margin-bottom:20px}
@@ -115,13 +115,13 @@ function onscroll(){
   const v=galleryRatio;
   const light=smoothstep(0,.11,v)*(1-smoothstep(.87,1,v));
   pin.style.setProperty('--gallery-light',String(light));
-  const segment=v*4;
+  const segment=Math.min(3.5,Math.max(.5,v*4));
   panels.forEach((el,i)=>{
     // Crossfade overlapping plates; no cut, no jumping between image slots.
-    const fade=Math.max(0,1-Math.abs(segment-(i+.5))/.75);
+    const fade=Math.max(0,1-Math.abs(segment-(i+.5)));
     const alpha=smoothstep(0,1,fade);
     el.style.opacity=String(alpha);
-    el.style.transform='scale('+(1.09-.09*smoothstep(0,1,Math.min(1,Math.abs(segment-(i+.5))/.75)))+') translateY('+((i+.5-segment)*10)+'px)';
+    el.style.transform='scale('+(1.09-.09*smoothstep(0,1,Math.min(1,Math.abs(segment-(i+.5)))))+') translateY('+((i+.5-segment)*10)+'px)';
   });
   if(counter)counter.textContent=String(Math.min(4,Math.floor(segment)+1)).padStart(2,'0')+' / 04';
   if(galleryProgress)galleryProgress.style.width=(v*100)+'%';
