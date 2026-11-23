@@ -7,7 +7,7 @@ const home = '/';
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#111315">
-<title>Fabric Lab v3.1 / Vijoy</title>
+<title>Fabric Lab v3.2 / Vijoy</title>
 <style is:global>
 :root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#202326;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
 #fabric{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
@@ -16,9 +16,9 @@ main{position:relative;z-index:4}.scene{position:relative;min-height:106svh;padd
 .steps{position:fixed;z-index:15;bottom:16px;left:5vw;right:5vw;display:flex;gap:6px}.steps a{flex:1;max-width:180px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#a9adb0}.steps a:after{content:"";display:block;height:2px;background:#ffffff50;margin-top:11px}.steps a.on{color:white}.steps a.on:after{background:#fff}
 
 /* A pinned image theatre: four editorial reveals, one continuous scroll space. */
-.problems{min-height:420svh;padding:0;display:block;color:#25292b;isolation:isolate}
+.problems{height:250svh;min-height:0;padding:0;display:block;color:#25292b;isolation:isolate}
 .gallery-pin{height:100svh;position:sticky;top:0;overflow:hidden;display:grid;align-items:center;padding:90px 7vw 74px;z-index:4}
-.gallery-wash{position:absolute;inset:0;background:#b9bcbd;opacity:calc(var(--gallery-light,0) * .96);pointer-events:none;z-index:0}
+.gallery-wash{position:absolute;inset:0;background:#b9bcbd;opacity:var(--gallery-light,0);pointer-events:none;z-index:0}
 .gallery-layout{position:relative;z-index:4;display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:clamp(26px,6vw,110px);align-items:center;width:100%;max-width:1450px;margin:auto}
 .gallery-copy{max-width:510px;opacity:var(--gallery-light,0);transform:translateY(calc((1 - var(--gallery-light,0))*18px));will-change:opacity,transform}
 .gallery-copy h2{font-size:clamp(40px,5vw,78px);margin-bottom:20px}
@@ -40,16 +40,45 @@ main{position:relative;z-index:4}.scene{position:relative;min-height:106svh;padd
 .gallery-track{height:2px;flex:1;background:#4b51554d;overflow:hidden}
 .gallery-fill{height:100%;width:0;background:#343a3e;transform-origin:left}
 .gallery-fallback{display:none}
-.intelligence{min-height:118svh}
+.intelligence{min-height:0}
 .physics{background:linear-gradient(#20232600,#30343872,#20232600)}.inquiry{background:linear-gradient(transparent,#191c1e 28%);min-height:112svh}.frontiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:55px}.frontiers a{border:1px solid #777c81;min-height:190px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s}.frontiers a:hover{background:#ffffff18}.frontiers strong{font-size:clamp(20px,2.5vw,35px);font-weight:500}.frontiers small{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#b4b8bb}
 .reveal{opacity:.3;transform:translateY(32px);transition:opacity .8s,transform .8s}.reveal.seen{opacity:1;transform:none}footer{position:relative;z-index:3;background:#191c1e;border-top:1px solid #ffffff44;padding:34px 7vw 90px;display:flex;justify-content:space-between;font-size:12px;color:#afb4b8}
-@media(max-width:720px){header{padding:0 23px}.nav a{display:none}.scene{padding:110px 24px 120px}.scene h1{font-size:clamp(47px,12vw,68px)}.scene h2{font-size:clamp(41px,10vw,65px)}.gallery-pin{padding:92px 22px 76px}.gallery-layout{grid-template-columns:1fr;gap:20px;align-content:center}.gallery-copy h2{font-size:clamp(34px,8vw,48px);margin-bottom:10px}.gallery-copy .sub{font-size:14px;line-height:1.35}.gallery-copy .eyebrow{margin-bottom:14px}.gallery-stage{aspect-ratio:4/3;max-height:45svh}.art-panel{padding:17px}.art-label{font-size:clamp(29px,8vw,46px)}.gallery-status{margin-top:10px}.problems{min-height:420svh}.frontiers{grid-template-columns:repeat(2,1fr)}.frontiers a{min-height:145px}.steps{left:14px;right:14px}.steps a{font-size:8px}.sub{font-size:17px}}
+@media(max-width:720px){header{padding:0 23px}.nav a{display:none}.scene{padding:110px 24px 120px}.scene h1{font-size:clamp(47px,12vw,68px)}.scene h2{font-size:clamp(41px,10vw,65px)}.gallery-pin{padding:92px 22px 76px}.gallery-layout{grid-template-columns:1fr;gap:20px;align-content:center}.gallery-copy h2{font-size:clamp(34px,8vw,48px);margin-bottom:10px}.gallery-copy .sub{font-size:16px;line-height:1.4}.gallery-copy .eyebrow{margin-bottom:14px}.gallery-stage{aspect-ratio:4/3;max-height:45svh}.art-panel{padding:17px}.art-label{font-size:clamp(29px,8vw,46px)}.gallery-status{margin-top:10px}.problems{height:250svh}.frontiers{grid-template-columns:repeat(2,1fr)}.frontiers a{min-height:145px}.steps{left:14px;right:14px}.steps a{font-size:8px}.sub{font-size:17px}}
+/* Editorial display face and quiet sans text. System stacks keep the study self-contained. */
+:root{--display:'Iowan Old Style','Baskerville','Palatino Linotype',Georgia,serif;--text:'Avenir Next',Avenir,'Helvetica Neue',Arial,sans-serif}
+body{font-family:var(--text);-webkit-font-smoothing:antialiased}
+.brand,.scene h1,.scene h2,.gallery-copy h2,.art-label,.frontiers strong{font-family:var(--display);font-weight:400;letter-spacing:-.045em}
+.scene h1,.scene h2{line-height:1.07}.scene h1{max-width:11ch}.scene h2{max-width:12ch}
+.gallery-copy h2{line-height:1.08}.art-label{font-family:var(--display)}
+.eyebrow,.chapter,.nav,.steps,.aside,.next,.art-id,.art-note,.gallery-status{font-family:var(--text);font-weight:600}
+.scene .sub,.gallery-copy .sub{font-family:var(--text);font-weight:400;letter-spacing:-.015em}
+.chapter-scene{height:155svh;min-height:0;padding:0;display:block}
+.chapter-pin{position:sticky;top:0;height:100svh;min-height:650px;padding:105px 7vw 85px;display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:5vw;align-items:center;overflow:hidden}
+.chapter-pin .copy{position:relative;z-index:5;max-width:650px}
+.chapter-pin .chapter{margin-bottom:24px}
+.chapter-pin h2{font-size:clamp(48px,5.7vw,84px)}
+.chapter-visual{position:relative;height:min(68svh,640px);min-height:430px;overflow:hidden;border:1px solid #8f969a66;background:linear-gradient(145deg,#35393d7a,#181b1e8c);box-shadow:0 26px 95px #11141677;isolation:isolate}
+.chapter-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 58% 40%,#aeb4b522,transparent 57%);pointer-events:none}
+.chapter-visual svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transform:translateY(calc(var(--chapter-shift,0) * -32px)) scale(calc(1 + var(--chapter-shift,0) * .045));transition:transform .15s linear}
+.chapter-visual path,.chapter-visual line,.chapter-visual circle,.chapter-visual ellipse,.chapter-visual rect{vector-effect:non-scaling-stroke}
+.visual-top,.visual-bottom{position:absolute;z-index:2;left:24px;right:24px;display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c4c9cb}
+.visual-top{top:24px}.visual-bottom{bottom:24px;padding-top:14px;border-top:1px solid #a6acae65}
+.visual-bottom span:last-child{color:#a9afb2}
+.chapter-visual .accent{stroke:#d7dddf}.chapter-visual .secondary{stroke:#a1aaae}.chapter-visual .node{fill:#d6dcde}.chapter-visual .ghost{stroke:#7f898e}
+.chapter-visual svg *{fill:none;stroke-width:1.2}
+.chapter-visual svg .node{stroke:none}
+.physics .chapter-visual{background:radial-gradient(circle at 50% 50%,#59616680,#24282c 62%,#171a1d)}
+.world .chapter-visual{background:linear-gradient(150deg,#353a3d,#1a1e21 72%)}
+.chapter-scene .sub{max-width:31ch}
+@media(max-width:720px){.chapter-scene{height:135svh;padding:0}.chapter-pin{min-height:0;height:100svh;padding:92px 22px 62px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:24px}.chapter-pin .copy{flex:0 0 auto}.chapter-pin h2{font-size:clamp(38px,9.5vw,58px);margin-bottom:14px}.chapter-pin .sub{font-size:16px;line-height:1.42;margin:0}.chapter-pin .chapter{margin-bottom:12px}.chapter-visual{height:38svh;min-height:220px;flex:0 1 auto}.visual-top,.visual-bottom{left:16px;right:16px;font-size:10px}.visual-top{top:15px}.visual-bottom{bottom:15px}.scene h1{max-width:12ch}}
+@media(max-width:400px){.chapter-pin h2{font-size:36px}.chapter-visual{height:32svh;min-height:180px}.chapter-pin{gap:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.gallery-pin{position:relative;height:auto;min-height:100svh;background:#b9bcbd}.gallery-wash{opacity:1!important}.gallery-copy,.gallery-stage{opacity:1!important;transform:none!important}.gallery-layout{display:block}.gallery-stage{display:none}.gallery-fallback{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:25px}.gallery-fallback div{border:1px solid #888;padding:24px 14px;min-height:140px;background:#a4a8aa;color:#25292b}.problems{min-height:0}.gallery-status{display:none}}
+@media(prefers-reduced-motion:reduce){.problems{height:auto}.chapter-scene{height:auto}.chapter-pin{position:relative;height:auto;min-height:100svh;overflow:visible}.chapter-visual svg{transform:none;transition:none}}
 </style>
 </head>
 <body>
 <canvas id="fabric" aria-hidden="true"></canvas><div class="shade" aria-hidden="true"></div>
-<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 3.1</span></div></header>
+<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 3.2</span></div></header>
 <nav class="steps" aria-label="Explore sections"><a href="#ambition" class="on">01 Ambition</a><a href="#problems">02 Problems</a><a href="#intelligence">03 Intelligence</a><a href="#physics">04 Physics</a><a href="#world">05 World</a></nav>
 <main>
 <section class="scene" id="ambition" data-mode="0"><div class="copy reveal seen"><p class="eyebrow">Civilization-Scale Computing</p><h1>What will it take to solve the harder problems?</h1><p class="sub">From discovering medicines and materials to understanding the universe and modeling complex systems.</p><p class="aside">Beyond the Bit / What comes after the individual?</p></div><p class="next">Scroll to explore ↓</p></section>
@@ -75,9 +104,9 @@ main{position:relative;z-index:4}.scene{position:relative;min-height:106svh;padd
     <div class="gallery-fallback" aria-label="Artwork placeholders"><div>Drug discovery</div><div>New materials</div><div>The universe</div><div>Complex systems</div></div>
   </div>
 </section>
-<section class="scene intelligence" id="intelligence" data-mode="2"><div class="copy reveal"><p class="chapter">01 / Workloads</p><h2>Computing becomes intelligent.</h2><p class="sub">Learned, probabilistic, and agentic systems are changing what computation can do. Coordinating many such systems raises new questions.</p></div></section>
-<section class="scene physics" id="physics" data-mode="3"><div class="copy reveal"><p class="chapter">02 / Substrates</p><h2>Computing embraces physics.</h2><p class="sub">Quantum information and physical dynamics offer distinct directions for computation beyond conventional digital architectures.</p></div></section>
-<section class="scene" id="world" data-mode="4"><div class="copy reveal"><p class="chapter">03 / Embodiment</p><h2>Computing extends into the physical world.</h2><p class="sub">Sensing, reasoning, coordination, and action meet the constraints of real environments, where mistakes cannot always be undone.</p></div></section>
+<section class="scene chapter-scene intelligence" id="intelligence" data-mode="2"><div class="chapter-pin"><div class="copy reveal"><p class="chapter">01 / Workloads</p><h2>Computing becomes intelligent.</h2><p class="sub">Learned, probabilistic, and agentic systems are changing what computation can do. Coordinating many such systems raises new questions.</p></div><div class="chapter-visual" role="img" aria-label="A branching network of connected intelligence nodes"><div class="visual-top"><span>Intelligence</span><span>Distributed cognition</span></div><svg viewBox="0 0 600 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="ghost"><circle cx="300" cy="270" r="178"/><circle cx="300" cy="270" r="118"/></g><g class="secondary"><path d="M300 270 150 158 218 105M300 270 425 115 484 186M300 270 503 340 426 445M300 270 176 410 106 337M300 270 300 72M300 270 300 468"/><path d="M150 158 300 72 425 115 484 186 503 340 426 445 300 468 176 410 106 337 150 158"/></g><g class="accent"><path d="M150 158 218 105 300 72M425 115 484 186M503 340 426 445M176 410 106 337"/></g><g class="node"><circle cx="300" cy="270" r="8"/><circle cx="150" cy="158" r="5"/><circle cx="218" cy="105" r="3"/><circle cx="300" cy="72" r="4"/><circle cx="425" cy="115" r="5"/><circle cx="484" cy="186" r="3"/><circle cx="503" cy="340" r="5"/><circle cx="426" cy="445" r="3"/><circle cx="300" cy="468" r="4"/><circle cx="176" cy="410" r="5"/><circle cx="106" cy="337" r="3"/></g></svg><div class="visual-bottom"><span>Many agents / one system</span><span>01 — 03</span></div></div></div></section>
+<section class="scene chapter-scene physics" id="physics" data-mode="3"><div class="chapter-pin"><div class="copy reveal"><p class="chapter">02 / Substrates</p><h2>Computing embraces physics.</h2><p class="sub">Quantum information and physical dynamics offer distinct directions for computation beyond conventional digital architectures.</p></div><div class="chapter-visual" role="img" aria-label="Interfering waves and concentric fields suggest physical computation"><div class="visual-top"><span>Physics</span><span>New substrates</span></div><svg viewBox="0 0 600 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="ghost"><ellipse cx="300" cy="270" rx="215" ry="215"/><ellipse cx="300" cy="270" rx="155" ry="155"/><ellipse cx="300" cy="270" rx="95" ry="95"/><line x1="35" y1="270" x2="565" y2="270"/><line x1="300" y1="22" x2="300" y2="518"/></g><g class="secondary"><path d="M25 276 C100 80 160 80 230 276 S360 472 440 276 535 84 595 276"/><path d="M25 276 C100 460 160 460 230 276 S360 80 440 276 535 460 595 276"/></g><g class="accent"><path d="M25 270 C105 215 160 215 230 270 S355 325 440 270 530 215 595 270"/><circle cx="300" cy="270" r="7"/></g></svg><div class="visual-bottom"><span>Dynamics as computation</span><span>02 — 03</span></div></div></div></section>
+<section class="scene chapter-scene world" id="world" data-mode="4"><div class="chapter-pin"><div class="copy reveal"><p class="chapter">03 / Embodiment</p><h2>Computing extends into the physical world.</h2><p class="sub">Sensing, reasoning, coordination, and action meet the constraints of real environments, where mistakes cannot always be undone.</p></div><div class="chapter-visual" role="img" aria-label="A sensing path crosses a perspective grid toward the physical horizon"><div class="visual-top"><span>Physical world</span><span>Perception to action</span></div><svg viewBox="0 0 600 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="ghost"><path d="M0 390 300 188 600 390M0 455 300 188 600 455M0 520 300 188 600 520M100 540 300 188 500 540M200 540 300 188 400 540M0 390H600M0 455H600M0 520H600"/></g><g class="secondary"><circle cx="300" cy="188" r="128"/><path d="M130 365 225 327 318 385 430 270 505 330"/><path d="M130 365V295M225 327V252M318 385V310M430 270V195M505 330V255"/></g><g class="accent"><path d="M130 365 225 327 318 385 430 270 505 330"/><circle cx="130" cy="365" r="4"/><circle cx="225" cy="327" r="4"/><circle cx="318" cy="385" r="4"/><circle cx="430" cy="270" r="4"/><circle cx="505" cy="330" r="4"/></g></svg><div class="visual-bottom"><span>Sense / reason / move</span><span>03 — 03</span></div></div></div></section>
 <section class="scene inquiry" id="frontiers" data-mode="5"><div class="copy reveal"><p class="eyebrow">Beyond the individual</p><h2>What state must survive the boundary?</h2><p class="sub">Four distinct frontiers. One recurring inquiry: connecting and scaling useful capabilities beyond isolated systems.</p></div><div class="frontiers">
 <a href="/#frontiers"><small>Collective intelligence</small><strong>Think</strong><small>Explore frontier ↗</small></a>
 <a href="/#frontiers"><small>Quantum computing</small><strong>Entangle</strong><small>Explore frontier ↗</small></a>
@@ -92,6 +121,7 @@ const scenes=Array.from(document.querySelectorAll('[data-mode]')),links=Array.fr
 const reduced=window.matchMedia('(prefers-reduced-motion:reduce)');
 const gallery=document.querySelector('.problems'),pin=document.querySelector('.gallery-pin');
 const panels=Array.from(document.querySelectorAll('.art-panel'));
+const chapters=Array.from(document.querySelectorAll('.chapter-scene'));
 const counter=document.querySelector('[data-art-number]'),galleryProgress=document.querySelector('[data-art-progress]');
 let galleryRatio=0;
 let w=0,h=0,d=1,mode=0,visualMode=0,targetMode=0,scroll=0,target=0,frame=0;
@@ -113,7 +143,9 @@ function onscroll(){
   const travel=Math.max(1,gallery.offsetHeight-pin.offsetHeight);
   galleryRatio=Math.min(1,Math.max(0,(scrollY-gallery.offsetTop)/travel));
   const v=galleryRatio;
-  const light=smoothstep(0,.11,v)*(1-smoothstep(.87,1,v));
+  // Start the wash as the section enters the viewport, before the sticky pin engages.
+  const entry=smoothstep(0,1.18,(scrollY-gallery.offsetTop+h)/h);
+  const light=entry*(1-smoothstep(.88,1,v));
   pin.style.setProperty('--gallery-light',String(light));
   const segment=Math.min(3.5,Math.max(.5,v*4));
   panels.forEach((el,i)=>{
@@ -126,6 +158,11 @@ function onscroll(){
   if(counter)counter.textContent=String(Math.min(4,Math.floor(segment)+1)).padStart(2,'0')+' / 04';
   if(galleryProgress)galleryProgress.style.width=(v*100)+'%';
 }
+chapters.forEach(el=>{
+  const travel=Math.max(1,el.offsetHeight-h);
+  const progress=Math.min(1,Math.max(0,(scrollY-el.offsetTop)/travel));
+  el.style.setProperty('--chapter-shift',String(reduced.matches?0:progress));
+});
 if(reduced.matches){scroll=target;visualMode=targetMode;draw(0)}
 }
 function draw(ms){
