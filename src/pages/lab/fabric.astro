@@ -77,6 +77,28 @@ body{font-family:var(--text);-webkit-font-smoothing:antialiased}
 @media(max-width:400px){.chapter-pin h2{font-size:36px}.chapter-visual{height:32svh;min-height:180px}.chapter-pin{gap:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.gallery-pin{position:relative;height:auto;min-height:100svh;background:#b9bcbd}.gallery-wash{opacity:1!important}.gallery-copy,.gallery-stage{opacity:1!important;transform:none!important}.gallery-layout{display:block}.gallery-stage{display:none}.gallery-fallback{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:25px}.gallery-fallback div{border:1px solid #888;padding:24px 14px;min-height:140px;background:#a4a8aa;color:#25292b}.problems{min-height:0}.gallery-status{display:none}}
 @media(prefers-reduced-motion:reduce){.problems{height:auto}.chapter-scene{height:auto}.chapter-pin{position:relative;height:auto;min-height:100svh;overflow:visible}.chapter-visual svg{transform:none;transition:none}}
+/* A restrained parchment cast, carried into the dark graphite sections. */
+:root{--paper:#d9d5cc;--ink:#24231f;--cream:#eee9de}
+body{background:var(--ink);color:var(--cream)}
+.shade{background:linear-gradient(90deg,#1b1a18b3,transparent 80%),linear-gradient(0deg,#1b1a1840,transparent 50%)}
+header{background:#24231fd9;border-bottom-color:#eee9de25}
+#ambition{background:linear-gradient(180deg,transparent 59%,var(--paper) 100%)}
+#ambition::after{background:linear-gradient(180deg,#d9d5cc00,#d9d5cc33 55%,#d9d5cc00)}
+.gallery-wash{background:var(--paper)}
+.gallery-copy .eyebrow,.gallery-copy .sub{color:#4d4a44}
+.gallery-stage{background:#aaa69f;border-color:#68655f6e}
+.art-panel[data-art="0"]{background:radial-gradient(ellipse at 74% 36%,#e0dcd3,#b4b0a7 48%,#85827c)}
+.art-panel[data-art="1"]{background:radial-gradient(ellipse at 30% 70%,#dedbd3,#b8b4ac 44%,#86837e)}
+.art-panel[data-art="2"]{background:radial-gradient(ellipse at 72% 18%,#e6e2d9,#bcb8b0 52%,#817e79)}
+.art-panel[data-art="3"]{background:radial-gradient(ellipse at 22% 34%,#d7d3cb,#aca89f 45%,#77746f)}
+.art-label{color:#292824}.art-id,.art-note,.gallery-status{color:#47443f}
+.gallery-track{background:#514e484d}.gallery-fill{background:#383630}
+.chapter-visual{background:linear-gradient(145deg,#3a39347a,#1c1b188c);border-color:#a9a39966}
+.physics .chapter-visual{background:radial-gradient(circle at 50% 50%,#625f5780,#292823 62%,#1b1a17)}
+.world .chapter-visual{background:linear-gradient(150deg,#3a3933,#1d1c19 72%)}
+.inquiry{background:linear-gradient(transparent,#1d1c19 28%)}
+footer{background:#1d1c19}
+@media(prefers-reduced-motion:reduce){.gallery-pin{background:var(--paper)}.gallery-fallback div{background:#c7c2b8}}
 </style>
 </head>
 <body>
@@ -194,10 +216,10 @@ const behaviors=[a,a,b,c,e,a];const wave=behaviors[k]*(1-mix)+behaviors[next]*mi
 const py=h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*22;
 row.push([px,(py-h*.56)*camera+h*.56]);
 }points.push(row)}
-ctx.strokeStyle='rgba('+Math.round(tone)+','+Math.round(tone+4)+','+Math.round(tone+8)+','+visibleAlpha+')';ctx.lineWidth=w<720?.55:.7;
+ctx.strokeStyle='rgba('+Math.round(tone+5)+','+Math.round(tone+3)+','+Math.round(tone-2)+','+visibleAlpha+')';ctx.lineWidth=w<720?.55:.7;
 for(let j=0;j<rows;j++){ctx.beginPath();points[j].forEach((pt,i)=>i?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1]));ctx.stroke()}
 for(let i=0;i<cols;i++){ctx.beginPath();for(let j=0;j<rows;j++){const pt=points[j][i];j?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1])}ctx.stroke()}
-for(let j=0;j<rows;j+=3)for(let i=0;i<cols;i+=5){const v=(Math.sin(i*.6+j*.8+p)+1)*.5,pt=points[j][i];ctx.beginPath();ctx.arc(pt[0],pt[1],v>.85?1.4:.65,0,Math.PI*2);ctx.fillStyle='rgba('+Math.round(tone+14)+','+Math.round(tone+18)+','+Math.round(tone+22)+','+((.12+v*.4)*(visibleAlpha/.23))+')';ctx.fill()}
+for(let j=0;j<rows;j+=3)for(let i=0;i<cols;i+=5){const v=(Math.sin(i*.6+j*.8+p)+1)*.5,pt=points[j][i];ctx.beginPath();ctx.arc(pt[0],pt[1],v>.85?1.4:.65,0,Math.PI*2);ctx.fillStyle='rgba('+Math.round(tone+18)+','+Math.round(tone+15)+','+Math.round(tone+10)+','+((.12+v*.4)*(visibleAlpha/.23))+')';ctx.fill()}
 }
 let last=0;function tick(t){scroll+=(target-scroll)*.075;visualMode+=(targetMode-visualMode)*.075;if(t-last>32){draw(t);last=t}frame=requestAnimationFrame(tick)}
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');observer.unobserve(e.target)}}),{threshold:.12});
