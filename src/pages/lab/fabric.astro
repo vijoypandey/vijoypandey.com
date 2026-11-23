@@ -10,9 +10,9 @@ const home = '/';
 <title>Fabric Lab / Vijoy</title>
 <style is:global>
 :root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#202326;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
-#fabric{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
+#fabric{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
 header{height:69px;position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#202326c9;border-bottom:1px solid #ffffff25;backdrop-filter:blur(12px)}.brand{font:700 31px Georgia,serif;letter-spacing:-.07em}.nav{font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:28px;align-items:center}.lab{border:1px solid #85898d;padding:9px}
-main{position:relative;z-index:2}.scene{position:relative;min-height:106svh;padding:125px 7vw 120px;display:flex;flex-direction:column;justify-content:center}.copy{max-width:800px}.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#b5b9bd;margin:0 0 32px}.scene h1,.scene h2{font-weight:500;letter-spacing:-.065em;line-height:1.01;margin:0 0 32px}.scene h1{font-size:clamp(53px,7.4vw,112px)}.scene h2{font-size:clamp(44px,6.5vw,95px)}.sub{color:#c2c6c9;font-size:clamp(17px,1.7vw,23px);line-height:1.45;max-width:650px}.aside{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#aeb2b6;margin-top:38px}.chapter{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:30px;color:#bdc2c5}.next{position:absolute;bottom:86px;right:7vw;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+main{position:relative;z-index:2}.scene{position:relative;min-height:106svh;padding:125px 7vw 120px;display:flex;flex-direction:column;justify-content:center}.copy{max-width:800px}.scene>.copy,.scene>.inner,.scene>.frontiers{position:relative;z-index:4}.scene>.next{z-index:4}.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#b5b9bd;margin:0 0 32px}.scene h1,.scene h2{font-weight:500;letter-spacing:-.065em;line-height:1.01;margin:0 0 32px}.scene h1{font-size:clamp(53px,7.4vw,112px)}.scene h2{font-size:clamp(44px,6.5vw,95px)}.sub{color:#c2c6c9;font-size:clamp(17px,1.7vw,23px);line-height:1.45;max-width:650px}.aside{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#aeb2b6;margin-top:38px}.chapter{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:30px;color:#bdc2c5}.next{position:absolute;bottom:86px;right:7vw;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
 .steps{position:fixed;z-index:15;bottom:16px;left:5vw;right:5vw;display:flex;gap:6px}.steps a{flex:1;max-width:180px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#a9adb0}.steps a:after{content:"";display:block;height:2px;background:#ffffff50;margin-top:11px}.steps a.on{color:white}.steps a.on:after{background:#fff}
 .problems{background:linear-gradient(to bottom,transparent,#b9bcbd 22%,#b9bcbd 78%,transparent);color:#232628;min-height:143svh;justify-content:flex-start}.problems .inner{margin-top:17vh}.problems .eyebrow,.problems .sub{color:#50555a}.problems h2{max-width:860px}.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:50px}.slot{aspect-ratio:4/5;background:linear-gradient(145deg,#a6aaad,#c6c9c9,#a4a9ab);border:1px solid #aeaeaa;padding:18px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.slot:before{content:"";width:130%;height:55%;border:1px solid #80838988;border-radius:50%;position:absolute;top:20%;left:-13%;transform:rotate(-32deg)}.slot span{z-index:1;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#64696d}.slot strong{z-index:1;font:normal clamp(21px,2.5vw,38px) Georgia,serif;letter-spacing:-.04em}.footnote{color:#656a6f;font-size:12px;margin-top:25px}
 .intelligence{min-height:118svh}.physics{background:linear-gradient(#20232600,#30343872,#20232600)}.inquiry{background:linear-gradient(transparent,#191c1e 28%);min-height:112svh}.frontiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:55px}.frontiers a{border:1px solid #777c81;min-height:190px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s}.frontiers a:hover{background:#ffffff18}.frontiers strong{font-size:clamp(20px,2.5vw,35px);font-weight:500}.frontiers small{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#b4b8bb}
@@ -71,6 +71,12 @@ const stages=[0,1,2,3,4,5],amplitudes=[80,20,92,108,120,95],alphas=[.23,.08,.23,
 const k=Math.min(5,Math.floor(visualMode)),next=Math.min(5,k+1),mix=smoothstep(0,1,visualMode-k);
 const amp=amplitudes[k]*(1-mix)+amplitudes[next]*mix;
 const alpha=alphas[k]*(1-mix)+alphas[next]*mix;
+// One continuous mesh throughout. Its ink adapts to the lighter chapter:
+// charcoal-gray filaments over gray; silver filaments over charcoal.
+// Dim through the midpoint so the tonal shift never reads as a color snap.
+const light=smoothstep(.05,.95,Math.max(0,1-Math.abs(visualMode-1)));
+const tone=204-122*light;
+const visibleAlpha=alpha*(1-.55*Math.sin(Math.PI*light));
 let points=[];
 for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
 const x=i/(cols-1),y=j/(rows-1),px=w*(x*1.55-.24)+Math.sin(y*9+p*.3)*11;
@@ -81,10 +87,10 @@ const e=Math.sin(x*9+y*8+t)*Math.cos(x*4-y*7);
 const behaviors=[a,a,b,c,e,a];const wave=behaviors[k]*(1-mix)+behaviors[next]*mix;
 row.push([px,h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*22]);
 }points.push(row)}
-ctx.strokeStyle='rgba(204,208,212,'+alpha+')';ctx.lineWidth=w<720?.55:.7;
+ctx.strokeStyle='rgba('+Math.round(tone)+','+Math.round(tone+4)+','+Math.round(tone+8)+','+visibleAlpha+')';ctx.lineWidth=w<720?.55:.7;
 for(let j=0;j<rows;j++){ctx.beginPath();points[j].forEach((pt,i)=>i?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1]));ctx.stroke()}
 for(let i=0;i<cols;i++){ctx.beginPath();for(let j=0;j<rows;j++){const pt=points[j][i];j?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1])}ctx.stroke()}
-for(let j=0;j<rows;j+=3)for(let i=0;i<cols;i+=5){const v=(Math.sin(i*.6+j*.8+p)+1)*.5,pt=points[j][i];ctx.beginPath();ctx.arc(pt[0],pt[1],v>.85?1.4:.65,0,Math.PI*2);ctx.fillStyle='rgba(230,233,236,'+(.12+v*.4)*(alpha/.23)+')';ctx.fill()}
+for(let j=0;j<rows;j+=3)for(let i=0;i<cols;i+=5){const v=(Math.sin(i*.6+j*.8+p)+1)*.5,pt=points[j][i];ctx.beginPath();ctx.arc(pt[0],pt[1],v>.85?1.4:.65,0,Math.PI*2);ctx.fillStyle='rgba('+Math.round(tone+14)+','+Math.round(tone+18)+','+Math.round(tone+22)+','+((.12+v*.4)*(visibleAlpha/.23))+')';ctx.fill()}
 }
 let last=0;function tick(t){scroll+=(target-scroll)*.075;visualMode+=(targetMode-visualMode)*.075;if(t-last>32){draw(t);last=t}frame=requestAnimationFrame(tick)}
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');observer.unobserve(e.target)}}),{threshold:.12});
