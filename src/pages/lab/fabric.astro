@@ -7,31 +7,74 @@ const home = '/';
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#111315">
-<title>Fabric Lab / Vijoy</title>
+<title>Fabric Lab v3.1 / Vijoy</title>
 <style is:global>
 :root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#202326;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
 #fabric{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
 header{height:69px;position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#202326c9;border-bottom:1px solid #ffffff25;backdrop-filter:blur(12px)}.brand{font:700 31px Georgia,serif;letter-spacing:-.07em}.nav{font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:28px;align-items:center}.lab{border:1px solid #85898d;padding:9px}
 main{position:relative;z-index:2}.scene{position:relative;min-height:106svh;padding:125px 7vw 120px;display:flex;flex-direction:column;justify-content:center}.copy{max-width:800px}.scene>.copy,.scene>.inner,.scene>.frontiers{position:relative;z-index:4}.scene>.next{z-index:4}.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#b5b9bd;margin:0 0 32px}.scene h1,.scene h2{font-weight:500;letter-spacing:-.065em;line-height:1.01;margin:0 0 32px}.scene h1{font-size:clamp(53px,7.4vw,112px)}.scene h2{font-size:clamp(44px,6.5vw,95px)}.sub{color:#c2c6c9;font-size:clamp(17px,1.7vw,23px);line-height:1.45;max-width:650px}.aside{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#aeb2b6;margin-top:38px}.chapter{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:30px;color:#bdc2c5}.next{position:absolute;bottom:86px;right:7vw;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
 .steps{position:fixed;z-index:15;bottom:16px;left:5vw;right:5vw;display:flex;gap:6px}.steps a{flex:1;max-width:180px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#a9adb0}.steps a:after{content:"";display:block;height:2px;background:#ffffff50;margin-top:11px}.steps a.on{color:white}.steps a.on:after{background:#fff}
-.problems{background:linear-gradient(to bottom,transparent,#b9bcbd 22%,#b9bcbd 78%,transparent);color:#232628;min-height:143svh;justify-content:flex-start}.problems .inner{margin-top:17vh}.problems .eyebrow,.problems .sub{color:#50555a}.problems h2{max-width:860px}.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:50px}.slot{aspect-ratio:4/5;background:linear-gradient(145deg,#a6aaad,#c6c9c9,#a4a9ab);border:1px solid #aeaeaa;padding:18px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.slot:before{content:"";width:130%;height:55%;border:1px solid #80838988;border-radius:50%;position:absolute;top:20%;left:-13%;transform:rotate(-32deg)}.slot span{z-index:1;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#64696d}.slot strong{z-index:1;font:normal clamp(21px,2.5vw,38px) Georgia,serif;letter-spacing:-.04em}.footnote{color:#656a6f;font-size:12px;margin-top:25px}
-.intelligence{min-height:118svh}.physics{background:linear-gradient(#20232600,#30343872,#20232600)}.inquiry{background:linear-gradient(transparent,#191c1e 28%);min-height:112svh}.frontiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:55px}.frontiers a{border:1px solid #777c81;min-height:190px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s}.frontiers a:hover{background:#ffffff18}.frontiers strong{font-size:clamp(20px,2.5vw,35px);font-weight:500}.frontiers small{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#b4b8bb}
+
+/* A pinned image theatre: four editorial reveals, one continuous scroll space. */
+.problems{min-height:420svh;padding:0;display:block;color:#25292b;isolation:isolate}
+.gallery-pin{height:100svh;position:sticky;top:0;overflow:hidden;display:grid;align-items:center;padding:90px 7vw 74px;z-index:2}
+.gallery-wash{position:absolute;inset:0;background:#b9bcbd;opacity:var(--gallery-light,0);pointer-events:none;z-index:0}
+.gallery-layout{position:relative;z-index:4;display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:clamp(26px,6vw,110px);align-items:center;width:100%;max-width:1450px;margin:auto}
+.gallery-copy{max-width:510px;opacity:var(--gallery-light,0);transform:translateY(calc((1 - var(--gallery-light,0))*18px));will-change:opacity,transform}
+.gallery-copy h2{font-size:clamp(40px,5vw,78px);margin-bottom:20px}
+.gallery-copy .eyebrow,.gallery-copy .sub{color:#43494d}
+.gallery-copy .sub{font-size:clamp(15px,1.4vw,20px)}
+.gallery-stage{position:relative;aspect-ratio:16/11;width:100%;overflow:hidden;border:1px solid #666b6f6e;box-shadow:0 18px 85px #1e202326;background:#959a9d;opacity:var(--gallery-light,0);transform:scale(calc(.92 + .08*var(--gallery-light,0)));will-change:opacity,transform}
+.art-panel{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(18px,3vw,40px);opacity:0;transform:scale(1.1) translateY(24px);pointer-events:none;will-change:opacity,transform;overflow:hidden}
+.art-panel::before{content:"";position:absolute;width:84%;height:120%;top:-35%;right:-18%;border:1px solid #f1f2f25a;border-radius:50%;transform:rotate(-34deg);pointer-events:none}
+.art-panel::after{content:"";position:absolute;width:90%;height:80%;bottom:-38%;left:-25%;border:1px solid #555a6066;border-radius:50%;transform:rotate(25deg);pointer-events:none}
+.art-panel[data-art="0"]{background:radial-gradient(ellipse at 74% 36%,#d0d2d2,#a2a6a8 48%,#73787c)}
+.art-panel[data-art="1"]{background:radial-gradient(ellipse at 30% 70%,#d2d3d2,#a9adae 44%,#777d81)}
+.art-panel[data-art="2"]{background:radial-gradient(ellipse at 72% 18%,#e0e0de,#afb3b5 52%,#71777b)}
+.art-panel[data-art="3"]{background:radial-gradient(ellipse at 22% 34%,#c9cccd,#999fa2 45%,#666d72)}
+.art-panel .art-id,.art-panel .art-label,.art-panel .art-note{position:relative;z-index:1}
+.art-id{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#3c4348}
+.art-label{font:normal clamp(33px,4.3vw,66px)/1.06 Georgia,serif;letter-spacing:-.045em;color:#262b2f;max-width:80%;margin-top:auto}
+.art-note{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#4c555a;margin-top:14px}
+.gallery-status{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px;color:#3d4449;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.gallery-track{height:2px;flex:1;background:#4b51554d;overflow:hidden}
+.gallery-fill{height:100%;width:0;background:#343a3e;transform-origin:left}
+.gallery-fallback{display:none}
+.intelligence{min-height:118svh}
+.physics{background:linear-gradient(#20232600,#30343872,#20232600)}.inquiry{background:linear-gradient(transparent,#191c1e 28%);min-height:112svh}.frontiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:55px}.frontiers a{border:1px solid #777c81;min-height:190px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s}.frontiers a:hover{background:#ffffff18}.frontiers strong{font-size:clamp(20px,2.5vw,35px);font-weight:500}.frontiers small{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#b4b8bb}
 .reveal{opacity:.3;transform:translateY(32px);transition:opacity .8s,transform .8s}.reveal.seen{opacity:1;transform:none}footer{position:relative;z-index:3;background:#191c1e;border-top:1px solid #ffffff44;padding:34px 7vw 90px;display:flex;justify-content:space-between;font-size:12px;color:#afb4b8}
-@media(max-width:720px){header{padding:0 23px}.nav a{display:none}.scene{padding:110px 24px 120px}.scene h1{font-size:clamp(47px,12vw,68px)}.scene h2{font-size:clamp(41px,10vw,65px)}.slots{grid-template-columns:repeat(2,1fr)}.slot{padding:12px}.slot strong{font-size:23px}.problems{min-height:130svh}.problems .inner{margin-top:12vh}.frontiers{grid-template-columns:repeat(2,1fr)}.frontiers a{min-height:145px}.steps{left:14px;right:14px}.steps a{font-size:8px}.sub{font-size:17px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+@media(max-width:720px){header{padding:0 23px}.nav a{display:none}.scene{padding:110px 24px 120px}.scene h1{font-size:clamp(47px,12vw,68px)}.scene h2{font-size:clamp(41px,10vw,65px)}.gallery-pin{padding:92px 22px 76px}.gallery-layout{grid-template-columns:1fr;gap:20px;align-content:center}.gallery-copy h2{font-size:clamp(34px,8vw,48px);margin-bottom:10px}.gallery-copy .sub{font-size:14px;line-height:1.35}.gallery-copy .eyebrow{margin-bottom:14px}.gallery-stage{aspect-ratio:4/3;max-height:45svh}.art-panel{padding:17px}.art-label{font-size:clamp(29px,8vw,46px)}.gallery-status{margin-top:10px}.problems{min-height:420svh}.frontiers{grid-template-columns:repeat(2,1fr)}.frontiers a{min-height:145px}.steps{left:14px;right:14px}.steps a{font-size:8px}.sub{font-size:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.gallery-pin{position:relative;height:auto;min-height:100svh;background:#b9bcbd}.gallery-wash{opacity:1!important}.gallery-copy,.gallery-stage{opacity:1!important;transform:none!important}.gallery-layout{display:block}.gallery-stage{display:none}.gallery-fallback{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:25px}.gallery-fallback div{border:1px solid #888;padding:24px 14px;min-height:140px;background:#a4a8aa;color:#25292b}.problems{min-height:0}.gallery-status{display:none}}
 </style>
 </head>
 <body>
 <canvas id="fabric" aria-hidden="true"></canvas><div class="shade" aria-hidden="true"></div>
-<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 01</span></div></header>
+<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 3.1</span></div></header>
 <nav class="steps" aria-label="Explore sections"><a href="#ambition" class="on">01 Ambition</a><a href="#problems">02 Problems</a><a href="#intelligence">03 Intelligence</a><a href="#physics">04 Physics</a><a href="#world">05 World</a></nav>
 <main>
 <section class="scene" id="ambition" data-mode="0"><div class="copy reveal seen"><p class="eyebrow">Civilization-Scale Computing</p><h1>What will it take to solve the harder problems?</h1><p class="sub">From discovering medicines and materials to understanding the universe and modeling complex systems.</p><p class="aside">Beyond the Bit / What comes after the individual?</p></div><p class="next">Scroll to explore ↓</p></section>
-<section class="scene problems" id="problems" data-mode="1"><div class="inner"><div class="reveal"><p class="eyebrow">The problems</p><h2>Questions that resist easy answers.</h2><p class="sub">Different disciplines. Different constraints. All pushing the limits of our methods and computing systems.</p></div><div class="slots">
-<div class="slot reveal"><span>Artwork placeholder / 01</span><strong>Drug discovery</strong></div>
-<div class="slot reveal"><span>Artwork placeholder / 02</span><strong>New materials</strong></div>
-<div class="slot reveal"><span>Artwork placeholder / 03</span><strong>The universe</strong></div>
-<div class="slot reveal"><span>Artwork placeholder / 04</span><strong>Complex systems</strong></div></div><p class="footnote">Temporary visual slots. Final artwork will be created in Midjourney.</p></div></section>
+<section class="problems" id="problems" data-mode="1" aria-label="Hard problems in science and complex systems">
+  <div class="gallery-pin">
+    <div class="gallery-wash" aria-hidden="true"></div>
+    <div class="gallery-layout">
+      <div class="gallery-copy">
+        <p class="eyebrow">The problems</p>
+        <h2>Questions that resist easy answers.</h2>
+        <p class="sub">Different disciplines. Different constraints. All pushing the limits of our methods and computational systems.</p>
+      </div>
+      <div>
+        <div class="gallery-stage" aria-label="Four artwork placeholders for future Midjourney imagery">
+          <div class="art-panel" data-art="0"><span class="art-id">Study 01 / Placeholder image</span><div class="art-label">Drug discovery</div><span class="art-note">Future Midjourney artwork · 16:11 crop</span></div>
+          <div class="art-panel" data-art="1"><span class="art-id">Study 02 / Placeholder image</span><div class="art-label">New materials</div><span class="art-note">Future Midjourney artwork · 16:11 crop</span></div>
+          <div class="art-panel" data-art="2"><span class="art-id">Study 03 / Placeholder image</span><div class="art-label">The universe</div><span class="art-note">Future Midjourney artwork · 16:11 crop</span></div>
+          <div class="art-panel" data-art="3"><span class="art-id">Study 04 / Placeholder image</span><div class="art-label">Complex systems</div><span class="art-note">Future Midjourney artwork · 16:11 crop</span></div>
+        </div>
+        <div class="gallery-status" aria-hidden="true"><span data-art-number>01 / 04</span><div class="gallery-track"><div class="gallery-fill" data-art-progress></div></div><span>Visual studies</span></div>
+      </div>
+    </div>
+    <div class="gallery-fallback" aria-label="Artwork placeholders"><div>Drug discovery</div><div>New materials</div><div>The universe</div><div>Complex systems</div></div>
+  </div>
+</section>
 <section class="scene intelligence" id="intelligence" data-mode="2"><div class="copy reveal"><p class="chapter">01 / Workloads</p><h2>Computing becomes intelligent.</h2><p class="sub">Learned, probabilistic, and agentic systems are changing what computation can do. Coordinating many such systems raises new questions.</p></div></section>
 <section class="scene physics" id="physics" data-mode="3"><div class="copy reveal"><p class="chapter">02 / Substrates</p><h2>Computing embraces physics.</h2><p class="sub">Quantum information and physical dynamics offer distinct directions for computation beyond conventional digital architectures.</p></div></section>
 <section class="scene" id="world" data-mode="4"><div class="copy reveal"><p class="chapter">03 / Embodiment</p><h2>Computing extends into the physical world.</h2><p class="sub">Sensing, reasoning, coordination, and action meet the constraints of real environments, where mistakes cannot always be undone.</p></div></section>
@@ -47,6 +90,10 @@ main{position:relative;z-index:2}.scene{position:relative;min-height:106svh;padd
 const canvas=document.querySelector('#fabric'),ctx=canvas.getContext('2d');if(!ctx)return;
 const scenes=Array.from(document.querySelectorAll('[data-mode]')),links=Array.from(document.querySelectorAll('.steps a'));
 const reduced=window.matchMedia('(prefers-reduced-motion:reduce)');
+const gallery=document.querySelector('.problems'),pin=document.querySelector('.gallery-pin');
+const panels=Array.from(document.querySelectorAll('.art-panel'));
+const counter=document.querySelector('[data-art-number]'),galleryProgress=document.querySelector('[data-art-progress]');
+let galleryRatio=0;
 let w=0,h=0,d=1,mode=0,visualMode=0,targetMode=0,scroll=0,target=0,frame=0;
 function resize(){w=innerWidth;h=innerHeight;d=Math.min(devicePixelRatio||1,1.7);canvas.width=Math.round(w*d);canvas.height=Math.round(h*d);ctx.setTransform(d,0,0,d,0,0);if(reduced.matches)draw(0)}
 function smoothstep(a,b,x){const v=Math.min(1,Math.max(0,(x-a)/(b-a)));return v*v*(3-2*v)}
@@ -62,7 +109,24 @@ function onscroll(){
    if(distance>=0)mode=i;
  });
  links.forEach((el,i)=>el.classList.toggle('on',i===Math.min(mode,4)));
- if(reduced.matches){scroll=target;visualMode=targetMode;draw(0)}
+ if(gallery&&pin){
+  const travel=Math.max(1,gallery.offsetHeight-pin.offsetHeight);
+  galleryRatio=Math.min(1,Math.max(0,(scrollY-gallery.offsetTop)/travel));
+  const v=galleryRatio;
+  const light=smoothstep(0,.11,v)*(1-smoothstep(.87,1,v));
+  pin.style.setProperty('--gallery-light',String(light));
+  const segment=v*4;
+  panels.forEach((el,i)=>{
+    // Crossfade overlapping plates; no cut, no jumping between image slots.
+    const fade=Math.max(0,1-Math.abs(segment-(i+.5))/.75);
+    const alpha=smoothstep(0,1,fade);
+    el.style.opacity=String(alpha);
+    el.style.transform='scale('+(1.09-.09*smoothstep(0,1,Math.min(1,Math.abs(segment-(i+.5))/.75)))+') translateY('+((i+.5-segment)*10)+'px)';
+  });
+  if(counter)counter.textContent=String(Math.min(4,Math.floor(segment)+1)).padStart(2,'0')+' / 04';
+  if(galleryProgress)galleryProgress.style.width=(v*100)+'%';
+}
+if(reduced.matches){scroll=target;visualMode=targetMode;draw(0)}
 }
 function draw(ms){
 ctx.clearRect(0,0,w,h);
@@ -79,13 +143,16 @@ const tone=204-122*light;
 const visibleAlpha=alpha*(1-.55*Math.sin(Math.PI*light));
 let points=[];
 for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
-const x=i/(cols-1),y=j/(rows-1),px=w*(x*1.55-.24)+Math.sin(y*9+p*.3)*11;
+const x=i/(cols-1),y=j/(rows-1);
+const camera=1+.13*smoothstep(.02,.28,scroll)+.12*smoothstep(.35,.72,scroll);
+const px=(w*(x*1.55-.24)-w*.52)*camera+w*.52+Math.sin(y*9+p*.3)*11;
 const a=Math.sin(x*11+y*6+p)+.35*Math.sin(x*24-y*10-t);
 const b=Math.sin(x*16+p)*Math.cos(y*9-p*.7);
 const c=Math.sin(x*28+p)*Math.sin(y*18-p);
 const e=Math.sin(x*9+y*8+t)*Math.cos(x*4-y*7);
 const behaviors=[a,a,b,c,e,a];const wave=behaviors[k]*(1-mix)+behaviors[next]*mix;
-row.push([px,h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*22]);
+const py=h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*22;
+row.push([px,(py-h*.56)*camera+h*.56]);
 }points.push(row)}
 ctx.strokeStyle='rgba('+Math.round(tone)+','+Math.round(tone+4)+','+Math.round(tone+8)+','+visibleAlpha+')';ctx.lineWidth=w<720?.55:.7;
 for(let j=0;j<rows;j++){ctx.beginPath();points[j].forEach((pt,i)=>i?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1]));ctx.stroke()}
