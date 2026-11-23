@@ -1,0 +1,78 @@
+---
+const home = '/';
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#111315">
+<title>Fabric Lab / Vijoy</title>
+<style is:global>
+:root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#111315;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
+#fabric{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#0d0f11b8,transparent 80%),linear-gradient(0deg,#0d0f1150,transparent 50%)}
+header{height:69px;position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#101214b8;border-bottom:1px solid #ffffff25;backdrop-filter:blur(12px)}.brand{font:700 31px Georgia,serif;letter-spacing:-.07em}.nav{font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:28px;align-items:center}.lab{border:1px solid #85898d;padding:9px}
+main{position:relative;z-index:2}.scene{position:relative;min-height:106svh;padding:125px 7vw 120px;display:flex;flex-direction:column;justify-content:center}.copy{max-width:800px}.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#b5b9bd;margin:0 0 32px}.scene h1,.scene h2{font-weight:500;letter-spacing:-.065em;line-height:1.01;margin:0 0 32px}.scene h1{font-size:clamp(53px,7.4vw,112px)}.scene h2{font-size:clamp(44px,6.5vw,95px)}.sub{color:#c2c6c9;font-size:clamp(17px,1.7vw,23px);line-height:1.45;max-width:650px}.aside{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#aeb2b6;margin-top:38px}.chapter{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:30px;color:#bdc2c5}.next{position:absolute;bottom:86px;right:7vw;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.steps{position:fixed;z-index:15;bottom:16px;left:5vw;right:5vw;display:flex;gap:6px}.steps a{flex:1;max-width:180px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#a9adb0}.steps a:after{content:"";display:block;height:2px;background:#ffffff50;margin-top:11px}.steps a.on{color:white}.steps a.on:after{background:#fff}
+.problems{background:linear-gradient(to bottom,transparent,#e8e6e1 17%,#e8e6e1 85%,transparent);color:#232628;min-height:143svh;justify-content:flex-start}.problems .inner{margin-top:17vh}.problems .eyebrow,.problems .sub{color:#50555a}.problems h2{max-width:860px}.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:50px}.slot{aspect-ratio:4/5;background:linear-gradient(145deg,#cac9c5,#e3e1dc,#babbb8);border:1px solid #aeaeaa;padding:18px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.slot:before{content:"";width:130%;height:55%;border:1px solid #80838988;border-radius:50%;position:absolute;top:20%;left:-13%;transform:rotate(-32deg)}.slot span{z-index:1;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#64696d}.slot strong{z-index:1;font:normal clamp(21px,2.5vw,38px) Georgia,serif;letter-spacing:-.04em}.footnote{color:#656a6f;font-size:12px;margin-top:25px}
+.intelligence{min-height:118svh}.physics{background:linear-gradient(#11131500,#1a1d2066,#11131500)}.inquiry{background:linear-gradient(transparent,#0c0e10 28%);min-height:112svh}.frontiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:55px}.frontiers a{border:1px solid #777c81;min-height:190px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s}.frontiers a:hover{background:#ffffff18}.frontiers strong{font-size:clamp(20px,2.5vw,35px);font-weight:500}.frontiers small{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#b4b8bb}
+.reveal{opacity:.3;transform:translateY(32px);transition:opacity .8s,transform .8s}.reveal.seen{opacity:1;transform:none}footer{position:relative;z-index:3;background:#0c0e10;border-top:1px solid #ffffff44;padding:34px 7vw 90px;display:flex;justify-content:space-between;font-size:12px;color:#afb4b8}
+@media(max-width:720px){header{padding:0 23px}.nav a{display:none}.scene{padding:110px 24px 120px}.scene h1{font-size:clamp(47px,12vw,68px)}.scene h2{font-size:clamp(41px,10vw,65px)}.slots{grid-template-columns:repeat(2,1fr)}.slot{padding:12px}.slot strong{font-size:23px}.problems{min-height:130svh}.problems .inner{margin-top:12vh}.frontiers{grid-template-columns:repeat(2,1fr)}.frontiers a{min-height:145px}.steps{left:14px;right:14px}.steps a{font-size:8px}.sub{font-size:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<canvas id="fabric" aria-hidden="true"></canvas><div class="shade" aria-hidden="true"></div>
+<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 01</span></div></header>
+<nav class="steps" aria-label="Explore sections"><a href="#ambition" class="on">01 Ambition</a><a href="#problems">02 Problems</a><a href="#intelligence">03 Intelligence</a><a href="#physics">04 Physics</a><a href="#world">05 World</a></nav>
+<main>
+<section class="scene" id="ambition" data-mode="0"><div class="copy reveal seen"><p class="eyebrow">Civilization-Scale Computing</p><h1>What will it take to solve the harder problems?</h1><p class="sub">From discovering medicines and materials to understanding the universe and modeling complex systems.</p><p class="aside">Beyond the Bit / What comes after the individual?</p></div><p class="next">Scroll to explore ↓</p></section>
+<section class="scene problems" id="problems" data-mode="1"><div class="inner"><div class="reveal"><p class="eyebrow">The problems</p><h2>Questions that resist easy answers.</h2><p class="sub">Different disciplines. Different constraints. All pushing the limits of our methods and computing systems.</p></div><div class="slots">
+<div class="slot reveal"><span>Artwork placeholder / 01</span><strong>Drug discovery</strong></div>
+<div class="slot reveal"><span>Artwork placeholder / 02</span><strong>New materials</strong></div>
+<div class="slot reveal"><span>Artwork placeholder / 03</span><strong>The universe</strong></div>
+<div class="slot reveal"><span>Artwork placeholder / 04</span><strong>Complex systems</strong></div></div><p class="footnote">Temporary visual slots. Final artwork will be created in Midjourney.</p></div></section>
+<section class="scene intelligence" id="intelligence" data-mode="2"><div class="copy reveal"><p class="chapter">01 / Workloads</p><h2>Computing becomes intelligent.</h2><p class="sub">Learned, probabilistic, and agentic systems are changing what computation can do. Coordinating many such systems raises new questions.</p></div></section>
+<section class="scene physics" id="physics" data-mode="3"><div class="copy reveal"><p class="chapter">02 / Substrates</p><h2>Computing embraces physics.</h2><p class="sub">Quantum information and physical dynamics offer distinct directions for computation beyond conventional digital architectures.</p></div></section>
+<section class="scene" id="world" data-mode="4"><div class="copy reveal"><p class="chapter">03 / Embodiment</p><h2>Computing extends into the physical world.</h2><p class="sub">Sensing, reasoning, coordination, and action meet the constraints of real environments, where mistakes cannot always be undone.</p></div></section>
+<section class="scene inquiry" id="frontiers" data-mode="5"><div class="copy reveal"><p class="eyebrow">Beyond the individual</p><h2>What state must survive the boundary?</h2><p class="sub">Four distinct frontiers. One recurring inquiry: connecting and scaling useful capabilities beyond isolated systems.</p></div><div class="frontiers">
+<a href="/#frontiers"><small>Collective intelligence</small><strong>Think</strong><small>Explore frontier ↗</small></a>
+<a href="/#frontiers"><small>Quantum computing</small><strong>Entangle</strong><small>Explore frontier ↗</small></a>
+<a href="/#frontiers"><small>Physics-based computing</small><strong>Fluctuate</strong><small>Explore frontier ↗</small></a>
+<a href="/#frontiers"><small>Physical AI</small><strong>Move</strong><small>Explore frontier ↗</small></a>
+</div></section>
+</main><footer><span>Fabric Lab / Experimental prototype</span><a href="/">Return to current website ↗</a></footer>
+<script is:inline>
+(function(){
+const canvas=document.querySelector('#fabric'),ctx=canvas.getContext('2d');if(!ctx)return;
+const scenes=Array.from(document.querySelectorAll('[data-mode]')),links=Array.from(document.querySelectorAll('.steps a'));
+const reduced=window.matchMedia('(prefers-reduced-motion:reduce)');
+let w=0,h=0,d=1,mode=0,scroll=0,target=0,frame=0,mouse=0;
+function resize(){w=innerWidth;h=innerHeight;d=Math.min(devicePixelRatio||1,1.7);canvas.width=Math.round(w*d);canvas.height=Math.round(h*d);ctx.setTransform(d,0,0,d,0,0);if(reduced.matches)draw(0)}
+function onscroll(){target=scrollY/Math.max(1,document.documentElement.scrollHeight-h);const at=scrollY+h*.55;scenes.forEach((el,i)=>{if(el.offsetTop<=at)mode=i});links.forEach((el,i)=>el.classList.toggle('on',i===Math.min(mode,4)));if(reduced.matches){scroll=target;draw(0)}}
+function draw(ms){
+ctx.clearRect(0,0,w,h);
+const t=reduced.matches?0:ms*.00018,p=scroll*17+t,cols=w<720?43:81,rows=w<720?24:32,amp=[80,20,92,108,120,95][mode];
+let points=[];
+for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
+const x=i/(cols-1),y=j/(rows-1),px=w*(x*1.55-.24)+Math.sin(y*9+p*.3)*11;
+const a=Math.sin(x*11+y*6+p)+.35*Math.sin(x*24-y*10-t);
+const b=Math.sin(x*16+p)*Math.cos(y*9-p*.7);
+const c=Math.sin(x*28+p)*Math.sin(y*18-p);
+const e=Math.sin(x*9+y*8+t)*Math.cos(x*4-y*7);
+const wave=mode===2?b:mode===3?c:mode===4?e:a;
+row.push([px,h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*22]);
+}points.push(row)}
+ctx.strokeStyle='rgba(204,208,212,'+(mode===1?.09:.23)+')';ctx.lineWidth=w<720?.55:.7;
+for(let j=0;j<rows;j++){ctx.beginPath();points[j].forEach((pt,i)=>i?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1]));ctx.stroke()}
+for(let i=0;i<cols;i++){ctx.beginPath();for(let j=0;j<rows;j++){const pt=points[j][i];j?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1])}ctx.stroke()}
+for(let j=0;j<rows;j+=3)for(let i=0;i<cols;i+=5){const v=(Math.sin(i*.6+j*.8+p)+1)*.5,pt=points[j][i];ctx.beginPath();ctx.arc(pt[0],pt[1],v>.85?1.4:.65,0,Math.PI*2);ctx.fillStyle='rgba(230,233,236,'+(mode===1?.07:.14+v*.4)+')';ctx.fill()}
+}
+let last=0;function tick(t){scroll+=(target-scroll)*.075;if(t-last>32){draw(t);last=t}frame=requestAnimationFrame(tick)}
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+addEventListener('resize',resize,{passive:true});addEventListener('scroll',onscroll,{passive:true});resize();onscroll();
+if(!reduced.matches)frame=requestAnimationFrame(tick);
+reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);if(reduced.matches)draw(0);else frame=requestAnimationFrame(tick)});
+})();
+</script></body></html>
