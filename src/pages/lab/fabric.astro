@@ -7,7 +7,7 @@ const home = '/';
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#eee9de">
-<title>Fabric Lab v4 / Vijoy</title>
+<title>Fabric Lab v4.1 / Vijoy</title>
 <style is:global>
 :root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#202326;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
 #fabric{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
@@ -103,15 +103,15 @@ footer{background:#1d1c19}
 /* Fabric v4: shared parchment world with gentle tonal differences, no pinned gallery. */
 :root{color-scheme:light;--site-paper:#eee9de;--site-ink:#292824;--site-muted:#6b665e}
 body{background:var(--site-paper);color:var(--site-ink)}
-.shade{background:linear-gradient(90deg,#eee9de7a,transparent 67%);opacity:.48}
-#fabric{z-index:3;opacity:.86}
+.shade{background:linear-gradient(90deg,#eee9de55,transparent 67%);opacity:.33}
+#fabric{z-index:3;opacity:1;-webkit-mask-image:radial-gradient(ellipse 88% 91% at 50% 51%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 88% 91% at 50% 51%,#000 60%,transparent 100%)}
 header{background:#eee9def0;color:var(--site-ink);border-bottom-color:#29282424}
 .lab{border-color:#817c73}.nav{color:#35332e}
 .eyebrow,.chapter,.aside,.next{color:#655f56}
 .scene .sub,.chapter-pin .sub{color:#56514b}
 .steps a{color:#6e695f}.steps a:after{background:#514d4644}.steps a.on{color:#292824}.steps a.on:after{background:#292824}
 #ambition{background:transparent}
-.problems-static{position:relative;height:auto;min-height:0;padding:110px 6vw 130px;background:#e7e2d8ad;color:var(--site-ink);isolation:auto}
+.problems-static{position:relative;height:auto;min-height:0;padding:110px 6vw 130px;background:#e7e2d858;color:var(--site-ink);isolation:auto}
 .problems-content{position:relative;z-index:4;max-width:1510px;margin:0 auto}
 .problems-content>.eyebrow{margin-bottom:22px;text-align:center}
 .problems-content>h2{font:400 clamp(48px,6.5vw,96px)/1.1 var(--display);letter-spacing:-.048em;text-align:center;margin:0 auto 23px;max-width:1050px}
@@ -127,15 +127,15 @@ header{background:#eee9def0;color:var(--site-ink);border-bottom-color:#29282424}
 .image-placeholder span{z-index:1;font:600 10px var(--text);letter-spacing:.15em;text-transform:uppercase}
 .image-placeholder strong{z-index:1;font:400 clamp(27px,3.3vw,52px) var(--display);letter-spacing:-.04em}
 .chapter-scene{background:transparent}
-.chapter-scene.intelligence{background:#eee9de70}
-.chapter-scene.physics{background:#e7e2d870}
-.chapter-scene.world{background:#e2ddd370}
+.chapter-scene.intelligence{background:#eee9de45}
+.chapter-scene.physics{background:#e7e2d845}
+.chapter-scene.world{background:#e2ddd345}
 .chapter-visual{background:linear-gradient(145deg,#ddd8cd,#bab7af)!important;border-color:#8a847a66;box-shadow:none}
 .chapter-visual::before{background:radial-gradient(circle at 58% 40%,#eee9de88,transparent 57%)}
 .visual-top,.visual-bottom{color:#504d47;border-color:#918d8544}.visual-bottom span:last-child{color:#706b64}
 .chapter-visual .accent{stroke:#444541}.chapter-visual .secondary{stroke:#666963}.chapter-visual .node{fill:#3e423f}.chapter-visual .ghost{stroke:#8b8c84}
 .chapter-scene .copy{color:#292824}
-.inquiry{background:#eee9de70}
+.inquiry{background:#eee9de45}
 .frontiers a{border-color:#817d756b}.frontiers a:hover{background:#2928240d}
 .frontiers small{color:#6b675f}
 footer{background:#e2ddd3;color:#5f5a53;border-top-color:#514b4333}
@@ -145,7 +145,7 @@ footer{background:#e2ddd3;color:#5f5a53;border-top-color:#514b4333}
 </head>
 <body>
 <canvas id="fabric" aria-hidden="true"></canvas><div class="shade" aria-hidden="true"></div>
-<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 4</span></div></header>
+<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 4.1</span></div></header>
 <nav class="steps" aria-label="Explore sections"><a href="#ambition" class="on">01 Ambition</a><a href="#problems">02 Problems</a><a href="#intelligence">03 Intelligence</a><a href="#physics">04 Physics</a><a href="#world">05 World</a></nav>
 <main>
 <section class="scene" id="ambition" data-mode="0"><div class="copy reveal seen"><p class="eyebrow">Civilization-Scale Computing</p><h1>What will it take to solve the harder problems?</h1><p class="sub">From discovering medicines and materials to understanding the universe and modeling complex systems.</p><p class="aside">Beyond the Bit / What comes after the individual?</p></div><p class="next">Scroll to explore ↓</p></section>
@@ -211,7 +211,7 @@ if(reduced.matches){scroll=target;visualMode=targetMode;draw(0)}
 function draw(ms){
 ctx.clearRect(0,0,w,h);
 const t=reduced.matches?0:ms*.00018,p=scroll*17+t,cols=w<720?43:81,rows=w<720?24:32;
-const stages=[0,1,2,3,4,5],amplitudes=[65,32,75,85,95,70],alphas=[.21,.16,.22,.22,.22,.18];
+const stages=[0,1,2,3,4,5],amplitudes=[65,32,75,85,95,70],alphas=[.30,.28,.30,.30,.30,.26];
 const k=Math.min(5,Math.floor(visualMode)),next=Math.min(5,k+1),mix=smoothstep(0,1,visualMode-k);
 const amp=amplitudes[k]*(1-mix)+amplitudes[next]*mix;
 const alpha=alphas[k]*(1-mix)+alphas[next]*mix;
@@ -219,8 +219,8 @@ const alpha=alphas[k]*(1-mix)+alphas[next]*mix;
 // charcoal-gray filaments over gray; silver filaments over charcoal.
 // Dim through the midpoint so the tonal shift never reads as a color snap.
 const light=0;
-const tone=80;
-const visibleAlpha=alpha*.88;
+const tone=67;
+const visibleAlpha=alpha*.96;
 let points=[];
 for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
 const x=i/(cols-1),y=j/(rows-1);
@@ -234,7 +234,7 @@ const behaviors=[a,a,b,c,e,a];const wave=behaviors[k]*(1-mix)+behaviors[next]*mi
 const py=h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*22;
 row.push([px,(py-h*.56)*camera+h*.56]);
 }points.push(row)}
-ctx.strokeStyle='rgba('+Math.round(tone+5)+','+Math.round(tone+3)+','+Math.round(tone-2)+','+visibleAlpha+')';ctx.lineWidth=w<720?.55:.7;
+ctx.strokeStyle='rgba('+Math.round(tone+5)+','+Math.round(tone+3)+','+Math.round(tone-2)+','+visibleAlpha+')';ctx.lineWidth=w<720?.6:.75;
 for(let j=0;j<rows;j++){ctx.beginPath();points[j].forEach((pt,i)=>i?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1]));ctx.stroke()}
 for(let i=0;i<cols;i++){ctx.beginPath();for(let j=0;j<rows;j++){const pt=points[j][i];j?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1])}ctx.stroke()}
 for(let j=0;j<rows;j+=3)for(let i=0;i<cols;i+=5){const v=(Math.sin(i*.6+j*.8+p)+1)*.5,pt=points[j][i];ctx.beginPath();ctx.arc(pt[0],pt[1],v>.85?1.4:.65,0,Math.PI*2);ctx.fillStyle='rgba('+Math.round(tone+18)+','+Math.round(tone+15)+','+Math.round(tone+10)+','+((.12+v*.4)*(visibleAlpha/.23))+')';ctx.fill()}
