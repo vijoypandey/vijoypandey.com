@@ -228,7 +228,7 @@ const alpha=alphas[k]*(1-mix)+alphas[next]*mix;
 // Dim through the midpoint so the tonal shift never reads as a color snap.
 const light=0;
 const tone=67;
-const visibleAlpha=alpha*.96;
+const visibleAlpha=alpha*.48;
 let points=[];
 for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
 const x=i/(cols-1),y=j/(rows-1);
