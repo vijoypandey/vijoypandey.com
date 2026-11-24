@@ -7,7 +7,7 @@ const home = '/';
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#111315">
-<title>Fabric Lab v3.2 / Vijoy</title>
+<title>Fabric Lab v3.3 / Vijoy</title>
 <style is:global>
 :root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#202326;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
 #fabric{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
@@ -18,9 +18,9 @@ main{position:relative;z-index:4}.scene{position:relative;min-height:106svh;padd
 /* A pinned image theatre: four editorial reveals, one continuous scroll space. */
 .problems{height:250svh;min-height:0;padding:0;display:block;color:#25292b;isolation:isolate}
 .gallery-pin{height:100svh;position:sticky;top:0;overflow:hidden;display:grid;align-items:center;padding:90px 7vw 74px;z-index:4}
-.gallery-wash{position:absolute;inset:0;background:#b9bcbd;opacity:var(--gallery-light,0);pointer-events:none;z-index:0}
+.gallery-wash{position:absolute;inset:0;background:#383934;opacity:var(--gallery-light,0);pointer-events:none;z-index:0}
 .gallery-layout{position:relative;z-index:4;display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:clamp(26px,6vw,110px);align-items:center;width:100%;max-width:1450px;margin:auto}
-.gallery-copy{max-width:510px;opacity:var(--gallery-light,0);transform:translateY(calc((1 - var(--gallery-light,0))*18px));will-change:opacity,transform}
+.gallery-copy{max-width:510px;color:#eeece5;opacity:var(--gallery-light,0);transform:translateY(calc((1 - var(--gallery-light,0))*18px));will-change:opacity,transform}
 .gallery-copy h2{font-size:clamp(40px,5vw,78px);margin-bottom:20px}
 .gallery-copy .eyebrow,.gallery-copy .sub{color:#43494d}
 .gallery-copy .sub{font-size:clamp(15px,1.4vw,20px)}
@@ -70,8 +70,8 @@ body{font-family:var(--text);-webkit-font-smoothing:antialiased}
 .physics .chapter-visual{background:radial-gradient(circle at 50% 50%,#59616680,#24282c 62%,#171a1d)}
 .world .chapter-visual{background:linear-gradient(150deg,#353a3d,#1a1e21 72%)}
 .chapter-scene .sub{max-width:31ch}
-#ambition{z-index:5;background:linear-gradient(180deg,transparent 59%,#b9bcbd 100%)}
-#ambition::after{content:"";position:absolute;left:0;right:0;bottom:-12svh;height:36svh;z-index:3;pointer-events:none;background:linear-gradient(180deg,#b9bcbd00,#b9bcbd33 55%,#b9bcbd00);-webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px);-webkit-mask-image:linear-gradient(180deg,transparent,#000 34%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 34%,#000 70%,transparent)}
+#ambition{z-index:5;background:transparent}
+#ambition::after{content:none}
 @media(prefers-reduced-motion:reduce){#ambition::after{-webkit-backdrop-filter:none;backdrop-filter:none}}
 @media(max-width:720px){.chapter-scene{height:135svh;padding:0}.chapter-pin{min-height:0;height:100svh;padding:92px 22px 62px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:24px}.chapter-pin .copy{flex:0 0 auto}.chapter-pin h2{font-size:clamp(38px,9.5vw,58px);margin-bottom:14px}.chapter-pin .sub{font-size:16px;line-height:1.42;margin:0}.chapter-pin .chapter{margin-bottom:12px}.chapter-visual{height:38svh;min-height:220px;flex:0 1 auto}.visual-top,.visual-bottom{left:16px;right:16px;font-size:10px}.visual-top{top:15px}.visual-bottom{bottom:15px}.scene h1{max-width:12ch}}
 @media(max-width:400px){.chapter-pin h2{font-size:36px}.chapter-visual{height:32svh;min-height:180px}.chapter-pin{gap:16px}}
@@ -82,10 +82,10 @@ body{font-family:var(--text);-webkit-font-smoothing:antialiased}
 body{background:var(--ink);color:var(--cream)}
 .shade{background:linear-gradient(90deg,#1b1a18b3,transparent 80%),linear-gradient(0deg,#1b1a1840,transparent 50%)}
 header{background:#24231fd9;border-bottom-color:#eee9de25}
-#ambition{background:linear-gradient(180deg,transparent 59%,var(--paper) 100%)}
-#ambition::after{background:linear-gradient(180deg,#d9d5cc00,#d9d5cc33 55%,#d9d5cc00)}
-.gallery-wash{background:var(--paper)}
-.gallery-copy .eyebrow,.gallery-copy .sub{color:#4d4a44}
+#ambition{background:transparent}
+#ambition::after{content:none}
+.gallery-wash{background:#383934}
+.gallery-copy .eyebrow,.gallery-copy .sub{color:#d0cec5}
 .gallery-stage{background:#aaa69f;border-color:#68655f6e}
 .art-panel[data-art="0"]{background:radial-gradient(ellipse at 74% 36%,#e0dcd3,#b4b0a7 48%,#85827c)}
 .art-panel[data-art="1"]{background:radial-gradient(ellipse at 30% 70%,#dedbd3,#b8b4ac 44%,#86837e)}
@@ -98,12 +98,12 @@ header{background:#24231fd9;border-bottom-color:#eee9de25}
 .world .chapter-visual{background:linear-gradient(150deg,#3a3933,#1d1c19 72%)}
 .inquiry{background:linear-gradient(transparent,#1d1c19 28%)}
 footer{background:#1d1c19}
-@media(prefers-reduced-motion:reduce){.gallery-pin{background:var(--paper)}.gallery-fallback div{background:#c7c2b8}}
+@media(prefers-reduced-motion:reduce){.gallery-pin{background:#383934}.gallery-copy{opacity:1!important;color:#eeece5}.gallery-copy .eyebrow,.gallery-copy .sub{color:#d0cec5}.gallery-fallback div{background:#aba79e}}
 </style>
 </head>
 <body>
 <canvas id="fabric" aria-hidden="true"></canvas><div class="shade" aria-hidden="true"></div>
-<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 3.2</span></div></header>
+<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 3.3</span></div></header>
 <nav class="steps" aria-label="Explore sections"><a href="#ambition" class="on">01 Ambition</a><a href="#problems">02 Problems</a><a href="#intelligence">03 Intelligence</a><a href="#physics">04 Physics</a><a href="#world">05 World</a></nav>
 <main>
 <section class="scene" id="ambition" data-mode="0"><div class="copy reveal seen"><p class="eyebrow">Civilization-Scale Computing</p><h1>What will it take to solve the harder problems?</h1><p class="sub">From discovering medicines and materials to understanding the universe and modeling complex systems.</p><p class="aside">Beyond the Bit / What comes after the individual?</p></div><p class="next">Scroll to explore ↓</p></section>
@@ -158,7 +158,7 @@ function onscroll(){
  mode=0;targetMode=0;
  scenes.forEach((el,i)=>{
    if(i===0)return;
-   const distance=at-el.offsetTop+(i===1?h*.35:0);
+   const distance=at-el.offsetTop;
    // Blend across a full viewport around each chapter boundary, never snap meshes.
    targetMode+=smoothstep(-h*.55,h*.55,distance);
    if(distance>=0)mode=i;
@@ -168,9 +168,9 @@ function onscroll(){
   const travel=Math.max(1,gallery.offsetHeight-pin.offsetHeight);
   galleryRatio=Math.min(1,Math.max(0,(scrollY-gallery.offsetTop)/travel));
   const v=galleryRatio;
-  // Keep the light field through the pinned part; fade only as the pin leaves.
-  const exit=smoothstep(0,1,(scrollY-gallery.offsetTop-travel)/h);
-  const light=1-exit;
+  // Fade in after entering the pinned scene, and fade back out before the pin releases.
+  // Both edges happen inside the pinned scroll, avoiding hard top/bottom boundaries.
+  const light=smoothstep(0,.18,v)*(1-smoothstep(.78,1,v));
   pin.style.setProperty('--gallery-light',String(light));
   const segment=Math.min(3.5,Math.max(.5,v*4));
   panels.forEach((el,i)=>{
@@ -200,14 +200,14 @@ const alpha=alphas[k]*(1-mix)+alphas[next]*mix;
 // One continuous mesh throughout. Its ink adapts to the lighter chapter:
 // charcoal-gray filaments over gray; silver filaments over charcoal.
 // Dim through the midpoint so the tonal shift never reads as a color snap.
-const light=smoothstep(.05,.95,Math.max(0,1-Math.abs(visualMode-1)));
-const tone=204-122*light;
+const light=gallery&&pin ? galleryRatio>0 ? smoothstep(0,.18,galleryRatio)*(1-smoothstep(.78,1,galleryRatio)) : 0 : 0;
+const tone=204-48*light;
 const visibleAlpha=alpha*(1-.55*Math.sin(Math.PI*light));
 let points=[];
 for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
 const x=i/(cols-1),y=j/(rows-1);
-const camera=1+.13*smoothstep(.02,.28,scroll)+.12*smoothstep(.35,.72,scroll);
-const px=(w*(x*1.55-.24)-w*.52)*camera+w*.52+Math.sin(y*9+p*.3)*11;
+const camera=1+.045*smoothstep(.10,.35,scroll)+.09*smoothstep(.45,.8,scroll);
+const px=(w*(x*1.42-.18)-w*.52)*camera+w*.52+Math.sin(y*9+p*.3)*9;
 const a=Math.sin(x*11+y*6+p)+.35*Math.sin(x*24-y*10-t);
 const b=Math.sin(x*16+p)*Math.cos(y*9-p*.7);
 const c=Math.sin(x*28+p)*Math.sin(y*18-p);
