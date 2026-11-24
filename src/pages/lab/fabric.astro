@@ -9,6 +9,9 @@ const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#eee9de">
 <title>Fabric Lab v4.2 / Vijoy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style is:global>
 :root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#202326;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
 #fabric{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
@@ -157,6 +160,16 @@ footer{background:#e2ddd3;color:#5f5a53;border-top-color:#514b4333}
 .chapter-scene .chapter:before{background:var(--chapter-dot)}
 .chapter-scene .scaling-thread{color:var(--chapter-emphasis)}
 .chapter-scene .chapter-links .link-arrow{color:var(--chapter-dot)}
+:root{--text:'Roboto','Helvetica Neue',Arial,sans-serif}
+body{font-weight:300}
+.scene .sub,.gallery-copy .sub,.problems-intro,.problem-card-copy>p:last-child,.history-bridge,.scene .scaling-thread,.history-bridge .scaling-thread,.activity-list a{font-weight:300;letter-spacing:normal}
+.scene .sub,.gallery-copy .sub,.problems-intro,.problem-card-copy>p:last-child,.history-bridge{color:#504d48}
+.scene .scaling-thread,.history-bridge .scaling-thread{color:#353432}
+.intelligence{--chapter-emphasis:#34574f}
+.physics{--chapter-emphasis:#6e5429}
+.world{--chapter-emphasis:#435577}
+.chapter-scene .scaling-thread{color:var(--chapter-emphasis)}
+.eyebrow,.chapter,.nav,.steps,.aside,.next,.art-id,.art-note,.gallery-status,.chapter-links,.problem-index,.image-placeholder span{font-weight:500}
 </style>
 </head>
 <body>
