@@ -219,7 +219,7 @@ if(reduced.matches){scroll=target;visualMode=targetMode;draw(0)}
 }
 function draw(ms){
 ctx.clearRect(0,0,w,h);
-const t=reduced.matches?0:ms*.00018,p=scroll*17+t,cols=w<720?43:81,rows=w<720?24:32;
+const t=reduced.matches?0:ms*.00032,p=scroll*17+t,cols=w<720?43:81,rows=w<720?24:32;
 const amplitudes=[65,32,75,85,95,80,70],alphas=[.30,.28,.30,.30,.30,.30,.26];
 const k=Math.min(6,Math.floor(visualMode)),next=Math.min(6,k+1),mix=smoothstep(0,1,visualMode-k);
 const amp=amplitudes[k]*(1-mix)+amplitudes[next]*mix;
@@ -234,13 +234,13 @@ let points=[];
 for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
 const x=i/(cols-1),y=j/(rows-1);
 const camera=1+.025*smoothstep(.10,.35,scroll)+.065*smoothstep(.45,.8,scroll);
-const px=(w*(x*1.42-.18)-w*.52)*camera+w*.52+Math.sin(y*9+p*.3)*9;
+const px=(w*(x*1.42-.18)-w*.52)*camera+w*.52+Math.sin(y*9+p*.55)*12 + Math.sin(x*5+y*4-t*.65)*7;
 const a=Math.sin(x*11+y*6+p)+.35*Math.sin(x*24-y*10-t);
 const b=Math.sin(x*16+p)*Math.cos(y*9-p*.7);
 const c=Math.sin(x*28+p)*Math.sin(y*18-p);
 const e=Math.sin(x*9+y*8+t)*Math.cos(x*4-y*7);
 const behaviors=[a,a,b,c,e,(b+c+e)/3,a];const wave=behaviors[k]*(1-mix)+behaviors[next]*mix;
-const py=h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*22;
+const py=h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*26;
 row.push([px,(py-h*.56)*camera+h*.56]);
 }points.push(row)}
 ctx.strokeStyle='rgba('+Math.round(tone+5)+','+Math.round(tone+3)+','+Math.round(tone-2)+','+visibleAlpha+')';ctx.lineWidth=w<720?.6:.75;
