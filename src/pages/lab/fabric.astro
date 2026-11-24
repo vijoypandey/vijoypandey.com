@@ -166,15 +166,15 @@ footer{background:#e2ddd3;color:#5f5a53;border-top-color:#514b4333}
     <div class="problems-cards">
       <article class="problem-card">
         <div class="problem-card-copy"><p class="problem-index">01 / Discovery</p><h3>Drugs and materials</h3><p>Exploring enormous spaces of molecular and material possibilities.</p></div>
-        <div class="image-placeholder artwork-video"><video data-artwork src="/videos/fabric/discovery.mp4" muted loop playsinline preload="metadata" aria-label="drug and materials discovery illustration"></video></div>
+        <div class="image-placeholder artwork-video"><video data-artwork data-start-delay="0" src="/videos/fabric/discovery.mp4" muted loop playsinline preload="metadata" aria-label="drug and materials discovery illustration"></video></div>
       </article>
       <article class="problem-card">
         <div class="problem-card-copy"><p class="problem-index">02 / Understanding</p><h3>The universe</h3><p>Modeling physical systems across scales we cannot directly experiment with.</p></div>
-        <div class="image-placeholder artwork-video"><video data-artwork src="/videos/fabric/understanding.mp4" muted loop playsinline preload="metadata" aria-label="universe illustration"></video></div>
+        <div class="image-placeholder artwork-video"><video data-artwork data-start-delay="1700" src="/videos/fabric/understanding.mp4" muted loop playsinline preload="metadata" aria-label="universe illustration"></video></div>
       </article>
       <article class="problem-card">
         <div class="problem-card-copy"><p class="problem-index">03 / Complexity</p><h3>Global systems</h3><p>Logistics, financial modeling, and the behavior of interconnected systems.</p></div>
-        <div class="image-placeholder artwork-video"><video data-artwork src="/videos/fabric/complexity.mp4" muted loop playsinline preload="metadata" aria-label="global systems illustration"></video></div>
+        <div class="image-placeholder artwork-video"><video data-artwork data-start-delay="3400" src="/videos/fabric/complexity.mp4" muted loop playsinline preload="metadata" aria-label="global systems illustration"></video></div>
       </article>
     </div>
     <p class="history-bridge">For eighty years, we have made extraordinary progress computing with bits. <span class="scaling-thread">Better algorithms, more powerful machines, and networks have allowed us to scale computation across the planet.</span> Now computing itself is evolving in three directions.</p>
@@ -254,9 +254,11 @@ for(let j=0;j<rows;j+=3)for(let i=0;i<cols;i+=5){const v=(Math.sin(i*.6+j*.8+p)+
 if(!reduced.matches){for(let n=0;n<4;n++){const progress=(ms*.00007+n*.271)%1;const i=Math.min(cols-1,Math.floor(progress*(cols-1)));const j=Math.floor(rows*(.30+n*.16));const pt=points[j][i];const glow=Math.pow(Math.sin(Math.PI*progress),2)*(.55+.45*Math.sin(p+n*2.1)**2);ctx.beginPath();ctx.arc(pt[0],pt[1],1.6+glow*.8,0,Math.PI*2);ctx.fillStyle='rgba(181,76,53,'+(glow*.65)+')';ctx.fill()}}
 }
 let last=0;function tick(t){scroll+=(target-scroll)*.075;visualMode+=(targetMode-visualMode)*.075;if(t-last>32){draw(t);last=t}frame=requestAnimationFrame(tick)}
-const videoObserver=new IntersectionObserver(entries=>{for(const entry of entries){const v=entry.target;if(entry.isIntersecting&&!reduced.matches){v.muted=true;v.play().catch(()=>{})}else v.pause()}},{threshold:.25});
+const videoTimers=new WeakMap(),videoStarted=new WeakSet();
+function cancelVideoStart(v){clearTimeout(videoTimers.get(v));videoTimers.delete(v)}
+const videoObserver=new IntersectionObserver(entries=>{for(const entry of entries){const v=entry.target;cancelVideoStart(v);if(entry.isIntersecting&&!reduced.matches){const start=()=>{videoTimers.delete(v);if(reduced.matches)return;v.muted=true;v.play().then(()=>videoStarted.add(v)).catch(()=>{})};const delay=videoStarted.has(v)?0:Number(v.dataset.startDelay||0);if(delay)videoTimers.set(v,setTimeout(start,delay));else start()}else v.pause()}},{threshold:.25});
 document.querySelectorAll('video[data-artwork]').forEach(v=>{videoObserver.observe(v);v.addEventListener('loadeddata',()=>{if(reduced.matches)v.pause()})});
-reduced.addEventListener('change',()=>{document.querySelectorAll('video[data-artwork]').forEach(v=>{v.pause();videoObserver.unobserve(v);videoObserver.observe(v)})});
+reduced.addEventListener('change',()=>{document.querySelectorAll('video[data-artwork]').forEach(v=>{cancelVideoStart(v);v.pause();videoObserver.unobserve(v);videoObserver.observe(v)})});
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');observer.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 addEventListener('resize',resize,{passive:true});addEventListener('scroll',onscroll,{passive:true});resize();onscroll();
