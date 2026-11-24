@@ -1,0 +1,66 @@
+{
+  "intelligence": {
+    "tags": [
+      "emergence"
+    ],
+    "articles": [
+      {
+        "title": "Of Swarms and Societies: Are Your Agents Ants or Employees?",
+        "url": "https://vijoypandey.substack.com/p/of-swarms-and-societies-are-your"
+      },
+      {
+        "title": "The protein folder shouldn't be the laundry folder",
+        "url": "https://vijoypandey.substack.com/p/the-protein-folder-shouldnt-be-the"
+      }
+    ],
+    "technical": [
+      {
+        "title": "Scaling Out Superintelligence",
+        "url": "https://outshift.cisco.com/internet-of-cognition/whitepaper",
+        "credit": "Outshift by Cisco · Research whitepaper"
+      }
+    ]
+  },
+  "physics": {
+    "tags": [
+      "entangled",
+      "fluctuation"
+    ],
+    "articles": [
+      {
+        "title": "Why Can't Quantum Networks Use TCP/IP",
+        "url": "https://vijoypandey.substack.com/p/why-cant-quantum-networks-use-tcpip"
+      }
+    ],
+    "technical": [
+      {
+        "title": "Quantum networking software and distributed compilation",
+        "url": "https://blogs.cisco.com/news/cisco-quantum-labs-announces-software-that-networks-quantum-computers-together-and-enables-new-classical-applications",
+        "credit": "Cisco Quantum Labs · Software prototypes"
+      },
+      {
+        "title": "Scalable energy-based models",
+        "url": "https://int-lee.github.io/scalable-ebm/",
+        "credit": "External research"
+      }
+    ]
+  },
+  "world": {
+    "tags": [
+      "embodiment"
+    ],
+    "articles": [],
+    "technical": [
+      {
+        "title": "Genie world models",
+        "url": "https://x.com/GoogleDeepMind/status/2115114028338962672",
+        "credit": "Google DeepMind · Research commentary"
+      }
+    ]
+  },
+  "convergence": {
+    "tags": [],
+    "articles": [],
+    "technical": []
+  }
+}
