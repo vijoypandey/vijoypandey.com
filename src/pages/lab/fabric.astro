@@ -6,8 +6,8 @@ const home = '/';
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#111315">
-<title>Fabric Lab v3.3 / Vijoy</title>
+<meta name="theme-color" content="#eee9de">
+<title>Fabric Lab v4 / Vijoy</title>
 <style is:global>
 :root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#202326;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
 #fabric{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
@@ -99,34 +99,75 @@ header{background:#24231fd9;border-bottom-color:#eee9de25}
 .inquiry{background:linear-gradient(transparent,#1d1c19 28%)}
 footer{background:#1d1c19}
 @media(prefers-reduced-motion:reduce){.gallery-pin{background:#383934}.gallery-copy{opacity:1!important;color:#eeece5}.gallery-copy .eyebrow,.gallery-copy .sub{color:#d0cec5}.gallery-fallback div{background:#aba79e}}
+
+/* Fabric v4: shared parchment world with gentle tonal differences, no pinned gallery. */
+:root{color-scheme:light;--site-paper:#eee9de;--site-ink:#292824;--site-muted:#6b665e}
+body{background:var(--site-paper);color:var(--site-ink)}
+.shade{background:linear-gradient(90deg,#eee9de7a,transparent 67%);opacity:.48}
+#fabric{z-index:3;opacity:.86}
+header{background:#eee9def0;color:var(--site-ink);border-bottom-color:#29282424}
+.lab{border-color:#817c73}.nav{color:#35332e}
+.eyebrow,.chapter,.aside,.next{color:#655f56}
+.scene .sub,.chapter-pin .sub{color:#56514b}
+.steps a{color:#6e695f}.steps a:after{background:#514d4644}.steps a.on{color:#292824}.steps a.on:after{background:#292824}
+#ambition{background:transparent}
+.problems-static{position:relative;height:auto;min-height:0;padding:110px 6vw 130px;background:#e7e2d8;color:var(--site-ink);isolation:auto}
+.problems-content{position:relative;z-index:4;max-width:1510px;margin:0 auto}
+.problems-content>.eyebrow{margin-bottom:22px;text-align:center}
+.problems-content>h2{font:400 clamp(48px,6.5vw,96px)/1.1 var(--display);letter-spacing:-.048em;text-align:center;margin:0 auto 23px;max-width:1050px}
+.problems-intro{color:#676158;max-width:780px;text-align:center;font-size:clamp(16px,1.55vw,20px);line-height:1.5;margin:0 auto 65px}
+.problems-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px)}
+.problem-card{min-width:0}
+.problem-card-copy{min-height:176px}
+.problem-index{font:600 11px/1.4 var(--text);text-transform:uppercase;letter-spacing:.13em;color:#817a70;margin:0 0 16px}
+.problem-card h3{font:400 clamp(25px,2.35vw,38px)/1.17 var(--display);letter-spacing:-.035em;margin:0 0 12px}
+.problem-card-copy>p:last-child{font:400 clamp(14px,1.15vw,17px)/1.5 var(--text);color:#736d65;max-width:34ch}
+.image-placeholder{aspect-ratio:16/9;position:relative;overflow:hidden;border:1px solid #9b968d80;border-radius:0 0 20px 20px;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(14px,2vw,28px);background:linear-gradient(155deg,#d2cdc3,#b6b2a8 54%,#97958f);color:#5b5852}
+.image-placeholder:after{content:"";position:absolute;width:80%;height:115%;border:1px solid #5a5a5748;border-radius:50%;top:-40%;right:-20%;transform:rotate(-28deg)}
+.image-placeholder span{z-index:1;font:600 10px var(--text);letter-spacing:.15em;text-transform:uppercase}
+.image-placeholder strong{z-index:1;font:400 clamp(27px,3.3vw,52px) var(--display);letter-spacing:-.04em}
+.chapter-scene{background:transparent}
+.chapter-scene.intelligence{background:#eee9de}
+.chapter-scene.physics{background:#e7e2d8}
+.chapter-scene.world{background:#e2ddd3}
+.chapter-visual{background:linear-gradient(145deg,#ddd8cd,#bab7af)!important;border-color:#8a847a66;box-shadow:none}
+.chapter-visual::before{background:radial-gradient(circle at 58% 40%,#eee9de88,transparent 57%)}
+.visual-top,.visual-bottom{color:#504d47;border-color:#918d8544}.visual-bottom span:last-child{color:#706b64}
+.chapter-visual .accent{stroke:#444541}.chapter-visual .secondary{stroke:#666963}.chapter-visual .node{fill:#3e423f}.chapter-visual .ghost{stroke:#8b8c84}
+.chapter-scene .copy{color:#292824}
+.inquiry{background:#eee9de}
+.frontiers a{border-color:#817d756b}.frontiers a:hover{background:#2928240d}
+.frontiers small{color:#6b675f}
+footer{background:#e2ddd3;color:#5f5a53;border-top-color:#514b4333}
+@media(max-width:800px){.problems-static{padding:95px 23px 110px}.problems-content>h2{font-size:clamp(43px,9vw,67px)}.problems-intro{margin-bottom:36px}.problems-cards{grid-template-columns:1fr;gap:34px}.problem-card-copy{min-height:0;margin-bottom:18px}.image-placeholder{aspect-ratio:16/9}.problem-card h3{font-size:30px}.problem-card-copy>p:last-child{font-size:16px}.steps a{color:#6e695f}}
+@media(prefers-reduced-motion:reduce){.problems-static{height:auto!important;min-height:0;background:#e7e2d8}.chapter-visual svg{transform:none}}
 </style>
 </head>
 <body>
 <canvas id="fabric" aria-hidden="true"></canvas><div class="shade" aria-hidden="true"></div>
-<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 3.3</span></div></header>
+<header><a href="/" class="brand">Vijoy.</a><div class="nav"><a href="/">Current site</a><span class="lab">Design study / 4</span></div></header>
 <nav class="steps" aria-label="Explore sections"><a href="#ambition" class="on">01 Ambition</a><a href="#problems">02 Problems</a><a href="#intelligence">03 Intelligence</a><a href="#physics">04 Physics</a><a href="#world">05 World</a></nav>
 <main>
 <section class="scene" id="ambition" data-mode="0"><div class="copy reveal seen"><p class="eyebrow">Civilization-Scale Computing</p><h1>What will it take to solve the harder problems?</h1><p class="sub">From discovering medicines and materials to understanding the universe and modeling complex systems.</p><p class="aside">Beyond the Bit / What comes after the individual?</p></div><p class="next">Scroll to explore ↓</p></section>
-<section class="problems" id="problems" data-mode="1" aria-label="Hard problems in science and complex systems">
-  <div class="gallery-pin">
-    <div class="gallery-wash" aria-hidden="true"></div>
-    <div class="gallery-layout">
-      <div class="gallery-copy">
-        <p class="eyebrow">The problems</p>
-        <h2>Questions that resist easy answers.</h2>
-        <p class="sub">Different disciplines. Different constraints. All pushing the limits of our methods and computational systems.</p>
-      </div>
-      <div>
-        <div class="gallery-stage" aria-label="Four artwork placeholders for future Midjourney imagery">
-          <div class="art-panel" data-art="0"><span class="art-id">Study 01 / Placeholder image</span><div class="art-label">Drug discovery</div><span class="art-note">Future Midjourney artwork · 16:11 crop</span></div>
-          <div class="art-panel" data-art="1"><span class="art-id">Study 02 / Placeholder image</span><div class="art-label">New materials</div><span class="art-note">Future Midjourney artwork · 16:11 crop</span></div>
-          <div class="art-panel" data-art="2"><span class="art-id">Study 03 / Placeholder image</span><div class="art-label">The universe</div><span class="art-note">Future Midjourney artwork · 16:11 crop</span></div>
-          <div class="art-panel" data-art="3"><span class="art-id">Study 04 / Placeholder image</span><div class="art-label">Complex systems</div><span class="art-note">Future Midjourney artwork · 16:11 crop</span></div>
-        </div>
-        <div class="gallery-status" aria-hidden="true"><span data-art-number>01 / 04</span><div class="gallery-track"><div class="gallery-fill" data-art-progress></div></div><span>Visual studies</span></div>
-      </div>
+<section class="problems problems-static" id="problems" data-mode="1" aria-labelledby="problems-title">
+  <div class="problems-content">
+    <p class="eyebrow">The problems</p>
+    <h2 id="problems-title">Questions that resist easy answers.</h2>
+    <p class="problems-intro">Science, engineering, and complex systems continue to challenge what our methods and machines can practically accomplish.</p>
+    <div class="problems-cards">
+      <article class="problem-card">
+        <div class="problem-card-copy"><p class="problem-index">01 / Discovery</p><h3>Drugs and materials</h3><p>Exploring enormous spaces of molecular and material possibilities.</p></div>
+        <div class="image-placeholder" role="img" aria-label="Placeholder for drug and materials discovery artwork"><span>Midjourney image / 01</span><strong>Discovery</strong></div>
+      </article>
+      <article class="problem-card">
+        <div class="problem-card-copy"><p class="problem-index">02 / Understanding</p><h3>The universe</h3><p>Modeling physical systems across scales we cannot directly experiment with.</p></div>
+        <div class="image-placeholder" role="img" aria-label="Placeholder for universe artwork"><span>Midjourney image / 02</span><strong>Understanding</strong></div>
+      </article>
+      <article class="problem-card">
+        <div class="problem-card-copy"><p class="problem-index">03 / Complexity</p><h3>Global systems</h3><p>Logistics, financial modeling, and the behavior of interconnected systems.</p></div>
+        <div class="image-placeholder" role="img" aria-label="Placeholder for global systems artwork"><span>Midjourney image / 03</span><strong>Complexity</strong></div>
+      </article>
     </div>
-    <div class="gallery-fallback" aria-label="Artwork placeholders"><div>Drug discovery</div><div>New materials</div><div>The universe</div><div>Complex systems</div></div>
   </div>
 </section>
 <section class="scene chapter-scene intelligence" id="intelligence" data-mode="2"><div class="chapter-pin"><div class="copy reveal"><p class="chapter">01 / Workloads</p><h2>Computing becomes intelligent.</h2><p class="sub">Learned, probabilistic, and agentic systems are changing what computation can do. Coordinating many such systems raises new questions.</p></div><div class="chapter-visual" role="img" aria-label="A branching network of connected intelligence nodes"><div class="visual-top"><span>Intelligence</span><span>Distributed cognition</span></div><svg viewBox="0 0 600 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="ghost"><circle cx="300" cy="270" r="178"/><circle cx="300" cy="270" r="118"/></g><g class="secondary"><path d="M300 270 150 158 218 105M300 270 425 115 484 186M300 270 503 340 426 445M300 270 176 410 106 337M300 270 300 72M300 270 300 468"/><path d="M150 158 300 72 425 115 484 186 503 340 426 445 300 468 176 410 106 337 150 158"/></g><g class="accent"><path d="M150 158 218 105 300 72M425 115 484 186M503 340 426 445M176 410 106 337"/></g><g class="node"><circle cx="300" cy="270" r="8"/><circle cx="150" cy="158" r="5"/><circle cx="218" cy="105" r="3"/><circle cx="300" cy="72" r="4"/><circle cx="425" cy="115" r="5"/><circle cx="484" cy="186" r="3"/><circle cx="503" cy="340" r="5"/><circle cx="426" cy="445" r="3"/><circle cx="300" cy="468" r="4"/><circle cx="176" cy="410" r="5"/><circle cx="106" cy="337" r="3"/></g></svg><div class="visual-bottom"><span>Many agents / one system</span><span>01 — 03</span></div></div></div></section>
@@ -144,11 +185,7 @@ footer{background:#1d1c19}
 const canvas=document.querySelector('#fabric'),ctx=canvas.getContext('2d');if(!ctx)return;
 const scenes=Array.from(document.querySelectorAll('[data-mode]')),links=Array.from(document.querySelectorAll('.steps a'));
 const reduced=window.matchMedia('(prefers-reduced-motion:reduce)');
-const gallery=document.querySelector('.problems'),pin=document.querySelector('.gallery-pin');
-const panels=Array.from(document.querySelectorAll('.art-panel'));
 const chapters=Array.from(document.querySelectorAll('.chapter-scene'));
-const counter=document.querySelector('[data-art-number]'),galleryProgress=document.querySelector('[data-art-progress]');
-let galleryRatio=0;
 let w=0,h=0,d=1,mode=0,visualMode=0,targetMode=0,scroll=0,target=0,frame=0;
 function resize(){w=innerWidth;h=innerHeight;d=Math.min(devicePixelRatio||1,1.7);canvas.width=Math.round(w*d);canvas.height=Math.round(h*d);ctx.setTransform(d,0,0,d,0,0);if(reduced.matches)draw(0)}
 function smoothstep(a,b,x){const v=Math.min(1,Math.max(0,(x-a)/(b-a)));return v*v*(3-2*v)}
@@ -164,25 +201,6 @@ function onscroll(){
    if(distance>=0)mode=i;
  });
  links.forEach((el,i)=>el.classList.toggle('on',i===Math.min(mode,4)));
- if(gallery&&pin){
-  const travel=Math.max(1,gallery.offsetHeight-pin.offsetHeight);
-  galleryRatio=Math.min(1,Math.max(0,(scrollY-gallery.offsetTop)/travel));
-  const v=galleryRatio;
-  // Fade in after entering the pinned scene, and fade back out before the pin releases.
-  // Both edges happen inside the pinned scroll, avoiding hard top/bottom boundaries.
-  const light=smoothstep(0,.18,v)*(1-smoothstep(.78,1,v));
-  pin.style.setProperty('--gallery-light',String(light));
-  const segment=Math.min(3.5,Math.max(.5,v*4));
-  panels.forEach((el,i)=>{
-    // Crossfade overlapping plates; no cut, no jumping between image slots.
-    const fade=Math.max(0,1-Math.abs(segment-(i+.5)));
-    const alpha=smoothstep(0,1,fade);
-    el.style.opacity=String(alpha);
-    el.style.transform='scale('+(1.09-.09*smoothstep(0,1,Math.min(1,Math.abs(segment-(i+.5)))))+') translateY('+((i+.5-segment)*10)+'px)';
-  });
-  if(counter)counter.textContent=String(Math.min(4,Math.floor(segment)+1)).padStart(2,'0')+' / 04';
-  if(galleryProgress)galleryProgress.style.width=(v*100)+'%';
-}
 chapters.forEach(el=>{
   const travel=Math.max(1,el.offsetHeight-h);
   const progress=Math.min(1,Math.max(0,(scrollY-el.offsetTop)/travel));
@@ -193,20 +211,20 @@ if(reduced.matches){scroll=target;visualMode=targetMode;draw(0)}
 function draw(ms){
 ctx.clearRect(0,0,w,h);
 const t=reduced.matches?0:ms*.00018,p=scroll*17+t,cols=w<720?43:81,rows=w<720?24:32;
-const stages=[0,1,2,3,4,5],amplitudes=[80,20,92,108,120,95],alphas=[.23,.08,.23,.23,.23,.23];
+const stages=[0,1,2,3,4,5],amplitudes=[65,32,75,85,95,70],alphas=[.21,.16,.22,.22,.22,.18];
 const k=Math.min(5,Math.floor(visualMode)),next=Math.min(5,k+1),mix=smoothstep(0,1,visualMode-k);
 const amp=amplitudes[k]*(1-mix)+amplitudes[next]*mix;
 const alpha=alphas[k]*(1-mix)+alphas[next]*mix;
 // One continuous mesh throughout. Its ink adapts to the lighter chapter:
 // charcoal-gray filaments over gray; silver filaments over charcoal.
 // Dim through the midpoint so the tonal shift never reads as a color snap.
-const light=gallery&&pin ? galleryRatio>0 ? smoothstep(0,.18,galleryRatio)*(1-smoothstep(.78,1,galleryRatio)) : 0 : 0;
-const tone=204-48*light;
-const visibleAlpha=alpha*(1-.55*Math.sin(Math.PI*light));
+const light=0;
+const tone=80;
+const visibleAlpha=alpha*.88;
 let points=[];
 for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
 const x=i/(cols-1),y=j/(rows-1);
-const camera=1+.045*smoothstep(.10,.35,scroll)+.09*smoothstep(.45,.8,scroll);
+const camera=1+.025*smoothstep(.10,.35,scroll)+.065*smoothstep(.45,.8,scroll);
 const px=(w*(x*1.42-.18)-w*.52)*camera+w*.52+Math.sin(y*9+p*.3)*9;
 const a=Math.sin(x*11+y*6+p)+.35*Math.sin(x*24-y*10-t);
 const b=Math.sin(x*16+p)*Math.cos(y*9-p*.7);
