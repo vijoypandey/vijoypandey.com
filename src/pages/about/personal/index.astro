@@ -4,6 +4,8 @@ import EnchantedV2Footer from '../../../components/EnchantedV2Footer.astro';
 import '../../../styles/enchanted-v2.css';
 import '../../../styles/personal-essay.css';
 
+import '../../../styles/pillar-v4.css';
+import '../../../styles/about-v4.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const artwork = base + '/images/about/arnold-council.png';
 const profileUrl = new URL(base + '/about/personal/', Astro.site).href;
@@ -39,14 +41,18 @@ const profileData = {
     <script type="application/ld+json" set:html={JSON.stringify(profileData)} />
     <link rel="icon" type="image/svg+xml" href={base + '/favicon.svg'} />
     <title>About Me  -  Vijoy Pandey</title>
-  </head>
-  <body class="enchanted-v2 personal-essay">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+  <body class="enchanted-v2 personal-essay pillar-v4">
     <EnchantedV2Header />
     <main id="main">
       <article>
         <header class="personal-opening">
           <div class="personal-opening-inner">
-            <h1>I lost a coin toss in 1984.</h1>
+            <p class="eyebrow">About / Personal</p>
+<h1>I lost a coin toss in 1984.</h1>
             <p class="personal-lede">It took me four decades to get even.</p>
             <div class="personal-opening-story">
               <p>I grew up in Calcutta (now, Kolkata), building electronic circuits before I had ever touched a computer - in fifth grade, I was already curious about what a few components could be persuaded to do. By middle-school, when global markets opened up again for India, my school acquired a handful of BBC Micros: 64 kilobytes of memory, BASIC, and what felt like an unreasonable amount of possibility.</p>
