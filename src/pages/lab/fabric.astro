@@ -1,7 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
 import reading from '../../data/fabric-reading.json';
-const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(data.draft !== true && data.date && data.url))).sort((a,b) => b.data.date!.getTime() - a.data.date!.getTime()).slice(0,6);
+import xActivity from '../../data/fabric-x-activity.json';
 ---
 <!doctype html>
 <html lang="en">
@@ -224,6 +223,7 @@ body{font-weight:300}
 @media(min-width:801px){.chapter-media{margin-top:36px}}
 @media(max-width:800px){:root{--editorial-gutter:24px}.chapter-media{margin-top:0}}
 .static-artwork img{display:block;width:100%;height:100%;object-fit:contain;background:#eee9de}
+.activity-profile{position:relative;z-index:4;font-size:13px;color:#696762;margin-top:28px}
 </style>
 </head>
 <body>
@@ -267,7 +267,7 @@ body{font-weight:300}
 <a href="/physics-based-computing/"><small>Physics-based computing</small><strong>Fluctuate</strong><small>Explore frontier <span class="link-arrow" aria-hidden="true"></span></small></a>
 <a href="/physical-ai/"><small>Physical AI</small><strong>Move</strong><small>Explore frontier <span class="link-arrow" aria-hidden="true"></span></small></a>
 </div></section>
-<section class="scene activity-lab" id="activity"><div class="copy"><p class="eyebrow">A continuing record</p><h2>Recent <em>activity.</em></h2></div><div class="activity-list">{recentArtifacts.map(({data}) => <a href={data.url}><small>{data.date?.toISOString().slice(0,10)}</small>{data.title} <span class="link-arrow" aria-hidden="true"></span></a>)}</div></section>
+<section class="scene activity-lab" id="activity"><div class="copy"><p class="eyebrow">A continuing record</p><h2>Recent <em>activity.</em></h2></div><div class="activity-list">{xActivity.map(item => <a href={item.url}><small>{item.date} / X</small>{item.title} <span class="link-arrow" aria-hidden="true"></span></a>)}</div><p class="activity-profile"><a href="https://x.com/vijoy">More observations on X / @vijoy <span class="link-arrow" aria-hidden="true"></span></a></p></section>
 </main><footer><span>Fabric Lab / Experimental prototype</span><a href="/">Return to current website <span class="link-arrow" aria-hidden="true"></span></a></footer>
 <script is:inline>
 (function(){
