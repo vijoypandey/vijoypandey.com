@@ -2,13 +2,12 @@
 import { getCollection } from 'astro:content';
 import EnchantedV2Header from '../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../components/EnchantedV2Footer.astro';
-import { images } from '../../data/enchantedV2';
 import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
+import '../../styles/pillar-v4.css';
+import PillarFabric from '../../components/PillarFabric.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const artwork = `${base}/images/design-exploration/${images.wheels}`;
-const artworkWebp = artwork.replace(/\.png$/, '.webp');
-const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('fluctuate')))
+const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('fluctuate') && !/substack\.com|vijoy\.ai/i.test(data.url ?? '') && !(data.type === 'article' && data.provenance === 'personal')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: "Encode", text: "Map a problem into energies, couplings or oscillatory parameters." },
@@ -26,19 +25,26 @@ const stages = [
 <link rel="canonical" href={new URL(`${base}/physics-based-computing/`,Astro.site).href}/>
 <title>Physics-Based Computing — Vijoy Pandey</title>
 <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
-<body class="enchanted-v2 frontier-essay">
+<body class="enchanted-v2 frontier-essay pillar-v4">
 <EnchantedV2Header/>
 <main id="main">
 <header class="frontier-opening">
-<p class="frontier-kicker">Frontier 04 <span>—</span> Fluctuate</p>
+<PillarFabric mode="fluctuate" />
+<div class="opening-content">
+<p class="frontier-kicker">Frontier 03 <span>—</span> Fluctuate</p>
 <p class="frontier-overline">Thermodynamic and oscillator computing</p>
 <h1>Physics-Based<br/><em>Computing.</em></h1>
 <p class="frontier-question">What if the physics of a system helps perform the computation?</p>
 <p class="frontier-lede">This frontier investigates two classical physics-based approaches: thermodynamic systems that harness stochastic fluctuations and oscillator systems that compute through coupled dynamics. Quantum computing also exploits physics, but has its own frontier here because its states, mechanisms, and scaling constraints are fundamentally different. The challenge is to make these physical dynamics useful—and to scale them.</p>
+<a class="chapter-entry" href="#precedent">Explore the chapter ↓</a>
+</div>
 </header>
-<figure class="frontier-plate"><picture>{import.meta.env.PROD && <source srcset={artworkWebp} type="image/webp" />}<img src={artwork} alt="Giant waterwheels turn beside a river beneath a pale moon and a small observer" loading="lazy" decoding="async" /></picture><figcaption><span>Plate 04 / Physics-Based Computing</span><span>Fluctuation, coupling and flow</span></figcaption></figure>
-<div class="frontier-prose">
+<figure class="frontier-plate"><div class="art-placeholder" role="img" aria-label="Placeholder for fluctuate artwork"><span>Artwork placeholder</span><span>Fluctuation / coupled dynamics</span></div><figcaption><span>Plate 03 / Physics-Based Computing</span><span>Fluctuation, coupling and flow</span></figcaption></figure>
+<div class="frontier-prose" id="precedent">
         <p class="frontier-chapter">I. Computation as physical evolution</p>
         <h2>Let a system search through its own dynamics.</h2>
         <p>Many difficult problems involve vast spaces of possible configurations. Probabilistic inference, generative modeling and optimization can involve sampling from distributions or exploring complex energy landscapes. Conventional digital computers can implement these operations algorithmically, but certain physical systems exhibit fluctuations and coupled dynamics that can be harnessed for related computations. This raises a question of architectural fit between the problem, the workload and the computational substrate.</p>
@@ -74,7 +80,7 @@ const stages = [
         <div class="frontier-reading-head">
           <p class="frontier-chapter">The reading room</p>
           <h2 id="reading-title">Further <em>explorations.</em></h2>
-          <p>Research, writing, conversations and work related to this frontier. The collection will grow as new material is added.</p>
+          <p>Research, technical projects, talks and conversations related to this frontier.</p>
         </div>
         <div class="artifact-grid" id="frontier-artifacts">
           {works.map((entry,index)=> (
@@ -93,7 +99,7 @@ const stages = [
       </section>
 
 
-<nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/emergent-superintelligence/`}>Emergent Superintelligence <span aria-hidden="true">↗</span></a></nav>
+<nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/physical-ai/`}>Physical AI <span aria-hidden="true">↗</span></a></nav>
 </main><EnchantedV2Footer/>
     <script>
       document.documentElement.classList.add('js-enhanced');
