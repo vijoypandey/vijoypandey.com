@@ -2,14 +2,13 @@
 import { getCollection } from 'astro:content';
 import EnchantedV2Header from '../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../components/EnchantedV2Footer.astro';
-import { images } from '../../data/enchantedV2';
 import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
+import '../../styles/pillar-v4.css';
+import PillarFabric from '../../components/PillarFabric.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const artwork = `${base}/images/design-exploration/${images.field}`;
-const artworkWebp = artwork.replace(/\.png$/, '.webp');
-const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('entangle')))
+const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('entangle') && !/substack\.com|vijoy\.ai/i.test(data.url ?? '') && !(data.type === 'article' && data.provenance === 'personal')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: 'Compute', text: 'Local processors manipulate fragile quantum state through gates and measurements.' },
@@ -29,22 +28,29 @@ const stages = [
     <link rel="canonical" href={new URL(`${base}/quantum-computing/`, Astro.site).href} />
     <title>Quantum Computing — Vijoy Pandey</title>
     <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
-  </head>
-  <body class="enchanted-v2 frontier-essay">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+  <body class="enchanted-v2 frontier-essay pillar-v4">
     <EnchantedV2Header />
     <main id="main">
       <header class="frontier-opening">
+<PillarFabric mode="entangle" />
+<div class="opening-content">
         <p class="frontier-kicker">Frontier 02 <span>—</span> Entangle</p>
         <p class="frontier-overline">Beyond the individual quantum processor</p>
         <h1>Quantum<br /><em>Computing.</em></h1>
         <p class="frontier-question">What happens when entanglement spans distance?</p>
         <p class="frontier-lede">Making a single quantum computer more capable is only one dimension of scale. Another is to connect quantum systems—and preserve what makes their states quantum across the boundaries between them.</p>
-      </header>
+      <a class="chapter-entry" href="#precedent">Explore the chapter ↓</a>
+</div>
+</header>
       <figure class="frontier-plate">
-        <picture>{import.meta.env.PROD && <source srcset={artworkWebp} type="image/webp" />}<img src={artwork} alt="Tiny observers stand before an immense undulating landscape beneath a distant horizon" loading="lazy" decoding="async" /></picture>
-        <figcaption><span>Plate II / Quantum Computing</span><span>Distance changes the question</span></figcaption>
+        <div class="art-placeholder" role="img" aria-label="Placeholder for entangle artwork"><span>Artwork placeholder</span><span>Correlations across distance</span></div>
+        <figcaption><span>Plate 02 / Quantum Computing</span><span>Distance changes the question</span></figcaption>
       </figure>
-      <div class="frontier-prose">
+      <div class="frontier-prose" id="precedent">
         <p class="frontier-chapter">I. A different kind of state</p>
         <h2>The quantum state cannot simply be copied and forwarded.</h2>
         <p>Quantum computing can scale along the same three broad axes as classical computing: algorithmically, through improved algorithms, circuits and error-correction methods; vertically, through larger and more capable processors; and horizontally, by linking quantum systems. Progress along one axis can change the requirements along the others. My particular interest is how the horizontal dimension changes the architecture of computation.</p>
@@ -88,7 +94,7 @@ const stages = [
         <div class="frontier-reading-head">
           <p class="frontier-chapter">The reading room</p>
           <h2 id="reading-title">Further <em>explorations.</em></h2>
-          <p>Research, writing, conversations and work related to this frontier. The collection will grow as new material is added.</p>
+          <p>Research, technical projects, talks and conversations related to this frontier.</p>
         </div>
         <div class="artifact-grid" id="frontier-artifacts">
           {works.map((entry,index)=> (
@@ -106,7 +112,7 @@ const stages = [
         {works.length === 0 && <p>Related work will appear here as it is added to the collection.</p>}
       </section>
 
-      <nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/physical-ai/`}>Physical AI <span aria-hidden="true">↗</span></a></nav>
+      <nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/physics-based-computing/`}>Physics-Based Computing <span aria-hidden="true">↗</span></a></nav>
     </main>
     <EnchantedV2Footer />
     <script>
