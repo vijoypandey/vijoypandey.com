@@ -207,11 +207,22 @@ body{font-weight:300}
 .chapter-media .reading-label,.chapter-media .chapter-reading small{color:#696762}
 #ambition .preface-signature{font-style:normal}
 @media(max-width:760px){.chapter-media .chapter-reading{grid-template-columns:1fr;gap:10px}}
-/* Keep centered content columns, but align their editorial text to a common left edge. */
-.problems-content>.eyebrow{max-width:1050px;margin-inline:auto}
-.problems-intro{max-width:1050px}
+/* Shared editorial grid: align section headings, prose and media to one outer rail.
+   Keep existing reading measures; do not center narrow text blocks independently. */
+:root{--editorial-gutter:7vw;--editorial-max:1510px}
+.scene:not(.chapter-scene),.problems-static{padding-inline:max(var(--editorial-gutter),calc((100% - var(--editorial-max))/2))}
+.chapter-pin{padding-inline:max(var(--editorial-gutter),calc((100% - var(--editorial-max))/2));grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}
+.problems-content{width:100%;max-width:none;margin:0}
+.problems-content>.eyebrow,.problems-content>h2,.problems-intro,.history-bridge{margin-inline:0;text-align:left}
+.problems-intro{max-width:780px}
+.convergence{align-items:flex-start;text-align:left}
 .convergence .copy{width:min(100%,850px)}
 .convergence h2,.convergence .sub{margin-inline:0}
+.convergence-plate{margin-inline:0}
+.chapter-pin{align-items:start}
+.chapter-media{align-self:start}
+@media(min-width:801px){.chapter-media{margin-top:36px}}
+@media(max-width:800px){:root{--editorial-gutter:24px}.chapter-media{margin-top:0}}
 </style>
 </head>
 <body>
