@@ -41,7 +41,7 @@ const stages = [
 <div class="frontier-prose">
         <p class="frontier-chapter">I. Intelligence acquires consequences</p>
         <h2>To act is to change the problem.</h2>
-        <p>An agent answering a question can often retry. A robot moving through a crowded room changes the world while it reasons about it. Its sensors are incomplete, objects move, and its actions have consequences that cannot always be undone.</p>
+        <p>An incorrect API call can often be retried. A physical collision cannot necessarily be undone. A robot moving through a crowded room changes the world while it reasons about it. Its sensors are incomplete, objects move, and its actions have consequences that cannot always be undone.</p>
         <p>Embodied systems combine estimation, planning and control under tight time constraints. The most interesting scaling question is not how to give one robot more intelligence, but what becomes possible when many embodied systems—and people—must share a physical world.</p>
         <p class="frontier-chapter">II. The boundary is not a packet</p>
         <h2>Delay changes correctness, not just performance.</h2>
@@ -53,11 +53,13 @@ const stages = [
         <p>The hard problems occur at the seams: which participant has the right of way, how intent is communicated, who may override a maneuver, and how the group reacts when observations disagree. Interoperability and common representations help, but coordination also depends on protocols for trust, safety and accountability.</p>
         <p class="frontier-chapter">IV. An unfinished world model</p>
         <h2>What must everyone know—and when?</h2>
+        <p>Most robotic architectures begin with the machine and its onboard sensors: an egocentric view of the world. An exocentric perspective starts with the environment itself, asking how independent machines, people, external sensors and computing systems might contribute to a shared representation of space, time and activity. A machine could then benefit from observations beyond its own field of view, while retaining its own local control and safety mechanisms.</p>
         <p>Perfectly shared, perfectly current world state is unattainable. Sensors disagree, communication delays vary, and a centralized model may become stale before an action completes. A practical system must decide what to share, at what precision, with which guarantees, and when to fall back to independent safe behavior.</p>
         <p>Work on multi-robot localization, distributed mapping, formation control and shared autonomy provides pieces of the puzzle. Real deployments remain constrained by robustness, heterogeneous hardware and safety assurance. The frontier is the architecture that can compose these pieces across organizations and environments.</p>
         <p class="frontier-chapter">V. Toward physical societies</p>
         <h2>Can intelligent motion become a collective capability?</h2>
         <p>As machines move among people, coordination becomes social as well as spatial. They must interpret human intent without assuming it is always explicit, respect norms and constraints, and remain accountable to human authorities.</p>
+        <p>Imagine a factory, hospital or warehouse in which the environment provides shared sensing, situational context and coordination services to heterogeneous intelligent machines. The environment could become part of the computational infrastructure that supports physical intelligence, rather than merely the setting in which individual robots operate. Establishing whether such an architecture improves safety, reliability and useful work remains an open engineering question.</p>
         <p>The possibility is larger than coordinated automation: populations of people and embodied agents that learn how to work and move together. That is a research direction, not a demonstrated general capability. Its promise must be judged by safer, more reliable collective outcomes—not the number of connected robots.</p>
 <p class="frontier-closing">A moving system cannot afford to share only yesterday's truth. <em>Intelligence must stay aligned in space and time.</em></p>
 </div>
