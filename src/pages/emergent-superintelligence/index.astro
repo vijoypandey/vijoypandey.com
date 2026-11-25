@@ -6,7 +6,7 @@ import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('think')))
+const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('think') && !/substack\.com|vijoy\.ai/i.test(data.url ?? '') && !(data.type === 'article' && data.provenance === 'personal')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: 'Isolated', text: 'Intelligence is contained in individual systems.' },
@@ -44,10 +44,10 @@ body.pillar-v4 {--rail:max(7vw,calc((100% - 1510px)/2));--paper:#eee9de;--ink:#2
 .pillar-v4 .frontier-question{margin-top:30px;font-size:clamp(1.5rem,2.5vw,2.3rem)}
 .pillar-v4 .frontier-lede{max-width:570px;color:#504d48;font-size:clamp(17px,1.5vw,21px);line-height:1.55}
 .pillar-v4 .chapter-entry{display:inline-block;margin-top:32px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid #b54c35;padding-bottom:8px;font-weight:500}
-.pillar-v4 .frontier-plate{background:transparent;color:var(--ink);padding:0 var(--rail);max-width:none}
-.pillar-v4 .art-placeholder{aspect-ratio:16/9;border-radius:8px;max-width:1100px;background:radial-gradient(ellipse at 70% 35%,#ddd9d0,#b9b6af 70%,#a7a49e);border:1px solid #817d7540;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(18px,3vw,36px);color:#504d48}
+.pillar-v4 .frontier-plate{background:transparent;color:var(--ink);padding:0;max-width:none}
+.pillar-v4 .art-placeholder{aspect-ratio:16/9;border-radius:8px;max-width:none;background:radial-gradient(ellipse at 70% 35%,#ddd9d0,#b9b6af 70%,#a7a49e);border:1px solid #817d7540;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(18px,3vw,36px);color:#504d48}
 .pillar-v4 .art-placeholder span:first-child{font-size:11px;letter-spacing:.13em;text-transform:uppercase}.pillar-v4 .art-placeholder span:last-child{font:400 clamp(24px,4vw,48px) Georgia,serif}
-.pillar-v4 .frontier-plate figcaption{padding:14px 0;color:#696762;display:flex;justify-content:space-between;gap:12px;max-width:1100px}
+.pillar-v4 .frontier-plate figcaption{padding:14px var(--rail);color:#696762;display:flex;justify-content:space-between;gap:12px;max-width:none}
 .pillar-v4 .frontier-prose{max-width:none;margin:0;padding:clamp(65px,8vw,120px) var(--rail);scroll-margin-top:70px}
 .pillar-v4 .frontier-prose h2{max-width:850px;font-size:clamp(2.1rem,4vw,3.7rem);margin:18px 0 28px}
 .pillar-v4 .frontier-prose p:not(.frontier-chapter):not(.frontier-closing){max-width:740px;font-size:clamp(17px,1.45vw,20px);line-height:1.7;color:#504d48}
@@ -135,7 +135,7 @@ body.pillar-v4 {--rail:max(7vw,calc((100% - 1510px)/2));--paper:#eee9de;--ink:#2
         <div class="frontier-reading-head">
           <p class="frontier-chapter">The reading room</p>
           <h2 id="reading-title">Further <em>explorations.</em></h2>
-          <p>Research, writing, conversations and work related to this frontier. The collection will grow as new material is added.</p>
+          <p>Research, technical projects, talks and conversations related to this frontier.</p>
         </div>
         <div class="artifact-grid" id="frontier-artifacts">
           {works.map((entry,index)=> (
