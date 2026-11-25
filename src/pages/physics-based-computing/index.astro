@@ -41,7 +41,8 @@ const stages = [
 <div class="frontier-prose">
         <p class="frontier-chapter">I. Computation as physical evolution</p>
         <h2>Let a system search through its own dynamics.</h2>
-        <p>Many difficult problems involve vast spaces of possible configurations. Conventional algorithms remain essential, but energy-based and stochastic approaches ask a different question: can we engineer a physical system whose natural evolution preferentially explores useful possibilities?</p>
+        <p>Many difficult problems involve vast spaces of possible configurations. Probabilistic inference, generative modeling and optimization can involve sampling from distributions or exploring complex energy landscapes. Conventional digital computers can implement these operations algorithmically, but certain physical systems exhibit fluctuations and coupled dynamics that can be harnessed for related computations. This raises a question of architectural fit between the problem, the workload and the computational substrate.</p>
+        <p>Conventional algorithms remain essential, but energy-based and stochastic approaches ask a different question: can we engineer a physical system whose natural evolution preferentially explores useful possibilities?</p>
         <p>In a thermodynamic computing system, fluctuations and energy differences may bias the exploration of states. For optimization, one can design an energy landscape so that lower-energy configurations correspond to desirable answers. A real device still needs initialization, control, measurement and interpretation; it is not a magical shortcut around computational complexity.</p>
         <p class="frontier-chapter">II. Two physical languages</p>
         <h2>Sampling distributions and coupled oscillations are not the same operation.</h2>
@@ -55,6 +56,7 @@ const stages = [
         <p class="frontier-chapter">IV. The design space is still open</p>
         <h2>What would practical advantage actually mean?</h2>
         <p>A useful comparison has to include solution quality, time to answer, energy consumed, scaling behavior, programmability and readout costs. A compelling physical effect on a laboratory device is not yet proof of application-level benefit.</p>
+        <p>One particularly interesting intersection is the development of <a href="https://int-lee.github.io/scalable-ebm/">scalable energy-based models</a> alongside hardware designed for probabilistic computation. A model that expresses plausibility through an energy function may lend itself to physical sampling mechanisms, but the mapping between that model and a real device must still be engineered and evaluated. The opportunity is to co-design workloads and substrates rather than assume that every stochastic algorithm will benefit from physical noise.</p>
         <p>Researchers are exploring thermodynamic samplers, probabilistic circuits, oscillator-based optimization and hybrid digital–physical architectures. The systems challenge is to make these machines reproducible, calibratable, interoperable and useful beyond carefully chosen demonstrations.</p>
         <p class="frontier-chapter">V. Beyond the device</p>
         <h2>Can physical correlations themselves become a network resource?</h2>
