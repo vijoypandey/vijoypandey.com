@@ -2,13 +2,12 @@
 import { getCollection } from 'astro:content';
 import EnchantedV2Header from '../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../components/EnchantedV2Footer.astro';
-import { images } from '../../data/enchantedV2';
 import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
+import '../../styles/pillar-v4.css';
+import PillarFabric from '../../components/PillarFabric.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const artwork = `${base}/images/design-exploration/${images.presence}`;
-const artworkWebp = artwork.replace(/\.png$/, '.webp');
-const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('move')))
+const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('move') && !/substack\.com|vijoy\.ai/i.test(data.url ?? '') && !(data.type === 'article' && data.provenance === 'personal')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: "Sense", text: "Observe a changing environment with imperfect sensors." },
@@ -26,19 +25,26 @@ const stages = [
 <link rel="canonical" href={new URL(`${base}/physical-ai/`,Astro.site).href}/>
 <title>Physical AI — Vijoy Pandey</title>
 <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
-<body class="enchanted-v2 frontier-essay">
+<body class="enchanted-v2 frontier-essay pillar-v4">
 <EnchantedV2Header/>
 <main id="main">
 <header class="frontier-opening">
-<p class="frontier-kicker">Frontier 03 <span>—</span> Move</p>
+<PillarFabric mode="move" />
+<div class="opening-content">
+<p class="frontier-kicker">Frontier 04 <span>—</span> Move</p>
 <p class="frontier-overline">Beyond the individual moving machine</p>
 <h1>Physical<br/><em>AI.</em></h1>
 <p class="frontier-question">What happens when intelligence moves—and must act together?</p>
 <p class="frontier-lede">A machine that acts in the world cannot wait for the world to stand still. When intelligent machines coordinate, what must survive the boundary is not merely a message, but a sufficiently current, shared understanding of space, time, intent and risk.</p>
+<a class="chapter-entry" href="#precedent">Explore the chapter ↓</a>
+</div>
 </header>
-<figure class="frontier-plate"><picture>{import.meta.env.PROD && <source srcset={artworkWebp} type="image/webp" />}<img src={artwork} alt="A lone figure stands among translucent presences and delicate connections" loading="lazy" decoding="async" /></picture><figcaption><span>Plate 03 / Physical AI</span><span>Intelligence enters a world in motion</span></figcaption></figure>
-<div class="frontier-prose">
+<figure class="frontier-plate"><div class="art-placeholder" role="img" aria-label="Placeholder for move artwork"><span>Artwork placeholder</span><span>Shared space / coordinated motion</span></div><figcaption><span>Plate 04 / Physical AI</span><span>Intelligence enters a world in motion</span></figcaption></figure>
+<div class="frontier-prose" id="precedent">
         <p class="frontier-chapter">I. Intelligence acquires consequences</p>
         <h2>To act is to change the problem.</h2>
         <p>An incorrect API call can often be retried. A physical collision cannot necessarily be undone. A robot moving through a crowded room changes the world while it reasons about it. Its sensors are incomplete, objects move, and its actions have consequences that cannot always be undone.</p>
@@ -73,7 +79,7 @@ const stages = [
         <div class="frontier-reading-head">
           <p class="frontier-chapter">The reading room</p>
           <h2 id="reading-title">Further <em>explorations.</em></h2>
-          <p>Research, writing, conversations and work related to this frontier. The collection will grow as new material is added.</p>
+          <p>Research, technical projects, talks and conversations related to this frontier.</p>
         </div>
         <div class="artifact-grid" id="frontier-artifacts">
           {works.map((entry,index)=> (
@@ -92,7 +98,7 @@ const stages = [
       </section>
 
 
-<nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/boltzmann-computing/`}>Boltzmann Computing <span aria-hidden="true">↗</span></a></nav>
+<nav class="frontier-end" aria-label="Continue exploring"><span>Another frontier</span><a href={`${base}/emergent-superintelligence/`}>Collective Intelligence <span aria-hidden="true">↗</span></a></nav>
 </main><EnchantedV2Footer/>
     <script>
       document.documentElement.classList.add('js-enhanced');
