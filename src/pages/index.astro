@@ -1,13 +1,7 @@
 ---
-import EnchantedV2Header from '../components/EnchantedV2Header.astro';
-import EnchantedV2Footer from '../components/EnchantedV2Footer.astro';
-import { getCollection } from 'astro:content';
-import { frontierPath, frontierWorlds, images, openingSlides } from '../data/enchantedV2';
-import '../styles/enchanted-v2.css';
-
+import reading from '../data/fabric-reading.json';
+import xActivity from '../data/fabric-x-activity.json';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const artwork = (name: string) => `${base}/images/design-exploration/${name}`;
-const artworkWebp = (name: string) => artwork(name).replace(/\.png$/, '.webp');
 const pageUrl = new URL(`${base}/`, Astro.site).href;
 const personId = `${pageUrl}#person`;
 const structuredData = {
@@ -42,17 +36,14 @@ const structuredData = {
     },
   ],
 };
-const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(data.draft !== true && data.date && data.url)))
-  .sort((a, b) => (b.data.date!.getTime() - a.data.date!.getTime()) || a.data.title.localeCompare(b.data.title))
-  .slice(0, 6);
 ---
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Exploring civilization-scale computing: how collective intelligence, quantum systems, physics-native computing, and embodied intelligence can scale beyond the individual node."/>    <meta name="theme-color" content="#eee9de" />
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="theme-color" content="#eee9de">
+<meta name="description" content="Exploring civilization-scale computing: how collective intelligence, quantum systems, physics-native computing, and embodied intelligence can scale beyond the individual node."/>    
     <title>Vijoy Pandey | Civilization-Scale Computing</title>
     <link rel="canonical" href={pageUrl} />
     <meta property="og:type" content="website" />
@@ -61,239 +52,354 @@ const recentArtifacts = (await getCollection('artifacts', ({ data }) => Boolean(
     <meta property="og:url" content={pageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
-  </head>
-  <body class="enchanted-v2">
-    <EnchantedV2Header />
-    <main id="main">
-      <section class="hero-slider" id="thesis" aria-label="Beyond the Bit and the four frontiers" data-hero-slider>
-        <div class="hero-track">
-          {openingSlides.map((slide, index) => (
-            <article
-              class={`hero-slide opening ${index === 0 ? 'is-active' : ''}`}
-              id={`slide-panel-${index + 1}`}
-              role="tabpanel"
-              aria-labelledby={`slide-tab-${index + 1}`}
-              aria-hidden={index !== 0}
-              inert={index !== 0}
-              data-slide
-            >
-              <div class="opening-copy">
-                <p class="eyebrow">Civilization Scale Computing <span>—</span> {slide.number}</p>
-                <div class="opening-title-wrap">
-                  <p class="pretitle">{index === 0 ? 'Scaling the next era of computing' : slide.label}</p>
-                  {index === 0 ? <h1>{slide.headline}</h1> : <h2>{slide.headline}</h2>}
-                  <p class="dropcap-copy">{slide.body}</p>
-                </div>
-                <a class="text-link hero-enter" href={slide.slug ? `${base}${frontierPath(slide.slug)}` : '#frontiers'}>
-                  {slide.slug ? 'Enter this frontier' : 'Explore the four frontiers'} <span aria-hidden="true">→</span>
-                </a>
-              </div>
-              <figure class="opening-art">
-                {slide.slug ? (
-                  <a href={`${base}${frontierPath(slide.slug)}`} aria-label={`Enter ${slide.label}`}>
-                    <picture>
-                      {import.meta.env.PROD && <source srcset={artworkWebp(slide.image)} type="image/webp" />}
-                      <img src={artwork(slide.image)} alt={slide.imageAlt} loading="lazy" decoding="async" fetchpriority="low" />
-                    </picture>
-                  </a>
-                ) : (
-                  <picture>
-                    {import.meta.env.PROD && <source srcset={artworkWebp(slide.image)} type="image/webp" />}
-                    <img src={artwork(slide.image)} alt={slide.imageAlt} loading="eager" decoding="async" fetchpriority="high" />
-                  </picture>
-                )}
-                <figcaption><span>Plate {['I', 'II', 'III', 'IV', 'V'][index]}</span><span>{slide.note}</span></figcaption>
-              </figure>
-            </article>
-          ))}
-        </div>
-        <div class="hero-toolbar">
-          <div class="slider-navigation" aria-label="Slider controls">
-            <button class="slider-arrow" type="button" data-previous aria-label="Previous slide"><span aria-hidden="true">←</span></button>
-            <div class="slider-tabs" role="tablist" aria-label="Explore the five perspectives on computing">
-              {openingSlides.map((slide, index) => (
-                <button
-                  class="slider-tab"
-                  type="button"
-                  role="tab"
-                  id={`slide-tab-${index + 1}`}
-                  aria-controls={`slide-panel-${index + 1}`}
-                  aria-selected={index === 0}
-                  aria-label={`Slide ${slide.number}: ${slide.label}`}
-                  tabindex={index === 0 ? 0 : -1}
-                  data-slide-tab
-                >{slide.number}</button>
-              ))}
-            </div>
-            <button class="slider-arrow" type="button" data-next aria-label="Next slide"><span aria-hidden="true">→</span></button>
-          </div>
-          <div class="slider-tools">
-            <button class="slider-play" type="button" data-toggle-play aria-pressed="false" aria-label="Pause slideshow"><span data-play-label>Pause</span></button>
-            <span class="slider-counter" data-slide-counter aria-live="polite">01 / 05</span>
-          </div>
-        </div>
-        <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-slide-status>Slide 1 of 5: The central thesis</p>
-      </section>
+  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style is:global>
+:root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#202326;color:#e5e7e8;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid white;outline-offset:4px}
+#fabric{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#181b1db3,transparent 80%),linear-gradient(0deg,#181b1d40,transparent 50%)}
+header{height:69px;position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#202326c9;border-bottom:1px solid #ffffff25;backdrop-filter:blur(12px)}.brand{font:700 31px Georgia,serif;letter-spacing:-.07em}.nav{font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:28px;align-items:center}.lab{border:1px solid #85898d;padding:9px}
+main{position:relative;z-index:4}.scene{position:relative;min-height:106svh;padding:125px 7vw 120px;display:flex;flex-direction:column;justify-content:center}.copy{max-width:800px}.scene>.copy,.scene>.inner,.scene>.frontiers{position:relative;z-index:4}.scene>.next{z-index:4}.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#b5b9bd;margin:0 0 32px}.scene h1,.scene h2{font-weight:500;letter-spacing:-.065em;line-height:1.01;margin:0 0 32px}.scene h1{font-size:clamp(53px,7.4vw,112px)}.scene h2{font-size:clamp(44px,6.5vw,95px)}.sub{color:#c2c6c9;font-size:clamp(17px,1.7vw,23px);line-height:1.45;max-width:650px}.aside{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#aeb2b6;margin-top:38px}.chapter{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:30px;color:#bdc2c5}.next{position:absolute;bottom:86px;right:7vw;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.steps{position:fixed;z-index:15;bottom:16px;left:5vw;right:5vw;display:flex;gap:6px}.steps a{flex:1;max-width:180px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#a9adb0}.steps a:after{content:"";display:block;height:2px;background:#ffffff50;margin-top:11px}.steps a.on{color:white}.steps a.on:after{background:#fff}
 
-      <section class="worlds" aria-labelledby="why-now-title">
-        <div class="worlds-rule"><span>The larger question</span><span>Why?</span></div>
-        <div class="worlds-intro">
-          <h2 id="why-now-title">Toward <em>Civilization-Scale Computing.</em></h2>
-          <div class="worlds-intro-copy">
-           <p>For eighty years, we've made extraordinary progress by computing with bits. We've made machines faster, connected them, and learned to scale computation across the planet.</p> 
-           <p>Yet some of the problems that matter most to humanity—discovering new drugs and materials, predicting weather, understanding biological systems—still challenge the limits of what we can compute.</p>
-           <p>Civilization-Scale Computing is an ambition to change that.</p>
-           <p>It means extending computation beyond individual machines, eventually across planetary and perhaps interplanetary scales. But scale alone isn't the point.</p>
-           <p>The goal is to expand what humanity can understand and solve, and to ensure those capabilities benefit the civilizations that create them.</p>
-          </div>
-        </div>
-      </section>
+/* A pinned image theatre: four editorial reveals, one continuous scroll space. */
+.problems{height:250svh;min-height:0;padding:0;display:block;color:#25292b;isolation:isolate}
+.gallery-pin{height:100svh;position:sticky;top:0;overflow:hidden;display:grid;align-items:center;padding:90px 7vw 74px;z-index:4}
+.gallery-wash{position:absolute;inset:0;background:#383934;opacity:var(--gallery-light,0);pointer-events:none;z-index:0}
+.gallery-layout{position:relative;z-index:4;display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:clamp(26px,6vw,110px);align-items:center;width:100%;max-width:1450px;margin:auto}
+.gallery-copy{max-width:510px;color:#eeece5;opacity:var(--gallery-light,0);transform:translateY(calc((1 - var(--gallery-light,0))*18px));will-change:opacity,transform}
+.gallery-copy h2{font-size:clamp(40px,5vw,78px);margin-bottom:20px}
+.gallery-copy .eyebrow,.gallery-copy .sub{color:#43494d}
+.gallery-copy .sub{font-size:clamp(15px,1.4vw,20px)}
+.gallery-stage{position:relative;aspect-ratio:16/11;width:100%;overflow:hidden;border:1px solid #666b6f6e;box-shadow:0 18px 85px #1e202326;background:#959a9d;opacity:var(--gallery-light,0);transform:scale(calc(.92 + .08*var(--gallery-light,0)));will-change:opacity,transform}
+.art-panel{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(18px,3vw,40px);opacity:0;transform:scale(1.1) translateY(24px);pointer-events:none;will-change:opacity,transform;overflow:hidden}
+.art-panel::before{content:"";position:absolute;width:84%;height:120%;top:-35%;right:-18%;border:1px solid #f1f2f25a;border-radius:50%;transform:rotate(-34deg);pointer-events:none}
+.art-panel::after{content:"";position:absolute;width:90%;height:80%;bottom:-38%;left:-25%;border:1px solid #555a6066;border-radius:50%;transform:rotate(25deg);pointer-events:none}
+.art-panel[data-art="0"]{background:radial-gradient(ellipse at 74% 36%,#d0d2d2,#a2a6a8 48%,#73787c)}
+.art-panel[data-art="1"]{background:radial-gradient(ellipse at 30% 70%,#d2d3d2,#a9adae 44%,#777d81)}
+.art-panel[data-art="2"]{background:radial-gradient(ellipse at 72% 18%,#e0e0de,#afb3b5 52%,#71777b)}
+.art-panel[data-art="3"]{background:radial-gradient(ellipse at 22% 34%,#c9cccd,#999fa2 45%,#666d72)}
+.art-panel .art-id,.art-panel .art-label,.art-panel .art-note{position:relative;z-index:1}
+.art-id{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#3c4348}
+.art-label{font:normal clamp(33px,4.3vw,66px)/1.06 Georgia,serif;letter-spacing:-.045em;color:#262b2f;max-width:80%;margin-top:auto}
+.art-note{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#4c555a;margin-top:14px}
+.gallery-status{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px;color:#3d4449;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.gallery-track{height:2px;flex:1;background:#4b51554d;overflow:hidden}
+.gallery-fill{height:100%;width:0;background:#343a3e;transform-origin:left}
+.gallery-fallback{display:none}
+.intelligence{min-height:0}
+.physics{background:linear-gradient(#20232600,#30343872,#20232600)}.inquiry{background:linear-gradient(transparent,#191c1e 28%);min-height:112svh}.frontiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:55px}.frontiers a{border:1px solid #777c81;min-height:190px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s}.frontiers a:hover{background:#ffffff18}.frontiers strong{font-size:clamp(20px,2.5vw,35px);font-weight:500}.frontiers small{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#b4b8bb}
+.reveal{opacity:.3;transform:translateY(32px);transition:opacity .8s,transform .8s}.reveal.seen{opacity:1;transform:none}footer{position:relative;z-index:3;background:#191c1e;border-top:1px solid #ffffff44;padding:34px 7vw 90px;display:flex;justify-content:space-between;font-size:12px;color:#afb4b8}
+@media(max-width:720px){header{padding:0 23px}.nav a{display:none}.scene{padding:110px 24px 120px}.scene h1{font-size:clamp(47px,12vw,68px)}.scene h2{font-size:clamp(41px,10vw,65px)}.gallery-pin{padding:92px 22px 76px}.gallery-layout{grid-template-columns:1fr;gap:20px;align-content:center}.gallery-copy h2{font-size:clamp(34px,8vw,48px);margin-bottom:10px}.gallery-copy .sub{font-size:16px;line-height:1.4}.gallery-copy .eyebrow{margin-bottom:14px}.gallery-stage{aspect-ratio:4/3;max-height:45svh}.art-panel{padding:17px}.art-label{font-size:clamp(29px,8vw,46px)}.gallery-status{margin-top:10px}.problems{height:250svh}.frontiers{grid-template-columns:repeat(2,1fr)}.frontiers a{min-height:145px}.steps{left:14px;right:14px}.steps a{font-size:8px}.sub{font-size:17px}}
+/* Editorial display face and quiet sans text. System stacks keep the study self-contained. */
+:root{--display:'Iowan Old Style','Baskerville','Palatino Linotype',Georgia,serif;--text:'Avenir Next',Avenir,'Helvetica Neue',Arial,sans-serif}
+body{font-family:var(--text);-webkit-font-smoothing:antialiased}
+.brand,.scene h1,.scene h2,.gallery-copy h2,.art-label,.frontiers strong{font-family:var(--display);font-weight:400;letter-spacing:-.045em}
+.scene h1,.scene h2{line-height:1.07}.scene h1{max-width:11ch}.scene h2{max-width:12ch}
+.gallery-copy h2{line-height:1.08}.art-label{font-family:var(--display)}
+.eyebrow,.chapter,.nav,.steps,.aside,.next,.art-id,.art-note,.gallery-status{font-family:var(--text);font-weight:600}
+.scene .sub,.gallery-copy .sub{font-family:var(--text);font-weight:400;letter-spacing:-.015em}
+.chapter-scene{height:155svh;min-height:0;padding:0;display:block}
+.chapter-pin{position:sticky;top:0;height:100svh;min-height:650px;padding:105px 7vw 85px;display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:5vw;align-items:center;overflow:hidden}
+.chapter-pin .copy{position:relative;z-index:5;max-width:650px}
+.chapter-pin .chapter{margin-bottom:24px}
+.chapter-pin h2{font-size:clamp(48px,5.7vw,84px)}
+.chapter-visual{position:relative;height:min(68svh,640px);min-height:430px;overflow:hidden;border:1px solid #8f969a66;background:linear-gradient(145deg,#35393d7a,#181b1e8c);box-shadow:0 26px 95px #11141677;isolation:isolate}
+.chapter-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 58% 40%,#aeb4b522,transparent 57%);pointer-events:none}
+.chapter-visual svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transform:translateY(calc(var(--chapter-shift,0) * -32px)) scale(calc(1 + var(--chapter-shift,0) * .045));transition:transform .15s linear}
+.chapter-visual path,.chapter-visual line,.chapter-visual circle,.chapter-visual ellipse,.chapter-visual rect{vector-effect:non-scaling-stroke}
+.visual-top,.visual-bottom{position:absolute;z-index:2;left:24px;right:24px;display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c4c9cb}
+.visual-top{top:24px}.visual-bottom{bottom:24px;padding-top:14px;border-top:1px solid #a6acae65}
+.visual-bottom span:last-child{color:#a9afb2}
+.chapter-visual .accent{stroke:#d7dddf}.chapter-visual .secondary{stroke:#a1aaae}.chapter-visual .node{fill:#d6dcde}.chapter-visual .ghost{stroke:#7f898e}
+.chapter-visual svg *{fill:none;stroke-width:1.2}
+.chapter-visual svg .node{stroke:none}
+.physics .chapter-visual{background:radial-gradient(circle at 50% 50%,#59616680,#24282c 62%,#171a1d)}
+.world .chapter-visual{background:linear-gradient(150deg,#353a3d,#1a1e21 72%)}
+.chapter-scene .sub{max-width:31ch}
+#ambition{z-index:5;background:transparent}
+#ambition::after{content:none}
+@media(prefers-reduced-motion:reduce){#ambition::after{-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media(max-width:720px){.chapter-scene{height:135svh;padding:0}.chapter-pin{min-height:0;height:100svh;padding:92px 22px 62px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:24px}.chapter-pin .copy{flex:0 0 auto}.chapter-pin h2{font-size:clamp(38px,9.5vw,58px);margin-bottom:14px}.chapter-pin .sub{font-size:16px;line-height:1.42;margin:0}.chapter-pin .chapter{margin-bottom:12px}.chapter-visual{height:38svh;min-height:220px;flex:0 1 auto}.visual-top,.visual-bottom{left:16px;right:16px;font-size:10px}.visual-top{top:15px}.visual-bottom{bottom:15px}.scene h1{max-width:12ch}}
+@media(max-width:400px){.chapter-pin h2{font-size:36px}.chapter-visual{height:32svh;min-height:180px}.chapter-pin{gap:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.gallery-pin{position:relative;height:auto;min-height:100svh;background:#b9bcbd}.gallery-wash{opacity:1!important}.gallery-copy,.gallery-stage{opacity:1!important;transform:none!important}.gallery-layout{display:block}.gallery-stage{display:none}.gallery-fallback{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:25px}.gallery-fallback div{border:1px solid #888;padding:24px 14px;min-height:140px;background:#a4a8aa;color:#25292b}.problems{min-height:0}.gallery-status{display:none}}
+@media(prefers-reduced-motion:reduce){.problems{height:auto}.chapter-scene{height:auto}.chapter-pin{position:relative;height:auto;min-height:100svh;overflow:visible}.chapter-visual svg{transform:none;transition:none}}
+/* A restrained parchment cast, carried into the dark graphite sections. */
+:root{--paper:#d9d5cc;--ink:#24231f;--cream:#eee9de}
+body{background:var(--ink);color:var(--cream)}
+.shade{background:linear-gradient(90deg,#1b1a18b3,transparent 80%),linear-gradient(0deg,#1b1a1840,transparent 50%)}
+header{background:#24231fd9;border-bottom-color:#eee9de25}
+#ambition{background:transparent}
+#ambition::after{content:none}
+.gallery-wash{background:#383934}
+.gallery-copy .eyebrow,.gallery-copy .sub{color:#d0cec5}
+.gallery-stage{background:#aaa69f;border-color:#68655f6e}
+.art-panel[data-art="0"]{background:radial-gradient(ellipse at 74% 36%,#e0dcd3,#b4b0a7 48%,#85827c)}
+.art-panel[data-art="1"]{background:radial-gradient(ellipse at 30% 70%,#dedbd3,#b8b4ac 44%,#86837e)}
+.art-panel[data-art="2"]{background:radial-gradient(ellipse at 72% 18%,#e6e2d9,#bcb8b0 52%,#817e79)}
+.art-panel[data-art="3"]{background:radial-gradient(ellipse at 22% 34%,#d7d3cb,#aca89f 45%,#77746f)}
+.art-label{color:#292824}.art-id,.art-note,.gallery-status{color:#47443f}
+.gallery-track{background:#514e484d}.gallery-fill{background:#383630}
+.chapter-visual{background:linear-gradient(145deg,#3a39347a,#1c1b188c);border-color:#a9a39966}
+.physics .chapter-visual{background:radial-gradient(circle at 50% 50%,#625f5780,#292823 62%,#1b1a17)}
+.world .chapter-visual{background:linear-gradient(150deg,#3a3933,#1d1c19 72%)}
+.inquiry{background:linear-gradient(transparent,#1d1c19 28%)}
+footer{background:#1d1c19}
+@media(prefers-reduced-motion:reduce){.gallery-pin{background:#383934}.gallery-copy{opacity:1!important;color:#eeece5}.gallery-copy .eyebrow,.gallery-copy .sub{color:#d0cec5}.gallery-fallback div{background:#aba79e}}
 
-      <section class="worlds" id="frontiers" aria-labelledby="worlds-title">
-        <div class="worlds-rule"><span>Four frontiers</span><span>01—04</span></div>
-        <div class="worlds-intro">
-          <h2 id="worlds-title">Four frontiers.<br /><em>One theory of scale.</em></h2>
-          <div class="worlds-intro-copy">
-            <p>Computing has scaled in three ways: algorithmically, through better methods; vertically, through more powerful machines; and horizontally, by connecting machines into larger systems.</p>
-            <p>Networks made that third dimension possible for classical computing. But the endpoints are changing. They think, entangle, move, and fluctuate.</p>
-            <p>Each frontier explores a different form of computation. Each raises the same larger question: what does it take to scale beyond the individual node?</p>
-            <p>Computing has scaled algorithmically through better methods, vertically through more capable machines, and horizontally through networks that make multiple machines work as one. That third axis now grows more demanding: the endpoints can think, entangle, move, and fluctuate. These four frontiers ask what it takes to coordinate richer forms of computation beyond one node.</p>
-          </div>
-        </div>
-        <div class="world-map">
-          {frontierWorlds.map((world, index) => (
-            <article class={`world world--${index + 1}`}>
-              <a class="world-link" href={`${base}${frontierPath(world.slug)}`}>
-                <div class="world-heading">
-                  <span class="world-number">Frontier {world.index} / 04</span>
-                  <h3>{world.name}</h3>
-                  <p>{world.subtitle}</p>
-                </div>
-                <figure class="world-figure">
-                  <picture>
-                    {import.meta.env.PROD && <source srcset={artworkWebp(world.image)} type="image/webp" />}
-                    <img src={artwork(world.image)} alt={world.imageAlt} loading="lazy" decoding="async" fetchpriority="low" />
-                  </picture>
-                  <figcaption><span>Plate {['II', 'III', 'IV', 'V'][index]}</span><span>{world.note}</span></figcaption>
-                </figure>
-                <span class="world-enter">Enter this frontier <span aria-hidden="true">→</span></span>
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
+/* Fabric v4: shared parchment world with gentle tonal differences, no pinned gallery. */
+:root{color-scheme:light;--site-paper:#eee9de;--site-ink:#292824;--site-muted:#6b665e}
+body{background:var(--site-paper);color:var(--site-ink)}
+.shade{background:linear-gradient(90deg,#eee9de55,transparent 67%);opacity:.33}
+#fabric{z-index:3;opacity:1;-webkit-mask-image:radial-gradient(ellipse 88% 91% at 50% 51%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 88% 91% at 50% 51%,#000 60%,transparent 100%)}
+header{background:#eee9def0;color:var(--site-ink);border-bottom-color:#29282424}
+.lab{border-color:#817c73}.nav{color:#35332e}
+.eyebrow,.chapter,.aside,.next{color:#655f56}
+.scene .sub,.chapter-pin .sub{color:#56514b}
+.steps a{color:#6e695f}.steps a:after{background:#514d4644}.steps a.on{color:#292824}.steps a.on:after{background:#292824}
+#ambition{background:transparent}
+.problems-static{position:relative;height:auto;min-height:0;padding:110px 6vw 130px;background:#e7e2d858;color:var(--site-ink);isolation:auto}
+.problems-content{position:relative;z-index:4;max-width:1510px;margin:0 auto}
+.problems-content>.eyebrow{margin-bottom:22px;text-align:left}
+.problems-content>h2{font:400 clamp(48px,6.5vw,96px)/1.1 var(--display);letter-spacing:-.048em;text-align:left;margin:0 auto 23px;max-width:1050px}
+.problems-intro{color:#676158;max-width:780px;text-align:left;font-size:clamp(16px,1.55vw,20px);line-height:1.5;margin:0 auto 65px}
+.problems-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px)}
+.problem-card{min-width:0}
+.problem-card-copy{min-height:176px}
+.problem-index{font:600 11px/1.4 var(--text);text-transform:uppercase;letter-spacing:.13em;color:#817a70;margin:0 0 16px}
+.problem-card h3{font:400 clamp(25px,2.35vw,38px)/1.17 var(--display);letter-spacing:-.035em;margin:0 0 12px}
+.problem-card-copy>p:last-child{font:400 clamp(14px,1.15vw,17px)/1.5 var(--text);color:#736d65;max-width:34ch}
+.image-placeholder{aspect-ratio:16/9;position:relative;overflow:hidden;border:1px solid #9b968d80;border-radius:0 0 20px 20px;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(14px,2vw,28px);background:linear-gradient(155deg,#d2cdc3,#b6b2a8 54%,#97958f);color:#5b5852}
+.image-placeholder:after{content:"";position:absolute;width:80%;height:115%;border:1px solid #5a5a5748;border-radius:50%;top:-40%;right:-20%;transform:rotate(-28deg)}
+.image-placeholder span{z-index:1;font:600 10px var(--text);letter-spacing:.15em;text-transform:uppercase}
+.image-placeholder strong{z-index:1;font:400 clamp(27px,3.3vw,52px) var(--display);letter-spacing:-.04em}
+.chapter-scene{background:transparent}
+.chapter-scene.intelligence{background:#eee9de45}
+.chapter-scene.physics{background:#e7e2d845}
+.chapter-scene.world{background:#e2ddd345}
+.chapter-visual{background:linear-gradient(145deg,#ddd8cd,#bab7af)!important;border-color:#8a847a66;box-shadow:none}
+.chapter-visual::before{background:radial-gradient(circle at 58% 40%,#eee9de88,transparent 57%)}
+.visual-top,.visual-bottom{color:#504d47;border-color:#918d8544}.visual-bottom span:last-child{color:#706b64}
+.chapter-visual .accent{stroke:#444541}.chapter-visual .secondary{stroke:#666963}.chapter-visual .node{fill:#3e423f}.chapter-visual .ghost{stroke:#8b8c84}
+.chapter-scene .copy{color:#292824}
+.inquiry{background:#eee9de45}
+.frontiers a{border-color:#817d756b}.frontiers a:hover{background:#2928240d}
+.frontiers small{color:#6b675f}
+footer{background:#e2ddd3;color:#5f5a53;border-top-color:#514b4333}
+@media(max-width:800px){.problems-static{padding:95px 23px 110px}.problems-content>h2{font-size:clamp(43px,9vw,67px)}.problems-intro{margin-bottom:36px}.problems-cards{grid-template-columns:1fr;gap:34px}.problem-card-copy{min-height:0;margin-bottom:18px}.image-placeholder{aspect-ratio:16/9}.problem-card h3{font-size:30px}.problem-card-copy>p:last-child{font-size:16px}.steps a{color:#6e695f}}
+@media(prefers-reduced-motion:reduce){.problems-static{height:auto!important;min-height:0;background:#e7e2d8}.chapter-visual svg{transform:none}}
+/* Content integration: retain the fabric and chapter plates. */
+.chapter-scene .sub{max-width:42ch;font-size:clamp(15px,1.35vw,20px);margin:0 0 14px}.chapter-pin h2{font-size:clamp(42px,5.1vw,76px);margin-bottom:22px}.chapter-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;font-weight:600;letter-spacing:.04em}.chapter-links a,.activity-list a{border-bottom:1px solid #817d756b;padding-bottom:3px}.history-bridge{max-width:760px;margin:60px auto 0;text-align:left;color:#56514b;font-size:clamp(16px,1.6vw,22px);line-height:1.55}.convergence{background:#e7e2d845;text-align:left;align-items:center}.convergence .copy{max-width:850px}.convergence h2{max-width:18ch;margin-inline:auto}.convergence .sub{margin-inline:auto}.convergence-plate{position:relative;z-index:4;width:min(100%,1050px);margin:35px auto 0;padding:clamp(20px,4vw,50px);border:1px solid #817d756b;background:#eee9de85}.convergence-plate svg{width:100%;height:auto;max-height:280px}.convergence-plate figcaption{font-size:12px;letter-spacing:.08em;color:#655f56}.activity-lab{min-height:0;background:#eee9de90}.activity-lab h2{max-width:none}.activity-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 40px;position:relative;z-index:4;max-width:1100px}.activity-list a{display:block;font-size:17px;line-height:1.4}.activity-list small{display:block;color:#655f56;margin-bottom:8px}.steps a{max-width:none}a:focus-visible{outline-color:#292824}
+@media(max-width:800px){.chapter-scene{height:auto;min-height:0}.chapter-pin{position:relative;height:auto;min-height:100svh;overflow:visible;display:flex;flex-direction:column;align-items:stretch;justify-content:center;padding:100px 24px 75px;gap:22px}.chapter-pin .sub{font-size:16px;margin:0 0 12px}.chapter-pin h2{font-size:clamp(38px,9vw,58px)}.chapter-visual{height:38svh;min-height:220px}.activity-list{grid-template-columns:1fr}.steps a{font-size:7px;letter-spacing:0}.history-bridge{margin-top:40px}.convergence-plate{padding:12px}}
+@media(min-width:801px) and (max-height:760px){.chapter-scene{height:auto}.chapter-pin{position:relative;height:auto;min-height:100svh;overflow:visible}}
+.scene .scaling-thread,.history-bridge .scaling-thread{color:#403f3c;font-weight:500}
+:root{--vermilion:#B54C35}.brand-dot{display:inline-block;width:.19em;height:.19em;border-radius:50%;background:var(--vermilion);margin-left:.075em;vertical-align:.025em}.steps a.on{color:var(--vermilion)}.steps a.on:after{background:var(--vermilion)}.chapter:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--vermilion);margin-right:10px;vertical-align:2px}.chapter-links .link-arrow,.frontiers .link-arrow{color:var(--vermilion)}
+.image-placeholder,.chapter-visual,.convergence-plate{border-radius:8px;overflow:hidden}
+.artwork-video{padding:0;display:block;background:#eee9de!important;border-radius:8px;overflow:hidden}.artwork-video:before,.artwork-video:after{content:none!important}.artwork-video video{display:block;width:100%;height:100%;object-fit:contain;background:#eee9de}.chapter-visual.artwork-video{height:auto;min-height:0;aspect-ratio:16/9;width:100%}.image-placeholder.artwork-video{aspect-ratio:16/9}@media(max-width:800px){.chapter-visual.artwork-video{height:auto;min-height:0;flex:none}}
+/* Chapter-specific accents: a restrained color vocabulary on neutral paper. */
+.intelligence{--chapter-dot:#286C65;--chapter-emphasis:#456B63}
+.physics{--chapter-dot:#AE802F;--chapter-emphasis:#80632F}
+.world{--chapter-dot:#3B55A0;--chapter-emphasis:#53658A}
+.chapter-scene .chapter:before{background:var(--chapter-dot)}
+.chapter-scene .scaling-thread{color:var(--chapter-emphasis)}
+.chapter-scene .chapter-links .link-arrow{color:var(--chapter-dot)}
+:root{--text:'Roboto','Helvetica Neue',Arial,sans-serif}
+body{font-weight:300}
+.scene .sub,.gallery-copy .sub,.problems-intro,.problem-card-copy>p:last-child,.history-bridge,.scene .scaling-thread,.history-bridge .scaling-thread,.activity-list a{font-weight:300;letter-spacing:normal}
+.scene .sub,.gallery-copy .sub,.problems-intro,.problem-card-copy>p:last-child,.history-bridge{color:#504d48}
+.scene .scaling-thread,.history-bridge .scaling-thread{color:#353432}
+.intelligence{--chapter-emphasis:#34574f}
+.physics{--chapter-emphasis:#6e5429}
+.world{--chapter-emphasis:#435577}
+.chapter-scene .scaling-thread{color:var(--chapter-emphasis)}
+.eyebrow,.chapter,.nav,.steps,.aside,.next,.art-id,.art-note,.gallery-status,.chapter-links,.problem-index,.image-placeholder span{font-weight:500}
+/* Editorial headline tones and platform-independent navigation details. */
+.scene h1 em,.scene h2 em,.problems-content h2 em{font-style:normal;font-weight:inherit;color:#82735e}
+.steps a{display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.steps a:after{flex-shrink:0}
+.link-arrow{display:inline-block;position:relative;width:.72em;height:.72em;vertical-align:.02em;margin-left:.15em;color:inherit}
+.link-arrow:before{content:"";position:absolute;right:0;top:0;width:.43em;height:.43em;border-top:1px solid currentColor;border-right:1px solid currentColor}
+.link-arrow:after{content:"";position:absolute;left:0;bottom:0;width:.91em;height:1px;background:currentColor;transform:rotate(-45deg);transform-origin:left center}
+@media(max-width:800px){.steps{align-items:stretch;gap:5px;background:#eee9def2;padding:7px 0 5px;box-shadow:0 -6px 14px #eee9de88}.steps a{font-size:7px;line-height:1.2;letter-spacing:0;white-space:nowrap}.steps a:after{margin-top:8px}.scene>.next{bottom:92px}.inquiry{min-height:0;padding-bottom:65px}.activity-lab{padding-top:65px}}
+@media(max-width:360px){.steps a{font-size:6px}}
+.steps{background:rgba(238,233,222,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:8px 0 5px;box-shadow:0 -5px 15px rgba(238,233,222,.35)}
+.convergence-plate.artwork-video{padding:0;aspect-ratio:16/9;border-radius:8px;overflow:hidden}
+.personal-grounding{max-width:800px;margin:clamp(32px,5vw,64px) auto 0;text-align:left;color:#504d48;font-family:var(--text);font-weight:300;font-size:clamp(16px,1.45vw,20px);line-height:1.6}
+.personal-grounding p{margin:0 0 .8em}
+.personal-grounding p:last-child{margin-bottom:0}
+#ambition .personal-grounding{max-width:650px;margin:clamp(22px,3vw,36px) 0 0;padding-top:clamp(16px,2vw,24px);border-top:1px solid #82735e40;font-size:clamp(14px,1.2vw,17px);line-height:1.5;text-align:left}
+#ambition .preface-signature{font-family:Georgia,serif;font-style:italic;color:#82735e;font-size:21px;margin:12px 0 0}
+.chapter-reading{max-width:520px;margin:18px 0;border-top:1px solid #82735e40;padding-top:12px;display:grid;gap:10px}
+.chapter-reading .reading-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#82735e;margin:0 0 5px;font-weight:500}
+.chapter-reading a{display:block;font-size:14px;line-height:1.35;color:#504d48;margin:4px 0;font-weight:400}
+.chapter-reading a:hover{text-decoration:underline}
+.chapter-reading small{display:block;color:#82735e;font-size:11px;font-weight:300}
+.chapter-pin{height:auto;min-height:100svh;overflow:visible}
+@media(max-height:850px) and (min-width:761px){.chapter-pin{position:relative}.chapter-scene{height:auto}}
+.chapter-media{min-width:0;width:100%;align-self:center}
+.chapter-media .chapter-reading{max-width:none;margin:16px 0 0;padding-top:12px;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;border-color:#77736b40}
+.chapter-media .chapter-reading>div:only-child{grid-column:1/-1}
+.chapter-scene.intelligence,.chapter-scene.physics,.chapter-scene.world{--chapter-emphasis:#504e4a;--chapter-dot:#77746e}
+.chapter-scene .scaling-thread{color:#504e4a}
+.chapter-scene .chapter-links .link-arrow{color:#77746e}
+.chapter-scene .chapter:before{background:#77746e}
+.chapter-scene.intelligence{background:#e9e9e945}
+.chapter-scene.physics{background:#dedede45}
+.chapter-scene.world{background:#d4d4d445}
+.chapter-media .reading-label,.chapter-media .chapter-reading small{color:#696762}
+#ambition .preface-signature{font-style:normal}
+@media(max-width:760px){.chapter-media .chapter-reading{grid-template-columns:1fr;gap:10px}}
+/* Shared editorial grid: align section headings, prose and media to one outer rail.
+   Keep existing reading measures; do not center narrow text blocks independently. */
+:root{--editorial-gutter:7vw;--editorial-max:1510px}
+.scene:not(.chapter-scene),.problems-static{padding-inline:max(var(--editorial-gutter),calc((100% - var(--editorial-max))/2))}
+.chapter-pin{padding-inline:max(var(--editorial-gutter),calc((100% - var(--editorial-max))/2));grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}
+.problems-content{width:100%;max-width:none;margin:0}
+.problems-content>.eyebrow,.problems-content>h2,.problems-intro,.history-bridge{margin-inline:0;text-align:left}
+.problems-intro{max-width:780px}
+.convergence{align-items:flex-start;text-align:left}
+.convergence .copy{width:min(100%,850px)}
+.convergence h2,.convergence .sub{margin-inline:0}
+.convergence-plate{margin-inline:0}
+.chapter-pin{align-items:start}
+.chapter-media{align-self:start}
+@media(min-width:801px){.chapter-media{margin-top:36px}}
+@media(max-width:800px){:root{--editorial-gutter:24px}.chapter-media{margin-top:0}}
+.static-artwork img{display:block;width:100%;height:100%;object-fit:contain;background:#eee9de}
+.activity-profile{position:relative;z-index:4;font-size:13px;color:#696762;margin-top:28px}
+/* Production navigation and footer retain the Fabric visual vocabulary. */
+.production-nav{display:flex;gap:24px}
+.production-nav details{position:relative}
+.production-nav summary{cursor:pointer;list-style:none}
+.production-nav summary::-webkit-details-marker{display:none}
+.production-nav summary:after{content:" ⌄"}
+.production-menu{position:absolute;right:0;top:calc(100% + 14px);min-width:210px;background:#eee9de;border:1px solid #817d756b;border-radius:6px;padding:8px;box-shadow:0 8px 20px #29282418}
+.production-nav .production-menu a{display:block;padding:10px;letter-spacing:0;text-transform:none;font-size:14px}
+.production-menu a:hover{background:#ded9cf}
+.production-footer{display:grid;gap:20px;grid-template-columns:1.3fr 1fr 1fr;padding-bottom:100px}
+.production-footer nav{display:flex;flex-wrap:wrap;align-content:start;gap:12px 20px}
+.production-footer>div:last-child{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;border-top:1px solid #817d7540;padding-top:18px}
+.skip-link{position:fixed;top:-100px;left:16px;z-index:30;background:#eee9de;padding:12px}
+.skip-link:focus{top:8px}
+@media(max-width:800px){.production-footer{grid-template-columns:1fr}.production-nav{gap:18px}.steps a{font-size:6px}}
+</style>
+</head>
+<body>
+<canvas id="fabric" aria-hidden="true"></canvas><div class="shade" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a><header><a href="/" class="brand" aria-label="Vijoy home">Vijoy<span class="brand-dot" aria-hidden="true"></span></a><nav class="nav production-nav" aria-label="Main navigation"><details><summary>Thesis</summary><div class="production-menu"><a href="/">Overview</a><a href="/emergent-superintelligence/">Collective Intelligence</a><a href="/quantum-computing/">Quantum Computing</a><a href="/physics-based-computing/">Physics-Based Computing</a><a href="/physical-ai/">Physical AI</a></div></details><details><summary>About</summary><div class="production-menu"><a href="/about/personal/">Personal</a><a href="/about/work/">Work</a><a href="mailto:vijoy.external@gmail.com">Contact</a></div></details></nav></header>
+<nav class="steps" aria-label="Explore sections"><a href="#ambition" class="on">01 Ambition</a><a href="#problems">02 Problems</a><a href="#intelligence">03 Think</a><a href="#physics">04 Physics</a><a href="#world">05 World</a><a href="#convergence">06 Together</a><a href="#activity">07 Activity</a><a href="#frontiers">08 Frontiers</a></nav>
+<main id="main">
+<section class="scene" id="ambition" data-mode="0"><div class="copy reveal seen"><p class="eyebrow">Civilization-Scale Computing</p><h1>What will it take to solve <em>the harder problems?</em></h1><p class="sub">From discovering medicines and materials to understanding the universe and modeling complex systems.</p><p class="aside">Beyond the Bit / What comes after the individual?</p><div class="personal-grounding">
+      <p>These are questions I have been drawn to throughout my career as a technologist. My thinking has been shaped by many colleagues and friends, and I am fortunate to work with some extraordinary and visionary individuals who help explore and expand these ideas and bring some of them to life.</p>
+      <p>Much of what follows draws on their contributions, the work of the wider technology community, and my own thinking about where computing is headed.</p>
+    <p class="preface-signature">Vijoy.</p></div></div><p class="next">Scroll to explore ↓</p></section>
+<section class="problems problems-static" id="problems" data-mode="1" aria-labelledby="problems-title">
+  <div class="problems-content">
+    <p class="eyebrow">The problems</p>
+    <h2 id="problems-title">Problems that matter <em>to humanity.</em></h2>
+    <p class="problems-intro">Some of the problems we most want to solve still challenge the limits of what we can practically compute.</p>
+    <div class="problems-cards">
+      <article class="problem-card">
+        <div class="problem-card-copy"><p class="problem-index">01 / Discovery</p><h3>Drugs and materials</h3><p>Exploring enormous spaces of molecular and material possibilities.</p></div>
+        <div class="image-placeholder artwork-video static-artwork"><img src="/images/fabric/discovery.jpeg" alt="Drug and materials discovery illustration" width="1600" height="900" decoding="async" loading="lazy"></div>
+      </article>
+      <article class="problem-card">
+        <div class="problem-card-copy"><p class="problem-index">02 / Understanding</p><h3>The universe</h3><p>Modeling physical systems across scales we cannot directly experiment with.</p></div>
+        <div class="image-placeholder artwork-video static-artwork"><img src="/images/fabric/understanding.jpeg" alt="Universe illustration" width="1600" height="900" decoding="async" loading="lazy"></div>
+      </article>
+      <article class="problem-card">
+        <div class="problem-card-copy"><p class="problem-index">03 / Complexity</p><h3>Global systems</h3><p>Logistics, financial modeling, and the behavior of interconnected systems.</p></div>
+        <div class="image-placeholder artwork-video static-artwork"><img src="/images/fabric/complexity.jpeg" alt="Interconnected global systems illustration" width="1600" height="900" decoding="async" loading="lazy"></div>
+      </article>
+    </div>
+    <p class="history-bridge">For eighty years, we have made extraordinary progress computing with bits. <span class="scaling-thread">Better algorithms, more powerful machines, and increasingly sophisticated networked systems have allowed us to scale computation across the planet.</span> Now computing itself is evolving in three directions.</p>
+  </div>
+</section>
+<section class="scene chapter-scene intelligence" id="intelligence" data-mode="2"><div class="chapter-pin"><div class="copy reveal"><p class="chapter">01 / Workloads</p><h2>Computing becomes <em>intelligent.</em></h2><p class="sub">Workloads are evolving from programmed logic toward learned, probabilistic, agentic, and potentially emergent systems.</p><p class="sub grounding">Specialized AI agents are already collaborating on scientific and enterprise problems, but experiments reveal new failure modes when individual reasoning becomes collective.</p><p class="sub"><span class="scaling-thread">How do we move from individual reasoning to collective intelligence? Connected systems must share richer forms of state: meaning, knowledge, context, and intent.</span></p><div class="chapter-links"><a href="/emergent-superintelligence/">THINK / Collective Intelligence <span class="link-arrow" aria-hidden="true"></span></a></div></div><div class="chapter-media"><div class="chapter-visual artwork-video"><video data-artwork src="/videos/fabric/collective.mp4" muted playsinline preload="metadata" aria-label="Collective intelligence illustration"></video></div><div class="chapter-reading">{reading.intelligence.articles.length > 0 && <div><p class="reading-label">From Coherent Cognition</p>{reading.intelligence.articles.map(item => <a href={item.url}>{item.title} <span class="link-arrow" aria-hidden="true"></span></a>)}</div>}{reading.intelligence.technical.length > 0 && <div><p class="reading-label">Related technical work</p>{reading.intelligence.technical.map(item => <a href={item.url}>{item.title} <span class="link-arrow" aria-hidden="true"></span><small>{item.credit}</small></a>)}</div>}</div></div></div></section>
+<section class="scene chapter-scene physics" id="physics" data-mode="3"><div class="chapter-pin"><div class="copy reveal"><p class="chapter">02 / Substrates</p><h2>Computing embraces <em>physics.</em></h2><p class="sub">There is an impedance mismatch between the problems we want to solve, the workloads tackling them, and what conventional compute can provide efficiently at scale. Why should we force-fit inherently probabilistic and exploratory workloads onto deterministic binary infrastructure?</p><p class="sub grounding">Researchers have demonstrated quantum operations across separate processors, while emerging probabilistic hardware exploits physical fluctuations to perform computation.</p><p class="sub">Quantum phenomena, thermodynamic fluctuations, and oscillator dynamics offer distinct computational mechanisms. <span class="scaling-thread">Scaling them means preserving useful coherence, distributions, and correlations across system boundaries.</span></p><div class="chapter-links"><a href="/quantum-computing/">ENTANGLE / Quantum <span class="link-arrow" aria-hidden="true"></span></a><a href="/physics-based-computing/">FLUCTUATE / Physics-Based Computing <span class="link-arrow" aria-hidden="true"></span></a></div></div><div class="chapter-media"><div class="chapter-visual artwork-video"><video data-artwork src="/videos/fabric/physics.mp4" muted playsinline preload="metadata" aria-label="Physical computation illustration"></video></div><div class="chapter-reading">{reading.physics.articles.length > 0 && <div><p class="reading-label">From Coherent Cognition</p>{reading.physics.articles.map(item => <a href={item.url}>{item.title} <span class="link-arrow" aria-hidden="true"></span></a>)}</div>}{reading.physics.technical.length > 0 && <div><p class="reading-label">Related technical work</p>{reading.physics.technical.map(item => <a href={item.url}>{item.title} <span class="link-arrow" aria-hidden="true"></span><small>{item.credit}</small></a>)}</div>}</div></div></div></section>
+<section class="scene chapter-scene world" id="world" data-mode="4"><div class="chapter-pin"><div class="copy reveal"><p class="chapter">03 / Embodiment</p><h2>Computing extends into <em>the physical world.</em></h2><p class="sub">And then, how do we unleash the power of this new software, new compute, and new sensing paradigms beyond the boundaries of the data center and the cloud, to do real work in the physical world?</p><p class="sub grounding">Learned world models, autonomous robotic systems, and distributed sensing are beginning to connect computational reasoning with physical action.</p><p class="sub"><span class="scaling-thread">Connecting machines, sensors, and compute around a shared understanding of their environment could enable coordinated, safe physical action.</span></p><div class="chapter-links"><a href="/physical-ai/">MOVE / Physical AI <span class="link-arrow" aria-hidden="true"></span></a></div></div><div class="chapter-media"><div class="chapter-visual artwork-video"><video data-artwork src="/videos/fabric/physical.mp4" muted playsinline preload="metadata" aria-label="Physical AI illustration"></video></div><div class="chapter-reading">{reading.world.articles.length > 0 && <div><p class="reading-label">From Coherent Cognition</p>{reading.world.articles.map(item => <a href={item.url}>{item.title} <span class="link-arrow" aria-hidden="true"></span></a>)}</div>}{reading.world.technical.length > 0 && <div><p class="reading-label">Related technical work</p>{reading.world.technical.map(item => <a href={item.url}>{item.title} <span class="link-arrow" aria-hidden="true"></span><small>{item.credit}</small></a>)}</div>}</div></div></div></section>
+<section class="scene convergence" id="convergence" data-mode="5"><div class="copy reveal"><p class="eyebrow">Civilization-Scale Computing</p><h2>Now imagine them <em>working together.</em></h2><p class="sub"><span class="scaling-thread">Imagine intelligent systems collaborating on scientific questions, drawing on specialized computational substrates to simulate and optimize, and testing their ideas in autonomous laboratories. Measurements feed back into the collective intelligence.</span></p><p class="sub grounding">AI systems are helping optimize quantum algorithms, while autonomous laboratories connect computational discovery with physical experimentation and feedback.</p><p class="sub">Together, these capabilities could expand what we can discover, understand, and build.</p></div><figure class="convergence-plate artwork-video"><video data-artwork src="/videos/fabric/together.mp4" muted loop playsinline preload="metadata" aria-label="Illustration of distinct computational systems working together"></video></figure></section>
+<section class="scene activity-lab" id="activity"><div class="copy"><p class="eyebrow">A continuing record</p><h2>Recent <em>activity.</em></h2></div><div class="activity-list">{xActivity.map(item => <a href={item.url}><small>{item.date} / X</small>{item.title} <span class="link-arrow" aria-hidden="true"></span></a>)}</div><p class="activity-profile"><a href="https://x.com/vijoy">More observations on X / @vijoy <span class="link-arrow" aria-hidden="true"></span></a></p></section>
+<section class="scene inquiry" id="frontiers" data-mode="6"><div class="copy reveal"><p class="eyebrow">Beyond the Bit / What comes after the individual?</p><h2>What state must <em>survive the boundary?</em></h2><p class="sub">Networks made it possible to scale classical computation beyond individual machines. Now the endpoints reason, fluctuate, entangle, and move. <span class="scaling-thread">What we must share or preserve across their boundaries is changing.</span> Much of my work is an exploration of what becomes possible when the boundaries of individual computational systems begin to dissolve.</p></div><div class="frontiers">
+<a href="/emergent-superintelligence/"><small>Collective intelligence</small><strong>Think</strong><small>Explore frontier <span class="link-arrow" aria-hidden="true"></span></small></a>
+<a href="/quantum-computing/"><small>Quantum computing</small><strong>Entangle</strong><small>Explore frontier <span class="link-arrow" aria-hidden="true"></span></small></a>
+<a href="/physics-based-computing/"><small>Physics-based computing</small><strong>Fluctuate</strong><small>Explore frontier <span class="link-arrow" aria-hidden="true"></span></small></a>
+<a href="/physical-ai/"><small>Physical AI</small><strong>Move</strong><small>Explore frontier <span class="link-arrow" aria-hidden="true"></span></small></a>
+</div></section>
 
-      <section class="worlds" aria-labelledby="network-role-title">
-        <div class="worlds-rule"><span>The deeper question</span><span>Beyond transport</span></div>
-        <div class="worlds-intro">
-          <h2 id="network-role-title">Beyond the <em>individual node.</em></h2>
-          <div class="worlds-intro-copy">
-          <p>Connecting machines was one of computing's great breakthroughs. It let us distribute information, coordinate work, and build systems far more capable than any individual computer.</p>
-          <p>But connecting the next generation of computing systems presents different challenges.</p>
-          <p>Intelligent agents must share meaning and intent. Quantum systems must establish entanglement across distance. Physical computing systems must preserve useful dynamics when coupled. Embodied intelligence must coordinate perception and action in a changing world.</p>
-          <p>These are not simply problems of moving information. They require new approaches to distributed systems—across networking, protocols, state, synchronization, and coordination.</p>
-          <p>Every distributed system must answer a fundamental question: <em>what state must survive the boundary?</em></p>
-          </div>
-        </div>
-      </section>
-
-      <section class="activity" id="activity" aria-labelledby="activity-title">
-        <div class="activity-intro">
-          <p class="eyebrow">A continuing record <span>—</span> 05</p>
-          <h2 id="activity-title">Recent <em>activity.</em></h2>
-          <p>Following the science, the experiments, and the conversations that may change how we compute together.</p>
-        </div>
-        <div class="activity-list">
-          {recentArtifacts.map((entry) => (
-            <a class="activity-row" href={`${base}/artifacts/${entry.id}/`} aria-label={`Read ${entry.data.title}`}>
-              <time datetime={entry.data.date!.toISOString().slice(0, 10)}>{entry.data.date!.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>
-              <span class="activity-type">{entry.data.type}</span>
-              <h3>{entry.data.title}</h3>
-            </a>
-          ))}
-        </div>
-      </section>
-    </main>
-    <EnchantedV2Footer />
-    <script>
-      const slider = document.querySelector<HTMLElement>('[data-hero-slider]');
-      if (slider) {
-        const panels = Array.from(slider.querySelectorAll<HTMLElement>('[data-slide]'));
-        const tabs = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-slide-tab]'));
-        const counter = slider.querySelector<HTMLElement>('[data-slide-counter]');
-        const playButton = slider.querySelector<HTMLButtonElement>('[data-toggle-play]');
-        const playLabel = slider.querySelector<HTMLElement>('[data-play-label]');
-        const status = slider.querySelector<HTMLElement>('[data-slide-status]');
-        let active = 0;
-        let autoplayTimer: number | undefined;
-        let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        function stopAutoplay() {
-          if (autoplayTimer !== undefined) window.clearInterval(autoplayTimer);
-          autoplayTimer = undefined;
-        }
-
-        function updatePlayButton() {
-          playButton?.setAttribute('aria-pressed', String(!paused));
-          playButton?.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
-          if (playLabel) playLabel.textContent = paused ? 'Play' : 'Pause';
-        }
-
-        function startAutoplay() {
-          stopAutoplay();
-          if (!paused) autoplayTimer = window.setInterval(() => showSlide(active + 1, false, false), 8000);
-        }
-
-        function showSlide(index: number, focusTab = false, restartAutoplay = true) {
-          const previous = active;
-          active = (index + panels.length) % panels.length;
-          panels.forEach((panel, position) => {
-            const selected = position === active;
-            panel.classList.toggle('is-active', selected);
-            panel.classList.toggle('is-leaving', position === previous && position !== active);
-            panel.inert = !selected;
-            panel.setAttribute('aria-hidden', String(!selected));
-            tabs[position].setAttribute('aria-selected', String(selected));
-            tabs[position].tabIndex = selected ? 0 : -1;
-          });
-          if (counter) counter.textContent = `${String(active + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`;
-          if (status) status.textContent = `Slide ${active + 1} of ${panels.length}: ${tabs[active].getAttribute('aria-label')?.split(': ')[1]}`;
-          if (focusTab) tabs[active].focus();
-          if (restartAutoplay) startAutoplay();
-        }
-
-        slider.querySelector<HTMLButtonElement>('[data-previous]')?.addEventListener('click', () => showSlide(active - 1));
-        slider.querySelector<HTMLButtonElement>('[data-next]')?.addEventListener('click', () => showSlide(active + 1));
-        playButton?.addEventListener('click', () => {
-          paused = !paused;
-          updatePlayButton();
-          if (paused) stopAutoplay();
-          else startAutoplay();
-        });
-        window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (event) => {
-          paused = event.matches;
-          updatePlayButton();
-          if (paused) stopAutoplay();
-          else startAutoplay();
-        });
-        tabs.forEach((tab, index) => {
-          tab.addEventListener('click', () => showSlide(index));
-          tab.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') { event.preventDefault(); showSlide(index + 1, true); }
-            if (event.key === 'ArrowLeft') { event.preventDefault(); showSlide(index - 1, true); }
-            if (event.key === 'Home') { event.preventDefault(); showSlide(0, true); }
-            if (event.key === 'End') { event.preventDefault(); showSlide(tabs.length - 1, true); }
-          });
-        });
-        let touchStartX = 0;
-        slider.addEventListener('touchstart', (event) => { touchStartX = event.changedTouches[0]?.clientX ?? 0; }, { passive: true });
-        slider.addEventListener('touchend', (event) => {
-          const delta = (event.changedTouches[0]?.clientX ?? 0) - touchStartX;
-          if (Math.abs(delta) > 45) showSlide(active + (delta < 0 ? 1 : -1));
-        }, { passive: true });
-        updatePlayButton();
-        startAutoplay();
-      }
-    </script>
-  </body>
-</html>
+</main><footer class="production-footer"><div><a class="brand" href="/">Vijoy<span class="brand-dot"></span></a><p>Computing beyond the individual node.</p></div><nav aria-label="Explore"><a href="/about/personal/">Personal</a><a href="/about/work/">Work</a><a href="mailto:vijoy.external@gmail.com">Contact</a></nav><nav aria-label="Elsewhere"><a href="https://vijoypandey.substack.com/">Coherent Cognition</a><a href="https://www.linkedin.com/in/vijoy">LinkedIn</a><a href="https://x.com/vijoy">X</a><a href="https://outshift.cisco.com/">Outshift</a></nav><div>© {new Date().getFullYear()} Vijoy Pandey <a href="#ambition">Back to the beginning ↑</a></div></footer>
+<script is:inline>
+(function(){
+const canvas=document.querySelector('#fabric'),ctx=canvas.getContext('2d');if(!ctx)return;
+const scenes=Array.from(document.querySelectorAll('[data-mode]')),links=Array.from(document.querySelectorAll('.steps a'));
+const reduced=window.matchMedia('(prefers-reduced-motion:reduce)');
+const chapters=Array.from(document.querySelectorAll('.chapter-scene'));
+let w=0,h=0,d=1,mode=0,visualMode=0,targetMode=0,scroll=0,target=0,frame=0;
+function resize(){w=innerWidth;h=innerHeight;d=Math.min(devicePixelRatio||1,1.7);canvas.width=Math.round(w*d);canvas.height=Math.round(h*d);ctx.setTransform(d,0,0,d,0,0);if(reduced.matches)draw(0)}
+function smoothstep(a,b,x){const v=Math.min(1,Math.max(0,(x-a)/(b-a)));return v*v*(3-2*v)}
+function onscroll(){
+ target=scrollY/Math.max(1,document.documentElement.scrollHeight-h);
+ const at=scrollY+h*.55;
+ mode=0;targetMode=0;
+ scenes.forEach((el,i)=>{
+   if(i===0)return;
+   const distance=at-el.offsetTop;
+   // Blend across a full viewport around each chapter boundary, never snap meshes.
+   targetMode+=smoothstep(-h*.55,h*.55,distance);
+   if(distance>=0)mode=i;
+ });
+ const activeLink=links.filter(el=>{const section=document.querySelector(el.getAttribute('href'));return section&&section.offsetTop<=at}).pop()||links[0];links.forEach(el=>el.classList.toggle('on',el===activeLink));
+chapters.forEach(el=>{
+  const travel=Math.max(1,el.offsetHeight-h);
+  const progress=Math.min(1,Math.max(0,(scrollY-el.offsetTop)/travel));
+  el.style.setProperty('--chapter-shift',String(reduced.matches?0:progress));
+});
+if(reduced.matches){scroll=target;visualMode=targetMode;draw(0)}
+}
+function draw(ms){
+ctx.clearRect(0,0,w,h);
+const t=reduced.matches?0:ms*.00032,p=scroll*17+t,cols=w<720?43:81,rows=w<720?24:32;
+const amplitudes=[65,32,75,85,95,80,70],alphas=[.30,.28,.30,.30,.30,.30,.26];
+const k=Math.min(6,Math.floor(visualMode)),next=Math.min(6,k+1),mix=smoothstep(0,1,visualMode-k);
+const amp=amplitudes[k]*(1-mix)+amplitudes[next]*mix;
+const alpha=alphas[k]*(1-mix)+alphas[next]*mix;
+// One continuous mesh throughout. Its ink adapts to the lighter chapter:
+// charcoal-gray filaments over gray; silver filaments over charcoal.
+// Dim through the midpoint so the tonal shift never reads as a color snap.
+const light=0;
+const tone=67;
+const visibleAlpha=alpha*.48;
+let points=[];
+for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
+const x=i/(cols-1),y=j/(rows-1);
+const camera=1+.025*smoothstep(.10,.35,scroll)+.065*smoothstep(.45,.8,scroll);
+const px=(w*(x*1.42-.18)-w*.52)*camera+w*.52+Math.sin(y*9+p*.55)*12 + Math.sin(x*5+y*4-t*.65)*7;
+const a=Math.sin(x*11+y*6+p)+.35*Math.sin(x*24-y*10-t);
+const b=Math.sin(x*16+p)*Math.cos(y*9-p*.7);
+const c=Math.sin(x*28+p)*Math.sin(y*18-p);
+const e=Math.sin(x*9+y*8+t)*Math.cos(x*4-y*7);
+const behaviors=[a,a,b,c,e,(b+c+e)/3,a];const wave=behaviors[k]*(1-mix)+behaviors[next]*mix;
+const py=h*(.27+y*.92)+wave*amp*(.48+y*.7)+Math.sin(x*6+y*3+p)*26;
+row.push([px,(py-h*.56)*camera+h*.56]);
+}points.push(row)}
+ctx.strokeStyle='rgba('+Math.round(tone+5)+','+Math.round(tone+3)+','+Math.round(tone-2)+','+visibleAlpha+')';ctx.lineWidth=w<720?.6:.75;
+for(let j=0;j<rows;j++){ctx.beginPath();points[j].forEach((pt,i)=>i?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1]));ctx.stroke()}
+for(let i=0;i<cols;i++){ctx.beginPath();for(let j=0;j<rows;j++){const pt=points[j][i];j?ctx.lineTo(pt[0],pt[1]):ctx.moveTo(pt[0],pt[1])}ctx.stroke()}
+for(let j=0;j<rows;j+=3)for(let i=0;i<cols;i+=5){const v=(Math.sin(i*.6+j*.8+p)+1)*.5,pt=points[j][i];ctx.beginPath();ctx.arc(pt[0],pt[1],v>.85?1.4:.65,0,Math.PI*2);ctx.fillStyle='rgba('+Math.round(tone+18)+','+Math.round(tone+15)+','+Math.round(tone+10)+','+((.12+v*.4)*(visibleAlpha/.23))+')';ctx.fill()}
+// Rare warm pulses travel across the graphite mesh; keep the fabric itself neutral.
+if(!reduced.matches){for(let n=0;n<4;n++){const progress=(ms*.00007+n*.271)%1;const i=Math.min(cols-1,Math.floor(progress*(cols-1)));const j=Math.floor(rows*(.30+n*.16));const pt=points[j][i];const glow=Math.pow(Math.sin(Math.PI*progress),2)*(.55+.45*Math.sin(p+n*2.1)**2);ctx.beginPath();ctx.arc(pt[0],pt[1],1.6+glow*.8,0,Math.PI*2);ctx.fillStyle='rgba(181,76,53,'+(glow*.65)+')';ctx.fill()}}
+}
+let last=0;function tick(t){scroll+=(target-scroll)*.075;visualMode+=(targetMode-visualMode)*.075;if(t-last>32){draw(t);last=t}frame=requestAnimationFrame(tick)}
+const videoTimers=new WeakMap(),videoVisits=new WeakSet();
+function cancelVideoStart(v){clearTimeout(videoTimers.get(v));videoTimers.delete(v)}
+const videoObserver=new IntersectionObserver(entries=>{for(const entry of entries){const v=entry.target;if(!entry.isIntersecting||entry.intersectionRatio<.10||reduced.matches){cancelVideoStart(v);v.pause();videoVisits.delete(v);continue}if(entry.intersectionRatio<.25||videoVisits.has(v))continue;videoVisits.add(v);const start=()=>{videoTimers.delete(v);if(reduced.matches||!videoVisits.has(v))return;v.muted=true;v.currentTime=0;v.play().catch(()=>{})};const delay=Number(v.dataset.startDelay||0);if(delay)videoTimers.set(v,setTimeout(start,delay));else start()}},{threshold:[0,.10,.25]});
+document.querySelectorAll('video[data-artwork]').forEach(v=>{videoObserver.observe(v);v.addEventListener('loadeddata',()=>{if(reduced.matches)v.pause()})});
+reduced.addEventListener('change',()=>{document.querySelectorAll('video[data-artwork]').forEach(v=>{cancelVideoStart(v);v.pause();videoVisits.delete(v);videoObserver.unobserve(v);videoObserver.observe(v)})});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+addEventListener('resize',resize,{passive:true});addEventListener('scroll',onscroll,{passive:true});resize();onscroll();
+if(!reduced.matches)frame=requestAnimationFrame(tick);
+reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);if(reduced.matches)draw(0);else frame=requestAnimationFrame(tick)});
+})();
+</script></body></html>
