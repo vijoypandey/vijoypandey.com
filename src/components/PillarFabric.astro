@@ -1,0 +1,45 @@
+---
+interface Props { mode: 'think' | 'entangle' | 'fluctuate' | 'move' }
+const { mode } = Astro.props;
+---
+<canvas class="pillar-fabric" data-mode={mode} aria-hidden="true"></canvas>
+<script is:inline>
+(() => {
+ const canvas=document.querySelector('.pillar-fabric'),ctx=canvas?.getContext('2d');if(!ctx)return;
+ const hero=canvas.parentElement, motion=matchMedia('(prefers-reduced-motion: reduce)');
+ let w=0,h=0,frame=0,visible=true,last=0;
+ function draw(ms){
+ ctx.clearRect(0,0,w,h);
+ const t=motion.matches?0:ms*.00035,cols=w<700?34:65,rows=w<700?23:34,points=[];
+ const fade=Math.max(.12,1-Math.max(0,scrollY)/(h*.9));
+ const mode=canvas.dataset.mode;
+ const clusters=[[.59,.28],[.84,.50],[.68,.78]];
+ for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
+ let x=i/(cols-1),y=j/(rows-1),dx=0,dy=0;
+ if(mode==='think')for(const [cx,cy] of clusters){const a=cx-x,b=cy-y,k=.30*Math.exp(-(a*a+b*b)/.035)*(1+.16*Math.sin(t+cx*8));dx+=a*k;dy+=b*k;}
+ if(mode==='entangle'){
+ const envelope=Math.exp(-Math.pow((x-.24)/.15,2))+Math.exp(-Math.pow((x-.82)/.15,2));
+ dy=.095*envelope*Math.sin(y*19+t)*Math.cos(y*5);dx=.025*envelope*Math.cos(y*16+t);
+ }else if(mode==='fluctuate'){
+ dy=.035*Math.sin(x*37+y*17+t*2)+.025*Math.sin(x*21-y*26-t*1.4)+.04*Math.sin(x*11+t)*Math.cos(y*13+t);
+ dx=.015*Math.sin(x*29+y*21-t);
+ }else if(mode==='move'){
+ dy=.12*Math.sin(x*5+y*3+t*.6)*Math.sin(Math.PI*x);dx=.045*Math.sin(y*9-x*5+t*.5);
+ }
+ row.push([w*(x+dx)+12*Math.sin(y*11+t),h*(y+dy)+20*Math.sin(x*13+y*8+t)*x]);
+ }points.push(row)}
+ ctx.lineWidth=.75;ctx.strokeStyle='rgba(68,66,61,'+(.24*fade)+')';
+ for(const row of points){ctx.beginPath();row.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.stroke()}
+ for(let i=0;i<cols;i++){ctx.beginPath();points.forEach((row,j)=>j?ctx.lineTo(...row[i]):ctx.moveTo(...row[i]));ctx.stroke()}
+ for(let j=2;j<rows;j+=4)for(let i=3;i<cols;i+=5){const p=points[j][i];ctx.beginPath();ctx.arc(...p,1.2,0,Math.PI*2);ctx.fillStyle='rgba(68,66,61,'+(.38*fade)+')';ctx.fill()}
+ if(!motion.matches)for(let n=0;n<4;n++){const i=mode==='entangle'?Math.floor((n%2?.82:.24)*(cols-1)):Math.floor(((t*.23+n*.27)%1)*(cols-1)),j=mode==='entangle'?Math.floor((.25+Math.floor(n/2)*.4)*(rows-1)):Math.floor(rows*(.2+n*.18));ctx.beginPath();ctx.arc(...points[j][i],2,0,Math.PI*2);ctx.fillStyle='rgba(181,76,53,'+(.7*fade)+')';ctx.fill()}
+ }
+ function size(){const r=hero.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,1.7);w=r.width;h=r.height;canvas.width=Math.round(w*d);canvas.height=Math.round(h*d);ctx.setTransform(d,0,0,d,0,0);draw(0)}
+ function tick(t){if(!visible||motion.matches){frame=0;return}if(t-last>33){draw(t);last=t}frame=requestAnimationFrame(tick)}
+ function start(){if(!frame&&visible&&!motion.matches)frame=requestAnimationFrame(tick)}
+ new ResizeObserver(size).observe(hero);
+ new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)start();else{cancelAnimationFrame(frame);frame=0}}).observe(hero);
+ motion.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;draw(0);start()});
+ size();start();
+})();
+</script>
