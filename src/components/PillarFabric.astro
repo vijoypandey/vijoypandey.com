@@ -24,9 +24,19 @@ const { mode } = Astro.props;
  dy=.035*Math.sin(x*37+y*17+t*2)+.025*Math.sin(x*21-y*26-t*1.4)+.04*Math.sin(x*11+t)*Math.cos(y*13+t);
  dx=.015*Math.sin(x*29+y*21-t);
  }else if(mode==='move'){
- dy=.12*Math.sin(x*5+y*3+t*.6)*Math.sin(Math.PI*x);dx=.045*Math.sin(y*9-x*5+t*.5);
+ // A traveling throat: radial compression and twist, with a soft trailing wake.
+ const cx=.69+.22*Math.sin(t*.85),cy=.51+.19*Math.sin(t*1.15+.7);
+ const aspect=w/Math.max(h,1),a=(x-cx)*aspect,b=y-cy;
+ const radius=Math.hypot(a,b),sigma=.25;
+ const influence=Math.exp(-radius*radius/(2*sigma*sigma));
+ const twist=1.05*influence,compression=1-.83*influence;
+ const px=(a*Math.cos(twist)-b*Math.sin(twist))*compression;
+ const py=(a*Math.sin(twist)+b*Math.cos(twist))*compression;
+ dx=(px-a)/aspect;dy=py-b;
+ dy+=.035*Math.sin(radius*24-t*2)*Math.exp(-radius*radius/.22);
+
  }
- row.push([w*(x+dx)+12*Math.sin(y*11+t),h*(y+dy)+20*Math.sin(x*13+y*8+t)*x]);
+ row.push([w*(x+dx)+(mode==='move'?3:12)*Math.sin(y*11+t),h*(y+dy)+(mode==='move'?4:20)*Math.sin(x*13+y*8+t)*x]);
  }points.push(row)}
  ctx.lineWidth=.75;ctx.strokeStyle='rgba(68,66,61,'+(.24*fade)+')';
  for(const row of points){ctx.beginPath();row.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.stroke()}
