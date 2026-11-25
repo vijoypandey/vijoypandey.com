@@ -37,3 +37,17 @@ body.pillar-v4 {--rail:max(7vw,calc((100% - 1510px)/2));--paper:#eee9de;--ink:#2
 .pillar-v4 .frontier-prose{width:min(100%,calc(850px + 2 * var(--rail)));margin-inline:auto;text-align:left}
 
 .pillar-v4 .pillar-artwork{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px}
+
+/* Match the production homepage masthead without changing the homepage. */
+.pillar-v4 .site-header{position:fixed;inset:0 0 auto;gap:0;border-bottom:1px solid #29282424}
+.pillar-v4 #main{padding-top:69px}
+.pillar-v4 .site-header .wordmark{font-family:'Iowan Old Style','Baskerville','Palatino Linotype',Georgia,serif;font-weight:400;font-size:31px;letter-spacing:-.045em}
+.pillar-v4 .site-header .wordmark-dot{display:inline-block;width:.19em;height:.19em;border-radius:50%;background:#b54c35;margin-left:.075em;vertical-align:.025em;font-size:inherit;color:transparent}
+.pillar-v4 .site-header .pillar-navigation{gap:24px;font-family:Roboto,Arial,sans-serif;font-size:11px;letter-spacing:.16em;color:#35332e;font-weight:500}
+.pillar-v4 .pillar-navigation summary{padding:0;list-style:none;cursor:pointer}
+.pillar-v4 .pillar-navigation summary:after{content:" ⌄"}
+.pillar-v4 .pillar-navigation .nav-menu{right:0;left:auto;top:calc(100% + 14px);min-width:210px;background:#eee9de;border:1px solid #817d756b;border-radius:6px;padding:8px;box-shadow:0 8px 20px #29282418}
+.pillar-v4 .pillar-navigation .nav-menu a{display:block;padding:10px;letter-spacing:0;text-transform:none;font-size:14px;text-decoration:none;white-space:normal}
+.pillar-v4 .pillar-navigation .nav-menu a:hover{background:#ded9cf}
+@media(max-width:800px){.pillar-v4 .site-header .pillar-navigation{gap:18px}}
+@media(max-width:720px){.pillar-v4 .site-header{padding-inline:23px}}
