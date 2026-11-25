@@ -8,7 +8,7 @@ const home = `${base}/`;
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="wordmark" href={home} aria-label="Vijoy Pandey — Home">Vijoy<span class="wordmark-dot">.</span></a>
-  <nav class="site-nav" aria-label="Main navigation">
+  <nav class="site-nav legacy-navigation" aria-label="Main navigation">
     <details>
       <summary>Thesis <span aria-hidden="true">⌄</span></summary>
       <div class="nav-menu">
@@ -25,4 +25,23 @@ const home = `${base}/`;
       </div>
     </details>
   </nav>
+  <nav class="site-nav pillar-navigation" aria-label="Main navigation">
+    <details><summary>Thesis</summary><div class="nav-menu">
+      <a href={home}>Overview</a>
+      <a href={`${base}/emergent-superintelligence/`}>Collective Intelligence</a>
+      <a href={`${base}/quantum-computing/`}>Quantum Computing</a>
+      <a href={`${base}/physics-based-computing/`}>Physics-Based Computing</a>
+      <a href={`${base}/physical-ai/`}>Physical AI</a>
+    </div></details>
+    <details><summary>About</summary><div class="nav-menu">
+      <a href={`${base}/about/personal/`}>Personal</a>
+      <a href={`${base}/about/work/`}>Work</a>
+      <a href="mailto:vijoy.external@gmail.com">Contact</a>
+    </div></details>
+  </nav>
 </header>
+<style is:global>
+.enchanted-v2 .pillar-navigation{display:none}
+.pillar-v4 .site-header .legacy-navigation{display:none}
+.pillar-v4 .site-header .pillar-navigation{display:flex}
+</style>
