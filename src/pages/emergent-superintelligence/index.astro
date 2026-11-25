@@ -2,20 +2,17 @@
 import { getCollection } from 'astro:content';
 import EnchantedV2Header from '../../components/EnchantedV2Header.astro';
 import EnchantedV2Footer from '../../components/EnchantedV2Footer.astro';
-import { images } from '../../data/enchantedV2';
 import '../../styles/enchanted-v2.css';
 import '../../styles/frontier-essay.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const artwork = `${base}/images/design-exploration/${images.collectiveForest}`;
-const artworkWebp = artwork.replace(/\.png$/, '.webp');
 const works = (await getCollection('artifacts', ({ data }) => data.draft !== true && data.frontiers.includes('think')))
   .sort((a,b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0) || a.data.title.localeCompare(b.data.title));
 const stages = [
   { name: 'Isolated', text: 'Intelligence is contained in individual systems.' },
   { name: 'Islands', text: 'Specialized groups work together locally, but remain separated.' },
   { name: 'Connected', text: 'Systems can discover each other and exchange messages.' },
-  { name: 'Collective', text: 'Shared meaning, context, intent and verification make coordinated reasoning possible.' },
+  { name: 'Coordinated', text: 'Shared meaning, context, intent and verification make coordinated reasoning possible.' },
   { name: 'Emergent', text: 'New capabilities may arise from sustained interactions among humans and agents.' },
 ];
 ---
@@ -27,25 +24,70 @@ const stages = [
     <meta name="theme-color" content="#eee9de" />
     <meta name="description" content="Can intelligence scale through interaction? An illustrated inquiry into collective cognition and emergent human–agent societies." />
     <link rel="canonical" href={new URL(`${base}/emergent-superintelligence/`, Astro.site).href} />
-    <title>Emergent Superintelligence — Vijoy Pandey</title>
+    <title>Collective Intelligence | Vijoy Pandey</title>
     <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
-  </head>
-  <body class="enchanted-v2 frontier-essay">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+<style is:global>
+body.pillar-v4 {--rail:max(7vw,calc((100% - 1510px)/2));--paper:#eee9de;--ink:#292824;--accent:#b54c35;font-family:Roboto,Arial,sans-serif;font-weight:300}
+.pillar-v4 .site-header{height:69px;position:sticky;top:0;background:#eee9def0;color:var(--ink);border-color:#29282424;padding-inline:5vw;backdrop-filter:blur(12px)}
+.pillar-v4 .wordmark{font-size:31px;letter-spacing:-.045em}.pillar-v4 .wordmark-dot,.pillar-v4 .footer-brand span{color:var(--accent)}
+.pillar-v4 .site-nav{font-size:11px;text-transform:uppercase;letter-spacing:.13em;font-weight:500}.pillar-v4 .nav-menu{left:auto;right:0;text-transform:none;letter-spacing:0;font-size:14px}
+.pillar-v4 .frontier-opening{position:relative;isolation:isolate;overflow:hidden;min-height: min(760px,85svh);display:flex;align-items:center;padding:clamp(60px,9vw,130px) var(--rail);background:var(--paper)}
+.pillar-v4 .opening-content{position:relative;z-index:1;width:min(100%,760px)}
+#think-fabric{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mask-image:radial-gradient(ellipse 90% 80% at 82% 48%,#000 22%,transparent 100%)}
+.pillar-v4 .frontier-opening h1{font-size:clamp(3.5rem,7.6vw,7.1rem);max-width:none;line-height:1.03}
+.pillar-v4 .frontier-opening h1 em,.pillar-v4 h2 em,.pillar-v4 .frontier-closing em{color:#66635e;font-style:normal}
+.pillar-v4 .frontier-kicker,.pillar-v4 .frontier-overline,.pillar-v4 .frontier-chapter,.pillar-v4 .stage-number,.pillar-v4 .artifact-meta,.pillar-v4 .frontier-end>span{color:#696762;font-weight:500}
+.pillar-v4 .frontier-kicker:before,.pillar-v4 .frontier-chapter:before{content:"";display:inline-block;width:5px;height:5px;background:var(--accent);border-radius:50%;margin-right:10px;vertical-align:2px}
+.pillar-v4 .frontier-question{margin-top:30px;font-size:clamp(1.5rem,2.5vw,2.3rem)}
+.pillar-v4 .frontier-lede{max-width:570px;color:#504d48;font-size:clamp(17px,1.5vw,21px);line-height:1.55}
+.pillar-v4 .chapter-entry{display:inline-block;margin-top:32px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid #b54c35;padding-bottom:8px;font-weight:500}
+.pillar-v4 .frontier-plate{background:transparent;color:var(--ink);padding:0 var(--rail);max-width:none}
+.pillar-v4 .art-placeholder{aspect-ratio:16/9;border-radius:8px;max-width:1100px;background:radial-gradient(ellipse at 70% 35%,#ddd9d0,#b9b6af 70%,#a7a49e);border:1px solid #817d7540;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(18px,3vw,36px);color:#504d48}
+.pillar-v4 .art-placeholder span:first-child{font-size:11px;letter-spacing:.13em;text-transform:uppercase}.pillar-v4 .art-placeholder span:last-child{font:400 clamp(24px,4vw,48px) Georgia,serif}
+.pillar-v4 .frontier-plate figcaption{padding:14px 0;color:#696762;display:flex;justify-content:space-between;gap:12px;max-width:1100px}
+.pillar-v4 .frontier-prose{max-width:none;margin:0;padding:clamp(65px,8vw,120px) var(--rail);scroll-margin-top:70px}
+.pillar-v4 .frontier-prose h2{max-width:850px;font-size:clamp(2.1rem,4vw,3.7rem);margin:18px 0 28px}
+.pillar-v4 .frontier-prose p:not(.frontier-chapter):not(.frontier-closing){max-width:740px;font-size:clamp(17px,1.45vw,20px);line-height:1.7;color:#504d48}
+.pillar-v4 .frontier-prose a{text-decoration-color:#b54c3570}
+.pillar-v4 .frontier-map,.pillar-v4 .frontier-reading{background:#e7e2d8;padding:clamp(60px,8vw,115px) var(--rail)}
+.pillar-v4 .frontier-map{background:linear-gradient(#eee9de,#e2ddd3 32%,#e7e2d8)}
+.pillar-v4 .stage-list{gap:clamp(16px,2.5vw,36px);margin-top:40px}
+.pillar-v4 .stage-list li{border-color:#817d756b}
+.pillar-v4 .stage-list h3{font-size:clamp(1.25rem,2vw,2rem);margin:18px 0 12px}
+.pillar-v4 .stage-list p,.pillar-v4 .artifact-entry p{font-size:16px;line-height:1.55}
+.pillar-v4 .stage-number{color:#a34430}
+.pillar-v4 .frontier-closing{max-width:850px}
+.pillar-v4 .frontier-end{padding-inline:var(--rail)}
+.pillar-v4 .site-footer{background:#e2ddd3;color:#504d48;border-color:#817d7540}
+.pillar-v4 .site-footer a,.pillar-v4 .site-footer p,.pillar-v4 .site-footer span{color:inherit}
+.pillar-v4 .site-footer .footer-brand span{color:var(--accent)}
+@media(max-width:800px){body.pillar-v4{--rail:24px}.pillar-v4 .frontier-opening{min-height:0;padding-block:85px}.pillar-v4 .frontier-opening h1{font-size:clamp(2.8rem,9.5vw,5rem);overflow-wrap:normal}.pillar-v4 .stage-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.pillar-v4 .stage-list{grid-template-columns:1fr}.pillar-v4 .frontier-plate figcaption{flex-direction:column}.pillar-v4 .site-nav{gap:18px}}
+</style>
+</head>
+  <body class="enchanted-v2 frontier-essay pillar-v4">
     <EnchantedV2Header />
     <main id="main">
       <header class="frontier-opening">
+        <canvas id="think-fabric" aria-hidden="true"></canvas>
+        <div class="opening-content">
         <p class="frontier-kicker">Frontier 01 <span>—</span> Think</p>
         <p class="frontier-overline">Beyond the individual mind</p>
-        <h1>Emergent<br /><em>Superintelligence.</em></h1>
+        <h1>Collective<br /><em>Intelligence.</em></h1>
         <p class="frontier-question">What if the next leap in intelligence doesn't happen inside a model?</p>
         <p class="frontier-lede">The next dimension of intelligence may be interaction: populations of humans and artificial agents reasoning, learning, and discovering together. Whether that can yield genuinely new—and ultimately superintelligent—capabilities remains an open question.</p>
+      <a class="chapter-entry" href="#precedent">Explore the chapter ↓</a>
+        </div>
       </header>
       <figure class="frontier-plate">
-        <picture>{import.meta.env.PROD && <source srcset={artworkWebp} type="image/webp" />}<img src={artwork} alt="Small figures stand around separate pools of light beneath immense forest trees" loading="lazy" decoding="async" /></picture>
-        <figcaption><span>Plate I / Emergent Superintelligence</span><span>Many minds, an unfinished world</span></figcaption>
+        <div class="art-placeholder" role="img" aria-label="Placeholder for collective intelligence artwork"><span>Artwork placeholder</span><span>Many minds / one system</span></div>
+        <figcaption><span>Plate I / Collective Intelligence</span><span>Many minds, an unfinished world</span></figcaption>
       </figure>
 
-      <div class="frontier-prose">
+      <div class="frontier-prose" id="precedent">
         <p class="frontier-chapter">I. A precedent</p>
         <h2>Intelligence has already scaled beyond the individual.</h2>
         <p>No single person designed civilization. Our most consequential achievements depend on the ability to learn from others, coordinate effort, preserve discoveries, and improve what previous generations left behind. Human intelligence is not just a property of individual brains; it is also expressed through relationships, institutions, and accumulated culture.</p>
@@ -124,5 +166,35 @@ const stages = [
         if (visible >= entries.length) more.remove();
       });
     </script>
-  </body>
+  <script is:inline>
+(() => {
+ const canvas=document.querySelector('#think-fabric'),ctx=canvas?.getContext('2d');if(!ctx)return;
+ const hero=canvas.parentElement, motion=matchMedia('(prefers-reduced-motion: reduce)');
+ let w=0,h=0,frame=0,visible=true,last=0;
+ function draw(ms){
+ ctx.clearRect(0,0,w,h);
+ const t=motion.matches?0:ms*.00035,cols=w<700?34:65,rows=w<700?23:34,points=[];
+ const fade=Math.max(.12,1-Math.max(0,scrollY)/(h*.9));
+ const clusters=[[.59,.28],[.84,.50],[.68,.78]];
+ for(let j=0;j<rows;j++){const row=[];for(let i=0;i<cols;i++){
+ let x=i/(cols-1),y=j/(rows-1),dx=0,dy=0;
+ for(const [cx,cy] of clusters){const a=cx-x,b=cy-y,k=.30*Math.exp(-(a*a+b*b)/.035)*(1+.16*Math.sin(t+cx*8));dx+=a*k;dy+=b*k;}
+ row.push([w*(x+dx)+12*Math.sin(y*11+t),h*(y+dy)+20*Math.sin(x*13+y*8+t)*x]);
+ }points.push(row)}
+ ctx.lineWidth=.75;ctx.strokeStyle='rgba(68,66,61,'+(.24*fade)+')';
+ for(const row of points){ctx.beginPath();row.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.stroke()}
+ for(let i=0;i<cols;i++){ctx.beginPath();points.forEach((row,j)=>j?ctx.lineTo(...row[i]):ctx.moveTo(...row[i]));ctx.stroke()}
+ for(let j=2;j<rows;j+=4)for(let i=3;i<cols;i+=5){const p=points[j][i];ctx.beginPath();ctx.arc(...p,1.2,0,Math.PI*2);ctx.fillStyle='rgba(68,66,61,'+(.38*fade)+')';ctx.fill()}
+ if(!motion.matches)for(let n=0;n<4;n++){const i=Math.floor(((t*.23+n*.27)%1)*(cols-1)),j=Math.floor(rows*(.2+n*.18));ctx.beginPath();ctx.arc(...points[j][i],2,0,Math.PI*2);ctx.fillStyle='rgba(181,76,53,'+(.7*fade)+')';ctx.fill()}
+ }
+ function size(){const r=hero.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,1.7);w=r.width;h=r.height;canvas.width=Math.round(w*d);canvas.height=Math.round(h*d);ctx.setTransform(d,0,0,d,0,0);draw(0)}
+ function tick(t){if(!visible||motion.matches){frame=0;return}if(t-last>33){draw(t);last=t}frame=requestAnimationFrame(tick)}
+ function start(){if(!frame&&visible&&!motion.matches)frame=requestAnimationFrame(tick)}
+ new ResizeObserver(size).observe(hero);
+ new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)start();else{cancelAnimationFrame(frame);frame=0}}).observe(hero);
+ motion.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;draw(0);start()});
+ size();start();
+})();
+</script>
+</body>
 </html>
